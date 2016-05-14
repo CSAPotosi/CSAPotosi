@@ -1,10 +1,10 @@
-create table if not exists pais(
+CREATE TABLE IF NOT EXISTS pais(
 	cod_pais    VARCHAR(4)  NOT NULL PRIMARY KEY ,
 	nombre_pais VARCHAR(64) NOT NULL ,
 	gentilicio  VARCHAR(32)
 );
 
-create table if not exists persona(
+CREATE TABLE IF NOT EXISTS persona(
   id_persona SERIAL NOT NULL PRIMARY KEY ,
   num_doc VARCHAR(32) NOT NULL DEFAULT '0',
   tipo_doc SMALLINT DEFAULT 0,
@@ -24,21 +24,22 @@ create table if not exists persona(
   FOREIGN KEY (nacionalidad) REFERENCES pais(cod_pais)
 );
 
-create table if not exists empleado(
+CREATE TABLE IF NOT EXISTS empleado(
   id_empleado INT PRIMARY KEY ,
   fecha_contratacion DATE,
   estado_emp BOOLEAN DEFAULT TRUE ,
+  cod_maquina INT,
   FOREIGN KEY (id_empleado) REFERENCES persona(id_persona)
 );
 
-create table if not exists medico(
+CREATE TABLE IF NOT EXISTS medico(
   id_medico INT PRIMARY KEY ,
   matricula VARCHAR(16) UNIQUE NOT NULL ,
   estado_med BOOLEAN DEFAULT TRUE ,
   FOREIGN KEY (id_medico) REFERENCES persona (id_persona)
 );
 
-create table if not exists paciente(
+CREATE TABLE IF NOT EXISTS paciente(
   id_paciente INT PRIMARY KEY NOT NULL ,
   codigo_paciente VARCHAR(16),
   grupo_sanguineo VARCHAR(8),
@@ -48,14 +49,14 @@ create table if not exists paciente(
   FOREIGN KEY (id_paciente) REFERENCES persona(id_persona)
 );
 
-create table if not exists historial_medico(
+CREATE TABLE IF NOT EXISTS historial_medico(
   id_historial INT PRIMARY KEY NOT NULL ,
   fecha_creacion TIMESTAMP NOT NULL ,
   fecha_edicion TIMESTAMP NOT NULL ,
   FOREIGN KEY (id_historial) REFERENCES paciente(id_paciente)
 );
 
-create table if not exists usuario(
+CREATE TABLE IF NOT EXISTS usuario(
   id_usuario SERIAL PRIMARY KEY NOT NULL ,
   id_persona INT,
   clave VARCHAR(128) NOT NULL ,
