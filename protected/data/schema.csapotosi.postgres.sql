@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS pais(
-	cod_pais    VARCHAR(4)  NOT NULL PRIMARY KEY ,
-	nombre_pais VARCHAR(64) NOT NULL ,
-	gentilicio  VARCHAR(32)
+  cod_pais    VARCHAR(4)  NOT NULL PRIMARY KEY ,
+  nombre_pais VARCHAR(64) NOT NULL ,
+  gentilicio  VARCHAR(32)
 );
 
 CREATE TABLE IF NOT EXISTS persona(
