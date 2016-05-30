@@ -113,4 +113,22 @@ class Paciente extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
+	public static function getPacientList($page=0,$query='',$status=1){
+		//status: 1=todos, 2=internado, 3=inactivos
+		$symbol='=';
+		if($status==1)
+			$symbol='>=';
+		return Paciente::model()->with('persona')->
+			findAll([
+				'condition'=>"estado_paciente {$symbol} :status
+							AND	(codigo_paciente like :query 
+								OR concat_ws(' ',persona.primer_apellido,persona.segundo_apellido,persona.nombres) like :query
+								OR num_doc like :query)",
+				'offset'=>$page,
+				'limit'=>Yii::app()->params['itemListLimit'],
+				'params'=>[':query'=>'%'.$query.'%', ':status'=>$status]
+			]);
+	}
 }

@@ -250,10 +250,7 @@
 
 					<!-- PAGE HEADER -->
 					<i class="fa-fw fa fa-home"></i>
-					<?php echo CHtml::encode($this->pageTitle); ?>
-					<span> >
-						Subtitulo
-					</span>
+					<?php echo $this->pageTitle; ?>
 				</h1>
 			</div>
 			<!-- end col -->
