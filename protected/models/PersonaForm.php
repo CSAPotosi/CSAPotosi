@@ -113,6 +113,20 @@ class PersonaForm extends CFormModel
             return false;
     }
 
+    public function saveEmpleado()
+    {
+        $Empleado = new Empleado();
+        $id_persona = $this->savePersona();
+        if ($id_persona != 0) {
+            $Empleado->id_empleado = $id_persona;
+            $Empleado->attributes = $this->getAttributes();
+            if ($Empleado->save())
+                return true;
+            else
+                return false;
+        } else
+            return false;
+    }
     public function getTipoDocumento()
     {
         return array(
