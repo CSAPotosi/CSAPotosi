@@ -80,7 +80,8 @@ class PersonaForm extends CFormModel
         $Persona->attributes = $this->getAttributes();
         $foto = "";
         $Persona->foto = $foto;
-        $Persona->save();
+        if (!$Persona->save())
+            return 0;
         $filename = "no-photo.png";
         if (!empty($this->foto)) {
             $foto = $this->foto;

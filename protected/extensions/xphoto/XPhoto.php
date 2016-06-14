@@ -56,11 +56,11 @@ class XPhoto extends CWidget
     /**
      * width of photo canvas : in pixel
      */
-    public $width = 220;
+    public $width = 260;
     /**
      * height of photo canvas : in pixel
      */
-    public $height = 240;
+    public $height = 280;
     /**
      * ID of canvas element
      */
@@ -78,7 +78,6 @@ class XPhoto extends CWidget
      * if modal is true, when capturing photo the modal will shown as capture media container
      */
     public $withModal = true;
-
     public $cssFile;
     public $htmlOptions = array();
 

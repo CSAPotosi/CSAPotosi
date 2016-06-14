@@ -16,18 +16,22 @@ class PacienteController extends Controller
 		$this->renderPartial('_pacientListView',['pacienteList'=>$pacienteList]);
 	}
 
-	public function actionPacientCreate()
+	public function actionCreate()
 	{
 		$modelPerson = new PersonaForm();
 		if (isset($_POST['PersonaForm'])) {
 			$modelPerson->attributes = $_POST['PersonaForm'];
 			//$modelPerson->scenario='paciente';
-			$modelPerson->savePaciente();
-
+			if ($modelPerson->savePaciente())
+				$this->redirect(array('viewHistorial'));
 		}
-		$this->render('pacientCreate', array('modelPerson' => $modelPerson));
+		$this->render('create', array('modelPerson' => $modelPerson));
 	}
 
+	public function actionViewHistorial()
+	{
+		$this->render('viewHistorial');
+	}
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

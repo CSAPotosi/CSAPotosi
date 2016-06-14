@@ -7,7 +7,7 @@ class EmpleadoController extends Controller
         $this->render('index');
     }
 
-    public function actionEmployeeCreate()
+    public function actionCreate()
     {
         $modelPerson = new PersonaForm();
         if (isset($_POST['PersonaForm'])) {
@@ -16,6 +16,6 @@ class EmpleadoController extends Controller
             $modelPerson->saveEmpleado();
 
         }
-        $this->render('employeeCreate', array('modelPerson' => $modelPerson));
+        $this->render('create', array('modelPerson' => $modelPerson));
     }
 }
