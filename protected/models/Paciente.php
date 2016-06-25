@@ -113,9 +113,8 @@ class Paciente extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
-
-	public static function getPacientList($page=0,$query='',$status=1){
+	
+	public static function getPatientList($page=0,$query='',$status=1){
 		//status: 1=todos, 2=internado, 3=inactivos
 		$symbol='=';
 		if($status==1)

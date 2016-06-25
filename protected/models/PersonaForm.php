@@ -94,6 +94,7 @@ class PersonaForm extends CFormModel
         }
         $Persona->foto = $filename;
         if ($Persona->save()) {
+            $this->codigo_paciente=Yii::app()->patientTools->generateCode($this->primer_apellido,$this->segundo_apellido,$this->nombres,$this->fecha_nac);
             return $Persona->id_persona;
         } else
             return 0;

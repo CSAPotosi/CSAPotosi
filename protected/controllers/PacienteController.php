@@ -2,18 +2,23 @@
 
 class PacienteController extends Controller
 {
+	public $menu=[
+		['title'=>'LISTA', 'icon'=>'fa-list', 'url'=>['paciente/index']],
+		['title'=>'NUEVO', 'icon'=>'fa-plus', 'url'=>['paciente/create']]
+	];
+
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 
 	//AJAX
-	public function actionGetPacientListAjax(){
-		$page=$_POST['page']*6;
+	public function actionGetPatientListAjax(){
+		$page=$_POST['page']*Yii::app()->params['itemListLimit'];
 		$query=$_POST['query'];
 		$status=$_POST['status'];
-		$pacienteList=Paciente::getPacientList($page,$query,$status);
-		$this->renderPartial('_pacientListView',['pacienteList'=>$pacienteList]);
+		$pacienteList=Paciente::getPatientList($page,$query,$status);
+		$this->renderPartial('_patientListView',['pacienteList'=>$pacienteList]);
 	}
 
 	public function actionCreate()

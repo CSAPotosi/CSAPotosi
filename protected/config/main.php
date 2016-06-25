@@ -38,6 +38,10 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 
+		'patientTools'=>[
+			'class'=>'PatientTools'
+		],
+
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(

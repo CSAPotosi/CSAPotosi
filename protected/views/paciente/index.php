@@ -19,7 +19,7 @@
 								<div class="col-md-6">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-search"></i></span>
-										<input class="form-control" id="input-search-pacients" placeholder="Buscar..." type="text">
+										<input class="form-control" id="input-search-patients" placeholder="Buscar..." type="text">
 									</div>
 								</div>
 								<div class="col-md-6 text-right">
@@ -28,15 +28,15 @@
 											Todos
 											<i class="fa fa-caret-down"></i>
 										</button>
-										<ul class="dropdown-menu pull-right" id="pick-status-pacient">
+										<ul class="dropdown-menu pull-right" id="pick-status-patient">
 											<li class="active">
-												<a href="javascript:void(0);" status="1">Todos</a>
+												<a href="javascript:void(0);" data-status="1">Todos</a>
 											</li>
 											<li>
-												<a href="javascript:void(0);" status="2">Internados</a>
+												<a href="javascript:void(0);" data-status="2">Internados</a>
 											</li>
 											<li>
-												<a href="javascript:void(0);" status="0">
+												<a href="javascript:void(0);" data-status="0">
 													Inactivos
 												</a>
 											</li>
@@ -46,13 +46,13 @@
 							</div>
 						</div>
 
-						<div class="row" id="pacient-list">
+						<div class="row" id="patient-list">
 							<!-- Lista de pacientes (_pacientListView)-->
 						</div>
 
 						<div class="row">
 							<div class="col-md-12 text-center">
-								<button class="btn btn-default" id="btn-load-pacients" page="0" limit="<?php echo Yii::app()->params['itemListLimit'];?>" url="<?php echo CHtml::normalizeUrl(['paciente/getPacientListAjax'])?>">
+								<button class="btn btn-default" id="btn-load-patients" data-page="0" data-limit="<?php echo Yii::app()->params['itemListLimit'];?>" data-url="<?php echo CHtml::normalizeUrl(['paciente/getPatientListAjax'])?>">
 									Ver mas
 								</button>
 							</div>

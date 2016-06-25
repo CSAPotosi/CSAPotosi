@@ -229,10 +229,6 @@
 			<li><a href="#">AS</a></li><li>Miscellaneous</li><li>Blank Page</li>
 		</ol>
 		<!-- end breadcrumb -->
-
-		<span class="ribbon-button-alignment pull-right">
-			<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span>
-		</span>
 	</div>
 	<!-- END RIBBON -->
 
@@ -257,20 +253,12 @@
 
 			<!-- right side of the page with the sparkline graphs -->
 			<!-- col -->
-			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-				<!-- sparks -->
-				<ul id="sparks">
-					<li class="sparks-info">
-						<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-					</li>
-					<li class="sparks-info">
-						<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
-					</li>
-					<li class="sparks-info">
-						<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-					</li>
-				</ul>
-				<!-- end sparks -->
+			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
+				<!-- widget -->
+				<?php
+					$this->widget('application.extensions.csamenu.CSAMenu',['menu'=>$this->menu]);
+				?>
+				<!-- end widget -->
 			</div>
 			<!-- end col -->
 
