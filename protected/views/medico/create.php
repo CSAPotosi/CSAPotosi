@@ -21,7 +21,7 @@ $this->breadcrumbs = array(
                                     <ul class="bootstrapWizard form-wizard">
                                         <li class="active" data-target="#step1">
                                             <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span
-                                                    class="title">Informacion paciente</span> </a>
+                                                    class="title">Informacion basica</span> </a>
                                         </li>
                                         <li data-target="#step2">
                                             <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span
@@ -29,7 +29,7 @@ $this->breadcrumbs = array(
                                         </li>
                                         <li data-target="#step3">
                                             <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span
-                                                    class="title">Informacion Contacto</span> </a>
+                                                    class="title">Informacion Medica</span> </a>
                                         </li>
                                         <li data-target="#step4">
                                             <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span
@@ -47,6 +47,8 @@ $this->breadcrumbs = array(
                                                     <?php $this->widget('application.extensions.xphoto.Xphoto', array(
                                                         'model' => $modelPerson,
                                                         'attribute' => 'foto',
+                                                        'width' => '270',
+                                                        'height' => '315',
                                                         'photoUrl' => null,
                                                     )); ?>
                                                 </div>
@@ -89,7 +91,7 @@ $this->breadcrumbs = array(
                                                 </div>
                                                 <div class="form-group">
                                                     <?php echo CHtml::activelabelEx($modelPerson, 'Fecha Nacimiento'); ?>
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_nac', array('class' => 'form-control')) ?>
+                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_nac', array('class' => 'form-control', 'prompt' => 'seleccione')) ?>
                                                     <input type="date" name="fecha_nac" id="fecha_nac"
                                                            class="form-control">
                                                 </div>
@@ -109,31 +111,35 @@ $this->breadcrumbs = array(
                                     <div class="tab-pane" id="tab2">
                                         <br><br><br>
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Nacionalidad'); ?>
-                                                    <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('class' => 'form-control')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'nacionalidad', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'localidad'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'localidad', array('class' => 'form-control', 'placeholder' => 'Localidad')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Domicilio'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'domicilio', array('class' => 'form-control', 'placeholder' => 'Direccion')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Telefono'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'telefono', array('class' => 'form-control', 'placeholder' => 'Telefono')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Email'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'email', array('class' => 'form-control', 'placeholder' => 'Email')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger')); ?>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <?php echo CHtml::activelabelEx($modelPerson, 'Nacionalidad'); ?>
+                                                            <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('class' => 'form-control')); ?>
+                                                            <?php echo CHtml::error($modelPerson, 'nacionalidad', array('class' => 'label label-danger')); ?>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <?php echo CHtml::activelabelEx($modelPerson, 'localidad'); ?>
+                                                            <?php echo CHtml::activetextField($modelPerson, 'localidad', array('class' => 'form-control', 'placeholder' => 'Localidad')); ?>
+                                                            <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger')); ?>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <?php echo CHtml::activelabelEx($modelPerson, 'Domicilio'); ?>
+                                                            <?php echo CHtml::activetextField($modelPerson, 'domicilio', array('class' => 'form-control', 'placeholder' => 'Direccion')); ?>
+                                                            <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger')); ?>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <?php echo CHtml::activelabelEx($modelPerson, 'Telefono'); ?>
+                                                            <?php echo CHtml::activetextField($modelPerson, 'telefono', array('class' => 'form-control', 'placeholder' => 'Telefono')); ?>
+                                                            <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger')); ?>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <?php echo CHtml::activelabelEx($modelPerson, 'Email'); ?>
+                                                            <?php echo CHtml::activetextField($modelPerson, 'email', array('class' => 'form-control', 'placeholder' => 'Email')); ?>
+                                                            <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger')); ?>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,16 +149,14 @@ $this->breadcrumbs = array(
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Fecha de Contratacion'); ?>
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_contratacion', array('class' => 'form-control')); ?>
-                                                    <input type="date" name="fecha_contratacion" id="fecha_contratacion"
-                                                           class="form-control">
+                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Matricula'); ?>
+                                                    <?php echo CHtml::activetextField($modelPerson, 'matricula', array('class' => 'form-control', 'placeholder' => 'Matricula')); ?>
+                                                    <?php echo CHtml::error($modelPerson, 'matricula', array('class' => 'label label-danger')); ?>
                                                 </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Codigo Maquina'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'cod_maquina', array('class' => 'form-control', 'placeholder' => 'Codigo de Maquina')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'cod_maquina', array('class' => 'label label-danger')); ?>
-                                                </div>
+                                                <button type="button" class="btn btn-primary"
+                                                        data-target="#modalEspecialidad" data-toggle="modal">
+                                                    <b>Agregar Especialidad</b>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +167,7 @@ $this->breadcrumbs = array(
                                             <div class="box-footer">
                                                 <div class="form-group">
                                                     <div class="col-sm-offset-2 col-sm-10">
-                                                        <?php echo CHtml::submitButton('Registrar Paciente', array('class' => 'btn btn-primary btn-lg', 'id' => 'buttonSent')); ?>
+                                                        <?php echo CHtml::submitButton('Registrar Paciente', array('class' => 'btn btn-primary btn-lg')); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -201,9 +205,37 @@ $this->breadcrumbs = array(
         </div>
     </div>
 </section>
+<div class="modal fade in" id="modalEspecialidad" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title">Registrar Categoria de Examen de Laboratorio</h4>
+            </div>
+            <div class="modal-body" id="contenedormodal">
+                <div class="form-group">
+                    <?php echo CHtml::activelabelEx($modelEspecialidad, 'Nombre Especialidad'); ?>
+                    <?php echo CHtml::activetextField($modelEspecialidad, 'nombre_especialidad', array('class' => 'form-control', 'placeholder' => 'Nombre de la Especialidad')); ?>
+                    <?php echo CHtml::error($modelEspecialidad, 'nombre_especialidad', array('class' => 'label label-danger')); ?>
+                </div>
+                <div class="form-group">
+                    <?php echo CHtml::activelabelEx($modelEspecialidad, 'Descripcion'); ?>
+                    <?php echo CHtml::activetextField($modelEspecialidad, 'descripcion', array('class' => 'form-control', 'placeholder' => 'Descripcion')); ?>
+                    <?php echo CHtml::error($modelEspecialidad, 'descripcion', array('class' => 'label label-danger')); ?>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary pull-left" id="cat_lab">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- start plugins-->
+<!--plugin smartwizart-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/fuelux/wizard/wizard.min.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/bootstrap-wizard/jquery.bootstrap.wizard.min.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/jquery-validate/jquery.validate.min.js', CClientScript::POS_END); ?>
 <!--end plugins-->
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/empleado/create.js', CClientScript::POS_END); ?>
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/empleado/validacion.js', CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/medico/create.js', CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/medico/validacion.js', CClientScript::POS_END); ?>

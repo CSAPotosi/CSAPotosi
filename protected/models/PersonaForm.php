@@ -88,13 +88,19 @@ class PersonaForm extends CFormModel
             $foto = str_replace('data:image/png;base64,', '', $foto);
             $foto = str_replace(' ', '+', $foto);
             $data_foto = base64_decode($foto);
-            $filename = $Persona->id_persona . '.png';
-            $filepath = YiiBase::getPathOfAlias("webroot") . '/fotografias/' . $filename;
+            $filename = 'photo.png';
+            $carpetaRaiz = YiiBase::getPathOfAlias("webroot") . '/images/';
+            $carpetaPersonal = YiiBase::getPathOfAlias("webroot") . '/images/' . $Persona->id_persona;
+            if (!file_exists($carpetaRaiz))
+                mkdir($carpetaRaiz, 0777, true);
+            else if (!file_exists($carpetaPersonal))
+                mkdir($carpetaPersonal, 0777, true);
+            $filepath = YiiBase::getPathOfAlias("webroot") . '/images/' . $Persona->id_persona . '/' . $filename;
             $writeToDisk = file_put_contents($filepath, $data_foto);
         }
         $Persona->foto = $filename;
         if ($Persona->save()) {
-            $this->codigo_paciente=Yii::app()->patientTools->generateCode($this->primer_apellido,$this->segundo_apellido,$this->nombres,$this->fecha_nac);
+            $this->codigo_paciente = Yii::app()->patientTools->generateCode($this->primer_apellido, $this->segundo_apellido, $this->nombres, $this->fecha_nac);
             return $Persona->id_persona;
         } else
             return 0;
@@ -108,6 +114,21 @@ class PersonaForm extends CFormModel
             $Paciente->id_paciente = $id_persona;
             $Paciente->attributes = $this->getAttributes();
             if ($Paciente->save())
+                return $Paciente->id_paciente;
+            else
+                return 0;
+        } else
+            return false;
+    }
+
+    public function saveEmpleado()
+    {
+        $empleado = new Empleado();
+        $id_persona = $this->savePersona();
+        if ($id_persona != 0) {
+            $empleado->id_empleado = $id_persona;
+            $empleado->attributes = $this->getAttributes();
+            if ($empleado->save())
                 return true;
             else
                 return false;
@@ -115,14 +136,14 @@ class PersonaForm extends CFormModel
             return false;
     }
 
-    public function saveEmpleado()
+    public function saveMedico()
     {
-        $Empleado = new Empleado();
+        $medico = new Medico();
         $id_persona = $this->savePersona();
         if ($id_persona != 0) {
-            $Empleado->id_empleado = $id_persona;
-            $Empleado->attributes = $this->getAttributes();
-            if ($Empleado->save())
+            $medico->id_medico = $id_persona;
+            $medico->attributes = $this->getAttributes();
+            if ($medico->save())
                 return true;
             else
                 return false;

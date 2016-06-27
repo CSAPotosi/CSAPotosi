@@ -1,5 +1,4 @@
 <?php
-
 class PacienteController extends Controller
 {
 	public $menu=[
@@ -27,16 +26,13 @@ class PacienteController extends Controller
 		if (isset($_POST['PersonaForm'])) {
 			$modelPerson->attributes = $_POST['PersonaForm'];
 			//$modelPerson->scenario='paciente';
-			if ($modelPerson->savePaciente())
-				$this->redirect(array('viewHistorial'));
+			$id_paciente = $modelPerson->savePaciente();
+			if ($id_paciente != 0)
+				$this->redirect(["historialMedico/index", 'id_persona' => $id_paciente]);
 		}
 		$this->render('create', array('modelPerson' => $modelPerson));
 	}
 
-	public function actionViewHistorial()
-	{
-		$this->render('viewHistorial');
-	}
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
