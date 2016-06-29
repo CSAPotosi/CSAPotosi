@@ -135,7 +135,10 @@
 
 		<!-- logout button -->
 		<div id="logout" class="btn-header transparent pull-right">
-			<span> <a href="#" title="Salir" data-action="userLogout" data-logout-msg="Puede mejorar su seguridad aun mas, cerrando el navegador despues de salir del sistema"><i class="fa fa-sign-out"></i></a> </span>
+			<span> <a href="<?php echo $this->createAbsoluteUrl('site/logout'); ?>" title="Salir"
+					  data-action="userLogout"
+					  data-logout-msg="Puede mejorar su seguridad aun mas, cerrando el navegador despues de salir del sistema"><i
+						class="fa fa-sign-out"></i></a> </span>
 		</div>
 		<!-- end logout button -->
 
@@ -178,7 +181,7 @@
 			<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
 				<img src="img/avatars/sunny.png" alt="me" class="online" />
 				<span>
-					Juan Perez
+					<?php echo Yii::app()->user->getState("nombre"); ?>
 				</span>
 				<i class="fa fa-angle-down"></i>
 			</a>

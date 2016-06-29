@@ -57,9 +57,41 @@ CREATE TABLE IF NOT EXISTS historial_medico(
 );
 
 CREATE TABLE IF NOT EXISTS usuario(
-  id_usuario SERIAL PRIMARY KEY NOT NULL ,
-  id_persona INT,
+  id_usuario INT PRIMARY KEY NOT NULL ,
+  nombre_usuario VARCHAR(32) UNIQUE NOT  NULL ,
   clave VARCHAR(128) NOT NULL ,
-  estado_usuario BOOLEAN DEFAULT FALSE ,
-  FOREIGN KEY (id_persona) REFERENCES persona(id_persona)
+  estado_usuario SMALLINT DEFAULT 1 ,
+  FOREIGN KEY (id_usuario) REFERENCES persona(id_persona)
 );
+
+/*************/
+create table if not exists "AuthItem"
+(
+  "name"                 varchar(64) not null,
+  "type"                 integer not null,
+  "description"          text,
+  "bizrule"              text,
+  "data"                 text,
+  primary key ("name")
+);
+
+create table if not exists "AuthItemChild"
+(
+  "parent"               varchar(64) not null,
+  "child"                varchar(64) not null,
+  primary key ("parent","child"),
+  foreign key ("parent") references "AuthItem" ("name") on delete cascade on update cascade,
+  foreign key ("child") references "AuthItem" ("name") on delete cascade on update cascade
+);
+
+create table if not exists "AuthAssignment"
+(
+  "itemname"             varchar(64) not null,
+  "userid"               varchar(64) not null,
+  "bizrule"              text,
+  "data"                 text,
+  primary key ("itemname","userid"),
+  foreign key ("itemname") references "AuthItem" ("name") on delete cascade on update cascade,
+  foreign key ("userid") references usuario ("nombre_usuario") on delete cascade on update cascade
+);
+/*************/
