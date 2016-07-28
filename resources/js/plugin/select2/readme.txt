@@ -1,1 +1,1 @@
-08/06/2014: select2 has been updated to the latest version 3.4.8
+08/06/2014: select2 has been updated to the latest version 4.0.3

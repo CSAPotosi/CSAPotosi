@@ -42,7 +42,7 @@
 	* 'fixed-page-footer' - Fixes footer
 	* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 -->
-<body class="fixed-header fixed-page-footer">
+<body class="menu-on-top fixed-page-footer">
 
 <!-- #HEADER -->
 <header id="header">
@@ -254,17 +254,6 @@
 			</div>
 			<!-- end col -->
 
-			<!-- right side of the page with the sparkline graphs -->
-			<!-- col -->
-			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-8 text-right">
-				<!-- widget -->
-				<?php
-					$this->widget('application.extensions.csamenu.CSAMenu',['menu'=>$this->menu]);
-				?>
-				<!-- end widget -->
-			</div>
-			<!-- end col -->
-
 		</div>
 		<!-- end row -->
 
@@ -275,7 +264,21 @@
 			-->
 
 		<!-- contenido -->
-		<?php echo $content; ?>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="panel">
+					<div class="panel-body">
+						<?php
+						$this->widget('application.extensions.csamenu.CSAMenu',['menu'=>$this->menu]);
+						?>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-10">
+				<?php echo $content; ?>
+			</div>
+		</div>
 		<!-- fin contenido -->
 
 	</div>
