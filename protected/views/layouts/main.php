@@ -198,13 +198,13 @@
 
 		<ul>
 			<li>
-				<a href="#"><i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent">Ejemplo 1</span></a>
+				<a href="#"><i class="fa fa-lg fa-fw fa-cube txt-color-blue"></i> <span class="menu-item-parent">Servicios</span></a>
 				<ul>
 					<li class="">
-						<a href="#" title="XD"><i class="fa fa-lg fa-fw fa-gear"></i> <span class="menu-item-parent">sub menu</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'examen','tipo'=>1]);?>" title="Laboratorio"><i class="fa fa-lg fa-fw fa-gear"></i> <span class="menu-item-parent">Ex. Laboratorio</span></a>
 					</li>
 					<li class="">
-						<a href="#" title="Dashboard"><i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">sub menu</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'examen','tipo'=>2])?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">Rayos X</span></a>
 					</li>
 				</ul>
 			</li>

@@ -8,12 +8,13 @@
  * @property string $cod_cat_ex
  * @property string $nombre_cat_ex
  * @property string $descripcion_cat_ex
+ * @property boolean $activo
  * @property integer $tipo_ex
  *
  * The followings are the available model relations:
  * @property ServExamen[] $servExamens
  */
-class CategoriaServExamen extends CActiveRecord
+class CategoriaServicioExamen extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -35,10 +36,10 @@ class CategoriaServExamen extends CActiveRecord
 			array('tipo_ex', 'numerical', 'integerOnly'=>true),
 			array('cod_cat_ex', 'length', 'max'=>8),
 			array('nombre_cat_ex', 'length', 'max'=>64),
-			array('descripcion_cat_ex', 'safe'),
+			array('descripcion_cat_ex, activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_cat_ex, cod_cat_ex, nombre_cat_ex, descripcion_cat_ex, tipo_ex', 'safe', 'on'=>'search'),
+			array('id_cat_ex, cod_cat_ex, nombre_cat_ex, descripcion_cat_ex, activo, tipo_ex', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,6 +65,7 @@ class CategoriaServExamen extends CActiveRecord
 			'cod_cat_ex' => 'Cod Cat Ex',
 			'nombre_cat_ex' => 'Nombre Cat Ex',
 			'descripcion_cat_ex' => 'Descripcion Cat Ex',
+			'activo' => 'Activo',
 			'tipo_ex' => 'Tipo Ex',
 		);
 	}
@@ -90,6 +92,7 @@ class CategoriaServExamen extends CActiveRecord
 		$criteria->compare('cod_cat_ex',$this->cod_cat_ex,true);
 		$criteria->compare('nombre_cat_ex',$this->nombre_cat_ex,true);
 		$criteria->compare('descripcion_cat_ex',$this->descripcion_cat_ex,true);
+		$criteria->compare('activo',$this->activo);
 		$criteria->compare('tipo_ex',$this->tipo_ex);
 
 		return new CActiveDataProvider($this, array(
@@ -101,7 +104,7 @@ class CategoriaServExamen extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return CategoriaServExamen the static model class
+	 * @return CategoriaServicioExamen the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -148,6 +148,7 @@ CREATE TABLE IF NOT EXISTS categoria_serv_examen(
   cod_cat_ex VARCHAR(8) NOT NULL,
   nombre_cat_ex VARCHAR(64) NOT NULL ,
   descripcion_cat_ex TEXT,
+  activo BOOLEAN DEFAULT TRUE,
   tipo_ex SMALLINT -- 0: No definido, 1: laboratorio, 2: rayosX, 3: ecografia
 );
 

@@ -2,14 +2,42 @@
 
 class ServicioController extends Controller
 {
-	public function actionIndex($tipo = 0)
+	public function actionIndex($grupo='examen', $tipo = 1)
 	{
-		$this->examenIndex();
-		//$this->render('index');
+		switch ($grupo){
+			case 'examen':
+				$this->examenIndex($tipo);
+				break;
+			case 'clinico':
+				$this->clinicoIndex(1);
+				break;
+			case 'sala':
+				$this->salaIndex();
+				break;
+			case 'atencionMedica':
+				$this->atencionMedicaIndex();
+				break;
+			default:
+				echo 'asdassd';
+				break;
+		}//$this->render('index');
 	}
 
-	public function examenIndex(){
-		$this->render('examenIndex');
+	private function examenIndex($tipo=1){
+		echo 'en examen';
+		//$this->render('examenIndex');
+	}
+
+	private function clinicoIndex($tipo=1){
+		echo 'en servicios clinicos';
+	}
+
+	private function salaIndex(){
+		echo 'en servicio de salas';
+	}
+
+	private function atencionMedicaIndex(){
+		echo 'en atencio medica';
 	}
 
 	// Uncomment the following methods and override them if needed
