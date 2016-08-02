@@ -2,7 +2,7 @@
 
 class ServicioController extends Controller
 {
-	public function actionIndex($grupo='examen', $tipo = 1)
+	public function actionIndex($grupo, $tipo = 2)
 	{
 		switch ($grupo){
 			case 'examen':
@@ -23,9 +23,16 @@ class ServicioController extends Controller
 		}//$this->render('index');
 	}
 
-	private function examenIndex($tipo=1){
-		echo 'en examen';
-		//$this->render('examenIndex');
+	private function examenIndex($tipo = 1)
+	{
+
+
+		$listServicio = ServExamen::model()->with('servExamenCategoria')->findAll(array(
+			'condition' => "tipo_ex = :tipo",
+			'params' => [':tipo' => $tipo]
+		));
+
+		$this->render('examenIndex', array('listServicio' => $listServicio, 'dataUrl' => ['grupo' => 'examen', 'tipo' => $tipo]));
 	}
 
 	private function clinicoIndex($tipo=1){
@@ -38,6 +45,13 @@ class ServicioController extends Controller
 
 	private function atencionMedicaIndex(){
 		echo 'en atencio medica';
+	}
+
+	public function actionChangeStateServicio($id)
+	{
+		$servicio = Servicio::model()->findByPk($id);
+		$servicio->activo = !$servicio->activo;
+		$servicio->save();
 	}
 
 	// Uncomment the following methods and override them if needed

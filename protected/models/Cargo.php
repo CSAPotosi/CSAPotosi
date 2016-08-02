@@ -1,25 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "empleado".
+ * This is the model class for table "cargo".
  *
- * The followings are the available columns in table 'empleado':
- * @property integer $id_empleado
- * @property string $fecha_contratacion
- * @property boolean $estado_emp
- * @property integer $cod_maquina
+ * The followings are the available columns in table 'cargo':
+ * @property integer $id_cargo
+ * @property string $nombre_cargo
+ * @property string $descripcion_cargo
+ * @property integer $id_unidad
+ * @property boolean $estado
  *
  * The followings are the available model relations:
- * @property Persona $idEmpleado
+ * @property Unidad $idUnidad
  */
-class Empleado extends CActiveRecord
+class Cargo extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'empleado';
+        return 'cargo';
     }
 
     /**
@@ -30,12 +31,14 @@ class Empleado extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_empleado', 'required'),
-            array('id_empleado, cod_maquina', 'numerical', 'integerOnly' => true),
-            array('fecha_contratacion, estado_emp', 'safe'),
+            array('nombre_cargo', 'required'),
+            array('id_unidad', 'numerical', 'integerOnly' => true),
+            array('nombre_cargo', 'length', 'max' => 32),
+            array('descripcion_cargo', 'length', 'max' => 128),
+            array('estado', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id_empleado, fecha_contratacion, estado_emp, cod_maquina', 'safe', 'on' => 'search'),
+            array('id_cargo, nombre_cargo, descripcion_cargo, id_unidad, estado', 'safe', 'on' => 'search'),
         );
     }
 
@@ -47,7 +50,7 @@ class Empleado extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'empleadoPersona' => array(self::BELONGS_TO, 'Persona', 'id_empleado'),
+            'idUnidad' => array(self::BELONGS_TO, 'Unidad', 'id_unidad'),
         );
     }
 
@@ -57,10 +60,11 @@ class Empleado extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id_empleado' => 'Id Empleado',
-            'fecha_contratacion' => 'Fecha Contratacion',
-            'estado_emp' => 'Estado Emp',
-            'cod_maquina' => 'Cod Maquina',
+            'id_cargo' => 'Id Cargo',
+            'nombre_cargo' => 'Nombre Cargo',
+            'descripcion_cargo' => 'Descripcion Cargo',
+            'id_unidad' => 'Id Unidad',
+            'estado' => 'Estado',
         );
     }
 
@@ -82,10 +86,11 @@ class Empleado extends CActiveRecord
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('id_empleado', $this->id_empleado);
-        $criteria->compare('fecha_contratacion', $this->fecha_contratacion, true);
-        $criteria->compare('estado_emp', $this->estado_emp);
-        $criteria->compare('cod_maquina', $this->cod_maquina);
+        $criteria->compare('id_cargo', $this->id_cargo);
+        $criteria->compare('nombre_cargo', $this->nombre_cargo, true);
+        $criteria->compare('descripcion_cargo', $this->descripcion_cargo, true);
+        $criteria->compare('id_unidad', $this->id_unidad);
+        $criteria->compare('estado', $this->estado);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -96,7 +101,7 @@ class Empleado extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Empleado the static model class
+     * @return Cargo the static model class
      */
     public static function model($className = __CLASS__)
     {

@@ -147,17 +147,23 @@ $this->breadcrumbs = array(
                                     <div class="tab-pane" id="tab3">
                                         <br><br><br>
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Matricula'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'matricula', array('class' => 'form-control', 'placeholder' => 'Matricula')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'matricula', array('class' => 'label label-danger')); ?>
+                                            <article class="col-md-6">
+                                                <center><h5>Registro de Unidades</h5></center>
+                                                <br>
+                                                <div class="well no-padding">
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Matricula'); ?>
+                                                        <?php echo CHtml::activetextField($modelPerson, 'matricula', array('class' => 'form-control', 'placeholder' => 'Matricula')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'matricula', array('class' => 'label label-danger')); ?>
+                                                    </div>
+
                                                 </div>
-                                                <button type="button" class="btn btn-primary"
-                                                        data-target="#modalEspecialidad" data-toggle="modal">
-                                                    <b>Agregar Especialidad</b>
-                                                </button>
-                                            </div>
+                                            </article>
+                                            <article class="col-md-6">
+                                                <div id="contenedorListaEspecialidad">
+                                                    <?php $this->renderPartial('_specialtyList', array('listSpecialty' => $listSpecialty)) ?>
+                                                </div>
+                                            </article>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab4">
@@ -210,23 +216,16 @@ $this->breadcrumbs = array(
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" type="button" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="modal-title">Registrar Categoria de Examen de Laboratorio</h4>
+                <h4 class="modal-title">Registrar Especialidad Medica</h4>
             </div>
-            <div class="modal-body" id="contenedormodal">
-                <div class="form-group">
-                    <?php echo CHtml::activelabelEx($modelEspecialidad, 'Nombre Especialidad'); ?>
-                    <?php echo CHtml::activetextField($modelEspecialidad, 'nombre_especialidad', array('class' => 'form-control', 'placeholder' => 'Nombre de la Especialidad')); ?>
-                    <?php echo CHtml::error($modelEspecialidad, 'nombre_especialidad', array('class' => 'label label-danger')); ?>
-                </div>
-                <div class="form-group">
-                    <?php echo CHtml::activelabelEx($modelEspecialidad, 'Descripcion'); ?>
-                    <?php echo CHtml::activetextField($modelEspecialidad, 'descripcion', array('class' => 'form-control', 'placeholder' => 'Descripcion')); ?>
-                    <?php echo CHtml::error($modelEspecialidad, 'descripcion', array('class' => 'label label-danger')); ?>
-                </div>
+            <div class="modal-body" id="contenedorFormularioEspecialidad">
+                <?php $this->renderPartial('_formSpecialty', array('modelEspecialidad' => $modelEspecialidad)) ?>
             </div>
             <div class="modal-footer clearfix">
                 <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary pull-left" id="cat_lab">Guardar</button>
+                <button type="button" class="btn btn-primary pull-left" id="btnGuardarEspecialidad"
+                        data-url="<?php echo CHtml::normalizeUrl(['medico/CreateSpecialyAjax']) ?>">Guardar
+                </button>
             </div>
         </div>
     </div>

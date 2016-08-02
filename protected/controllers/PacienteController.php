@@ -1,11 +1,34 @@
 <?php
 class PacienteController extends Controller
 {
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+	public function accessRules()
+	{
+		return array(
+			array('allow',
+				'actions' => array('create'),
+				'roles' => array('createPaciente'),
+			),
+			array('allow',
+				'actions' => array('index', 'GetPatientListAjax'),
+				'roles' => array('indexPaciente'),
+			),
+			array('deny',  // deny all users
+				'users' => array('*'),
+			),
+		);
+	}
 	public $menu=[
 		['title'=>'LISTA', 'icon'=>'fa-list', 'url'=>['paciente/index']],
 		['title'=>'NUEVO', 'icon'=>'fa-plus', 'url'=>['paciente/create']]
 	];
-
 	public function actionIndex()
 	{
 		$this->render('index');

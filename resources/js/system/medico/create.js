@@ -16,3 +16,25 @@ $(document).ready(function () {
         }
     });
 });
+$("#btnGuardarEspecialidad").on("click", CrearEspecialidad);
+function CrearEspecialidad() {
+    $.ajax({
+        url: $(this).attr('data-url'),
+        data: $("#formEspecialidad").serialize(),
+        type: "post",
+        success: function (datos) {
+            var contenido = $("<div>").html(datos);
+            if (contenido.children("#flag").val() == null) {
+                $("#contenedorListaEspecialidad").html(datos);
+                $("#modalEspecialidad").modal("hide");
+                ;
+                $("#formEspecialidad")[0].reset();
+            }
+            else {
+                $('#contenedorFormularioEspecialidad').html(datos);
+            }
+        }
+
+    });
+    return false;
+}

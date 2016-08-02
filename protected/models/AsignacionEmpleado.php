@@ -1,25 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "empleado".
+ * This is the model class for table "asignacion_empleado".
  *
- * The followings are the available columns in table 'empleado':
+ * The followings are the available columns in table 'asignacion_empleado':
+ * @property integer $id_asignacion
+ * @property string $fecha_inicio
+ * @property string $fecha_fin
+ * @property boolean $vigencia
  * @property integer $id_empleado
- * @property string $fecha_contratacion
- * @property boolean $estado_emp
- * @property integer $cod_maquina
+ * @property integer $id_cargo
  *
  * The followings are the available model relations:
- * @property Persona $idEmpleado
+ * @property Empleado $idEmpleado
+ * @property Cargo $idCargo
  */
-class Empleado extends CActiveRecord
+class AsignacionEmpleado extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'empleado';
+        return 'asignacion_empleado';
     }
 
     /**
@@ -30,12 +33,12 @@ class Empleado extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_empleado', 'required'),
-            array('id_empleado, cod_maquina', 'numerical', 'integerOnly' => true),
-            array('fecha_contratacion, estado_emp', 'safe'),
+            array('fecha_inicio', 'required'),
+            array('id_empleado, id_cargo', 'numerical', 'integerOnly' => true),
+            array('fecha_fin, vigencia', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id_empleado, fecha_contratacion, estado_emp, cod_maquina', 'safe', 'on' => 'search'),
+            array('id_asignacion, fecha_inicio, fecha_fin, vigencia, id_empleado, id_cargo', 'safe', 'on' => 'search'),
         );
     }
 
@@ -47,7 +50,8 @@ class Empleado extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'empleadoPersona' => array(self::BELONGS_TO, 'Persona', 'id_empleado'),
+            'idEmpleado' => array(self::BELONGS_TO, 'Empleado', 'id_empleado'),
+            'idCargo' => array(self::BELONGS_TO, 'Cargo', 'id_cargo'),
         );
     }
 
@@ -57,10 +61,12 @@ class Empleado extends CActiveRecord
     public function attributeLabels()
     {
         return array(
+            'id_asignacion' => 'Id Asignacion',
+            'fecha_inicio' => 'Fecha Inicio',
+            'fecha_fin' => 'Fecha Fin',
+            'vigencia' => 'Vigencia',
             'id_empleado' => 'Id Empleado',
-            'fecha_contratacion' => 'Fecha Contratacion',
-            'estado_emp' => 'Estado Emp',
-            'cod_maquina' => 'Cod Maquina',
+            'id_cargo' => 'Id Cargo',
         );
     }
 
@@ -82,10 +88,12 @@ class Empleado extends CActiveRecord
 
         $criteria = new CDbCriteria;
 
+        $criteria->compare('id_asignacion', $this->id_asignacion);
+        $criteria->compare('fecha_inicio', $this->fecha_inicio, true);
+        $criteria->compare('fecha_fin', $this->fecha_fin, true);
+        $criteria->compare('vigencia', $this->vigencia);
         $criteria->compare('id_empleado', $this->id_empleado);
-        $criteria->compare('fecha_contratacion', $this->fecha_contratacion, true);
-        $criteria->compare('estado_emp', $this->estado_emp);
-        $criteria->compare('cod_maquina', $this->cod_maquina);
+        $criteria->compare('id_cargo', $this->id_cargo);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -96,10 +104,20 @@ class Empleado extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Empleado the static model class
+     * @return AsignacionEmpleado the static model class
      */
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function getEmpleado()
+    {
+        return Empleado::model()->findAll("id_empleado not in(select id_empleado from asignacion_empleado where fecha_fin is null)");
+    }
+
+    public function getCargo()
+    {
+        return CHtml::listData(Cargo::model()->findAll("id_cargo not in (select id_cargo from asignacion_empleado where fecha_fin is null)"), 'id_cargo', 'nombre_cargo');
     }
 }

@@ -5,7 +5,6 @@
 		'Paciente',
 	);
 ?>
-
 <section id="widget-grid">
 	<div class="row">
 		<article class="col-md-12">
@@ -13,7 +12,6 @@
 				<header></header>
 				<div>
 					<div class="widget-body">
-
 						<div class="widget-body-toolbar">
 							<div class="row">
 								<div class="col-md-6">

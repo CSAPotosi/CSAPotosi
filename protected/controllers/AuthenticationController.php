@@ -82,8 +82,23 @@ class AuthenticationController extends Controller
         $auth->createOperation('usuarioIndex', "index de usuario");
         $auth->createOperation('usuarioCreate', "Crear un nuevo usuario");
         $auth->createOperation('authenticationIndex', "Mostrar los Roles");
-
-
+        $auth->createOperation('createPaciente', "Crear Paciente");
+        $auth->createOperation('indexPaciente', "index de paciente");
+        $auth->createOperation('indexUnidad', "index de unidad");
+        $auth->createOperation('createUnidad', "crear una nueva Unidad");
+        $auth->createOperation('updateUnidad', "Actualizar Unidad");
+        $auth->createOperation('indexCargo', "index de Cargo");
+        $auth->createOperation('createCargo', "crear un nuevo Cargo");
+        $auth->createOperation('createMedico', "crear un nuevo medico");
+        $auth->createOperation('createHorario', "crear un nuevo Horario");
+        $auth->createOperation('indexHorario', "index de Horario");
+        $auth->createOperation('updateHorario', "Actualizar Horario");
+        $auth->createOperation('createTurno', "crear un nuevo Turno");
+        $auth->createOperation('updateTurno', "Actualizar un turno");
+        $auth->createOperation('indexTurno', "index de Turno");
+        $auth->createOperation('indexAsignacion', "index de Asignacion de Empleado");
+        $auth->createOperation('createAsignacion', "Crear una nueva Asignacion");
+        $auth->createOperation("updateAsignacion", "Actualizar Asignacion de Empleado");
     }
     //public function action
 

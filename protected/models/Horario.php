@@ -1,25 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "empleado".
+ * This is the model class for table "horario".
  *
- * The followings are the available columns in table 'empleado':
- * @property integer $id_empleado
- * @property string $fecha_contratacion
- * @property boolean $estado_emp
- * @property integer $cod_maquina
+ * The followings are the available columns in table 'horario':
+ * @property integer $id_horario
+ * @property string $nombre_horario
+ * @property string $descripcion
+ * @property integer $ciclo_total
+ * @property integer $cargo
  *
  * The followings are the available model relations:
- * @property Persona $idEmpleado
+ * @property Cargo $cargo0
  */
-class Empleado extends CActiveRecord
+class Horario extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return 'empleado';
+        return 'horario';
     }
 
     /**
@@ -30,12 +31,12 @@ class Empleado extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_empleado', 'required'),
-            array('id_empleado, cod_maquina', 'numerical', 'integerOnly' => true),
-            array('fecha_contratacion, estado_emp', 'safe'),
+            array('nombre_horario', 'required'),
+            array('ciclo_total, cargo', 'numerical', 'integerOnly' => true),
+            array('nombre_horario, descripcion', 'length', 'max' => 32),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id_empleado, fecha_contratacion, estado_emp, cod_maquina', 'safe', 'on' => 'search'),
+            array('id_horario, nombre_horario, descripcion, ciclo_total, cargo', 'safe', 'on' => 'search'),
         );
     }
 
@@ -47,7 +48,7 @@ class Empleado extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'empleadoPersona' => array(self::BELONGS_TO, 'Persona', 'id_empleado'),
+            'cargo0' => array(self::BELONGS_TO, 'Cargo', 'cargo'),
         );
     }
 
@@ -57,10 +58,11 @@ class Empleado extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id_empleado' => 'Id Empleado',
-            'fecha_contratacion' => 'Fecha Contratacion',
-            'estado_emp' => 'Estado Emp',
-            'cod_maquina' => 'Cod Maquina',
+            'id_horario' => 'Id Horario',
+            'nombre_horario' => 'Nombre Horario',
+            'descripcion' => 'Descripcion',
+            'ciclo_total' => 'Ciclo Total',
+            'cargo' => 'Cargo',
         );
     }
 
@@ -82,10 +84,11 @@ class Empleado extends CActiveRecord
 
         $criteria = new CDbCriteria;
 
-        $criteria->compare('id_empleado', $this->id_empleado);
-        $criteria->compare('fecha_contratacion', $this->fecha_contratacion, true);
-        $criteria->compare('estado_emp', $this->estado_emp);
-        $criteria->compare('cod_maquina', $this->cod_maquina);
+        $criteria->compare('id_horario', $this->id_horario);
+        $criteria->compare('nombre_horario', $this->nombre_horario, true);
+        $criteria->compare('descripcion', $this->descripcion, true);
+        $criteria->compare('ciclo_total', $this->ciclo_total);
+        $criteria->compare('cargo', $this->cargo);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -96,10 +99,15 @@ class Empleado extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Empleado the static model class
+     * @return Horario the static model class
      */
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function getCargo()
+    {
+        return CHtml::ListData(Cargo::model()->findAll(), 'id_cargo', 'nombre_cargo');
     }
 }

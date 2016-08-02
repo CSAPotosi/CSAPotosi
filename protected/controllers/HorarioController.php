@@ -1,0 +1,63 @@
+<?php
+
+class HorarioController extends Controller
+{
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('createHorario'),
+            ),
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('indexHorario'),
+            ),
+            array('allow',
+                'actions' => array('update'),
+                'roles' => array('updateHorario'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
+    public function actionindex()
+    {
+        $listHorario = Horario::model()->findAll();
+        $this->render('index', array('listHorario' => $listHorario));
+    }
+
+    public function actionCreate()
+    {
+        $modelHorario = new Horario();
+        if (isset($_POST['Horario'])) {
+            $modelHorario->attributes = $_POST['Horario'];
+            if ($modelHorario->save()) {
+                $this->redirect(array('index'));
+            }
+        }
+        $this->render('create', array('modelHorario' => $modelHorario));
+    }
+
+    public function actionUpdate($id)
+    {
+        $modelHorario = Horario::model()->findByPk($id);
+        if (isset($_POST['Horario'])) {
+            $modelHorario->attributes = $_POST['Horario'];
+            if ($modelHorario->save()) {
+                $this->redirect(array('index'));
+            }
+        }
+        $this->render('create', array('modelHorario' => $modelHorario));
+    }
+}
