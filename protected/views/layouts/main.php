@@ -373,8 +373,10 @@ you can add as many as you like
 <script data-pace-options='{ "restartOnRequestAfter": true }' src="<?php echo Yii::app()->request->baseUrl;?>/resources/js/plugin/pace/pace.min.js"></script>
 
 <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-<script src="<?php echo Yii::app()->request->baseUrl;?>/resources/js/libs/jquery-2.1.1.min.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl;?>/resources/js/libs/jquery-ui-1.10.3.min.js"></script>
+<?php
+Yii::app()->clientScript->registerCoreScript('jquery');
+Yii::app()->clientScript->registerCoreScript('jquery.ui');
+?>
 
 <!-- IMPORTANT: APP CONFIG -->
 <script src="<?php echo Yii::app()->request->baseUrl;?>/resources/js/app.config.js"></script>

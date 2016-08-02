@@ -11,6 +11,11 @@ $(".category-new-form .btn-cancel-category, .category-new-form .btn-new-category
     $parent.find('.category-new-form').toggleClass('hidden');
 });
 
-$(".onoffswitch-checkbox").click(function () {
-    //alert($(this).prop("checked"));
+$(".update-active-category").click(function () {
+    var $form = $(this).parents('.list-group-item').eq(0).find('form');
+    $form.find(':checkbox').each(function(){
+        flag = $(this).prop('checked');
+        $(this).prop('checked',!flag);
+    });
+    $form.submit();
 });

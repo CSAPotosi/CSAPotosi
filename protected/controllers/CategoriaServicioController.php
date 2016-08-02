@@ -24,8 +24,15 @@ class CategoriaServicioController extends Controller
 		$this->categoriaExamenCreate($tipo);
 	}
 
-	private function categoriaExamenCreate($tipo){
+	public function actionUpdate($tipo = 1,$id = 0){
+		$this->categoriaExamenUpdate($tipo,$id);
+	}
+
+	private function categoriaExamenCreate($tipo = 1){
 		$catExModel = new CategoriaServicioExamen();
+
+		$this->ajaxValidation($catExModel);
+
 		$catExList = CategoriaServicioExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
@@ -39,6 +46,27 @@ class CategoriaServicioController extends Controller
 		}
 
 		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'tipo'=>$tipo]);
+	}
+
+	private function categoriaExamenUpdate($tipo = 1, $id = 0){
+		$catExModel = CategoriaServicioExamen::model()->findByPk($id);
+
+		$this->ajaxValidation($catExModel);
+
+		$catExList = CategoriaServicioExamen::model()->findAll([
+			'condition'=>'tipo_ex = :tipo_ex',
+			'order'=>'activo DESC, id_cat_ex ASC',
+			'params'=>[':tipo_ex'=>$tipo]
+		]);
+
+		if (isset($_POST['CategoriaServicioExamen'])){
+			$catExModel->attributes = $_POST['CategoriaServicioExamen'];
+			if($catExModel->save())
+				$this->redirect(['index','tipo'=>$tipo]);
+		}
+
+		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'tipo'=>$tipo]);
+
 	}
 
 	// Uncomment the following methods and override them if needed
@@ -67,4 +95,11 @@ class CategoriaServicioController extends Controller
 		);
 	}
 	*/
+
+	protected function ajaxValidation($model){
+		if(isset($_POST['ajax'])){
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
 }
