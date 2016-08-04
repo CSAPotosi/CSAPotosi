@@ -105,7 +105,6 @@ class Usuario extends CActiveRecord
         return parent::model($className);
     }
 
-
     public static function getUsuarioList($page = 0, $query = '', $status = 1)
     {
         //status: 1=todos, 2=internado, 3=inactivos

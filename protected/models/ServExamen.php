@@ -47,8 +47,8 @@ class ServExamen extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'servExamenServicio' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
-			'servExamenCategoria' => array(self::BELONGS_TO, 'CategoriaServicioExamen', 'id_cat_ex'),
+			'datosServicio' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
+			'categoria' => array(self::BELONGS_TO, 'CategoriaServicioExamen', 'id_cat_ex'),
 		);
 	}
 

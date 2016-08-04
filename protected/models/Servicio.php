@@ -56,7 +56,7 @@ class Servicio extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'servicioServExamen' => array(self::HAS_ONE, 'ServExamen', 'id_serv'),
+			'servExamen' => array(self::HAS_ONE, 'ServExamen', 'id_serv'),
 		);
 	}
 
@@ -121,4 +121,13 @@ class Servicio extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	protected function beforeValidate()
+	{
+		$this->fecha_edicion = date("Y-m-d");
+		if ($this->isNewRecord)
+			$this->fecha_creacion = date("Y-m-d");
+		return parent::beforeValidate();
+	}
+
 }
