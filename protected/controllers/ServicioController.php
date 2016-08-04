@@ -69,7 +69,7 @@ class ServicioController extends Controller
 	{
 
 
-		$listServicio = ServExamen::model()->with('servExamenCategoria')->findAll(array(
+		$listServicio = ServExamen::model()->with('categoria')->findAll(array(
 			'condition' => "tipo_ex = :tipo and activo=true",
 			'params' => [':tipo' => $tipo]
 		));

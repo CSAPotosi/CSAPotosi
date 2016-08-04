@@ -54,13 +54,13 @@ $this->breadcrumbs = array(
                                         <?php if ($listServicio != null) { ?>
                                             <?php foreach ($listServicio as $item): ?>
                                                 <tr class="val"
-                                                    data-nombre="<?php echo $item->servExamenServicio->nombre_serv ?>"
-                                                    data-categoria="<?php echo $item->servExamenCategoria->nombre_cat_ex ?>">
-                                                    <td><?php echo $item->servExamenServicio->cod_serv ?></td>
-                                                    <td><?php echo $item->servExamenServicio->nombre_serv ?></td>
-                                                    <td><?php echo $item->servExamenServicio->unidad_medida ?></td>
-                                                    <td><?php echo $item->servExamenServicio->precio_serv ?></td>
-                                                    <td><?php switch ($item->servExamenServicio->tipo_cobro) {
+                                                    data-nombre="<?php echo $item->datosServicio->nombre_serv ?>"
+                                                    data-categoria="<?php echo $item->categoria->nombre_cat_ex ?>">
+                                                    <td><?php echo $item->datosServicio->cod_serv ?></td>
+                                                    <td><?php echo $item->datosServicio->nombre_serv ?></td>
+                                                    <td><?php echo $item->datosServicio->unidad_medida ?></td>
+                                                    <td><?php echo $item->datosServicio->precio_serv ?></td>
+                                                    <td><?php switch ($item->datosServicio->tipo_cobro) {
                                                             case 1:
                                                                 echo "unidad";
                                                                 break;
@@ -74,16 +74,16 @@ $this->breadcrumbs = array(
                                                                 echo "Por Dia";
                                                                 break;
                                                         } ?></td>
-                                                    <td><?php echo $item->servExamenCategoria->nombre_cat_ex ?></td>
+                                                    <td><?php echo $item->categoria->nombre_cat_ex ?></td>
                                                     <td>
                                                     <span class="onoffswitch">
 													    <input
-                                                            type="checkbox" <?php echo ($item->servExamenServicio->activo == true) ? 'checked' : ''; ?>
+                                                            type="checkbox" <?php echo ($item->datosServicio->activo == true) ? 'checked' : ''; ?>
                                                             name="start_interval" class="onoffswitch-checkbox"
-                                                            id="<?php echo $item->servExamenServicio->id_serv ?>"
-                                                            data-url="<?php echo CHtml::normalizeUrl(['Servicio/ChangeStateServicio', 'id' => $item->servExamenServicio->id_serv]); ?>">
+                                                            id="<?php echo $item->datosServicio->id_serv ?>"
+                                                            data-url="<?php echo CHtml::normalizeUrl(['Servicio/ChangeStateServicio', 'id' => $item->datosServicio->id_serv]); ?>">
 															<label class="onoffswitch-label"
-                                                                   for="<?php echo $item->servExamenServicio->id_serv ?>">
+                                                                   for="<?php echo $item->datosServicio->id_serv ?>">
                                                                 <span class="onoffswitch-inner" data-swchon-text="YES"
                                                                       data-swchoff-text="NO"></span>
                                                                 <span class="onoffswitch-switch"></span>
