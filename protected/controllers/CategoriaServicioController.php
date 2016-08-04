@@ -4,9 +4,16 @@ class CategoriaServicioController extends Controller
 {
 
 
-	public function actionIndex($tipo = 1)
+	public function actionIndex($grupo = 'examen',$tipo = 1)
 	{
-		$this->categoriaExamenIndex($tipo);
+		switch ($grupo){
+			case 'examen':
+				$this->categoriaExamenIndex($tipo);
+			break;
+			default:
+				throw new CHttpException(404,'La direccion solicitada no existe');
+		}
+
 	}
 
 	private function categoriaExamenIndex($tipo = 1){
@@ -17,15 +24,27 @@ class CategoriaServicioController extends Controller
 		]);
 
 		$catExModel = new CategoriaServicioExamen();
-		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'tipo'=>$tipo]);
+		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'dataUrl'=>['tipo'=>$tipo, 'grupo'=>'examen'] ]);
 	}
 
-	public function actionCreate($tipo = 1){
-		$this->categoriaExamenCreate($tipo);
+	public function actionCreate($grupo='examen',$tipo = 1){
+		switch ($grupo){
+			case 'examen':
+				$this->categoriaExamenCreate($tipo);
+				break;
+			default:
+				throw new CHttpException(404,'La direccion solicitada no existe');
+		}
 	}
 
-	public function actionUpdate($tipo = 1,$id = 0){
-		$this->categoriaExamenUpdate($tipo,$id);
+	public function actionUpdate($grupo='examen', $tipo = 1,$id = 0){
+		switch ($grupo){
+			case 'examen':
+				$this->categoriaExamenUpdate($tipo,$id);
+				break;
+			default:
+				throw new CHttpException(404,'La direccion solicitada no existe');
+		}
 	}
 
 	private function categoriaExamenCreate($tipo = 1){
@@ -42,10 +61,10 @@ class CategoriaServicioController extends Controller
 		if (isset($_POST['CategoriaServicioExamen'])){
 			$catExModel->attributes = $_POST['CategoriaServicioExamen'];
 			if($catExModel->save())
-				$this->redirect(['index','tipo'=>$tipo]);
+				$this->redirect(['index','grupo'=>'examen','tipo'=>$tipo]);
 		}
 
-		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'tipo'=>$tipo]);
+		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel,'dataUrl'=>['tipo'=>$tipo,'grupo' =>'examen'] ]);
 	}
 
 	private function categoriaExamenUpdate($tipo = 1, $id = 0){
@@ -62,10 +81,10 @@ class CategoriaServicioController extends Controller
 		if (isset($_POST['CategoriaServicioExamen'])){
 			$catExModel->attributes = $_POST['CategoriaServicioExamen'];
 			if($catExModel->save())
-				$this->redirect(['index','tipo'=>$tipo]);
+				$this->redirect(['index','grupo'=>'examen','tipo'=>$tipo]);
 		}
 
-		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'tipo'=>$tipo]);
+		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'dataUrl'=>['tipo'=>$tipo,'grupo' =>'examen'] ]);
 
 	}
 

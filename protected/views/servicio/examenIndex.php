@@ -90,7 +90,11 @@ $this->breadcrumbs = array(
                                                             </label> 
                                                     </span>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <?php
+                                                            echo CHtml::link('Editar',['servicio/update','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo'],'id'=>$item->id_serv ],['class'=>'btn btn-primary btn-xs']);
+                                                        ?>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach;
                                         } ?>
@@ -98,7 +102,7 @@ $this->breadcrumbs = array(
                                         <tfoot>
                                         <tr>
                                             <td colspan="10"
-                                                class="text-align-right"><?php echo CHtml::link('Agregar Servicio', array('cargo/create'), array('class' => 'btn btn-info')); ?></td>
+                                                class="text-align-right"><?php echo CHtml::link('Agregar Servicio', array('servicio/create','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo'] ), array('class' => 'btn btn-info')); ?></td>
                                         </tr>
                                         </tfoot>
                                     </table>
