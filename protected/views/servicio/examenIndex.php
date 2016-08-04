@@ -35,19 +35,17 @@ $this->breadcrumbs = array(
                                             <th>Unidad de Medida</th>
                                             <th>Precio del Servicio</th>
                                             <th>Tipo de cobro</th>
-                                            <th>Fecha Creacion</th>
-                                            <th>Fecha Edicion</th>
-                                            <th>
-                                                <select style="width:100%" class="select2 select2-hidden-accessible"
-                                                        tabindex="-1" aria-hidden="true" placeholder="Categorio">
-                                                    
-                                                </select>
-                                                <span
-                                                    class="select2 select2-container select2-container--default select2-container--above select2-container--open"
-                                                    dir="ltr" style="width: 100%;">
 
-                                                </span>
+                                            <th width="130px">
+                                                <?php
+                                                echo CHtml::dropDownList('ListaCategorias', null,
+                                                    CHtml::listData(CategoriaServicioExamen::model()->findAll(
+                                                        ['condition' => "tipo_ex='{$dataUrl['tipo']}' and activo=true",]
+                                                    ), 'nombre_cat_ex', 'nombre_cat_ex'),
+                                                    array('empty' => "Categorias", 'class' => 'select2'));
+                                                ?>
                                             </th>
+
                                             <th>Activo</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -56,7 +54,8 @@ $this->breadcrumbs = array(
                                         <?php if ($listServicio != null) { ?>
                                             <?php foreach ($listServicio as $item): ?>
                                                 <tr class="val"
-                                                    data-nombre="<?php echo $item->servExamenServicio->nombre_serv ?>">
+                                                    data-nombre="<?php echo $item->servExamenServicio->nombre_serv ?>"
+                                                    data-categoria="<?php echo $item->servExamenCategoria->nombre_cat_ex ?>">
                                                     <td><?php echo $item->servExamenServicio->cod_serv ?></td>
                                                     <td><?php echo $item->servExamenServicio->nombre_serv ?></td>
                                                     <td><?php echo $item->servExamenServicio->unidad_medida ?></td>
@@ -75,8 +74,6 @@ $this->breadcrumbs = array(
                                                                 echo "Por Dia";
                                                                 break;
                                                         } ?></td>
-                                                    <td><?php echo $item->servExamenServicio->fecha_creacion ?></td>
-                                                    <td><?php echo $item->servExamenServicio->fecha_edicion ?></td>
                                                     <td><?php echo $item->servExamenCategoria->nombre_cat_ex ?></td>
                                                     <td>
                                                     <span class="onoffswitch">
@@ -117,9 +114,7 @@ $this->breadcrumbs = array(
 <!-- start plugins-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/servicio/examenIndex.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/select2/select2.min.js', CClientScript::POS_END); ?>
-
 <!--end plugins-->
-
 <script>
 
 </script>
