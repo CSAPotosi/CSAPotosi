@@ -131,16 +131,37 @@ CREATE TABLE IF NOT EXISTS medicamento(
 
 
 -- modulo servicios
+
+CREATE TABLE IF NOT EXISTS entidad(
+  id_entidad SERIAL NOT NULL PRIMARY KEY,
+  razon_social VARCHAR(128) NOT NULL,
+  direccion VARCHAR(64),
+  telefono VARCHAR(16),
+  tipo_entidad SMALLINT NOT NULL,
+  naturaleza_juridica SMALLINT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS servicio(
   id_serv SERIAL NOT NULL PRIMARY KEY ,
   cod_serv VARCHAR(8) NOT NULL,
   nombre_serv VARCHAR(64) NOT NULL,
   unidad_medida VARCHAR(32),
-  precio_serv FLOAT NOT NULL,
   tipo_cobro SMALLINT DEFAULT 1, -- 1:unidad, 2:mas de uno, 3:uso, 4:por dia
   fecha_creacion TIMESTAMP,
   fecha_edicion TIMESTAMP,
-  activo BOOLEAN DEFAULT TRUE
+  activo BOOLEAN DEFAULT TRUE,
+  id_entidad INT NOT NULL,
+  FOREIGN KEY (id_entidad) REFERENCES entidad(id_entidad)
+);
+
+CREATE TABLE IF NOT EXISTS precio(
+  id_precio SERIAL NOT NULL PRIMARY KEY ,
+  id_serv INT NOT NULL ,
+  monto DECIMAL NOT NULL,
+  fecha_inicio TIMESTAMP NOT NULL,
+  fecha_fin TIMESTAMP ,
+  activo BOOLEAN DEFAULT FALSE,
+  FOREIGN KEY (id_serv) REFERENCES servicio(id_serv)
 );
 
 CREATE TABLE IF NOT EXISTS categoria_serv_examen(
@@ -158,4 +179,43 @@ CREATE TABLE IF NOT EXISTS serv_examen(
   id_cat_ex INT NOT NULL,
   FOREIGN KEY (id_serv) REFERENCES servicio(id_serv),
   FOREIGN KEY (id_cat_ex) REFERENCES categoria_serv_examen(id_cat_ex)
+);
+
+--enfermeria, otros,
+CREATE TABLE IF NOT EXISTS categoria_serv_clinico(
+  id_cat_cli SERIAL NOT NULL PRIMARY KEY,
+  cod_cat_cli VARCHAR(8) NOT NULL,
+  nombre_cat_cli VARCHAR(64) NOT NULL ,
+  descripcion_cat_cli TEXT,
+  activo BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS serv_clinico(
+  id_serv INT NOT NULL PRIMARY KEY,
+  descripcion_cli TEXT,
+  id_cat_cli INT NOT NULL,
+  FOREIGN KEY (id_serv) REFERENCES servicio(id_serv),
+  FOREIGN KEY (id_cat_cli) REFERENCES categoria_serv_clinico(id_cat_cli)
+);
+
+CREATE TABLE IF NOT EXISTS serv_tipo_sala(
+  id_serv INT NOT NULL PRIMARY KEY,
+  descripcion_t_sala TEXT,
+  FOREIGN KEY (id_serv) REFERENCES servicio(id_serv)
+);
+
+CREATE TABLE IF NOT EXISTS sala(
+  id_sala SERIAL NOT NULL PRIMARY KEY,
+  cod_sala VARCHAR (8) NOT NULL,
+  ubicacion_sala VARCHAR (32),
+  estado_sala SMALLINT NOT NULL DEFAULT 1,--1 actibo, 0 inactivo, 2-ocupado, 3 mantenimiento
+  id_t_sala INT NOT NULL,
+  FOREIGN KEY (id_t_sala) REFERENCES serv_tipo_sala(id_serv)
+);
+
+CREATE TABLE IF NOT EXISTS serv_atencion_medica(
+  id_serv INT NOT NULL PRIMARY KEY,
+  id_m_e INT NOT NULL,  --id medico_especialidad
+  tipo_atencion SMALLINT NOT NULL DEFAULT 1,
+  FOREIGN KEY (id_m_e) REFERENCES medico_especialidad(id_m_e)
 );

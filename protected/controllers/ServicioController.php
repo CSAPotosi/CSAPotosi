@@ -76,8 +76,7 @@ class ServicioController extends Controller
 
 		$this->render('examenIndex', array('listServicio' => $listServicio, 'dataUrl' => ['grupo' => 'examen', 'tipo' => $tipo]));
 	}
-	
-	
+
 	private function clinicoIndex($tipo=1){
 		echo 'en servicios clinicos';
 	}
