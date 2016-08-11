@@ -35,19 +35,17 @@ $this->breadcrumbs = array(
                                             <th>Unidad de Medida</th>
                                             <th>Precio del Servicio</th>
                                             <th>Tipo de cobro</th>
-                                            <th>Fecha Creacion</th>
-                                            <th>Fecha Edicion</th>
-                                            <th>
-                                                <select style="width:100%" class="select2 select2-hidden-accessible"
-                                                        tabindex="-1" aria-hidden="true" placeholder="Categorio">
-                                                    
-                                                </select>
-                                                <span
-                                                    class="select2 select2-container select2-container--default select2-container--above select2-container--open"
-                                                    dir="ltr" style="width: 100%;">
 
-                                                </span>
+                                            <th width="130px">
+                                                <?php
+                                                echo CHtml::dropDownList('ListaCategorias', null,
+                                                    CHtml::listData(CategoriaServicioExamen::model()->findAll(
+                                                        ['condition' => "tipo_ex='{$dataUrl['tipo']}' and activo=true",]
+                                                    ), 'nombre_cat_ex', 'nombre_cat_ex'),
+                                                    array('empty' => "Categorias", 'class' => 'select2'));
+                                                ?>
                                             </th>
+
                                             <th>Activo</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -56,12 +54,13 @@ $this->breadcrumbs = array(
                                         <?php if ($listServicio != null) { ?>
                                             <?php foreach ($listServicio as $item): ?>
                                                 <tr class="val"
-                                                    data-nombre="<?php echo $item->servExamenServicio->nombre_serv ?>">
-                                                    <td><?php echo $item->servExamenServicio->cod_serv ?></td>
-                                                    <td><?php echo $item->servExamenServicio->nombre_serv ?></td>
-                                                    <td><?php echo $item->servExamenServicio->unidad_medida ?></td>
-                                                    <td><?php echo $item->servExamenServicio->precio_serv ?></td>
-                                                    <td><?php switch ($item->servExamenServicio->tipo_cobro) {
+                                                    data-nombre="<?php echo $item->datosServicio->nombre_serv ?>"
+                                                    data-categoria="<?php echo $item->categoria->nombre_cat_ex ?>">
+                                                    <td><?php echo $item->datosServicio->cod_serv ?></td>
+                                                    <td><?php echo $item->datosServicio->nombre_serv ?></td>
+                                                    <td><?php echo $item->datosServicio->unidad_medida ?></td>
+                                                    <td><?php echo $item->datosServicio->precio_serv ?></td>
+                                                    <td><?php switch ($item->datosServicio->tipo_cobro) {
                                                             case 1:
                                                                 echo "unidad";
                                                                 break;
@@ -75,25 +74,27 @@ $this->breadcrumbs = array(
                                                                 echo "Por Dia";
                                                                 break;
                                                         } ?></td>
-                                                    <td><?php echo $item->servExamenServicio->fecha_creacion ?></td>
-                                                    <td><?php echo $item->servExamenServicio->fecha_edicion ?></td>
-                                                    <td><?php echo $item->servExamenCategoria->nombre_cat_ex ?></td>
+                                                    <td><?php echo $item->categoria->nombre_cat_ex ?></td>
                                                     <td>
                                                     <span class="onoffswitch">
 													    <input
-                                                            type="checkbox" <?php echo ($item->servExamenServicio->activo == true) ? 'checked' : ''; ?>
+                                                            type="checkbox" <?php echo ($item->datosServicio->activo == true) ? 'checked' : ''; ?>
                                                             name="start_interval" class="onoffswitch-checkbox"
-                                                            id="<?php echo $item->servExamenServicio->id_serv ?>"
-                                                            data-url="<?php echo CHtml::normalizeUrl(['Servicio/ChangeStateServicio', 'id' => $item->servExamenServicio->id_serv]); ?>">
+                                                            id="<?php echo $item->datosServicio->id_serv ?>"
+                                                            data-url="<?php echo CHtml::normalizeUrl(['Servicio/ChangeStateServicio', 'id' => $item->datosServicio->id_serv]); ?>">
 															<label class="onoffswitch-label"
-                                                                   for="<?php echo $item->servExamenServicio->id_serv ?>">
+                                                                   for="<?php echo $item->datosServicio->id_serv ?>">
                                                                 <span class="onoffswitch-inner" data-swchon-text="YES"
                                                                       data-swchoff-text="NO"></span>
                                                                 <span class="onoffswitch-switch"></span>
                                                             </label> 
                                                     </span>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <?php
+                                                            echo CHtml::link('Editar',['servicio/update','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo'],'id'=>$item->id_serv ],['class'=>'btn btn-primary btn-xs']);
+                                                        ?>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach;
                                         } ?>
@@ -101,7 +102,7 @@ $this->breadcrumbs = array(
                                         <tfoot>
                                         <tr>
                                             <td colspan="10"
-                                                class="text-align-right"><?php echo CHtml::link('Agregar Servicio', array('cargo/create'), array('class' => 'btn btn-info')); ?></td>
+                                                class="text-align-right"><?php echo CHtml::link('Agregar Servicio', array('servicio/create','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo'] ), array('class' => 'btn btn-info')); ?></td>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -117,9 +118,7 @@ $this->breadcrumbs = array(
 <!-- start plugins-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/servicio/examenIndex.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/select2/select2.min.js', CClientScript::POS_END); ?>
-
 <!--end plugins-->
-
 <script>
 
 </script>

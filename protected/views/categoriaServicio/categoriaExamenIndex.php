@@ -15,7 +15,7 @@
 							<div class="row category-new-form hidden">
 								<?php
 									$form = $this->beginWidget('CActiveForm',[
-										'action'=>['categoriaServicio/create'],
+										'action'=>['categoriaServicio/create','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo']],
 										'enableAjaxValidation'=>true,
 										'clientOptions'=>[
 											'validateOnSubmit'=>true,
@@ -42,7 +42,7 @@
 										</span>
 									</div>
 									<div class="col-md-3">
-										<?php echo $form->hiddenField($catExModel,'tipo_ex',['value'=>$tipo]);?>
+										<?php echo $form->hiddenField($catExModel,'tipo_ex',['value'=>$dataUrl['tipo']]);?>
 										<button class="btn btn-danger btn-cancel-category" type="reset">Cancelar</button>
 										<button class="btn btn-primary btn-submit-category" type="submit">Guardar</button>
 									</div>
@@ -101,7 +101,7 @@
 										<div class="row hidden category-form">
 											<?php
 											$form = $this->beginWidget('CActiveForm',[
-												'action'=>['categoriaServicio/update', 'tipo'=>$tipo, 'id'=>$catExItem->id_cat_ex],
+												'action'=>['categoriaServicio/update','grupo'=>$dataUrl['grupo'], 'tipo'=>$dataUrl['tipo'], 'id'=>$catExItem->id_cat_ex],
 												'enableAjaxValidation'=>true,
 												'clientOptions'=>[
 													'validateOnSubmit'=>true,
