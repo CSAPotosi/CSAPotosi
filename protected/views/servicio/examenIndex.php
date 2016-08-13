@@ -59,7 +59,7 @@ $this->breadcrumbs = array(
                                                     <td><?php echo $item->datosServicio->cod_serv ?></td>
                                                     <td><?php echo $item->datosServicio->nombre_serv ?></td>
                                                     <td><?php echo $item->datosServicio->unidad_medida ?></td>
-                                                    <td><?php echo $item->datosServicio->precio_serv ?></td>
+                                                    <td><?php echo $item->datosServicio->precio->monto ?></td>
                                                     <td><?php switch ($item->datosServicio->tipo_cobro) {
                                                             case 1:
                                                                 echo "unidad";

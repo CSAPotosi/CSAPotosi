@@ -30,7 +30,7 @@ class ServExamen extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_serv, id_cat_ex', 'required'),
+			array('id_cat_ex', 'required'),
 			array('id_serv, id_cat_ex', 'numerical', 'integerOnly'=>true),
 			array('condiciones_ex', 'safe'),
 			// The following rule is used by search().

@@ -32,8 +32,8 @@ class Precio extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_serv, monto, fecha_inicio', 'required'),
-            array('id_serv', 'numerical', 'integerOnly' => true),
+            array('monto', 'required'),
+            array('id_serv, monto', 'numerical', 'integerOnly' => true),
             array('fecha_fin, activo', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
@@ -49,7 +49,7 @@ class Precio extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idServ' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
+            'servicio' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
         );
     }
 
@@ -107,5 +107,17 @@ class Precio extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function beforeSave()
+    {
+        if ($this->isNewRecord) {
+            $this->fecha_inicio = date("Y-m-d");
+            $this->activo = TRUE;
+        } else {
+            $this->activo = false;
+            $this->fecha_fin = date("Y-m-d");
+        }
+        return parent::beforeSave();
     }
 }

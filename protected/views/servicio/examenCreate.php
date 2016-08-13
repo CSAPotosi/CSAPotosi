@@ -6,8 +6,6 @@ $this->breadcrumbs = array(
     'Create',
 );
 ?>
-
-
     <section id="widget-grid">
         <div class="row">
             <article class="col-md-6">
@@ -20,6 +18,7 @@ $this->breadcrumbs = array(
                                   method="POST">
                                 <header>
                                     Formulario de Registro de Usuario
+                                    <?php echo CHtml::errorSummary($servicio); ?>
                                 </header>
                                 <fieldset>
                                     <section>
@@ -47,12 +46,12 @@ $this->breadcrumbs = array(
                                         <?php echo CHtml::error($servicio, 'unidad_medida'); ?>
                                     </section>
                                     <section>
-                                        <?php echo CHtml::activeLabel($servicio, 'precio_serv'); ?>
+                                        <?php echo CHtml::activeLabel($servicio, 'monto'); ?>
                                         <label class="input"> <i class="icon-append fa fa-circle-thin"></i>
-                                            <?php echo CHtml::activeTextField($servicio, 'precio_serv', array('size' => 60, 'maxlength' => 32, 'class' => '', 'placeholder' => 'Precio')); ?>
+                                            <?php echo CHtml::activeTextField($servicio, 'monto', array('size' => 60, 'maxlength' => 32, 'class' => '', 'placeholder' => 'Precio')); ?>
                                             <b class="tooltip tooltip-bottom-right">Precio.</b>
                                         </label>
-                                        <?php echo CHtml::error($servicio, 'precio_serv'); ?>
+                                        <?php echo CHtml::error($servicio, 'monto'); ?>
                                     </section>
                                     <section>
                                         <?php echo CHtml::activeLabel($servicio, 'tipo_cobro'); ?>
@@ -61,6 +60,14 @@ $this->breadcrumbs = array(
                                             <b class="tooltip tooltip-bottom-right">Tipo Cobro.</b>
                                         </label>
                                         <?php echo CHtml::error($servicio, 'tipo_cobro'); ?>
+                                    </section>
+                                    <section>
+                                        <?php echo CHtml::activeLabel($servicio, 'id_entidad'); ?>
+                                        <label class="input">
+                                            <?php echo CHtml::activeDropDownList($servicio, 'id_entidad', CHtml::listData($entidad, 'id_entidad', 'razon_social'), array('class' => 'form-control', 'placeholder' => 'Entidad')); ?>
+                                            <b class="tooltip tooltip-bottom-right">Tipo Cobro.</b>
+                                        </label>
+                                        <?php echo CHtml::error($servicio, 'id_entidad'); ?>
                                     </section>
                                     <section>
                                         <?php echo CHtml::activeLabel($servicio, 'condiciones_ex'); ?>

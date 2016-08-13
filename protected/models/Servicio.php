@@ -1,39 +1,12 @@
 <?php
 
-/**
- * This is the model class for table "servicio".
- *
- * The followings are the available columns in table 'servicio':
- * @property integer $id_serv
- * @property string $cod_serv
- * @property string $nombre_serv
- * @property string $unidad_medida
- * @property integer $tipo_cobro
- * @property string $fecha_creacion
- * @property string $fecha_edicion
- * @property boolean $activo
- * @property integer $id_entidad
- *
- * The followings are the available model relations:
- * @property Precio[] $precios
- * @property ServExamen $servExamen
- * @property Entidad $idEntidad
- * @property ServClinico $servClinico
- * @property ServTipoSala $servTipoSala
- */
 class Servicio extends CActiveRecord
 {
-	/**
-	 * @return string the associated database table name
-	 */
 	public function tableName()
 	{
 		return 'servicio';
 	}
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
@@ -51,15 +24,13 @@ class Servicio extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array relational rules.
-	 */
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'precios' => array(self::HAS_MANY, 'Precio', 'id_serv'),
+			'historialPrecio' => array(self::HAS_MANY, 'Precio', 'id_serv'),
+			'precio' => array(self::HAS_ONE, 'Precio', 'id_serv', 'condition' => 'activo = TRUE'),
 			'servExamen' => array(self::HAS_ONE, 'ServExamen', 'id_serv'),
 			'idEntidad' => array(self::BELONGS_TO, 'Entidad', 'id_entidad'),
 			'servClinico' => array(self::HAS_ONE, 'ServClinico', 'id_serv'),
@@ -127,5 +98,5 @@ class Servicio extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
+	}	
 }

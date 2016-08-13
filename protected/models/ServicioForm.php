@@ -2,32 +2,24 @@
 
 class ServicioForm extends CFormModel
 {
+    //servicio
     public $cod_serv;
     public $nombre_serv;
     public $unidad_medida;
-    public $precio_serv;
     public $tipo_cobro;
     public $activo;
-
+    public $id_entidad;
+    //precio
+    public $monto;
+    //examen
     public $condiciones_ex;
     public $id_cat_ex;
-    public $idservicio;
-
-    public function rules()
-    {
-        return array(
-            array('cod_serv, nombre_serv, precio_serv, id_cat_ex', 'required'),
-            array('tipo_cobro, id_cat_ex', 'numerical', 'integerOnly' => true),
-            array('precio_serv', 'numerical'),
-            array('cod_serv', 'length', 'max' => 8),
-            array('nombre_serv', 'length', 'max' => 64),
-            array('unidad_medida', 'length', 'max' => 32),
-            array('fecha_creacion, fecha_edicion, activo, condiciones_ex', 'safe'),
-            // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
-            array('id_serv, cod_serv, nombre_serv, unidad_medida, precio_serv, tipo_cobro, fecha_creacion, fecha_edicion, activo condiciones_ex, id_cat_ex', 'safe', 'on' => 'search'),
-        );
-    }
+    //id
+    private $_idServicio;
+    //objetos
+    private $modelPrecio;
+    private $modelServicio;
+    private $modelServExamen;
 
     public function attributeLabels()
     {
@@ -46,37 +38,99 @@ class ServicioForm extends CFormModel
         );
     }
 
-    public function saveServicio()
+    private function saveServicio()
+    {
+        $this->modelServicio->save();
+        $this->_idServicio = $this->modelServicio->id_serv;
+        return true;
+    }
+
+    private function savePrecio()
+    {
+        $this->modelPrecio->id_serv = $this->_idServicio;
+        if ($this->modelServicio->precio->monto != $this->monto) {
+            $this->modelServicio->precio->save();
+            $this->modelPrecio->save();
+        }
+
+        return true;
+    }
+
+    private function loadServicioPrecio($id = null)
+    {
+        if ($id === null)
+            $this->modelServicio = new Servicio();
+        else {
+            $this->modelServicio = Servicio::model()->findByPk($id);
+            if ($this->modelServicio === null)
+                throw new CHttpException(404, 'The requested page does not exist.');
+        }
+        $this->modelServicio->setAttributes($this->getAttributes(), false);
+        $this->modelPrecio = new Precio();
+        $this->modelPrecio->monto = $this->monto;
+    }
+
+    public function saveExamen($id = null)
+    {
+        $this->modelServExamen = ($id == null) ? new ServExamen() : ServExamen::model()->findByPk($id);
+        $this->modelServExamen->setAttributes($this->getAttributes(), false);
+        $this->loadServicioPrecio($id);
+
+        if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServExamen])) {
+            $this->saveServicio();
+            $this->savePrecio();
+            if ($id == null)
+                $this->modelServExamen = $this->_idServicio;
+            if ($this->modelServExamen->save())
+                return true;
+            return false;
+        }
+    }
+
+    /*public function saveServicio2()
     {
         $trans = Yii::app()->db->beginTransaction();
         try {
-            // All your SQL commands.
-            $servicio = new Servicio;
-            $servicio->attributes = $this->getAttributes();
-            $servicio->save();
 
-            $servExamen = new ServExamen;
-            $servExamen->attributes = $this->getAttributes();
-            $this->idservicio = $servicio->id_serv;
-            $servExamen->id_serv = $this->idservicio;
-            $servExamen->save();
-
-            // If you got to this point, no exceptions occurred!
             $trans->commit();
-
         } catch (Exception $e) {
-            // Use $e.
             throw new CHttpException(500, $e->getMessage());
-            // Undo the commands:
             $trans->rollback();
         }
         return true;
-    }
+    }*/
 
     public static function getTypeServicioOptions()
     {
         $array = array(0 => "No Definido", 1 => "Laboratorio", 2 => "Rayos X", 3 => "Ecografía");
         return $array;
+    }
+
+    private function validar($modelList = [])
+    {
+        foreach ($modelList as $model) {
+            $model->validate();
+            $this->addErrors($model->getErrors());
+        }
+        if ($this->hasErrors())
+            return false;
+        return true;
+    }
+
+    public function loadData($id)
+    {
+        $servicio = Servicio::model()->findByPk($id);
+        if ($servicio === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        $this->setAttributes($servicio->getAttributes(), false);
+        $precio = $servicio->precio;
+        if ($precio === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        $this->setAttributes($precio->getAttributes(), false);
+        $servExamen = ServExamen::model()->findByPk($id);
+        if ($servExamen === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        $this->setAttributes($servExamen->getAttributes(), false);
     }
 }
 

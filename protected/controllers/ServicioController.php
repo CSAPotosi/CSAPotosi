@@ -92,45 +92,38 @@ class ServicioController extends Controller
 ////////////////////////////////////////////////
 	private function examenCreate($tipo = 1)
 	{
-		$servicio = new ServicioForm;
+		$examen = new ServicioForm;
 		$categoria = CategoriaServicioExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
+		$entidad = Entidad::model()->findAll();
 		if (isset($_POST['ServicioForm'])) {
-			$servicio->attributes = $_POST['ServicioForm'];
-			if ($servicio->validate())
-				if ($servicio->saveServicio())
-					$this->redirect(array('index', 'grupo' => 'examen', 'tipo' => $tipo));
+			$examen->setAttributes($_POST['ServicioForm'], false);
+			if ($examen->saveExamen())
+				$this->redirect(array('index', 'grupo' => 'examen', 'tipo' => $tipo));
 		}
 		$this->render('examenCreate', array(
-			'servicio' => $servicio,
+			'servicio' => $examen,
 			'categoria' => $categoria,
+			'entidad' => $entidad,
 			'dataUrl' => array("grupo" => "examen", "tipo" => $tipo),
 		));
 	}
 
 	public function examenUpdate($tipo = 1, $id)
 	{
-		$servicio = $this->loadModel($id);
-		$servicioForm = new ServicioForm;
-
-		$servicioForm->cod_serv = $servicio->cod_serv;
-		$servicioForm->nombre_serv = $servicio->nombre_serv;
-		$servicioForm->unidad_medida = $servicio->unidad_medida;
-		$servicioForm->precio_serv = $servicio->precio_serv;
-		$servicioForm->tipo_cobro = $servicio->tipo_cobro;
-		$servicioForm->activo = $servicio->activo;
-		$servicioForm->condiciones_ex = $servicio->servExamen->condiciones_ex;
-
+		$examen = new ServicioForm();
+		$examen->loadData($id);
 		$categoria = CategoriaServicioExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
+		$entidad = Entidad::model()->findAll();
 		if (isset($_POST['ServicioForm'])) {
-			$servicio->attributes = $_POST['ServicioForm'];
-			if ($servicio->save())
+			$examen->setAttributes($_POST['ServicioForm'], false);
+			if ($examen->saveExamen($id))
 				$this->redirect(array('index', 'grupo' => 'examen', 'tipo' => $tipo));
 		}
 		$this->render('examenUpdate', array(
-			'servicio' => $servicioForm,
+			'servicio' => $examen,
 			'categoria' => $categoria,
+			'entidad' => $entidad,
 			'dataUrl' => array("grupo" => "examen", "tipo" => $tipo),
-			'id' => $id,
 		));
 	}
 

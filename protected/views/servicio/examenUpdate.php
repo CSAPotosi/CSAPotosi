@@ -14,9 +14,7 @@ $this->breadcrumbs = array(
                     <header></header>
                     <div>
                         <div class="widget-body no-padding">
-                            <form class="smart-form"
-                                  action="<?php echo CHtml::normalizeUrl(array("servicio/update", "grupo" => $dataUrl["grupo"], "tipo" => $dataUrl["tipo"], "id" => $id)); ?>"
-                                  method="POST">
+                            <form class="smart-form" method="POST">
                                 <header>
                                     Formulario de Registro de Usuario
                                 </header>
@@ -46,12 +44,12 @@ $this->breadcrumbs = array(
                                         <?php echo CHtml::error($servicio, 'unidad_medida'); ?>
                                     </section>
                                     <section>
-                                        <?php echo CHtml::activeLabel($servicio, 'precio_serv'); ?>
+                                        <?php echo CHtml::activeLabel($servicio, 'monto'); ?>
                                         <label class="input"> <i class="icon-append fa fa-circle-thin"></i>
-                                            <?php echo CHtml::activeTextField($servicio, 'precio_serv', array('size' => 60, 'maxlength' => 32, 'class' => '', 'placeholder' => 'Precio')); ?>
+                                            <?php echo CHtml::activeTextField($servicio, 'monto', array('size' => 60, 'maxlength' => 32, 'class' => '', 'placeholder' => 'Precio')); ?>
                                             <b class="tooltip tooltip-bottom-right">Precio.</b>
                                         </label>
-                                        <?php echo CHtml::error($servicio, 'precio_serv'); ?>
+                                        <?php echo CHtml::error($servicio, 'monto'); ?>
                                     </section>
                                     <section>
                                         <?php echo CHtml::activeLabel($servicio, 'tipo_cobro'); ?>
@@ -60,6 +58,14 @@ $this->breadcrumbs = array(
                                             <b class="tooltip tooltip-bottom-right">Tipo Cobro.</b>
                                         </label>
                                         <?php echo CHtml::error($servicio, 'tipo_cobro'); ?>
+                                    </section>
+                                    <section>
+                                        <?php echo CHtml::activeLabel($servicio, 'id_entidad'); ?>
+                                        <label class="input">
+                                            <?php echo CHtml::activeDropDownList($servicio, 'id_entidad', CHtml::listData($entidad, 'id_entidad', 'razon_social'), array('class' => 'form-control', 'placeholder' => 'Entidad')); ?>
+                                            <b class="tooltip tooltip-bottom-right">Tipo Cobro.</b>
+                                        </label>
+                                        <?php echo CHtml::error($servicio, 'id_entidad'); ?>
                                     </section>
                                     <section>
                                         <?php echo CHtml::activeLabel($servicio, 'condiciones_ex'); ?>
@@ -78,7 +84,7 @@ $this->breadcrumbs = array(
                                         </label>
                                         <?php echo CHtml::error($servicio, 'tipo_cobro'); ?>
                                     </section>
-                                    <?php echo CHtml::activeHiddenField($servicio, 'id_cat_ex', array('id' => "id_categoria")); ?>
+                                    <?php echo CHtml::activeTextField($servicio, 'id_cat_ex', array('id' => "id_categoria")); ?>
                                 </fieldset>
                                 <footer>
                                     <button type="submit" class="btn btn-primary">
