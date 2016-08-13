@@ -38,7 +38,18 @@ CREATE TABLE IF NOT EXISTS medico(
   estado_med BOOLEAN DEFAULT TRUE ,
   FOREIGN KEY (id_medico) REFERENCES persona (id_persona)
 );
-
+create table if not exists especialidad(
+  id_especialidad SERIAL primary key not null,
+  nombre_especialidad  varchar(50) not null,
+  descripcion varchar(128)
+);
+create table if not exists medico_especialidad(
+  id_m_e serial not null primary key,
+  id_medico int ,
+  id_especialidad int,
+  foreign key (id_medico)references medico(id_medico),
+  foreign key(id_especialidad) references especialidad(id_especialidad)
+);
 CREATE TABLE IF NOT EXISTS paciente(
   id_paciente INT PRIMARY KEY NOT NULL ,
   codigo_paciente VARCHAR(16),
@@ -62,6 +73,62 @@ CREATE TABLE IF NOT EXISTS usuario(
   clave VARCHAR(128) NOT NULL ,
   estado_usuario SMALLINT DEFAULT 1 ,
   FOREIGN KEY (id_usuario) REFERENCES persona(id_persona)
+);
+
+
+/***********/
+
+create table if not exists unidad(
+  id_unidad serial primary key ,
+  nombre_unidad varchar(32) not null unique,
+  descripcion_unidad varchar(128)
+);
+
+create table if not exists horario(
+  id_horario serial primary key ,
+  nombre_horario varchar(32) not null unique,
+  descripcion varchar (32),
+  ciclo_total int,
+  cargo int,
+  foreign key (cargo) references cargo(id_cargo)
+);
+create table if not exists turno(
+  id_turno serial primary key,
+  nombre_turno varchar(32) unique,
+  hora_entrada time not null,
+  inicio_entrada int,
+  fin_entrada int,
+  hora_salida time not null,
+  inicio_salida int,
+  fin_salida int,
+  tolerancia int default 0,
+  tipo_turno int
+);
+create table if not EXISTS horario_turno(
+  id_turno_horario serial primary key not null,
+  id_horario int,
+  id_turno int,
+  dia int,
+  foreign key (id_horario) references horario(id_horario),
+  foreign key (id_turno) references turno(id_turno)
+);
+create table if not exists cargo(
+  id_cargo serial primary key ,
+  nombre_cargo varchar (32) not null unique ,
+  descripcion_cargo varchar(128),
+  id_unidad int,
+  estado bool default true,
+  foreign key (id_unidad) references unidad(id_unidad)
+);
+create table if not exists asignacion_empleado(
+  id_asignacion serial primary key,
+  fecha_inicio date not null,
+  fecha_fin date,
+  vigencia bool default false,
+  id_empleado int,
+  id_cargo int,
+  foreign key (id_empleado) references empleado(id_empleado),
+  foreign key (id_cargo) references cargo(id_cargo)
 );
 
 /*************/
@@ -180,6 +247,7 @@ CREATE TABLE IF NOT EXISTS serv_examen(
   FOREIGN KEY (id_serv) REFERENCES servicio(id_serv),
   FOREIGN KEY (id_cat_ex) REFERENCES categoria_serv_examen(id_cat_ex)
 );
+<<<<<<< Updated upstream
 
 --enfermeria, otros,
 CREATE TABLE IF NOT EXISTS categoria_serv_clinico(
@@ -219,3 +287,6 @@ CREATE TABLE IF NOT EXISTS serv_atencion_medica(
   tipo_atencion SMALLINT NOT NULL DEFAULT 1,
   FOREIGN KEY (id_m_e) REFERENCES medico_especialidad(id_m_e)
 );
+=======
+
+
