@@ -48,8 +48,12 @@ class ServicioForm extends CFormModel
     private function savePrecio()
     {
         $this->modelPrecio->id_serv = $this->_idServicio;
-        if ($this->modelServicio->precio->monto != $this->monto) {
-            $this->modelServicio->precio->save();
+        if ($this->modelServicio->precio != null) {
+            if ($this->modelServicio->precio->monto != $this->monto) {
+                $this->modelServicio->precio->save();
+                $this->modelPrecio->save();
+            }
+        } else {
             $this->modelPrecio->save();
         }
 
@@ -80,7 +84,7 @@ class ServicioForm extends CFormModel
             $this->saveServicio();
             $this->savePrecio();
             if ($id == null)
-                $this->modelServExamen = $this->_idServicio;
+                $this->modelServExamen->id_serv = $this->_idServicio;
             if ($this->modelServExamen->save())
                 return true;
             return false;

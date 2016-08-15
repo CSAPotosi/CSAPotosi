@@ -115,7 +115,7 @@ class Precio extends CActiveRecord
             $this->fecha_inicio = date("Y-m-d");
             $this->activo = TRUE;
         } else {
-            $this->activo = false;
+            $this->activo = FALSE;
             $this->fecha_fin = date("Y-m-d");
         }
         return parent::beforeSave();
