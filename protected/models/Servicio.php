@@ -67,6 +67,7 @@ class Servicio extends CActiveRecord
 			'servTipoSala' => array(self::HAS_ONE, 'ServTipoSala', 'id_serv'),
 		);
 	}
+	
 
 	/**
 	 * @return array customized attribute labels (name=>label)
