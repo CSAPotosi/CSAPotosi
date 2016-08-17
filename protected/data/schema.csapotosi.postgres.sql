@@ -212,7 +212,6 @@ CREATE TABLE IF NOT EXISTS servicio(
   id_serv SERIAL NOT NULL PRIMARY KEY ,
   cod_serv VARCHAR(8) NOT NULL,
   nombre_serv VARCHAR(64) NOT NULL,
-  unidad_medida VARCHAR(32),
   tipo_cobro SMALLINT DEFAULT 1, -- 1:unidad, 2:mas de uno, 3:uso, 4:por dia
   fecha_creacion TIMESTAMP,
   fecha_edicion TIMESTAMP,
@@ -261,6 +260,7 @@ CREATE TABLE IF NOT EXISTS categoria_serv_clinico(
 CREATE TABLE IF NOT EXISTS serv_clinico(
   id_serv INT NOT NULL PRIMARY KEY,
   descripcion_cli TEXT,
+  unidad_medida VARCHAR(32),
   id_cat_cli INT NOT NULL,
   FOREIGN KEY (id_serv) REFERENCES servicio(id_serv),
   FOREIGN KEY (id_cat_cli) REFERENCES categoria_serv_clinico(id_cat_cli)

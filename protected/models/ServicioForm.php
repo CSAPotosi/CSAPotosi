@@ -20,6 +20,7 @@ class ServicioForm extends CFormModel
     private $modelPrecio;
     private $modelServicio;
     private $modelServExamen;
+    private $modelServClinico;
 
     public function attributeLabels()
     {
@@ -32,6 +33,7 @@ class ServicioForm extends CFormModel
             'fecha_creacion' => 'FECHA DE CREACION',
             'fecha_edicion' => 'FECHA DE EDICION',
             'activo' => 'ACTIVO | INACTIVO',
+            'monto' => 'MONTO',
 
             'condiciones_ex' => 'CONDICIONES',
             'id_cat_ex' => 'ID DE CATEGORIA EXTERNA',
@@ -91,6 +93,22 @@ class ServicioForm extends CFormModel
         }
     }
 
+    public function saveServicioClinico($id = null)
+    {
+        $this->modelServClinico = ($id == null) ? new ServClinico() : ServClinico::model()->findByPk($id);
+        $this->modelServClinico->setAttributes($this->getAttributes(), false);
+        $this->loadServicioPrecio($id);
+        if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServClinico])) {
+            $this->saveServicio();
+            $this->savePrecio();
+            if ($id == null)
+                $this->modelServClinico->id_serv = $this->_idServicio;
+            if ($this->modelServClinico->save())
+                return true;
+            return false;
+        }
+    }
+
     /*public function saveServicio2()
     {
         $trans = Yii::app()->db->beginTransaction();
@@ -106,7 +124,7 @@ class ServicioForm extends CFormModel
 
     public static function getTypeServicioOptions()
     {
-        $array = array(0 => "No Definido", 1 => "Laboratorio", 2 => "Rayos X", 3 => "Ecografía");
+        $array = array(0 => "Usos", 1 => "Etc");
         return $array;
     }
 
@@ -130,12 +148,11 @@ class ServicioForm extends CFormModel
         $precio = $servicio->precio;
         if ($precio === null)
             throw new CHttpException(404, 'The requested page does not exist.');
-        $this->setAttributes($precio->getAttributes(), false);
+        $this->setAttributes($precio->getAttributes(array('monto')), false);
         $servExamen = ServExamen::model()->findByPk($id);
-        if ($servExamen === null)
-            throw new CHttpException(404, 'The requested page does not exist.');
-        $this->setAttributes($servExamen->getAttributes(), false);
+        if ($servExamen != null) {
+            $this->setAttributes($servExamen->getAttributes(), false);
+        }
     }
 }
-
 ?>

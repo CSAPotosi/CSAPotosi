@@ -59,12 +59,12 @@ class Precio extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id_precio' => 'Id Precio',
-            'id_serv' => 'Id Serv',
-            'monto' => 'Monto',
-            'fecha_inicio' => 'Fecha Inicio',
-            'fecha_fin' => 'Fecha Fin',
-            'activo' => 'Activo',
+            'id_precio' => 'ID PRECIO',
+            'id_serv' => 'ID DE SERVICIO',
+            'monto' => 'MONTO',
+            'fecha_inicio' => 'FECHA INICIO',
+            'fecha_fin' => 'FECHA FIN',
+            'activo' => 'ESTADO',
         );
     }
 
