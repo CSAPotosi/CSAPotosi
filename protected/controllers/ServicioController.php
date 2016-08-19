@@ -30,7 +30,7 @@ class ServicioController extends Controller
 				$this->examenCreate($tipo);
 				break;
 			case 'clinico':
-				$this->clinicoCreate(1);
+				$this->clinicoCreate();
 				break;
 			case 'sala':
 				$this->salaCreate();
@@ -108,6 +108,23 @@ class ServicioController extends Controller
 		));
 	}
 
+	private function clinicoCreate()
+	{
+		$clinico = new ServicioForm;
+		$categoria = CategoriaServClinico::model()->findAll("activo=true");
+		$entidad = Entidad::model()->findAll();
+		if (isset($_POST['ServicioForm'])) {
+			$clinico->setAttributes($_POST['ServicioForm'], false);
+			if ($clinico->saveExamen())
+				$this->redirect(array('index', 'grupo' => 'examen'));
+		}
+		$this->render('clinicoCreate', array(
+			'servicio' => $clinico,
+			'categoria' => $categoria,
+			'entidad' => $entidad,
+			'dataUrl' => array("grupo" => "clinico"),
+		));
+	}
 	public function examenUpdate($tipo = 1, $id)
 	{
 		$examen = new ServicioForm();
@@ -135,11 +152,11 @@ class ServicioController extends Controller
 		return $model;
 	}
 
-	private function clinicoCreate($tipo = 1)
+	/*private function clinicoCreate($tipo = 1)
 	{
 		echo 'en servicios clinicos';
 	}
-
+*/
 	private function salaCreate()
 	{
 		echo 'en servicio de salas';
