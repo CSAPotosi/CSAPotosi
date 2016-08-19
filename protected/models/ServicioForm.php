@@ -5,7 +5,6 @@ class ServicioForm extends CFormModel
     //servicio
     public $cod_serv;
     public $nombre_serv;
-    public $unidad_medida;
     public $tipo_cobro;
     public $activo;
     public $id_entidad;
@@ -14,7 +13,7 @@ class ServicioForm extends CFormModel
     //examen
     public $condiciones_ex;
     public $id_cat_ex;
-    //id
+    //id servicio
     private $_idServicio;
     //objetos
     private $modelPrecio;
@@ -27,12 +26,9 @@ class ServicioForm extends CFormModel
         return array(
             'cod_serv' => 'CODIGO DE SERVICIO',
             'nombre_serv' => 'NOMBRE DE SERVICIO',
-            'unidad_medida' => 'UNIDAD DE MEDIDA',
-            'precio_serv' => 'PRECIO DE SERVICIO',
             'tipo_cobro' => 'TIPO DE COBRO',
-            'fecha_creacion' => 'FECHA DE CREACION',
-            'fecha_edicion' => 'FECHA DE EDICION',
             'activo' => 'ACTIVO | INACTIVO',
+            'id_entidad' => 'ENTIDAD',
             'monto' => 'MONTO',
 
             'condiciones_ex' => 'CONDICIONES',
@@ -44,6 +40,7 @@ class ServicioForm extends CFormModel
     {
         $this->modelServicio->save();
         $this->_idServicio = $this->modelServicio->id_serv;
+        $this->savePrecio();
         return true;
     }
 
@@ -58,7 +55,6 @@ class ServicioForm extends CFormModel
         } else {
             $this->modelPrecio->save();
         }
-
         return true;
     }
 
@@ -84,7 +80,6 @@ class ServicioForm extends CFormModel
 
         if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServExamen])) {
             $this->saveServicio();
-            $this->savePrecio();
             if ($id == null)
                 $this->modelServExamen->id_serv = $this->_idServicio;
             if ($this->modelServExamen->save())
