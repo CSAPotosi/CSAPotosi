@@ -18,7 +18,7 @@ class ServicioController extends Controller
 				$this->atencionMedicaIndex();
 				break;
 			default:
-				echo 'asdassd';
+				throw new CHttpException(404,'Ha ocurrido un problema con la solicitud.');
 				break;
 		}//$this->render('index');
 	}
@@ -39,12 +39,12 @@ class ServicioController extends Controller
 				$this->atencionMedicaCreate();
 				break;
 			default:
-				echo 'asdassd';
+				throw new CHttpException(404,'Ha ocurrido un problema con la solicitud.');
 				break;
 		}//$this->render('index');
 	}
 
-	public function actionUpdate($grupo = 'examen', $tipo = 1, $id)
+	public function actionUpdate($grupo = 'examen', $tipo = 1, $id = null)
 	{
 		switch ($grupo) {
 			case 'examen':
@@ -54,15 +54,35 @@ class ServicioController extends Controller
 				$this->clinicoUpdate(1);
 				break;
 			case 'sala':
-				$this->salaUpdate();
+				$this->salaUpdate($id);
 				break;
 			case 'atencionMedica':
 				$this->atencionMedicaUpdate();
 				break;
 			default:
+				throw new CHttpException(404,'Ha ocurrido un problema con la solicitud.');
+				break;
+		}
+	}
+
+	public function actionView($grupo = 'examen', $tipo = 1, $id = null){
+		switch ($grupo) {
+			case 'examen':
+				echo 'falta';
+				break;
+			case 'clinico':
+				echo 'falta';
+				break;
+			case 'sala':
+				$this->salaView($id);
+				break;
+			case 'atencionMedica':
+				echo 'fa;ta';
+				break;
+			default:
 				echo 'asdassd';
 				break;
-		}//$this->render('index');
+		}
 	}
 
 	private function examenIndex($tipo = 1)
@@ -82,7 +102,8 @@ class ServicioController extends Controller
 	}
 
 	private function salaIndex(){
-		echo 'en servicio de salas';
+		$tSalaList = ServTipoSala::model()->findAll();
+		$this->render('salaIndex', ['tSalaList'=>$tSalaList, 'dataUrl'=>['grupo'=>'sala','tipo'=>0] ]);
 	}
 
 	private function atencionMedicaIndex(){
@@ -96,7 +117,7 @@ class ServicioController extends Controller
 		$categoria = CategoriaServicioExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
 		$entidad = Entidad::model()->findAll();
 		if (isset($_POST['ServicioForm'])) {
-			$examen->setAttributes($_POST['ServicioForm'], false);
+			$examen->setAttributes($_POST['ServicioForm'],false);
 			if ($examen->saveExamen())
 				$this->redirect(array('index', 'grupo' => 'examen', 'tipo' => $tipo));
 		}
@@ -142,7 +163,54 @@ class ServicioController extends Controller
 
 	private function salaCreate()
 	{
-		echo 'en servicio de salas';
+		$tSala = new ServicioForm();
+		if(isset($_POST['ServicioForm'])){
+			$tSala->setAttributes($_POST['ServicioForm'],false);
+			if($tSala->saveTipoSala())
+				$this->redirect(['index','grupo'=>'sala']);
+		}
+		$this->render('salaCreate', ['tSala' => $tSala, 'dataUrl'=> ['grupo'=>'sala','tipo'=>0] ]);
+	}
+
+	private function salaUpdate($id = null){
+		$tSala = new ServicioForm();
+		$tSala->loadData($id);
+		if(isset($_POST['ServicioForm'])){
+			$tSala->setAttributes($_POST['ServicioForm'],false);
+			if($tSala->saveTipoSala($id))
+				$this->redirect(['index','grupo'=>'sala']);
+		}
+
+		$this->render('salaUpdate',['tSala'=>$tSala,'dataUrl' => ['grupo'=>'sala']]);
+	}
+
+	private function salaView($id = null){
+		$tSala = ServTipoSala::model()->findByPk($id);
+		$itemSalaModel = new Sala();
+		$this->render('salaView',['tSala'=>$tSala,'itemSalaModel'=>$itemSalaModel]);
+	}
+
+	public function actionSalaAddItem($id){
+		$itemSalaModel = new Sala();
+		$this->ajaxValidation($itemSalaModel);
+		if(isset($_POST['Sala'])){
+			$itemSalaModel->attributes = $_POST['Sala'];
+			$itemSalaModel->id_t_sala = $id;
+			if($itemSalaModel->save())
+				$this->redirect(['view','grupo'=>'sala','id'=>$id]);
+		}
+		throw new CHttpException(404,'Ha ocurrido un error en la solicitud.');
+	}
+
+	public function actionSalaEditItem($id){
+		$itemSalaModel = Sala::model()->findByPk($id);
+		$this->ajaxValidation($itemSalaModel);
+		if(isset($_POST['Sala'])){
+			$itemSalaModel->attributes = $_POST['Sala'];
+			if($itemSalaModel->save())
+				$this->redirect(['view','grupo'=>'sala','id'=>$itemSalaModel->id_t_sala]);
+		}
+		throw  new CHttpException(404,'Ha ocurrido un error en la solicitud.');
 	}
 
 	private function atencionMedicaCreate()
@@ -184,4 +252,11 @@ class ServicioController extends Controller
 		);
 	}
 	*/
+
+	protected function ajaxValidation($model){
+		if(isset($_POST['ajax'])){
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
 }

@@ -14,12 +14,31 @@ class ServicioForm extends CFormModel
     //examen
     public $condiciones_ex;
     public $id_cat_ex;
+    //tipo sala
+    public $descripcion_t_sala;
+
     //id
     private $_idServicio;
     //objetos
     private $modelPrecio;
     private $modelServicio;
     private $modelServExamen;
+    private $modelServTSala;
+    /*
+    private $_myAttributes=[];
+
+
+    public function setAttributes($values, $safeOnly = false){
+        $this->_myAttributes = $values;
+        parent::setAttributes($values,$safeOnly);
+    }
+
+    public function getAttributes($names = null)
+    {
+        //var_dump($this->_myAttributes);
+        return $this->_myAttributes;
+    }
+    */
     private $modelServClinico;
 
     public function attributeLabels()
@@ -93,6 +112,24 @@ class ServicioForm extends CFormModel
         }
     }
 
+    public function saveTipoSala($id = null){
+        $this->modelServTSala = ($id == null)? new ServTipoSala():ServTipoSala::model()->findByPk($id);
+        $this->modelServTSala->setAttributes($this->getAttributes(),false);
+        $this->loadServicioPrecio($id);
+
+        if($this->validar([$this->modelServicio,$this->modelPrecio,$this->modelServTSala])){
+            $this->saveServicio();
+            $this->savePrecio();
+            if($id == null)
+                $this->modelServTSala->id_serv = $this->_idServicio;
+            if ($this->modelServTSala->save())
+                return true;
+            return false;
+        }
+        return false;
+    }
+
+
     public function saveServicioClinico($id = null)
     {
         $this->modelServClinico = ($id == null) ? new ServClinico() : ServClinico::model()->findByPk($id);
@@ -143,16 +180,25 @@ class ServicioForm extends CFormModel
     {
         $servicio = Servicio::model()->findByPk($id);
         if ($servicio === null)
-            throw new CHttpException(404, 'The requested page does not exist.');
+            throw new CHttpException(404, 'Ha ocurrido un problema con la solicitud.');
         $this->setAttributes($servicio->getAttributes(), false);
         $precio = $servicio->precio;
         if ($precio === null)
+            throw new CHttpException(404, 'Ha ocurrido un problema con la solicitud.');
+        $this->setAttributes($precio->getAttributes(), false);
+
+        //ServExamen
             throw new CHttpException(404, 'The requested page does not exist.');
         $this->setAttributes($precio->getAttributes(array('monto')), false);
         $servExamen = ServExamen::model()->findByPk($id);
-        if ($servExamen != null) {
+        if ($servExamen != null)
             $this->setAttributes($servExamen->getAttributes(), false);
-        }
+
+        //Serv Tipo Sala
+        $servTSala = ServTipoSala::model()->findByPk($id);
+        if ($servTSala != null)
+            $this->setAttributes($servTSala->getAttributes(), false);
     }
 }
+
 ?>

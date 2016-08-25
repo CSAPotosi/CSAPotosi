@@ -67,14 +67,7 @@ $this->breadcrumbs = array(
                                         </label>
                                         <?php echo CHtml::error($servicio, 'id_entidad'); ?>
                                     </section>
-                                    <section>
-                                        <?php echo CHtml::activeLabel($servicio, 'condiciones_ex'); ?>
-                                        <label class="input"> <i class="icon-append fa fa-circle-thin"></i>
-                                            <?php echo CHtml::activeTextField($servicio, 'condiciones_ex', array('size' => 60, 'maxlength' => 32, 'class' => '', 'placeholder' => 'Condiciones')); ?>
-                                            <b class="tooltip tooltip-bottom-right">Precio.</b>
-                                        </label>
-                                        <?php echo CHtml::error($servicio, 'condiciones'); ?>
-                                    </section>
+                                    
                                     <section>
                                         <label class="toggle">
                                             <?php echo CHtml::activeCheckBox($servicio, 'activo', array('class' => 'form-control', 'placeholder' => 'Tipo Cobro')); ?>
