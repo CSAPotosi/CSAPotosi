@@ -3,12 +3,27 @@
 ?>
 <div class="row">
     <div class="col-md-12">
-        <div class="well">
-            <button class="close" data-dismiss="alert">×
-            </button>
-            <p>
-                <?php echo CHtml::encode($horarioModel->nombre_horario);?>
-            </p>
+        <div class="well no-padding" id="ciclo" data-ciclo="<?php echo CHtml::encode($horarioModel->ciclo_total);?>">
+            <table class="table table-hovered table-striped table-condensed">
+                <tbody>
+                    <tr>
+                        <th class="text-align-right" width="20%">HORARIO</th>
+                        <td width="80%"><?php echo Chtml::encode($horarioModel->nombre_horario);?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-align-right" width="20%">CARGO ASIGNADO</th>
+                        <td width="80%"><?php echo Chtml::encode($horarioModel->cargoAsignado->nombre_cargo);?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-align-right" width="20%">DESCRIPCION</th>
+                        <td width="80%"><?php echo Chtml::encode($horarioModel->descripcion);?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-align-right" width="20%">TOTAL DIAS</th>
+                        <td width="80%"><?php echo Chtml::encode($horarioModel->ciclo_total);?></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -47,7 +62,33 @@
                 </header>
                 <div>
                     <div class="widget-body">
-                        hola mundo
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="table-horario">
+                                <thead>
+                                <tr>
+                                    <th width="7%"></th>
+                                    <?php for($day=1;$day<=$horarioModel->ciclo_total;$day++):?>
+                                        <th>Dia <?php echo $day;?></th>
+                                    <?php endfor;?>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php for($hour=0;$hour<24;$hour++):?>
+                                    <tr>
+                                        <th><?php printf("%02d:00",$hour)?></th>
+                                        <?php for($day=1;$day<=$horarioModel->ciclo_total;$day++):?>
+                                            <td></td>
+                                        <?php endfor;?>
+                                    </tr>
+                                <?php endfor;?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="widget-footer">
+                            <?php echo CHtml::beginForm(['horario/setPeriodos','id'=>$horarioModel->id_horario],'post',['id'=>'form-edit-lapse']);?>
+                                <?php echo CHtml::submitButton('Guardar',['class'=>'btn btn-primary'])?>
+                            <?php echo CHtml::endForm();?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,8 +96,43 @@
     </div>
 </section>
 
+<script>
+    var lapses = [
+        <?php foreach ($horarioModel->horarioPeriodos as $itemHP):?>
+        {
+            <?php
+            $startM = Yii::app()->dateTimeTools->convertTimeToMinutes($itemHP->periodo->hora_entrada);
+            $endM = Yii::app()->dateTimeTools->convertTimeToMinutes($itemHP->periodo->hora_salida);
+            ?>
+            periodo: <?php echo $itemHP->id_periodo;?> ,
+            startMin: <?php echo $startM?> ,
+            lenMin: <?php echo $endM + (1440*$itemHP->periodo->tipo_periodo) - $startM;?> ,
+            day: <?php echo $itemHP->dia;?>
+        },
+        <?php endforeach;?>
+    ];
+</script>
+
+<div id="templates" style="display: none">
+    <div class="lapse lapse-full" style="width: 0;height: 0">
+        <div class="block block-lapse">
+            <a href="#">&times;</a>
+        </div>
+        <?php echo CHtml::activeHiddenField(new HorarioPeriodo(),'[]id_periodo');?>
+        <?php echo CHtml::activeHiddenField(new HorarioPeriodo(),'[]dia');?>
+    </div>
+    <div class="lapse lapse-partial" style="width: 0;height: 0;">
+        <div class="block block-lapse">
+            <a href="#">&times;</a>
+        </div>
+        <div class="block block-lapse-end">
+        </div>
+        <?php echo CHtml::activeHiddenField(new HorarioPeriodo(),'[]id_periodo');?>
+        <?php echo CHtml::activeHiddenField(new HorarioPeriodo(),'[]dia');?>
+    </div>
+</div>
+
 <?php
-Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/resources/js/plugin/iCheck/all.css');
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/iCheck/icheck.min.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/clockpicker/clockpicker.min.js',CClientScript::POS_END);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/resources/js/system/horario/view.js',CClientScript::POS_END);
 ?>

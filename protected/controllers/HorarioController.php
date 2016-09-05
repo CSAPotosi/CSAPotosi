@@ -80,4 +80,20 @@ class HorarioController extends Controller
 
         $this->render('view',['horarioModel'=>$horarioModel, 'periodoModel'=>$periodoModel]);
     }
+
+    public function actionSetPeriodos($id){
+        $horarioModel = Horario::model()->findByPk($id);
+        if(isset($_POST['HorarioPeriodo'])){
+            foreach ($horarioModel->horarioPeriodos as $itemHP)
+                $itemHP->delete();
+
+            foreach ($_POST['HorarioPeriodo'] as $itemHP){
+                $hpModel = new HorarioPeriodo();
+                $hpModel->attributes = $itemHP;
+                $hpModel->id_horario = $horarioModel->id_horario;
+                $hpModel->save();
+            }
+        }
+        $this->redirect(['view','id'=>$id]);
+    }
 }

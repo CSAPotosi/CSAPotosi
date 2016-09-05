@@ -87,4 +87,44 @@
     color: #666;
 }
 
-/**********************/
+/**********Estilos pra horarios************/
+#table-horario>thead>tr>th,
+#table-horario>thead>tr>td,
+#table-horario>tbody>tr>th,
+#table-horario>tbody>tr>td{
+    padding: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-align: center;
+    cursor: pointer;
+}
+.column-hover{
+    background: #00bfff;
+}
+
+.block-lapse, .block-lapse-end{
+    position:absolute;
+    border-radius:5px;
+    background-color:#6f5499;
+    text-align:right;
+    color:#fff;
+    padding: 5px;
+}
+
+.lapse-partial>.block-lapse{
+    border-radius: 5px 5px 0px 0px;
+}
+.lapse-partial>.block-lapse-end{
+    border-radius: 0px 0px 5px 5px;
+}
+
+.block-lapse p{
+    text-align: center;
+    margin: 0;
+}
+
+.block-lapse>a{
+    color:#fff;
+    padding-right:3px;
+    text-decoration:none;
+}

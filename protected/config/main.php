@@ -41,6 +41,9 @@ return array(
 		'patientTools'=>[
 			'class'=>'PatientTools'
 		],
+		'dateTimeTools'=>[
+			'class'=>'DateTimeTools'
+		],
 
 		// uncomment the following to enable URLs in path-format
 		/*

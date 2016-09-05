@@ -49,7 +49,7 @@ class Horario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cargo0' => array(self::BELONGS_TO, 'Cargo', 'cargo'),
+			'cargoAsignado' => array(self::BELONGS_TO, 'Cargo', 'cargo'),
 			'horarioPeriodos' => array(self::HAS_MANY, 'HorarioPeriodo', 'id_horario'),
 		);
 	}
