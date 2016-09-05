@@ -1,27 +1,30 @@
 <?php
 
 /**
- * This is the model class for table "horario".
+ * This is the model class for table "periodo".
  *
- * The followings are the available columns in table 'horario':
- * @property integer $id_horario
- * @property string $nombre_horario
- * @property string $descripcion
- * @property integer $ciclo_total
- * @property integer $cargo
+ * The followings are the available columns in table 'periodo':
+ * @property integer $id_periodo
+ * @property string $hora_entrada
+ * @property integer $inicio_entrada
+ * @property integer $fin_entrada
+ * @property string $hora_salida
+ * @property integer $inicio_salida
+ * @property integer $fin_salida
+ * @property integer $tolerancia
+ * @property integer $tipo_periodo
  *
  * The followings are the available model relations:
- * @property Cargo $cargo0
  * @property HorarioPeriodo[] $horarioPeriodos
  */
-class Horario extends CActiveRecord
+class Periodo extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'horario';
+		return 'periodo';
 	}
 
 	/**
@@ -32,12 +35,11 @@ class Horario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre_horario', 'required'),
-			array('ciclo_total, cargo', 'numerical', 'integerOnly'=>true),
-			array('nombre_horario, descripcion', 'length', 'max'=>32),
+			array('hora_entrada, hora_salida', 'required'),
+			array('inicio_entrada, fin_entrada, inicio_salida, fin_salida, tolerancia, tipo_periodo', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_horario, nombre_horario, descripcion, ciclo_total, cargo', 'safe', 'on'=>'search'),
+			array('id_periodo, hora_entrada, inicio_entrada, fin_entrada, hora_salida, inicio_salida, fin_salida, tolerancia, tipo_periodo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +51,7 @@ class Horario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cargo0' => array(self::BELONGS_TO, 'Cargo', 'cargo'),
-			'horarioPeriodos' => array(self::HAS_MANY, 'HorarioPeriodo', 'id_horario'),
+			'horarioPeriodos' => array(self::HAS_MANY, 'HorarioPeriodo', 'id_periodo'),
 		);
 	}
 
@@ -60,11 +61,15 @@ class Horario extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_horario' => 'Id Horario',
-			'nombre_horario' => 'Nombre Horario',
-			'descripcion' => 'Descripcion',
-			'ciclo_total' => 'Ciclo Total',
-			'cargo' => 'Cargo',
+			'id_periodo' => 'Id Periodo',
+			'hora_entrada' => 'Hora Entrada',
+			'inicio_entrada' => 'Inicio Entrada',
+			'fin_entrada' => 'Fin Entrada',
+			'hora_salida' => 'Hora Salida',
+			'inicio_salida' => 'Inicio Salida',
+			'fin_salida' => 'Fin Salida',
+			'tolerancia' => 'Tolerancia',
+			'tipo_periodo' => 'Tipo Periodo',
 		);
 	}
 
@@ -86,11 +91,15 @@ class Horario extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_horario',$this->id_horario);
-		$criteria->compare('nombre_horario',$this->nombre_horario,true);
-		$criteria->compare('descripcion',$this->descripcion,true);
-		$criteria->compare('ciclo_total',$this->ciclo_total);
-		$criteria->compare('cargo',$this->cargo);
+		$criteria->compare('id_periodo',$this->id_periodo);
+		$criteria->compare('hora_entrada',$this->hora_entrada,true);
+		$criteria->compare('inicio_entrada',$this->inicio_entrada);
+		$criteria->compare('fin_entrada',$this->fin_entrada);
+		$criteria->compare('hora_salida',$this->hora_salida,true);
+		$criteria->compare('inicio_salida',$this->inicio_salida);
+		$criteria->compare('fin_salida',$this->fin_salida);
+		$criteria->compare('tolerancia',$this->tolerancia);
+		$criteria->compare('tipo_periodo',$this->tipo_periodo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -101,7 +110,7 @@ class Horario extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Horario the static model class
+	 * @return Periodo the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

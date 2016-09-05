@@ -29,7 +29,6 @@ class ServTipoSala extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_serv', 'required'),
             array('id_serv', 'numerical', 'integerOnly' => true),
             array('descripcion_t_sala', 'safe'),
             // The following rule is used by search().
@@ -46,7 +45,7 @@ class ServTipoSala extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idServ' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
+            'servicio' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
             'salas' => array(self::HAS_MANY, 'Sala', 'id_t_sala'),
         );
     }

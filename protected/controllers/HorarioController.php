@@ -25,7 +25,7 @@ class HorarioController extends Controller
                 'actions' => array('update'),
                 'roles' => array('updateHorario'),
             ),
-            array('deny',  // deny all users
+            array('allow',  // deny all users
                 'users' => array('*'),
             ),
         );
@@ -59,5 +59,25 @@ class HorarioController extends Controller
             }
         }
         $this->render('create', array('modelHorario' => $modelHorario));
+    }
+
+    public function actionView($id){
+
+        $horarioModel = Horario::model()->findByPk($id);
+        $periodoModel = new Periodo();
+        $this->render('view',['horarioModel'=>$horarioModel, 'periodoModel'=>$periodoModel]);
+    }
+
+    public function actionCreatePeriodo($id){
+        $horarioModel = Horario::model()->findByPk($id);
+        $periodoModel = new Periodo();
+
+        if(isset($_POST['Periodo'])){
+            $periodoModel->attributes = $_POST['Periodo'];
+            if($periodoModel->save())
+                $this->redirect(['view','id'=>$id]);
+        }
+
+        $this->render('view',['horarioModel'=>$horarioModel, 'periodoModel'=>$periodoModel]);
     }
 }

@@ -1,0 +1,163 @@
+<section id="widget-grid">
+    <div class="row">
+        <article class="col-md-12">
+            <div class="jarviswidget" id="widget1">
+                <header></header>
+                <div>
+                    <div class="widget-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="product-content product-wrap clearfix product-deatil">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2 id="t-sala-detail" class="name" data-activo="<?php echo $tSala->servicio->activo;?>">
+                                                <small><?php echo CHtml::encode($tSala->servicio->cod_serv);?></small>
+                                                <?php echo CHtml::encode($tSala->servicio->nombre_serv);?>
+                                                <small>
+                                                    <?php echo CHtml::encode($tSala->descripcion_t_sala);?>
+                                                </small>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="row item-sala-new-form">
+                                        <div class="col-md-12 text-right">
+                                            <div class="btn btn-primary btn-new-item-sala">Nuevo</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row item-sala-new-form hidden">
+                                        <div class="col-md-12">
+                                            <?php
+                                            $form = $this->beginWidget('CActiveForm',[
+                                                'action'=>['servicio/salaAddItem','id'=>$tSala->id_serv],
+                                                'enableAjaxValidation'=>true,
+                                                'clientOptions'=>[
+                                                    'validateOnSubmit'=>true,
+                                                    'validateOnChange'=>false
+                                                ]
+                                            ]);
+                                            ?>
+                                            <div class="col-md-2">
+                                                <?php echo $form->textField($itemSalaModel,'cod_sala',['class'=>'form-control','placeholder'=>'CODIGO']);?>
+                                                <?php echo $form->error($itemSalaModel,'cod_sala',['class'=>'label label-danger']);?>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <?php echo $form->textField($itemSalaModel,'ubicacion_sala',['class'=>'form-control','placeholder'=>'UBICACION']);?>
+                                                <?php echo $form->error($itemSalaModel,'ubicacion_sala',['class'=>'label label-danger']);?>
+                                            </div>
+                                            <div class="col-md-2">
+													<span class="onoffswitch">
+														<?php echo $form->checkBox($itemSalaModel,'estado_sala',['class'=>'onoffswitch-checkbox']);?>
+                                                        <?php echo $form->label($itemSalaModel,'estado_sala',['class'=>'onoffswitch-label','label'=>'<span class="onoffswitch-inner" data-swchon-text="SI" data-swchoff-text="NO"></span><span class="onoffswitch-switch"></span>']);?>
+													</span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-xs btn-danger btn-cancel-item-sala" type="reset">Cancelar</button>
+                                                <button class="btn btn-xs btn-primary btn-submit-item-sala" type="submit">Guardar</button>
+                                            </div>
+                                            <?php $this->endWidget(); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <strong>CODIGO</strong>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <strong>UBICACION</strong>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <strong>ACTIVO</strong>
+                                            </div>
+                                            <div class="col-md-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="list-group no-margin">
+                                        <?php foreach ($tSala->salas as $itemSala): ?>
+                                            <li class="list-group-item">
+                                                <div class="row item-sala-detail">
+                                                    <div class="col-md-2">
+                                                        <?php echo $itemSala->cod_sala; ?>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <?php echo $itemSala->ubicacion_sala; ?>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <span class="onoffswitch">
+                                                            <input type="checkbox" name="nuevo" class="onoffswitch-checkbox update-state-item-sala" id="check<?php echo $itemSala->id_sala;?>" <?php echo ($itemSala->estado_sala==1)?'checked':''; ?>>
+                                                            <label class="onoffswitch-label" for="check<?php echo $itemSala->id_sala;?>">
+                                                                <span class="onoffswitch-inner" data-swchon-text="SI" data-swchoff-text="NO"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button type="button" class="btn btn-primary btn-xs btn-edit-item-sala">
+                                                            <i class="fa fa-edit"></i>
+                                                            Editar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="row hidden item-sala-form">
+                                                    <?php
+                                                    $form = $this->beginWidget('CActiveForm',[
+                                                        'action'=>['servicio/salaEditItem','id'=>$itemSala->id_sala],
+                                                        'enableAjaxValidation'=>true,
+                                                        'clientOptions'=>[
+                                                            'validateOnSubmit'=>true,
+                                                            'validateOnChange'=>false
+                                                        ]
+                                                    ]);
+                                                    ?>
+                                                    <div class="col-md-2">
+                                                        <?php echo $form->textField($itemSala,'cod_sala',['class'=>'form-control']);?>
+                                                        <?php echo $form->error($itemSala,'cod_sala',['class'=>'label label-danger']);?>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <?php echo $form->textField($itemSala,'ubicacion_sala',['class'=>'form-control']);?>
+                                                        <?php echo $form->error($itemSala,'ubicacion_sala',['class'=>'label label-danger']);?>
+                                                    </div>
+                                                    <div class="col-md-2">
+													<span class="onoffswitch">
+														<?php echo $form->checkBox($itemSala,'estado_sala',['class'=>'onoffswitch-checkbox', 'id'=>'activo_'.$itemSala->id_sala]);?>
+                                                        <?php echo $form->label($itemSala,'estado_sala',['for'=>'activo_'.$itemSala->id_sala ,'class'=>'onoffswitch-label','label'=>'<span class="onoffswitch-inner" data-swchon-text="SI" data-swchoff-text="NO"></span><span class="onoffswitch-switch"></span>']);?>
+													</span>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button class="btn btn-xs btn-danger btn-cancel-item-sala" type="reset">Cancelar</button>
+                                                        <button class="btn btn-xs btn-primary btn-submit-item-sala" type="submit">Guardar</button>
+                                                    </div>
+                                                    <?php $this->endWidget(); ?>
+                                                </div>
+                                            </li>
+                                        <?php endforeach;?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/resources/js/system/servicio/salaView.js',CClientScript::POS_END);
+?>

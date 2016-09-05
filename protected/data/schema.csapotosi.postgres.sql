@@ -84,34 +84,6 @@ create table if not exists unidad(
   descripcion_unidad varchar(128)
 );
 
-create table if not exists horario(
-  id_horario serial primary key ,
-  nombre_horario varchar(32) not null unique,
-  descripcion varchar (32),
-  ciclo_total int,
-  cargo int,
-  foreign key (cargo) references cargo(id_cargo)
-);
-create table if not exists turno(
-  id_turno serial primary key,
-  nombre_turno varchar(32) unique,
-  hora_entrada time not null,
-  inicio_entrada int,
-  fin_entrada int,
-  hora_salida time not null,
-  inicio_salida int,
-  fin_salida int,
-  tolerancia int default 0,
-  tipo_turno int
-);
-create table if not EXISTS horario_turno(
-  id_turno_horario serial primary key not null,
-  id_horario int,
-  id_turno int,
-  dia int,
-  foreign key (id_horario) references horario(id_horario),
-  foreign key (id_turno) references turno(id_turno)
-);
 create table if not exists cargo(
   id_cargo serial primary key ,
   nombre_cargo varchar (32) not null unique ,
@@ -120,6 +92,37 @@ create table if not exists cargo(
   estado bool default true,
   foreign key (id_unidad) references unidad(id_unidad)
 );
+
+create table if not exists horario(
+  id_horario serial primary key ,
+  nombre_horario varchar(32) not null unique,
+  descripcion varchar (32),
+  ciclo_total int,
+  cargo int,
+  foreign key (cargo) references cargo(id_cargo)
+);
+
+create table if not exists periodo(
+  id_periodo serial primary key,
+  hora_entrada time not null,
+  inicio_entrada int default 0,
+  fin_entrada int default 0,
+  hora_salida time not null,
+  inicio_salida int default 0,
+  fin_salida int DEFAULT 0,
+  tolerancia int default 15,
+  tipo_periodo int
+);
+
+create table if not EXISTS horario_periodo(
+  id_horario_periodo serial primary key not null,
+  id_horario int,
+  id_periodo int,
+  dia int,
+  foreign key (id_horario) references horario(id_horario),
+  foreign key (id_periodo) references periodo(id_periodo)
+);
+
 create table if not exists asignacion_empleado(
   id_asignacion serial primary key,
   fecha_inicio date not null,
