@@ -15,10 +15,10 @@ class ServicioController extends Controller
 				$this->salaIndex();
 				break;
 			case 'atencionMedica':
-				$this->atencionMedicaIndex();
+				$this->atencionMedicaIndex($tipo);
 				break;
 			default:
-				throw new CHttpException(404,'Ha ocurrido un problema con la solicitud.');
+				echo 'asdassd';
 				break;
 		}//$this->render('index');
 	}
@@ -36,7 +36,7 @@ class ServicioController extends Controller
 				$this->salaCreate();
 				break;
 			case 'atencionMedica':
-				$this->atencionMedicaCreate();
+				$this->atencionMedicaCreate($tipo);
 				break;
 			default:
 				throw new CHttpException(404,'Ha ocurrido un problema con la solicitud.');
@@ -44,7 +44,7 @@ class ServicioController extends Controller
 		}//$this->render('index');
 	}
 
-	public function actionUpdate($grupo = 'examen', $tipo = 1, $id = null)
+	public function actionUpdate($grupo = 'examen', $tipo = 1, $id)
 	{
 		switch ($grupo) {
 			case 'examen':
@@ -57,7 +57,7 @@ class ServicioController extends Controller
 				$this->salaUpdate($id);
 				break;
 			case 'atencionMedica':
-				$this->atencionMedicaUpdate();
+				$this->atencionMedicaUpdate($tipo, $id);
 				break;
 			default:
 				throw new CHttpException(404,'Ha ocurrido un problema con la solicitud.');
@@ -82,7 +82,7 @@ class ServicioController extends Controller
 			default:
 				echo 'asdassd';
 				break;
-		}
+		}//$this->render('index');
 	}
 
 	private function examenIndex($tipo = 1)
@@ -106,9 +106,6 @@ class ServicioController extends Controller
 		$this->render('salaIndex', ['tSalaList'=>$tSalaList, 'dataUrl'=>['grupo'=>'sala','tipo'=>0] ]);
 	}
 
-	private function atencionMedicaIndex(){
-		echo 'en atencio medica';
-	}
 
 ////////////////////////////////////////////////
 	private function examenCreate($tipo = 1)
@@ -148,6 +145,48 @@ class ServicioController extends Controller
 		));
 	}
 
+	private function atencionMedicaIndex($tipo)
+	{
+		$servicio = new Servicio();
+		$listSpecialty = Especialidad::model()->findAll();
+		$this->render('atencionMedicaIndex', array('listSpecialty' => $listSpecialty, 'servicio' => $servicio, 'dataUrl' => ['grupo' => 'atencionMedica', 'tipo' => $tipo]));
+	}
+
+	private function atencionMedicaCreate($tipo)
+	{
+		$medicoEspecialidad = MedicoEspecialidad::model()->findByPk($tipo);
+		$atencionMedica = new ServicioForm();
+		$entidad = Entidad::model()->findAll();
+		if (isset($_POST['ServicioForm'])) {
+			$atencionMedica->setAttributes($_POST['ServicioForm'], false);
+			if ($atencionMedica->saveAtencionMedica())
+				$this->redirect(['index', 'grupo' => 'atencionMedica']);
+		}
+		$this->render('atencionMedicaCreate', array(
+			'atencionMedica' => $atencionMedica,
+			'dataUrl' => ['grupo' => 'atencionMedica'],
+			'entidad' => $entidad,
+			'MedicoEspecialidad' => $medicoEspecialidad
+		));
+	}
+
+	private function atencionMedicaUpdate($tipo, $id)
+	{
+		$medicoEspecialidad = MedicoEspecialidad::model()->findByPk($tipo);
+		$atencionMedica = new ServicioForm();
+		$atencionMedica->loadData($id);
+		$entidad = Entidad::model()->findAll();
+		if (isset($_POST['ServicioForm'])) {
+			$atencionMedica->setAttributes($_POST['ServicioForm'], false);
+			if ($atencionMedica->saveAtencionMedica($id))
+				$this->redirect(['index', 'grupo' => 'atencionMedica', 'tipo' => $tipo]);
+		}
+		$this->render('atencionMedicaEdit', array(
+			'dataUrl' => ['grupo' => 'atencionMedica'],
+			'atencionMedica' => $atencionMedica,
+			'MedicoEspecialidad' => $medicoEspecialidad,
+			'entidad' => $entidad));
+	}
 	public function loadModel($id)
 	{
 		$model = Servicio::model()->findByPk($id);
@@ -211,11 +250,6 @@ class ServicioController extends Controller
 				$this->redirect(['view','grupo'=>'sala','id'=>$itemSalaModel->id_t_sala]);
 		}
 		throw  new CHttpException(404,'Ha ocurrido un error en la solicitud.');
-	}
-
-	private function atencionMedicaCreate()
-	{
-		echo 'en atencio medica';
 	}
 
 

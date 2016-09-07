@@ -1,39 +1,12 @@
 <?php
 
-/**
- * This is the model class for table "servicio".
- *
- * The followings are the available columns in table 'servicio':
- * @property integer $id_serv
- * @property string $cod_serv
- * @property string $nombre_serv
- * @property string $unidad_medida
- * @property integer $tipo_cobro
- * @property string $fecha_creacion
- * @property string $fecha_edicion
- * @property boolean $activo
- * @property integer $id_entidad
- *
- * The followings are the available model relations:
- * @property Precio[] $precios
- * @property ServExamen $servExamen
- * @property Entidad $idEntidad
- * @property ServClinico $servClinico
- * @property ServTipoSala $servTipoSala
- */
 class Servicio extends CActiveRecord
 {
-	/**
-	 * @return string the associated database table name
-	 */
 	public function tableName()
 	{
 		return 'servicio';
 	}
 
-	/**
-	 * @return array validation rules for model attributes.
-	 */
 	public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
@@ -51,9 +24,6 @@ class Servicio extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array relational rules.
-	 */
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
@@ -65,9 +35,9 @@ class Servicio extends CActiveRecord
 			'idEntidad' => array(self::BELONGS_TO, 'Entidad', 'id_entidad'),
 			'servClinico' => array(self::HAS_ONE, 'ServClinico', 'id_serv'),
 			'servTipoSala' => array(self::HAS_ONE, 'ServTipoSala', 'id_serv'),
+			'atencionMedica' => array(self::HAS_ONE, 'ServAtencionMedica', 'id_serv'),
 		);
 	}
-	
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -129,5 +99,12 @@ class Servicio extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getMedicos($id)
+	{
+		return $listMedico = MedicoEspecialidad::model()->findAll([
+			'condition' => "id_especialidad={$id}",
+		]);
 	}
 }

@@ -45,8 +45,9 @@ class MedicoEspecialidad extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idMedico' => array(self::BELONGS_TO, 'Medico', 'id_medico'),
+            'medico' => array(self::BELONGS_TO, 'Medico', 'id_medico'),
             'idEspecialidad' => array(self::BELONGS_TO, 'Especialidad', 'id_especialidad'),
+            'atencionMedica' => array(self::HAS_ONE, 'ServAtencionMedica', 'id_m_e'),
         );
     }
 

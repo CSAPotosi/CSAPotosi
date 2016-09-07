@@ -16,6 +16,10 @@ class ServicioForm extends CFormModel
     public $id_cat_ex;
     //tipo sala
     public $descripcion_t_sala;
+    //atencion medica
+    public $cod_espe;
+    public $id_m_e;
+    public $tipo_atencion;
 
     //id
     private $_idServicio;
@@ -24,6 +28,7 @@ class ServicioForm extends CFormModel
     private $modelServicio;
     private $modelServExamen;
     private $modelServTSala;
+    private $modelServAtencionMedica;
     /*
     private $_myAttributes=[];
 
@@ -56,6 +61,7 @@ class ServicioForm extends CFormModel
 
             'condiciones_ex' => 'CONDICIONES',
             'id_cat_ex' => 'ID DE CATEGORIA EXTERNA',
+            'tipo_atencion' => 'TIPO ATENCION',
         );
     }
 
@@ -146,6 +152,22 @@ class ServicioForm extends CFormModel
         }
     }
 
+    public function saveAtencionMedica($id = null)
+    {
+        $this->modelServAtencionMedica = ($id == null) ? new ServAtencionMedica() : ServAtencionMedica::model()->findByPk($id);
+        $this->modelServAtencionMedica->setAttributes($this->getAttributes(), false);
+        $this->loadServicioPrecio($id);
+        if ($this->validar([$this->modelServAtencionMedica, $this->modelPrecio, $this->modelServAtencionMedica])) {
+            $this->saveServicio();
+            $this->savePrecio();
+            if ($id == null)
+                $this->modelServAtencionMedica->id_serv = $this->_idServicio;
+            if ($this->modelServAtencionMedica->save())
+                return true;
+            return false;
+        }
+    }
+
     /*public function saveServicio2()
     {
         $trans = Yii::app()->db->beginTransaction();
@@ -188,7 +210,7 @@ class ServicioForm extends CFormModel
         $this->setAttributes($precio->getAttributes(), false);
 
         //ServExamen
-            throw new CHttpException(404, 'The requested page does not exist.');
+        //throw new CHttpException(404, 'The requested page does not exist.');
         $this->setAttributes($precio->getAttributes(array('monto')), false);
         $servExamen = ServExamen::model()->findByPk($id);
         if ($servExamen != null)
@@ -198,6 +220,19 @@ class ServicioForm extends CFormModel
         $servTSala = ServTipoSala::model()->findByPk($id);
         if ($servTSala != null)
             $this->setAttributes($servTSala->getAttributes(), false);
+        $servAtencionMedica = ServAtencionMedica::model()->findByPk($id);
+        if ($servAtencionMedica != null)
+            $this->setAttributes($servAtencionMedica->getAttributes(), false);
+    }
+
+    public function getAtencionMedica()
+    {
+        return array(
+            '0' => 'ELIJA TIPO DE ATENCION',
+            '1' => 'AMBULATORIA',
+            '2' => 'EMERGENCIA',
+            '3' => 'DOMICILIARIA',
+        );
     }
 }
 
