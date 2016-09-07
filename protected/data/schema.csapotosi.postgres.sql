@@ -133,7 +133,15 @@ create table if not exists asignacion_empleado(
   foreign key (id_empleado) references empleado(id_empleado),
   foreign key (id_cargo) references cargo(id_cargo)
 );
-
+create table if not exists registro(
+  id_asignacion int not null,
+  fecha date not null,
+  hora_asistencia time not null,
+  observaciones varchar(128),
+  estado bool,
+  primary key(fecha,hora_asistencia,id_asignacion),
+  foreign key (id_asignacion) references asignacion_empleado(id_asignacion)
+);
 /*************/
 create table if not exists "AuthItem"
 (
@@ -249,7 +257,6 @@ CREATE TABLE IF NOT EXISTS serv_examen(
   FOREIGN KEY (id_serv) REFERENCES servicio(id_serv),
   FOREIGN KEY (id_cat_ex) REFERENCES categoria_serv_examen(id_cat_ex)
 );
-<<<<<<< Updated upstream
 
 --enfermeria, otros,
 CREATE TABLE IF NOT EXISTS categoria_serv_clinico(
@@ -287,9 +294,37 @@ CREATE TABLE IF NOT EXISTS sala(
 CREATE TABLE IF NOT EXISTS serv_atencion_medica(
   id_serv INT NOT NULL PRIMARY KEY,
   id_m_e INT NOT NULL,  --id medico_especialidad
+  cod_espe varchar(8),
   tipo_atencion SMALLINT NOT NULL DEFAULT 1,
   FOREIGN KEY (id_m_e) REFERENCES medico_especialidad(id_m_e)
 );
+create table if not exists internacion(
+  id_inter serial not null primary key ,
+  id_historial int not null ,
+  fecha_ingreso timestamp not null,
+  motivo_ingreso SMALLINT not null,--accidente,enfermedad, parto
+  observacion_ingreso varchar(256),
+  procedencia_ingreso SMALLINT,--consulta exterma,emergencia,externo
+  fecha_alta timestamp,
+  tipo_alta SMALLINT,--medica, fuga, solicitada,transferencia
+  observacion_alta varchar (256),
+  fecha_egreso timestamp,
+  estado SMALLINT DEFAULT 0, -- 0 novigente, 1 vigente
+  foreign key (id_historial) references historial_paciente(id_historial)
+);
+
+/*create table if NOT EXISTS insti_direrido_transferencia (
+  id     SERIAL PRIMARY KEY NOT NULL,
+  nombre VARCHAR(64)
+);
+
+create table internacion_insti_diferido_transferencia(
+  id_inter int  primary key not null,
+  id_ext int,
+  tipo varchar(16),
+  FOREIGN KEY (id_inter) REFERENCES internacion(id_inter),
+  FOREIGN KEY (id_ext) REFERENCES insti_direrido_transferencia(id)
+);*/
 =======
 
 
