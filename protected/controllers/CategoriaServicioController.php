@@ -17,13 +17,13 @@ class CategoriaServicioController extends Controller
 	}
 
 	private function categoriaExamenIndex($tipo = 1){
-		$catExList = CategoriaServicioExamen::model()->findAll([
+		$catExList = CategoriaServExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
 			'params'=>[':tipo_ex'=>$tipo]
 		]);
 
-		$catExModel = new CategoriaServicioExamen();
+		$catExModel = new CategoriaServExamen();
 		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'dataUrl'=>['tipo'=>$tipo, 'grupo'=>'examen'] ]);
 	}
 
@@ -48,18 +48,18 @@ class CategoriaServicioController extends Controller
 	}
 
 	private function categoriaExamenCreate($tipo = 1){
-		$catExModel = new CategoriaServicioExamen();
+		$catExModel = new CategoriaServExamen();
 
 		$this->ajaxValidation($catExModel);
 
-		$catExList = CategoriaServicioExamen::model()->findAll([
+		$catExList = CategoriaServExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
 			'params'=>[':tipo_ex'=>$tipo]
 		]);
 
-		if (isset($_POST['CategoriaServicioExamen'])){
-			$catExModel->attributes = $_POST['CategoriaServicioExamen'];
+		if (isset($_POST['CategoriaServExamen'])) {
+			$catExModel->attributes = $_POST['CategoriaServExamen'];
 			if($catExModel->save())
 				$this->redirect(['index','grupo'=>'examen','tipo'=>$tipo]);
 		}
@@ -68,18 +68,18 @@ class CategoriaServicioController extends Controller
 	}
 
 	private function categoriaExamenUpdate($tipo = 1, $id = 0){
-		$catExModel = CategoriaServicioExamen::model()->findByPk($id);
+		$catExModel = CategoriaServExamen::model()->findByPk($id);
 
 		$this->ajaxValidation($catExModel);
 
-		$catExList = CategoriaServicioExamen::model()->findAll([
+		$catExList = CategoriaServExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
 			'params'=>[':tipo_ex'=>$tipo]
 		]);
 
-		if (isset($_POST['CategoriaServicioExamen'])){
-			$catExModel->attributes = $_POST['CategoriaServicioExamen'];
+		if (isset($_POST['CategoriaServExamen'])) {
+			$catExModel->attributes = $_POST['CategoriaServExamen'];
 			if($catExModel->save())
 				$this->redirect(['index','grupo'=>'examen','tipo'=>$tipo]);
 		}

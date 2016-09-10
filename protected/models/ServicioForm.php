@@ -5,7 +5,6 @@ class ServicioForm extends CFormModel
     //servicio
     public $cod_serv;
     public $nombre_serv;
-    public $unidad_medida;
     public $tipo_cobro;
     public $activo;
     public $id_entidad;
@@ -14,6 +13,10 @@ class ServicioForm extends CFormModel
     //examen
     public $condiciones_ex;
     public $id_cat_ex;
+    //clinico
+    public $descripcion_cli;
+    public $unidad_medida;
+    public $id_cat_cli;
     //tipo sala
     public $descripcion_t_sala;
     //atencion medica
@@ -52,12 +55,12 @@ class ServicioForm extends CFormModel
             'cod_serv' => 'CODIGO DE SERVICIO',
             'nombre_serv' => 'NOMBRE DE SERVICIO',
             'tipo_cobro' => 'TIPO DE COBRO',
-            'activo' => 'ACTIVO | INACTIVO',
+            'activo' => 'ACTIVO',
             'id_entidad' => 'ENTIDAD',
             'monto' => 'MONTO',
 
             'condiciones_ex' => 'CONDICIONES',
-            'id_cat_ex' => 'ID DE CATEGORIA EXTERNA',
+            'id_cat_ex' => 'CATEGORIA',
             'tipo_atencion' => 'TIPO ATENCION',
         );
     }

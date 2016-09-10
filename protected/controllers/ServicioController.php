@@ -111,7 +111,8 @@ class ServicioController extends Controller
 	private function examenCreate($tipo = 1)
 	{
 		$examen = new ServicioForm;
-		$categoria = CategoriaServicioExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
+		$examen->id_entidad = 1;
+		$categoria = CategoriaServExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
 		$entidad = Entidad::model()->findAll();
 		if (isset($_POST['ServicioForm'])) {
 			$examen->setAttributes($_POST['ServicioForm'],false);
@@ -147,7 +148,7 @@ class ServicioController extends Controller
 	{
 		$examen = new ServicioForm();
 		$examen->loadData($id);
-		$categoria = CategoriaServicioExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
+		$categoria = CategoriaServExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
 		$entidad = Entidad::model()->findAll();
 		if (isset($_POST['ServicioForm'])) {
 			$examen->setAttributes($_POST['ServicioForm'], false);
