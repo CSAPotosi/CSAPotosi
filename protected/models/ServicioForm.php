@@ -142,7 +142,6 @@ class ServicioForm extends CFormModel
         $this->loadServicioPrecio($id);
         if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServClinico])) {
             $this->saveServicio();
-            $this->savePrecio();
             if ($id == null)
                 $this->modelServClinico->id_serv = $this->_idServicio;
             if ($this->modelServClinico->save())
@@ -200,21 +199,22 @@ class ServicioForm extends CFormModel
     public function loadData($id)
     {
         $servicio = Servicio::model()->findByPk($id);
+
         if ($servicio === null)
             throw new CHttpException(404, 'Ha ocurrido un problema con la solicitud.');
         $this->setAttributes($servicio->getAttributes(), false);
         $precio = $servicio->precio;
         if ($precio === null)
             throw new CHttpException(404, 'Ha ocurrido un problema con la solicitud.');
-        $this->setAttributes($precio->getAttributes(), false);
-
-        //ServExamen
-        //throw new CHttpException(404, 'The requested page does not exist.');
         $this->setAttributes($precio->getAttributes(array('monto')), false);
+        //ServExamen
         $servExamen = ServExamen::model()->findByPk($id);
         if ($servExamen != null)
             $this->setAttributes($servExamen->getAttributes(), false);
-
+        //ServClinico
+        $servClinico = ServClinico::model()->findByPk($id);
+        if ($servClinico != null)
+            $this->setAttributes($servClinico->getAttributes(), false);
         //Serv Tipo Sala
         $servTSala = ServTipoSala::model()->findByPk($id);
         if ($servTSala != null)

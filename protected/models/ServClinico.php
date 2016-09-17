@@ -31,7 +31,7 @@ class ServClinico extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_serv, id_cat_cli', 'required'),
+			array('id_cat_cli', 'required'),
 			array('id_serv, id_cat_cli', 'numerical', 'integerOnly' => true),
 			array('unidad_medida', 'length', 'max' => 32),
 			array('descripcion_cli', 'safe'),
