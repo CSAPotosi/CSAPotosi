@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'serv_clinico':
  * @property integer $id_serv
  * @property string $descripcion_cli
+ * @property string $unidad_medida
  * @property integer $id_cat_cli
  *
  * The followings are the available model relations:
@@ -30,12 +31,13 @@ class ServClinico extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_serv, id_cat_cli', 'required'),
+			array('id_cat_cli', 'required'),
 			array('id_serv, id_cat_cli', 'numerical', 'integerOnly' => true),
+			array('unidad_medida', 'length', 'max' => 32),
 			array('descripcion_cli', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_serv, descripcion_cli, id_cat_cli', 'safe', 'on' => 'search'),
+			array('id_serv, descripcion_cli, unidad_medida, id_cat_cli', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -60,6 +62,7 @@ class ServClinico extends CActiveRecord
 		return array(
 			'id_serv' => 'Id Serv',
 			'descripcion_cli' => 'Descripcion Cli',
+			'unidad_medida' => 'Unidad Medida',
 			'id_cat_cli' => 'Id Cat Cli',
 		);
 	}
@@ -84,6 +87,7 @@ class ServClinico extends CActiveRecord
 
 		$criteria->compare('id_serv', $this->id_serv);
 		$criteria->compare('descripcion_cli', $this->descripcion_cli, true);
+		$criteria->compare('unidad_medida', $this->unidad_medida, true);
 		$criteria->compare('id_cat_cli', $this->id_cat_cli);
 
 		return new CActiveDataProvider($this, array(

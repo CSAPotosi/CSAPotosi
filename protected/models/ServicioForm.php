@@ -5,7 +5,6 @@ class ServicioForm extends CFormModel
     //servicio
     public $cod_serv;
     public $nombre_serv;
-    public $unidad_medida;
     public $tipo_cobro;
     public $activo;
     public $id_entidad;
@@ -14,6 +13,10 @@ class ServicioForm extends CFormModel
     //examen
     public $condiciones_ex;
     public $id_cat_ex;
+    //clinico
+    public $descripcion_cli;
+    public $unidad_medida;
+    public $id_cat_cli;
     //tipo sala
     public $descripcion_t_sala;
     //atencion medica
@@ -51,16 +54,13 @@ class ServicioForm extends CFormModel
         return array(
             'cod_serv' => 'CODIGO DE SERVICIO',
             'nombre_serv' => 'NOMBRE DE SERVICIO',
-            'unidad_medida' => 'UNIDAD DE MEDIDA',
-            'precio_serv' => 'PRECIO DE SERVICIO',
             'tipo_cobro' => 'TIPO DE COBRO',
-            'fecha_creacion' => 'FECHA DE CREACION',
-            'fecha_edicion' => 'FECHA DE EDICION',
-            'activo' => 'ACTIVO | INACTIVO',
+            'activo' => 'ACTIVO',
+            'id_entidad' => 'ENTIDAD',
             'monto' => 'MONTO',
 
             'condiciones_ex' => 'CONDICIONES',
-            'id_cat_ex' => 'ID DE CATEGORIA EXTERNA',
+            'id_cat_ex' => 'CATEGORIA',
             'tipo_atencion' => 'TIPO ATENCION',
         );
     }
@@ -69,6 +69,7 @@ class ServicioForm extends CFormModel
     {
         $this->modelServicio->save();
         $this->_idServicio = $this->modelServicio->id_serv;
+        $this->savePrecio();
         return true;
     }
 
@@ -83,7 +84,6 @@ class ServicioForm extends CFormModel
         } else {
             $this->modelPrecio->save();
         }
-
         return true;
     }
 
@@ -109,7 +109,6 @@ class ServicioForm extends CFormModel
 
         if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServExamen])) {
             $this->saveServicio();
-            $this->savePrecio();
             if ($id == null)
                 $this->modelServExamen->id_serv = $this->_idServicio;
             if ($this->modelServExamen->save())
@@ -143,7 +142,6 @@ class ServicioForm extends CFormModel
         $this->loadServicioPrecio($id);
         if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServClinico])) {
             $this->saveServicio();
-            $this->savePrecio();
             if ($id == null)
                 $this->modelServClinico->id_serv = $this->_idServicio;
             if ($this->modelServClinico->save())
@@ -201,21 +199,22 @@ class ServicioForm extends CFormModel
     public function loadData($id)
     {
         $servicio = Servicio::model()->findByPk($id);
+
         if ($servicio === null)
             throw new CHttpException(404, 'Ha ocurrido un problema con la solicitud.');
         $this->setAttributes($servicio->getAttributes(), false);
         $precio = $servicio->precio;
         if ($precio === null)
             throw new CHttpException(404, 'Ha ocurrido un problema con la solicitud.');
-        $this->setAttributes($precio->getAttributes(), false);
-
-        //ServExamen
-        //throw new CHttpException(404, 'The requested page does not exist.');
         $this->setAttributes($precio->getAttributes(array('monto')), false);
+        //ServExamen
         $servExamen = ServExamen::model()->findByPk($id);
         if ($servExamen != null)
             $this->setAttributes($servExamen->getAttributes(), false);
-
+        //ServClinico
+        $servClinico = ServClinico::model()->findByPk($id);
+        if ($servClinico != null)
+            $this->setAttributes($servClinico->getAttributes(), false);
         //Serv Tipo Sala
         $servTSala = ServTipoSala::model()->findByPk($id);
         if ($servTSala != null)

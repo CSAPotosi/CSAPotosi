@@ -30,7 +30,7 @@ class ServicioController extends Controller
 				$this->examenCreate($tipo);
 				break;
 			case 'clinico':
-				$this->clinicoCreate(1);
+				$this->clinicoCreate();
 				break;
 			case 'sala':
 				$this->salaCreate();
@@ -51,7 +51,7 @@ class ServicioController extends Controller
 				$this->examenUpdate($tipo, $id);
 				break;
 			case 'clinico':
-				$this->clinicoUpdate(1);
+				$this->clinicoUpdate($id);
 				break;
 			case 'sala':
 				$this->salaUpdate($id);
@@ -87,8 +87,6 @@ class ServicioController extends Controller
 
 	private function examenIndex($tipo = 1)
 	{
-
-
 		$listServicio = ServExamen::model()->with('categoria')->findAll(array(
 			'condition' => "tipo_ex = :tipo and activo=true",
 			'params' => [':tipo' => $tipo]
@@ -97,8 +95,10 @@ class ServicioController extends Controller
 		$this->render('examenIndex', array('listServicio' => $listServicio, 'dataUrl' => ['grupo' => 'examen', 'tipo' => $tipo]));
 	}
 
-	private function clinicoIndex($tipo=1){
-		echo 'en servicios clinicos';
+	private function clinicoIndex()
+	{
+		$listServicio = ServClinico::model()->findAll("activo=true");
+		$this->render('clinico', array('listServicio' => $listServicio, 'dataUrl' => array('grupo' => 'clinico')));
 	}
 
 	private function salaIndex(){
@@ -111,10 +111,13 @@ class ServicioController extends Controller
 	private function examenCreate($tipo = 1)
 	{
 		$examen = new ServicioForm;
-		$categoria = CategoriaServicioExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
-		$entidad = Entidad::model()->findAll();
+		$examen->id_entidad = 1;
+		$categoria = CategoriaServExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
+		$entidad = Entidad::model()->findAll("id_entidad<>1");
 		if (isset($_POST['ServicioForm'])) {
 			$examen->setAttributes($_POST['ServicioForm'],false);
+			if (!(isset($_POST['ServicioForm']['id_entidad'])))
+				$examen->id_entidad = null;
 			if ($examen->saveExamen())
 				$this->redirect(array('index', 'grupo' => 'examen', 'tipo' => $tipo));
 		}
@@ -126,12 +129,30 @@ class ServicioController extends Controller
 		));
 	}
 
+	private function clinicoCreate()
+	{
+		$clinico = new ServicioForm;
+		$clinico->id_entidad = 1;
+		$categoria = CategoriaServClinico::model()->findAll("activo=true");
+		$entidad = Entidad::model()->findAll("id_entidad<>1");
+		if (isset($_POST['ServicioForm'])) {
+			$clinico->setAttributes($_POST['ServicioForm'], false);
+			if (!(isset($_POST['ServicioForm']['id_entidad'])))
+				$clinico->id_entidad = null;
+			if ($clinico->saveServicioClinico())
+				$this->redirect(array('index', 'grupo' => 'clinico'));
+		}
+		$this->render('clinicoCreate', array(
+			'servicio' => $clinico,
+			'categoria' => $categoria,
+			'entidad' => $entidad,
+			'dataUrl' => array("grupo" => "clinico"),
+		));
+	}
 	public function examenUpdate($tipo = 1, $id)
 	{
 		$examen = new ServicioForm();
 		$examen->loadData($id);
-		$categoria = CategoriaServicioExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
-		$entidad = Entidad::model()->findAll();
 		if (isset($_POST['ServicioForm'])) {
 			$examen->setAttributes($_POST['ServicioForm'], false);
 			if ($examen->saveExamen($id))
@@ -139,9 +160,22 @@ class ServicioController extends Controller
 		}
 		$this->render('examenUpdate', array(
 			'servicio' => $examen,
-			'categoria' => $categoria,
-			'entidad' => $entidad,
 			'dataUrl' => array("grupo" => "examen", "tipo" => $tipo),
+		));
+	}
+
+	public function clinicoUpdate($id)
+	{
+		$clinico = new ServicioForm();
+		$clinico->loadData($id);
+		if (isset($_POST['ServicioForm'])) {
+			$clinico->setAttributes($_POST['ServicioForm'], false);
+			if ($clinico->saveServicioClinico($id))
+				$this->redirect(array('index', 'grupo' => 'clinico'));
+		}
+		$this->render('clinicoUpdate', array(
+			'servicio' => $clinico,
+			'dataUrl' => array("grupo" => "clinico"),
 		));
 	}
 
@@ -195,11 +229,11 @@ class ServicioController extends Controller
 		return $model;
 	}
 
-	private function clinicoCreate($tipo = 1)
+	/*private function clinicoCreate($tipo = 1)
 	{
 		echo 'en servicios clinicos';
 	}
-
+*/
 	private function salaCreate()
 	{
 		$tSala = new ServicioForm();
