@@ -389,7 +389,7 @@ create table if not exists diagnostico(
   foreign key (id_diag_padre) references diagnostico(id_diag)
 );
 
-create table if not exists consulta_cie10(
+create table if not exists consulta_cie(
   id_diag int not null ,
   codigo varchar(8) not null ,
   foreign key (id_diag) references diagnostico(id_diag),
