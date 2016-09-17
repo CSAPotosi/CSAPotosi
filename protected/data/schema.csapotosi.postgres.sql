@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS paciente(
   codigo_paciente VARCHAR(16),
   grupo_sanguineo VARCHAR(8),
   fecha_deceso TIMESTAMP,
-  estado_paciente SMALLINT DEFAULT 1,
+  estado_paciente SMALLINT DEFAULT 1,--0 inhabilitado o muerto, 1 habilitado ,2 internado
   responsable VARCHAR(512),
   FOREIGN KEY (id_paciente) REFERENCES persona(id_persona)
 );
@@ -89,17 +89,16 @@ create table if not exists cargo(
   nombre_cargo varchar (32) not null unique ,
   descripcion_cargo varchar(128),
   id_unidad int,
-  estado bool default true,
-  foreign key (id_unidad) references unidad(id_unidad)
+  id_horario int,
+  foreign key (id_unidad) references unidad(id_unidad),
+  foreign key (id_horario) REFERENCES horario(id_horario)
 );
 
 create table if not exists horario(
   id_horario serial primary key ,
   nombre_horario varchar(32) not null unique,
   descripcion varchar (32),
-  ciclo_total int,
-  cargo int,
-  foreign key (cargo) references cargo(id_cargo)
+  ciclo_total int
 );
 
 create table if not exists periodo(
@@ -127,12 +126,13 @@ create table if not exists asignacion_empleado(
   id_asignacion serial primary key,
   fecha_inicio date not null,
   fecha_fin date,
-  vigencia bool default false,
+  vigente bool default false,
   id_empleado int,
   id_cargo int,
   foreign key (id_empleado) references empleado(id_empleado),
   foreign key (id_cargo) references cargo(id_cargo)
 );
+
 create table if not exists registro(
   id_asignacion int not null,
   fecha date not null,
@@ -215,15 +215,15 @@ CREATE TABLE IF NOT EXISTS entidad(
   razon_social VARCHAR(128) NOT NULL,
   direccion VARCHAR(64),
   telefono VARCHAR(16),
-  tipo_entidad SMALLINT NOT NULL,
-  naturaleza_juridica SMALLINT NOT NULL
+  tipo_entidad SMALLINT NOT NULL,--****************** 0 clinica, 1 externos, 2
+  naturaleza_juridica SMALLINT NOT NULL-- 0 natural, 1 juridica
 );
 
 CREATE TABLE IF NOT EXISTS servicio(
   id_serv SERIAL NOT NULL PRIMARY KEY ,
   cod_serv VARCHAR(8) NOT NULL,
   nombre_serv VARCHAR(64) NOT NULL,
-  tipo_cobro SMALLINT DEFAULT 1, -- 1:unidad, 2:mas de uno, 3:uso, 4:por dia
+  tipo_cobro SMALLINT DEFAULT 1, -- 1:por cantidad, 2 por dia,
   fecha_creacion TIMESTAMP,
   fecha_edicion TIMESTAMP,
   activo BOOLEAN DEFAULT TRUE,
@@ -286,7 +286,7 @@ CREATE TABLE IF NOT EXISTS sala(
   id_sala SERIAL NOT NULL PRIMARY KEY,
   cod_sala VARCHAR (8) NOT NULL,
   ubicacion_sala VARCHAR (32),
-  estado_sala SMALLINT NOT NULL DEFAULT 1,--1 actibo, 0 inactivo, 2-ocupado, 3 mantenimiento
+  estado_sala SMALLINT NOT NULL DEFAULT 1,--1 activo, 0 inactivo, 2:ocupado, 3 mantenimiento
   id_t_sala INT NOT NULL,
   FOREIGN KEY (id_t_sala) REFERENCES serv_tipo_sala(id_serv)
 );
@@ -295,7 +295,6 @@ CREATE TABLE IF NOT EXISTS serv_atencion_medica(
   id_serv INT NOT NULL PRIMARY KEY,
   id_m_e INT NOT NULL,  --id medico_especialidad
   cod_espe varchar(8),
-  tipo_atencion SMALLINT NOT NULL DEFAULT 1,
   FOREIGN KEY (id_m_e) REFERENCES medico_especialidad(id_m_e)
 );
 create table if not exists internacion(
@@ -310,7 +309,7 @@ create table if not exists internacion(
   observacion_alta varchar (256),
   fecha_egreso timestamp,
   estado SMALLINT DEFAULT 0, -- 0 novigente, 1 vigente
-  foreign key (id_historial) references historial_paciente(id_historial)
+  foreign key (id_historial) references historial_medico(id_historial)
 );
 
 /*create table if NOT EXISTS insti_direrido_transferencia (
@@ -326,5 +325,32 @@ create table internacion_insti_diferido_transferencia(
   FOREIGN KEY (id_ext) REFERENCES insti_direrido_transferencia(id)
 );*/
 =======
-
-
+create table if not exists prestacion_servicios(
+  id_prestacion serial not null primary key,
+  id_historial int not null,
+  observaciones varchar(256),
+  tipo int not null,--0 externo 1 internacion
+  fecha_solicitud timestamp,
+  foreign key(id_historial) references historial_paciente(id_historial)
+);
+create table if not exists detalle_prestacion(
+  id_detalle serial not null primary key,
+  id_prestacion int not null,
+  id_servicio int not null,
+  fecha_solicitud TIMESTAMP not null,
+  cantidad float not null,
+  subtotal  float not null,
+  pagado boolean default false,
+  realizado boolean DEFAULT false,
+  foreign key (id_pretacion) references prestacion_servicios(id_prestacion),
+  foreign key (id_servicio) references servicio(id_servicio)
+);
+create table if not exists internacion_sala(
+  id_inter int not null,
+  id_sala int not null,
+  fecha_entrada timestamp not null,
+  fecha_salida timestamp,
+  foreign key(id_inter) references internacion (id_inter),
+  foreign key(id_sala) references sala(id_sala),
+  primary key(id_inter,id_sala,fecha_entrada)
+);
