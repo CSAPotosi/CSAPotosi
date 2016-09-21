@@ -1,17 +1,8 @@
 <?php
 class CSAMenu extends CWidget{
-	public $menu=[];
-	public $title='';
+    public $menu = [];
 
 	public function run(){
 		$this->render('renderCSAMenu');
 	}
-	
-	
-	/*
-	 * [
-	 * 	['title'=>'','url'=>'','active']
-	 * ]
-	 * 
-	 */
 }

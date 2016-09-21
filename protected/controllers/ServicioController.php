@@ -321,6 +321,33 @@ class ServicioController extends Controller
 	}
 	*/
 
+	public function actionSala(){
+		return $this->render('sala');
+	}
+
+	public function actionGetSalasAjax($type = 0){//0 para seleccionar, 1 para cambiar estados
+		$id = 0;
+		if(isset($_POST['id']))
+			$id = $_POST['id'];
+
+		$salaList = Sala::model()->findAll([
+			'condition'=>'id_t_sala = :id AND estado_sala <> 0',
+			'params'=>[':id'=>$id],
+			'order'=>'cod_sala'
+		]);
+
+		return $this->renderPartial('_salaItem',array('salaList'=>$salaList,'type'=> $type));
+	}
+
+	public function actionChangeStateSalaAjax($s_id = 0){
+		$salaModel = Sala::model()->findByPk($s_id);
+		if($salaModel!=null && isset($_POST['state'])){
+			$state = $_POST['state'];
+			$salaModel->estado_sala = $state;
+			$salaModel->save();
+		}
+	}
+
 	protected function ajaxValidation($model){
 		if(isset($_POST['ajax'])){
 			echo CActiveForm::validate($model);

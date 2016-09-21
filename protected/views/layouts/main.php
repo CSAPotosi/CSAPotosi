@@ -266,14 +266,9 @@
 		<!-- contenido -->
 		<div class="row">
 			<div class="col-md-2">
-				<div class="panel">
-					<div class="panel-body">
-						<?php
-						$this->widget('application.extensions.csamenu.CSAMenu',['menu'=>$this->menu]);
-						?>
-					</div>
-				</div>
-
+                <?php
+                $this->widget('application.extensions.csamenu.CSAMenu',['menu'=>$this->menu]);
+                ?>
 			</div>
 			<div class="col-md-10">
 				<?php echo $content; ?>

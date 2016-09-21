@@ -19,7 +19,7 @@
 					</span>
 				</div>
 				<ul class="links padding-5">
-					<li><a href="#" class="btn btn-danger btn-xs">Ver historia</a></li>
+					<li><?php echo CHtml::link('Ver historia',['historialMedico/index','id_paciente'=>$itemPaciente->id_paciente],['class'=>'btn btn-primary btn-xs']);?></li>
 				</ul>
 			</div>
 		</div>

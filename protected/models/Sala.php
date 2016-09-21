@@ -49,7 +49,8 @@ class Sala extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idTSala' => array(self::BELONGS_TO, 'ServTipoSala', 'id_t_sala'),
+            'tSala' => array(self::BELONGS_TO, 'ServTipoSala', 'id_t_sala'),
+            'internacionSala'=>[self::HAS_ONE, 'InternacionSala','id_sala','condition'=>'fecha_salida is null']
         );
     }
 

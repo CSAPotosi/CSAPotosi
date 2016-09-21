@@ -1,6 +1,8 @@
 <?php
 $this->pageTitle = "Historial entero";
 ?>
+
+<?php echo CHtml::link('Internar',['internacion/createIngreso','h_id'=>$historialModel->id_historial]);?>
 <section id="widget-grid">
     <div class="row">
         <div class="col-md-12">
@@ -26,7 +28,7 @@ $this->pageTitle = "Historial entero";
                     <div class="widget-body">
                         <div id="historial-tab-content" class="tab-content">
                             <div class="tab-pane active" id="s1">
-                                hola mundo parte 1
+                                <?php echo $historialModel->paciente->persona->nombres;?>
                             </div>
 
                             <div class="tab-pane" id="s2">
