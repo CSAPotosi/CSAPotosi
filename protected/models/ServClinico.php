@@ -49,8 +49,8 @@ class ServClinico extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idServ' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
-			'idCatCli' => array(self::BELONGS_TO, 'CategoriaServClinico', 'id_cat_cli'),
+			'datosServicio' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
+			'categoria' => array(self::BELONGS_TO, 'CategoriaServClinico', 'id_cat_cli'),
 		);
 	}
 

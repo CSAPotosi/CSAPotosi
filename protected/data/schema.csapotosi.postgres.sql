@@ -384,12 +384,10 @@ create table if not exists diagnostico(
   conclusion text ,
   observaciones text ,
   id_historial int not null ,
-  id_diag_padre int,
-  foreign key (id_historial) references historial_medico(id_historial),
-  foreign key (id_diag_padre) references diagnostico(id_diag)
+  foreign key (id_historial) references historial_medico(id_historial)
 );
 
-create table if not exists consulta_cie(
+create table if not exists diagnostico_cie(
   id_diag int not null ,
   codigo varchar(8) not null ,
   foreign key (id_diag) references diagnostico(id_diag),

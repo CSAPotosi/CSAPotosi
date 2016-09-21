@@ -9,7 +9,7 @@ class ServicioController extends Controller
 				$this->examenIndex($tipo);
 				break;
 			case 'clinico':
-				$this->clinicoIndex(1);
+				$this->clinicoIndex();
 				break;
 			case 'sala':
 				$this->salaIndex();
@@ -97,8 +97,8 @@ class ServicioController extends Controller
 
 	private function clinicoIndex()
 	{
-		$listServicio = ServClinico::model()->findAll("activo=true");
-		$this->render('clinico', array('listServicio' => $listServicio, 'dataUrl' => array('grupo' => 'clinico')));
+		$listServicio = ServClinico::model()->findAll();
+		$this->render('clinicoIndex', array('listServicio' => $listServicio, 'dataUrl' => array('grupo' => 'clinico')));
 	}
 
 	private function salaIndex(){

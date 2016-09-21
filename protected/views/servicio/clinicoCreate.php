@@ -31,7 +31,7 @@ $this->breadcrumbs = array(
                                         </div>
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabel($servicio, 'tipo_cobro'); ?>
-                                            <?php echo CHtml::activeTextField($servicio, 'tipo_cobro', array('class' => 'form-control', 'placeholder' => 'Tipo de Cobro')); ?>
+                                            <?php echo CHtml::activeDropDownList($servicio, 'tipo_cobro', array('1' => 'POR UNIDAD', '2' => 'POR DIA'), array('class' => 'form-control', 'placeholder' => 'Tipo de Cobro')); ?>
                                             <?php echo CHtml::error($servicio, 'tipo_cobro', array('class' => 'label label-danger')); ?>
                                         </div>
                                         <div class="form-group">
