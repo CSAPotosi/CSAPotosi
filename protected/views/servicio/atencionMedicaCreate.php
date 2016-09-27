@@ -34,23 +34,17 @@ $this->breadcrumbs = array(
                                         </div>
                                     </div>
                                     <?php echo CHtml::beginForm(); ?>
+                                    <?php echo CHtml::errorSummary($atencionMedica); ?>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activeLabel($atencionMedica, 'Tipo Atencion'); ?>
-                                                    <?php echo CHtml::activeDropDownList($atencionMedica, 'tipo_atencion', $atencionMedica->getatencionMedica(), ['class' => 'form-control']); ?>
-                                                    <?php echo CHtml::error($atencionMedica, 'tipo_atencion'); ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <?php echo CHtml::activeLabel($atencionMedica, 'Monto'); ?>
                                                     <?php echo CHtml::activeTextField($atencionMedica, 'monto', ['class' => 'form-control']); ?>
-                                                    <?php echo CHtml::error($atencionMedica, 'id_entidad'); ?>
+                                                    <?php echo CHtml::error($atencionMedica, 'monto'); ?>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <?php echo CHtml::activeLabel($atencionMedica, 'Entidad'); ?>
                                                     <?php echo CHtml::activeDropDownList($atencionMedica, 'id_entidad', CHtml::listData(Entidad::model()->findAll(), 'id_entidad', 'razon_social'), ['class' => 'form-control']) ?>
@@ -60,7 +54,10 @@ $this->breadcrumbs = array(
                                             <input type="hidden" name="ServicioForm[nombre_serv]"
                                                    value="<?php echo $MedicoEspecialidad->idEspecialidad->nombre_especialidad; ?>">
                                             <input type="hidden" name="ServicioForm[cod_serv]"
-                                                   value="<?php echo "cod" . $MedicoEspecialidad->idEspecialidad->nombre_especialidad ?>">
+                                                   value="<?php echo "COD-123"; ?>">
+                                            <input type="hidden" name="ServicioForm[id_m_e]"
+                                                   value="<?php echo $MedicoEspecialidad->id_m_e ?>">
+                                            <input type="hidden" name="">
                                         </div>
                                     </div>
                                     <div class="row">

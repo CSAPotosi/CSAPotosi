@@ -30,12 +30,12 @@ class ServAtencionMedica extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_serv, id_m_e', 'required'),
-            array('id_serv, id_m_e, tipo_atencion', 'numerical', 'integerOnly' => true),
+            array('id_m_e', 'required'),
+            array('id_serv, id_m_e', 'numerical', 'integerOnly' => true),
             array('cod_espe', 'length', 'max' => 8),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id_serv, id_m_e, cod_espe, tipo_atencion', 'safe', 'on' => 'search'),
+            array('id_serv, id_m_e, cod_espe', 'safe', 'on' => 'search'),
         );
     }
 

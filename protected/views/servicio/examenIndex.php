@@ -32,10 +32,7 @@ $this->breadcrumbs = array(
                                         <tr>
                                             <th>Codigo Servicio</th>
                                             <th>Servicio</th>
-                                            <th>Unidad de Medida</th>
                                             <th>Precio del Servicio</th>
-                                            <th>Tipo de cobro</th>
-
                                             <th width="130px">
                                                 <?php
                                                 echo CHtml::dropDownList('ListaCategorias', null,
@@ -45,7 +42,6 @@ $this->breadcrumbs = array(
                                                     array('empty' => "Categorias", 'class' => 'select2'));
                                                 ?>
                                             </th>
-
                                             <th>Activo</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -58,22 +54,7 @@ $this->breadcrumbs = array(
                                                     data-categoria="<?php echo $item->categoria->nombre_cat_ex ?>">
                                                     <td><?php echo $item->datosServicio->cod_serv ?></td>
                                                     <td><?php echo $item->datosServicio->nombre_serv ?></td>
-                                                    <td><?php echo $item->datosServicio->unidad_medida ?></td>
                                                     <td><?php echo $item->datosServicio->precio->monto ?></td>
-                                                    <td><?php switch ($item->datosServicio->tipo_cobro) {
-                                                            case 1:
-                                                                echo "unidad";
-                                                                break;
-                                                            case 2:
-                                                                echo "mas de uno";
-                                                                break;
-                                                            case 3:
-                                                                echo "Por Uso";
-                                                                break;
-                                                            case 4:
-                                                                echo "Por Dia";
-                                                                break;
-                                                        } ?></td>
                                                     <td><?php echo $item->categoria->nombre_cat_ex ?></td>
                                                     <td>
                                                     <span class="onoffswitch">
@@ -101,7 +82,7 @@ $this->breadcrumbs = array(
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <td colspan="10"
+                                            <td colspan="8"
                                                 class="text-align-right"><?php echo CHtml::link('Agregar Servicio', array('servicio/create','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo'] ), array('class' => 'btn btn-info')); ?></td>
                                         </tr>
                                         </tfoot>

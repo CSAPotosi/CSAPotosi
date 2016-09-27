@@ -20,6 +20,8 @@
 				</div>
 				<ul class="links padding-5">
 					<li><a href="#" class="btn btn-danger btn-xs">Ver historia</a></li>
+					<li><?php echo CHtml::link('Prestacion Servicios', array('HistorialMedico/externoCreate', 'id' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-danger btn-xs')) ?></li>
+
 				</ul>
 			</div>
 		</div>

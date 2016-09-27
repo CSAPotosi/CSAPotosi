@@ -151,4 +151,37 @@ class Persona extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getTipoDocumento()
+	{
+		return array(
+			'0' => 'Seleccione',
+			'1' => 'Pasaporte',
+			'2' => 'Documento Personal',
+		);
+	}
+
+	public function getGenero()
+	{
+		return array(
+			'0' => 'SELECCIONE',
+			'1' => 'MASCULINO',
+			'2' => 'FEMENINO',
+		);
+	}
+
+	public function getEstadoCivil()
+	{
+		return array(
+			'0' => 'SELECCIONE',
+			'1' => 'SOLTERO',
+			'2' => 'CASADO',
+			'3' => 'DIVORCIO',
+		);
+	}
+
+	public function getNombreCompleto()
+	{
+		return join(" ", array($this->primer_apellido, $this->segundo_apellido, $this->nombres));
+	}
 }

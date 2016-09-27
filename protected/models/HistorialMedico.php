@@ -98,4 +98,12 @@ class HistorialMedico extends CActiveRecord
     {
         return parent::model($className);
     }
+
+    protected function beforeValidate()
+    {
+        $this->fecha_edicion = date('d/m/Y h:i:s A');
+        if ($this->IsNewRecord)
+            $this->fecha_creacion = date('d/m/Y h:i:s A');
+        return parent::beforeValidate();
+    }
 }

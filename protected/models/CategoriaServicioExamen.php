@@ -110,4 +110,25 @@ class CategoriaServicioExamen extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getTipoEx()
+	{
+		$atributo[] = "";
+		$valor = CategoriaServicioExamen::model()->findAll();
+		$var = '';
+		foreach ($valor as $item):
+			if ($var != $item['tipo_ex']) {
+				$atributo[] = $item['tipo_ex'];
+				$var = $item['tipo_ex'];
+			} else {
+				$var = $item['tipo_ex'];
+			}
+		endforeach;
+		return $atributo;
+	}
+
+	public function getNombreTipo()
+	{
+		return $nombres = [0 => 'TODO', 1 => 'EXAMENES DE LABORATORIO', 2 => 'EXAMENES DE RAYOS X'];
+	}
 }

@@ -46,11 +46,13 @@ class PacienteController extends Controller
 	public function actionCreate()
 	{
 		$modelPerson = new PersonaForm();
+		$historial = new HistorialMedico();
 		if (isset($_POST['PersonaForm'])) {
 			$modelPerson->attributes = $_POST['PersonaForm'];
 			//$modelPerson->scenario='paciente';
 			$id_paciente = $modelPerson->savePaciente();
 			if ($id_paciente != 0)
+				
 				$this->redirect(["historialMedico/index", 'id_persona' => $id_paciente]);
 		}
 		$this->render('create', array('modelPerson' => $modelPerson));

@@ -53,7 +53,7 @@ $this->breadcrumbs = array(
                                                                             <?php if ($var->atencionMedica != null) { ?>
                                                                                 <?php echo CHtml::link('Editar', ['servicio/update', 'grupo' => $dataUrl['grupo'], 'tipo' => $var->id_m_e, 'id' => $var->atencionMedica->id_serv], ['class' => 'btn btn-primary btn-xs']); ?>
                                                                             <?php } else { ?>
-                                                                                <?php echo CHtml::link('Editar', ['servicio/create', 'grupo' => $dataUrl['grupo'], 'tipo' => $var->id_m_e], ['class' => "btn btn-primary"]); ?>
+                                                                                <?php echo CHtml::link('Editar', ['servicio/create', 'grupo' => $dataUrl['grupo'], 'tipo' => $var->id_m_e], ['class' => "btn btn-primary btn-xs"]); ?>
                                                                             <?php } ?>
 
                                                                         </div>

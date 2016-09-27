@@ -62,6 +62,7 @@ class ServicioForm extends CFormModel
             'condiciones_ex' => 'CONDICIONES',
             'id_cat_ex' => 'ID DE CATEGORIA EXTERNA',
             'tipo_atencion' => 'TIPO ATENCION',
+            'id_serv' => 'Servicio',
         );
     }
 
@@ -157,7 +158,7 @@ class ServicioForm extends CFormModel
         $this->modelServAtencionMedica = ($id == null) ? new ServAtencionMedica() : ServAtencionMedica::model()->findByPk($id);
         $this->modelServAtencionMedica->setAttributes($this->getAttributes(), false);
         $this->loadServicioPrecio($id);
-        if ($this->validar([$this->modelServAtencionMedica, $this->modelPrecio, $this->modelServAtencionMedica])) {
+        if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServAtencionMedica])) {
             $this->saveServicio();
             $this->savePrecio();
             if ($id == null)

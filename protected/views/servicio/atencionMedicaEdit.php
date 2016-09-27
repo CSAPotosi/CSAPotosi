@@ -38,9 +38,18 @@ $this->breadcrumbs = array(
                                         <div class="col-md-12">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <?php echo CHtml::activeLabel($atencionMedica, 'Tipo Atencion'); ?>
-                                                    <?php echo CHtml::activeDropDownList($atencionMedica, 'tipo_atencion', $atencionMedica->getatencionMedica(), ['class' => 'form-control']); ?>
-                                                    <?php echo CHtml::error($atencionMedica, 'tipo_atencion'); ?>
+                                                    <?php echo CHtml::activeLabel($atencionMedica, 'activo'); ?>
+                                                    <br>
+                                                    <span class="onoffswitch">
+                                                     <input type="checkbox" name="start_interval"
+                                                            class="onoffswitch-checkbox" id="st3">
+                                                     <label class="onoffswitch-label" for="st3">
+                                                         <span class="onoffswitch-inner" data-swchon-text="YES"
+                                                               data-swchoff-text="NO"
+                                                               name="ServicioForm[activo]"></span>
+                                                         <span class="onoffswitch-switch"></span>
+                                                     </label>
+                                                </span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">

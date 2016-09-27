@@ -130,4 +130,19 @@ class Paciente extends CActiveRecord
 				'params'=>[':query'=>'%'.$query.'%', ':status'=>$status]
 			]);
 	}
+
+	public function getGrupoSanguineo()
+	{
+		return array(
+			'0' => 'ELIJA TIPO DE SANGRE',
+			'1' => 'O+',
+			'2' => 'A+',
+			'3' => 'A-',
+			'4' => 'B+',
+			'5' => 'B-',
+			'6' => 'AB+',
+			'7' => 'AB-',
+			'8' => 'O-',
+		);
+	}
 }

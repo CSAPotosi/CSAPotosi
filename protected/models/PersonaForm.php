@@ -108,13 +108,17 @@ class PersonaForm extends CFormModel
 
     public function savePaciente()
     {
+        $historial = new HistorialMedico();
         $Paciente = new Paciente();
         $id_persona = $this->savePersona();
         if ($id_persona != 0) {
             $Paciente->id_paciente = $id_persona;
             $Paciente->attributes = $this->getAttributes();
-            if ($Paciente->save())
+            if ($Paciente->save()) {
+                $historial->id_historial = $Paciente->id_paciente;
+                $historial->save();
                 return $Paciente->id_paciente;
+            }
             else
                 return 0;
         } else

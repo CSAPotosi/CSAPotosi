@@ -16,7 +16,6 @@ class Servicio extends CActiveRecord
 			array('tipo_cobro, id_entidad', 'numerical', 'integerOnly' => true),
 			array('cod_serv', 'length', 'max'=>8),
 			array('nombre_serv', 'length', 'max'=>64),
-			array('unidad_medida', 'length', 'max'=>32),
 			array('fecha_creacion, fecha_edicion, activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -32,7 +31,7 @@ class Servicio extends CActiveRecord
 			'historialPrecio' => array(self::HAS_MANY, 'Precio', 'id_serv'),
 			'precio' => array(self::HAS_ONE, 'Precio', 'id_serv', 'condition' => 'activo = TRUE'),
 			'servExamen' => array(self::HAS_ONE, 'ServExamen', 'id_serv'),
-			'idEntidad' => array(self::BELONGS_TO, 'Entidad', 'id_entidad'),
+			'entidad' => array(self::BELONGS_TO, 'Entidad', 'id_entidad'),
 			'servClinico' => array(self::HAS_ONE, 'ServClinico', 'id_serv'),
 			'servTipoSala' => array(self::HAS_ONE, 'ServTipoSala', 'id_serv'),
 			'atencionMedica' => array(self::HAS_ONE, 'ServAtencionMedica', 'id_serv'),
@@ -48,7 +47,6 @@ class Servicio extends CActiveRecord
 			'id_serv' => 'Id Serv',
 			'cod_serv' => 'Cod Serv',
 			'nombre_serv' => 'Nombre Serv',
-			'unidad_medida' => 'Unidad Medida',
 			'tipo_cobro' => 'Tipo Cobro',
 			'fecha_creacion' => 'Fecha Creacion',
 			'fecha_edicion' => 'Fecha Edicion',
