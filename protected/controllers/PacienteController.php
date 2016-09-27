@@ -25,12 +25,10 @@ class PacienteController extends Controller
 			),
 		);
 	}
-	public $menu=[
-		['title'=>'LISTA', 'icon'=>'fa-list', 'url'=>['paciente/index']],
-		['title'=>'NUEVO', 'icon'=>'fa-plus', 'url'=>['paciente/create']]
-	];
+
 	public function actionIndex()
 	{
+        $this->menu = OptionsMenu::menuPaciente();
 		$this->render('index');
 	}
 

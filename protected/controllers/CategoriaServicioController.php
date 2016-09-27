@@ -9,28 +9,43 @@ class CategoriaServicioController extends Controller
 		switch ($grupo){
 			case 'examen':
 				$this->categoriaExamenIndex($tipo);
-			break;
+				break;
+			case 'clinico':
+				$this->categoriaClinicoIndex();
+				break;
 			default:
 				throw new CHttpException(404,'La direccion solicitada no existe');
 		}
-
 	}
 
 	private function categoriaExamenIndex($tipo = 1){
-		$catExList = CategoriaServicioExamen::model()->findAll([
+		$catExList = CategoriaServExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
 			'params'=>[':tipo_ex'=>$tipo]
 		]);
 
-		$catExModel = new CategoriaServicioExamen();
+		$catExModel = new CategoriaServExamen();
 		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'dataUrl'=>['tipo'=>$tipo, 'grupo'=>'examen'] ]);
+	}
+
+	private function categoriaClinicoIndex()
+	{
+		$catCliList = CategoriaServClinico::model()->findAll([
+			'order' => 'activo DESC, id_cat_cli ASC'
+		]);
+
+		$catCliModel = new CategoriaServClinico();
+		$this->render('categoriaClinicoIndex', ['catCliList' => $catCliList, 'catCliModel' => $catCliModel, 'dataUrl' => ['grupo' => 'clinico']]);
 	}
 
 	public function actionCreate($grupo='examen',$tipo = 1){
 		switch ($grupo){
 			case 'examen':
 				$this->categoriaExamenCreate($tipo);
+				break;
+			case 'clinico':
+				$this->categoriaClinicoCreate();
 				break;
 			default:
 				throw new CHttpException(404,'La direccion solicitada no existe');
@@ -42,24 +57,27 @@ class CategoriaServicioController extends Controller
 			case 'examen':
 				$this->categoriaExamenUpdate($tipo,$id);
 				break;
+			case 'clinico':
+				$this->categoriaClinicoUpdate($id);
+				break;
 			default:
 				throw new CHttpException(404,'La direccion solicitada no existe');
 		}
 	}
 
 	private function categoriaExamenCreate($tipo = 1){
-		$catExModel = new CategoriaServicioExamen();
+		$catExModel = new CategoriaServExamen();
 
 		$this->ajaxValidation($catExModel);
 
-		$catExList = CategoriaServicioExamen::model()->findAll([
+		$catExList = CategoriaServExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
 			'params'=>[':tipo_ex'=>$tipo]
 		]);
 
-		if (isset($_POST['CategoriaServicioExamen'])){
-			$catExModel->attributes = $_POST['CategoriaServicioExamen'];
+		if (isset($_POST['CategoriaServExamen'])) {
+			$catExModel->attributes = $_POST['CategoriaServExamen'];
 			if($catExModel->save())
 				$this->redirect(['index','grupo'=>'examen','tipo'=>$tipo]);
 		}
@@ -67,24 +85,63 @@ class CategoriaServicioController extends Controller
 		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel,'dataUrl'=>['tipo'=>$tipo,'grupo' =>'examen'] ]);
 	}
 
+	private function categoriaClinicoCreate()
+	{
+		$catCliModel = new CategoriaServClinico();
+
+		$this->ajaxValidation($catCliModel);
+
+		$catCliList = CategoriaServClinico::model()->findAll([
+			'order' => 'activo DESC, id_cat_cli ASC',
+		]);
+
+		if (isset($_POST['CategoriaServClinico'])) {
+			$catCliModel->attributes = $_POST['CategoriaServClinico'];
+			if ($catCliModel->save())
+				$this->redirect(['index', 'grupo' => 'clinico']);
+		}
+
+		$this->render('categoriaClinicoIndex', ['catCliList' => $catCliList, 'catCliModel' => $catCliModel, 'dataUrl' => ['grupo' => 'clinico']]);
+	}
+
 	private function categoriaExamenUpdate($tipo = 1, $id = 0){
-		$catExModel = CategoriaServicioExamen::model()->findByPk($id);
+		$catExModel = CategoriaServExamen::model()->findByPk($id);
 
 		$this->ajaxValidation($catExModel);
 
-		$catExList = CategoriaServicioExamen::model()->findAll([
+		$catExList = CategoriaServExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
 			'params'=>[':tipo_ex'=>$tipo]
 		]);
 
-		if (isset($_POST['CategoriaServicioExamen'])){
-			$catExModel->attributes = $_POST['CategoriaServicioExamen'];
+		if (isset($_POST['CategoriaServExamen'])) {
+			$catExModel->attributes = $_POST['CategoriaServExamen'];
 			if($catExModel->save())
 				$this->redirect(['index','grupo'=>'examen','tipo'=>$tipo]);
 		}
 
 		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'dataUrl'=>['tipo'=>$tipo,'grupo' =>'examen'] ]);
+
+	}
+
+	private function categoriaClinicoUpdate($id = 0)
+	{
+		$catCliModel = CategoriaServClinico::model()->findByPk($id);
+
+		$this->ajaxValidation($catCliModel);
+
+		$catCliList = CategoriaServClinico::model()->findAll([
+			'order' => 'activo DESC, id_cat_cli ASC',
+		]);
+
+		if (isset($_POST['CategoriaServClinico'])) {
+			$catCliModel->attributes = $_POST['CategoriaServClinico'];
+			if ($catCliModel->save())
+				$this->redirect(['index', 'grupo' => 'clinico']);
+		}
+
+		$this->render('categoriaClinicoIndex', ['catCliList' => $catCliList, 'catCliModel' => $catCliModel, 'dataUrl' => ['grupo' => 'clinico']]);
 
 	}
 

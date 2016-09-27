@@ -1,26 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "serv_clinico".
+ * This is the model class for table "diagnostico_cie".
  *
- * The followings are the available columns in table 'serv_clinico':
- * @property integer $id_serv
- * @property string $descripcion_cli
- * @property string $unidad_medida
- * @property integer $id_cat_cli
- *
- * The followings are the available model relations:
- * @property Servicio $idServ
- * @property CategoriaServClinico $idCatCli
+ * The followings are the available columns in table 'diagnostico_cie':
+ * @property integer $id_diag
+ * @property string $codigo
  */
-class ServClinico extends CActiveRecord
+class DiagnosticoCie extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'serv_clinico';
+		return 'diagnostico_cie';
 	}
 
 	/**
@@ -31,13 +25,12 @@ class ServClinico extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_cat_cli', 'required'),
-			array('id_serv, id_cat_cli', 'numerical', 'integerOnly' => true),
-			array('unidad_medida', 'length', 'max' => 32),
-			array('descripcion_cli', 'safe'),
+			array('id_diag, codigo', 'required'),
+			array('id_diag', 'numerical', 'integerOnly'=>true),
+			array('codigo', 'length', 'max'=>8),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_serv, descripcion_cli, unidad_medida, id_cat_cli', 'safe', 'on' => 'search'),
+			array('id_diag, codigo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +42,6 @@ class ServClinico extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'datosServicio' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
-			'categoria' => array(self::BELONGS_TO, 'CategoriaServClinico', 'id_cat_cli'),
 		);
 	}
 
@@ -60,10 +51,8 @@ class ServClinico extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_serv' => 'Id Serv',
-			'descripcion_cli' => 'Descripcion Cli',
-			'unidad_medida' => 'Unidad Medida',
-			'id_cat_cli' => 'Id Cat Cli',
+			'id_diag' => 'Id Diag',
+			'codigo' => 'Codigo',
 		);
 	}
 
@@ -83,15 +72,13 @@ class ServClinico extends CActiveRecord
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
-		$criteria = new CDbCriteria;
+		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_serv', $this->id_serv);
-		$criteria->compare('descripcion_cli', $this->descripcion_cli, true);
-		$criteria->compare('unidad_medida', $this->unidad_medida, true);
-		$criteria->compare('id_cat_cli', $this->id_cat_cli);
+		$criteria->compare('id_diag',$this->id_diag);
+		$criteria->compare('codigo',$this->codigo,true);
 
 		return new CActiveDataProvider($this, array(
-			'criteria' => $criteria,
+			'criteria'=>$criteria,
 		));
 	}
 
@@ -99,9 +86,9 @@ class ServClinico extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return ServClinico the static model class
+	 * @return DiagnosticoCie the static model class
 	 */
-	public static function model($className = __CLASS__)
+	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}

@@ -12,15 +12,7 @@ $this->breadcrumbs = array(
                 <header></header>
                 <div>
                     <div class="widget-body">
-                        <div class="row">
-                            <article class="col-md-6">
-                                <center><h5>Registro de Horarios</h5></center>
-                                <br>
-                                <div class="well no-padding">
-                                    <?php $this->renderPartial("_form", array('modelHorario' => $modelHorario)) ?>
-                                </div>
-                            </article>
-                        </div>
+                        <?php $this->renderPartial("_form", array('modelHorario' => $modelHorario)) ?>
                     </div>
                 </div>
             </div>

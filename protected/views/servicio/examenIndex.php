@@ -36,7 +36,7 @@ $this->breadcrumbs = array(
                                             <th width="130px">
                                                 <?php
                                                 echo CHtml::dropDownList('ListaCategorias', null,
-                                                    CHtml::listData(CategoriaServicioExamen::model()->findAll(
+                                                    CHtml::listData(CategoriaServExamen::model()->findAll(
                                                         ['condition' => "tipo_ex='{$dataUrl['tipo']}' and activo=true",]
                                                     ), 'nombre_cat_ex', 'nombre_cat_ex'),
                                                     array('empty' => "Categorias", 'class' => 'select2'));

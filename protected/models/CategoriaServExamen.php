@@ -14,7 +14,7 @@
  * The followings are the available model relations:
  * @property ServExamen[] $servExamens
  */
-class CategoriaServicioExamen extends CActiveRecord
+class CategoriaServExamen extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -104,7 +104,7 @@ class CategoriaServicioExamen extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return CategoriaServicioExamen the static model class
+	 * @return CategoriaServExamen the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

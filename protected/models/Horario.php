@@ -8,7 +8,6 @@
  * @property string $nombre_horario
  * @property string $descripcion
  * @property integer $ciclo_total
- * @property integer $cargo
  *
  * The followings are the available model relations:
  * @property Cargo $cargo0
@@ -33,7 +32,7 @@ class Horario extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('nombre_horario', 'required'),
-			array('ciclo_total, cargo', 'numerical', 'integerOnly'=>true),
+			array('ciclo_total', 'numerical', 'integerOnly'=>true),
 			array('nombre_horario, descripcion', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -49,7 +48,7 @@ class Horario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cargoAsignado' => array(self::BELONGS_TO, 'Cargo', 'cargo'),
+			'cargo' => array(self::BELONGS_TO, 'Cargo', 'cargo'),
 			'horarioPeriodos' => array(self::HAS_MANY, 'HorarioPeriodo', 'id_horario'),
 		);
 	}
@@ -64,7 +63,6 @@ class Horario extends CActiveRecord
 			'nombre_horario' => 'Nombre Horario',
 			'descripcion' => 'Descripcion',
 			'ciclo_total' => 'Ciclo Total',
-			'cargo' => 'Cargo',
 		);
 	}
 
@@ -90,7 +88,6 @@ class Horario extends CActiveRecord
 		$criteria->compare('nombre_horario',$this->nombre_horario,true);
 		$criteria->compare('descripcion',$this->descripcion,true);
 		$criteria->compare('ciclo_total',$this->ciclo_total);
-		$criteria->compare('cargo',$this->cargo);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -9,13 +9,13 @@ $this->breadcrumbs = array(
     <section id="widget-grid">
         <div class="row">
             <article class="col-md-12">
-                <div class="jarviswidget">
-                    <header>Formulario de Registro de Usuario</header>
+                <div class="jarviswidget" id="widget1">
+                    <header></header>
                     <div>
                         <div class="widget-body">
                             <?php echo CHtml::beginForm(); ?>
                             <fieldset>
-                                <legend>Titulo</legend>
+                                <legend>Crear Servicio Clinico</legend>
                                 <?php echo CHtml::errorSummary($servicio, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger')); ?>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -29,7 +29,16 @@ $this->breadcrumbs = array(
                                             <?php echo CHtml::activeTextField($servicio, 'nombre_serv', array('class' => 'form-control', 'placeholder' => 'Nombre Servicio')); ?>
                                             <?php echo CHtml::error($servicio, 'nombre_serv', array('class' => 'label label-danger')); ?>
                                         </div>
-
+                                        <div class="form-group">
+                                            <?php echo CHtml::activeLabel($servicio, 'tipo_cobro'); ?>
+                                            <?php echo CHtml::activeDropDownList($servicio, 'tipo_cobro', array('1' => 'POR UNIDAD', '2' => 'POR DIA'), array('class' => 'form-control', 'placeholder' => 'Tipo de Cobro')); ?>
+                                            <?php echo CHtml::error($servicio, 'tipo_cobro', array('class' => 'label label-danger')); ?>
+                                        </div>
+                                        <div class="form-group">
+                                            <?php echo CHtml::activeLabel($servicio, 'unidad_medida'); ?>
+                                            <?php echo CHtml::activeTextField($servicio, 'unidad_medida', array('class' => 'form-control', 'placeholder' => 'Unidad de Medida')); ?>
+                                            <?php echo CHtml::error($servicio, 'unidad_medida', array('class' => 'label label-danger')); ?>
+                                        </div>
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabel($servicio, 'monto'); ?>
                                             <?php echo CHtml::activeTextField($servicio, 'monto', array('class' => 'form-control', 'placeholder' => 'Precio')); ?>
@@ -69,26 +78,26 @@ $this->breadcrumbs = array(
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <?php echo CHtml::activeLabel($servicio, 'id_cat_ex'); ?>
-                                            <select style="width:100%" name="ServicioForm[id_cat_ex]"
+                                            <?php echo CHtml::activeLabel($servicio, 'id_cat_cli'); ?>
+                                            <select style="width:100%" name="ServicioForm[id_cat_cli]"
                                                     id="selectcategoria">
                                                 <option
-                                                    disabled <?php echo ($servicio->id_cat_ex == null) ? 'selected' : ''; ?> >
+                                                    disabled <?php echo ($servicio->id_cat_cli == null) ? 'selected' : ''; ?> >
                                                     ----- Seleccione una Categoria -----
                                                 </option>
                                                 <?php foreach ($categoria as $item): ?>
-                                                    <option value="<?php echo $item->id_cat_ex; ?>"
-                                                            data-descripcion="<?php echo $item->descripcion_cat_ex; ?>" <?php echo ($servicio->id_cat_ex == $item->id_cat_ex) ? 'selected' : ''; ?> >
-                                                        <?php echo $item->nombre_cat_ex; ?>
+                                                    <option value="<?php echo $item->id_cat_cli; ?>"
+                                                            data-descripcion="<?php echo $item->descripcion_cat_cli; ?>" <?php echo ($servicio->id_cat_cli == $item->id_cat_cli) ? 'selected' : ''; ?> >
+                                                        <?php echo $item->nombre_cat_cli; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <?php echo CHtml::error($servicio, 'id_cat_ex', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($servicio, 'id_cat_cli', array('class' => 'label label-danger')); ?>
                                         </div>
                                         <div class="form-group">
-                                            <?php echo CHtml::activeLabel($servicio, 'condiciones_ex'); ?>
-                                            <?php echo CHtml::activeTextArea($servicio, 'condiciones_ex', array('class' => 'form-control', 'rows' => '1', 'placeholder' => 'Condiciones', 'id' => 'condiciones')); ?>
-                                            <?php echo CHtml::error($servicio, 'condiciones', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::activeLabel($servicio, 'descripcion_cli'); ?>
+                                            <?php echo CHtml::activeTextArea($servicio, 'descripcion_cli', array('class' => 'form-control expandible', 'rows' => '1', 'placeholder' => 'Descripcion')); ?>
+                                            <?php echo CHtml::error($servicio, 'descripcion_cli', array('class' => 'label label-danger')); ?>
                                         </div>
                                         <div class="form-group">
                                             <br><br>
@@ -112,9 +121,11 @@ $this->breadcrumbs = array(
             </article>
         </div>
     </section>
+
+
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/select2/select2.min.js', CClientScript::POS_END);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/iCheck/icheck.min.js', CClientScript::POS_END);
 Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/resources/js/plugin/iCheck/all.css');
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/servicio/examenCreateUpdate.js', CClientScript::POS_END);
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/servicio/clinicoCreateUpdate.js', CClientScript::POS_END);
 ?>

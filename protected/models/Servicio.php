@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * This is the model class for table "servicio".
+ *
+ * The followings are the available columns in table 'servicio':
+ * @property integer $id_serv
+ * @property string $cod_serv
+ * @property string $nombre_serv
+ * @property integer $tipo_cobro
+ * @property string $fecha_creacion
+ * @property string $fecha_edicion
+ * @property boolean $activo
+ * @property integer $id_entidad
+ *
+ * The followings are the available model relations:
+ * @property Entidad $idEntidad
+ * @property Precio[] $precios
+ * @property ServExamen $servExamen
+ * @property ServClinico $servClinico
+ * @property ServTipoSala $servTipoSala
+ */
 class Servicio extends CActiveRecord
 {
 	public function tableName()
@@ -19,7 +39,7 @@ class Servicio extends CActiveRecord
 			array('fecha_creacion, fecha_edicion, activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_serv, cod_serv, nombre_serv, unidad_medida, tipo_cobro, fecha_creacion, fecha_edicion, activo, id_entidad', 'safe', 'on' => 'search'),
+			array('id_serv, cod_serv, nombre_serv, tipo_cobro, fecha_creacion, fecha_edicion, activo, id_entidad', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -76,7 +96,6 @@ class Servicio extends CActiveRecord
 		$criteria->compare('id_serv',$this->id_serv);
 		$criteria->compare('cod_serv',$this->cod_serv,true);
 		$criteria->compare('nombre_serv',$this->nombre_serv,true);
-		$criteria->compare('unidad_medida',$this->unidad_medida,true);
 		$criteria->compare('tipo_cobro',$this->tipo_cobro);
 		$criteria->compare('fecha_creacion',$this->fecha_creacion,true);
 		$criteria->compare('fecha_edicion',$this->fecha_edicion,true);
@@ -97,12 +116,5 @@ class Servicio extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-
-	public function getMedicos($id)
-	{
-		return $listMedico = MedicoEspecialidad::model()->findAll([
-			'condition' => "id_especialidad={$id}",
-		]);
 	}
 }
