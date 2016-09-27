@@ -43,6 +43,7 @@ class Cargo extends CActiveRecord
 		);
 	}
 
+<<<<<<< Updated upstream
 	/**
 	 * @return array relational rules.
 	 */
@@ -56,6 +57,20 @@ class Cargo extends CActiveRecord
 			'idHorario' => array(self::BELONGS_TO, 'Horario', 'id_horario'),
 		);
 	}
+=======
+    /**
+     * @return array relational rules.
+     */
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'idUnidad' => array(self::BELONGS_TO, 'Unidad', 'id_unidad'),
+            
+        );
+    }
+>>>>>>> Stashed changes
 
 	/**
 	 * @return array customized attribute labels (name=>label)
