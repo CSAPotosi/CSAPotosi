@@ -1,6 +1,6 @@
 <?php $form = $this->beginWidget('CActiveForm', array(
     'id' => 'formDetallePrestacion',
-    'action' => yii::app()->createUrl("PrestacionServicios/DetallePrestacion"),
+    'action' => yii::app()->createUrl("HistorialMedico/detallePrestacion"),
     'enableAjaxValidation' => false,
     'htmlOptions' => array('class' => 'form-horizontal'),
 )); ?>
@@ -18,16 +18,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-12">
-                <form id="formPrestacionServicios"
-                      data-url="<?php echo CHtml::normalizeUrl(array('HistorialMedico/prestacionCreate')) ?>">
-                    <input type="hidden" name="PrestacionServicio[id_historial]"
-                           value="<?php echo $Paciente->persona->id_persona ?>">
                     <div class="form-group">
                         <label>Observaciones</label>
-                        <input type="text" name="PrestacionServicio[observaciones]" class="form-control">
+                        <input type="text" name="PrestacionServicio[observaciones]" class="form-control"
+                               id="observacion1">
                     </div>
-                    <input type="hidden" name="PrestacionServicio[tipo]" value="0">
-                </form>
             </div>
         </div>
     </div>
@@ -36,7 +31,7 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-8">
-                    <input type="button" value="Guardar" id="btnDetalleServicios" class="btn btn-primary">
+                    <input type="button" value="Guardar" id="btnDetalleServicios" class="btn btn-primary disabled">
                 </div>
                 <div class="col-md-4">
                     <input type="text" id="detallePrestacionTotal" class="form-control" disabled>

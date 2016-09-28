@@ -4,13 +4,13 @@ $this->pageTitle = "Prestacion <span> > Prestacion Servicios</span>";
 $this->breadcrumbs = array(
     'AtencionMedica',
 );
-$catTipoExamen = new CategoriaServicioExamen();
+$catTipoExamen = new CategoriaServExamen();
 $modelPrestacion = new PrestacionServicio();
 $modelDetallePrestacion = new DetallePrestacion();
 $listTipoEx = $catTipoExamen->getTipoEx();
 $listNombreEx = $catTipoExamen->getNombreTipo();
 $listExamen = ServExamen::model()->findAll();
-$listCategoriaExamen = CategoriaServicioExamen::model()->findAll();
+$listCategoriaExamen = CategoriaServExamen::model()->findAll();
 $listCategoriaClinico = CategoriaServClinico::model()->findAll();
 ?>
 <section id="widget-grid">
@@ -88,17 +88,17 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                                                        title="<?php echo $var->datosServicio->entidad->razon_social; ?>"><i
                                                                             class="fa fa-info-circle"></i></a>
                                                                     <input type="hidden"
-                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][id_prestacion ]"
+                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][id_prestacion]"
                                                                            class="id_prestacion">
                                                                     <input type="hidden"
                                                                            name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][id_servicio]"
                                                                            value="<?php echo $var->datosServicio->id_serv ?>">
                                                                     <input type="hidden"
-                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][subtotal]"
-                                                                           class="subtotalclass" id="subtotal">
-                                                                    <input type="hidden"
                                                                            name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][pagado]"
                                                                            value="true">
+                                                                    <input type="hidden"
+                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][realizado]"
+                                                                           value="false">
                                                                 </td>
                                                                 <?php echo "</tr>
                                                              </table>
@@ -132,17 +132,17 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                                                        title="<?php echo $var->datosServicio->entidad->razon_social; ?>"><i
                                                                             class="fa fa-info-circle"></i></a>
                                                                     <input type="hidden"
-                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][id_prestacion ]"
+                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][id_prestacion]"
                                                                            class="id_prestacion">
                                                                     <input type="hidden"
                                                                            name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][id_servicio]"
                                                                            value="<?php echo $var->datosServicio->id_serv ?>">
                                                                     <input type="hidden"
-                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][subtotal]"
-                                                                           class="subtotalclass" id="subtotal">
-                                                                    <input type="hidden"
                                                                            name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][pagado]"
                                                                            value="true">
+                                                                    <input type="hidden"
+                                                                           name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][realizado]"
+                                                                           value="false">
                                                                 </td>
                                                                 <?php echo "</tr>
                                                                                 </table>
@@ -162,9 +162,20 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                          data-widget-custombutton="false">
                                         <header>
                                             <h2><strong>DETALLE PRESTACION</strong></h2>
+                                            <form id="formPrestacionServicios" class="hide"
+                                                  data-url="<?php echo CHtml::normalizeUrl(array('HistorialMedico/prestacionCreate')) ?>">
+                                                <input type="hidden" name="PrestacionServicio[id_historial]"
+                                                       value="<?php echo $Paciente->persona->id_persona ?>">
+                                                <div class="form-group">
+                                                    <label>Observaciones</label>
+                                                    <input type="text" name="PrestacionServicio[observaciones]"
+                                                           class="form-control" id="observacion2">
+                                                </div>
+                                                <input type="hidden" name="PrestacionServicio[tipo]" value="0">
+                                            </form>
                                         </header>
                                         <div class="widget-body">
-                                            <?php $this->renderPartial('detallePrestacion', array('modelDetallePrestacion' => $modelDetallePrestacion, 'Paciente' => $Paciente)) ?>
+                                            <?php $this->renderPartial('detallePrestacion', array('modelDetallePrestacion' => $modelDetallePrestacion)) ?>
                                         </div>
                                     </div>
                                 </div>

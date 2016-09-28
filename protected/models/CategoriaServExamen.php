@@ -114,7 +114,7 @@ class CategoriaServExamen extends CActiveRecord
 	public function getTipoEx()
 	{
 		$atributo[] = "";
-		$valor = CategoriaServicioExamen::model()->findAll();
+		$valor = CategoriaServExamen::model()->findAll();
 		$var = '';
 		foreach ($valor as $item):
 			if ($var != $item['tipo_ex']) {

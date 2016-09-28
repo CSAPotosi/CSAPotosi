@@ -58,11 +58,14 @@ $(document).ready(function () {
             suma = suma + (parseInt($(this).attr("data-precio")) * cant);
         });
         $("#detallePrestacionTotal").val(suma);
+        if (suma == 0)
+            $("#btnDetalleServicios").addClass('disabled')
+        else
+            $("#btnDetalleServicios").removeClass('disabled');
     }
 
     $("#btnDetalleServicios").on("click", enviarPrestacionServicios);
     function enviarPrestacionServicios() {
-        alert($("#formPrestacionServicios").attr("data-url"));
         $.ajax({
             url: $("#formPrestacionServicios").attr("data-url"),
             type: "post",
@@ -73,13 +76,16 @@ $(document).ready(function () {
         });
         return false;
     }
-
     function detallePrestacion(valor) {
         var lista = $(".val2");
         lista.each(function (index) {
-            alert(valor);
             $(this).children().children(".id_prestacion").val(valor);
         });
+        $(".cantidad").removeAttr('disabled');
+        $("#formDetallePrestacion").submit();
     }
 
+    $("#observacion1").on("keyup", function () {
+        $("#observacion2").val($(this).val());
+    })
 });

@@ -30,13 +30,28 @@ class HistorialMedicoController extends Controller
 
     public function actionPrestacionCreate()
     {
-        $modelPrestacion = new PrestacionServicios();
-        $modelPrestacion->id_historial = $_POST['PrestacionServicios']['id_historial'];
-        $modelPrestacion->observaciones = $_POST['PrestacionServicios']['observaciones'];
-        $modelPrestacion->tipo = $_POST['PrestacionServicios']['tipo'];
-        $modelPrestacion->fecha_solicitud = date('Y-d-m');
+        $modelPrestacion = new PrestacionServicio();
+        $modelPrestacion->id_historial = $_POST['PrestacionServicio']['id_historial'];
+        $modelPrestacion->observaciones = $_POST['PrestacionServicio']['observaciones'];
+        $modelPrestacion->tipo = $_POST['PrestacionServicio']['tipo'];
+        $modelPrestacion->fecha_solicitud = date('d/m/Y h:i:s A');
         $modelPrestacion->save();
         header('Content-Type:application/json;');
         echo CJSON::encode(array('success' => true, 'jsonPrestacion' => $modelPrestacion->id_prestacion));
+    }
+
+    public function actionDetallePrestacion()
+    {
+        $detalles = $_POST['DetallePrestacion'];
+        foreach ($detalles as $item):
+            $precio = Servicio::model()->findByPk($item['id_servicio']);
+            $detalle = new DetallePrestacion();
+            $detalle->attributes = $item;
+            $detalle->fecha_solicitud = date('d/m/Y h:i:s A');
+            $detalle->subtotal = $item['cantidad'] * $precio->precio->monto;
+            $detalle->save();
+        endforeach;
+        $prestacion = PrestacionServicio::model()->findByPk($detalle->id_prestacion);
+        $this->redirect(array('externoCreate', 'id' => $prestacion->id_historial));
     }
 }
