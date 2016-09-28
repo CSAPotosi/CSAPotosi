@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/smartadmin-production-plugins.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/smartadmin-production.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/smartadmin-skins.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/js/plugin/iCheck/all.css">
 
 	<!-- Estilos propios -->
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/style.css">
@@ -393,6 +394,9 @@ Yii::app()->clientScript->registerCoreScript('jquery.ui');
 
 <!-- FastClick: For mobile devices -->
 <script src="<?php echo Yii::app()->request->baseUrl;?>/resources/js/plugin/fastclick/fastclick.min.js"></script>
+
+
+
 
 <!--[if IE 8]>
 

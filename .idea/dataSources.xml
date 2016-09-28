@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="916059236">
+    <data-source source="LOCAL" name="PostgreSQL - csapotosi_db@localhost" uuid="888353b6-1f3b-49af-b39a-a605fcb3162e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/csapotosi_db</jdbc-url>
+    </data-source>
+  </component>
+</project>
