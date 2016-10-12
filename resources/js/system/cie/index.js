@@ -2,22 +2,14 @@ var timeout=undefined;
 var code="";
 var query="";
 
-
-$('#cie-cap-select').select2({
-    language:"es",
-    placeholder:"esassas"
-});
 $("#cie-cap-select").on('change',function(){
     $("#cie-cat-select").load($(this).attr("data-url"),{code:$(this).val()});
 });
 
-
-$('#cie-cat-select').select2();
 $("#cie-cat-select").on('change',function(){
     $("#cie-group-select").load($(this).attr("data-url"),{code:$(this).val()});
 });
 
-$('#cie-group-select').select2();
 $("#cie-group-select").on('change',function(){
     code = $("#cie-group-select").val();
     query = "";
@@ -37,9 +29,8 @@ $("#search-item").keyup(function(e){
     }
 });
 
-
 function loadItems(){
-    $("#cie-item-table tbody").load($("#cie-group-select").attr("data-url"),{code:code,query:query},function(){
+    $("#cie-item-table tbody").load($("#cie-group-select").attr("data-url"),{code:code,query:query,detail:true},function(){
         loadRowFunctions();
     });
 }

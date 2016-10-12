@@ -1,8 +1,8 @@
 <?php
-$this->pageTitle = "Historial entero";
+$this->pageTitle = "Historial Medico";
 ?>
 
-<?php echo CHtml::link('Internar',['internacion/createIngreso','h_id'=>$historialModel->id_historial]);?>
+<?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$historialModel]);?>
 <section id="widget-grid">
     <div class="row">
         <div class="col-md-12">
@@ -14,29 +14,29 @@ $this->pageTitle = "Historial entero";
                                     class="hidden-mobile hidden-tablet">Live Stats</span></a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#s2"><i class="fa fa-facebook"></i> <span
-                                    class="hidden-mobile hidden-tablet">Social Network</span></a>
+                            <a data-toggle="tab" href="#s2"><i class="fa fa-stethoscope"></i> <span
+                                    class="hidden-mobile hidden-tablet">Diagnosticos</span></a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#s3"><i class="fa fa-dollar"></i> <span
-                                    class="hidden-mobile hidden-tablet">Revenue</span></a>
+                            <a data-toggle="tab" href="#s3"><span
+                                    class="hidden-mobile hidden-tablet">Internaciones</span></a>
                         </li>
                     </ul>
                 </header>
 
-                <div class="no-padding">
-                    <div class="widget-body">
-                        <div id="historial-tab-content" class="tab-content">
+                <div>
+                    <div class="widget-body no-padding">
+                        <div id="historial-tab-content" class="tab-content padding-10">
                             <div class="tab-pane active" id="s1">
                                 <?php echo $historialModel->paciente->persona->nombres;?>
                             </div>
 
                             <div class="tab-pane" id="s2">
-                                hola mundo parte 2
+                                <?php $this->renderPartial('_diagnosticoTable',['dList'=>$historialModel->diagnosticos]);?>
                             </div>
 
                             <div class="tab-pane" id="s3">
-                                hola mundo parte 3
+                                <?php $this->renderPartial('_internacionTable',['iList'=>$historialModel->internaciones, 'currentIModel'=>$historialModel->internacionActual]);?>
                             </div>
                         </div>
                     </div>

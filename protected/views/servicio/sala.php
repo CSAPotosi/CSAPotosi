@@ -1,5 +1,7 @@
 <?php
-    $modelTSala = ServTipoSala::model()->findAll();
+    $modelTSala = ServTipoSala::model()->with([
+        'servicio'=>['condition'=>'activo']
+    ])->findAll();
 ?>
 
 

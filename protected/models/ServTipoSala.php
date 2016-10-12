@@ -8,7 +8,7 @@
  * @property string $descripcion_t_sala
  *
  * The followings are the available model relations:
- * @property Servicio $idServ
+ * @property Servicio $servicio
  * @property Sala[] $salas
  */
 class ServTipoSala extends CActiveRecord

@@ -34,6 +34,9 @@ class CieController extends Controller
 	public function actionGetItemAjax(){
 		$code = $_POST['code'];
 		$query = $_POST['query'];
+        $detail = false;
+        if(isset($_POST['detail'])&& $_POST['detail']=='true')
+            $detail = $_POST['detail'];
 		$condition = "";
 
 		if($code!="")
@@ -46,7 +49,7 @@ class CieController extends Controller
 			'params'=>[':code'=>$code,':cadena'=>'%'.$query.'%']
 		]);
 
-		$this->renderPartial('_itemCieList',['itemList'=>$itemList]);
+		$this->renderPartial('_itemCieList',['itemList'=>$itemList,'detail'=>$detail]);
 	}
 
 	public function actionGetDetailItemAjax(){
@@ -69,6 +72,10 @@ class CieController extends Controller
 			echo "Error de guardado!";
 		}
 	}
+
+    public function actionGetCieAjax(){
+        $this->renderPartial('_cie');
+    }
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

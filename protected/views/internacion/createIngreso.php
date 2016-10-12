@@ -1,6 +1,11 @@
 <?php
-    $modelTSala = ServTipoSala::model()->findAll();
+    $this->pageTitle = 'Nueva internacion';
+    $modelTSala = ServTipoSala::model()->with([
+        'servicio'=>['condition'=>'activo']
+    ])->findAll();
 ?>
+
+<?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$historialModel]);?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -41,6 +46,11 @@
                                                 <?php echo CHtml::activeRadioButtonList($internacionModel,'motivo_ingreso',Internacion::getMotivo(),['class'=>'icheck-radio','separator'=>'&nbsp;&nbsp;&nbsp;&nbsp;']);?>
                                                 <?php echo CHtml::error($internacionModel,'motivo_ingreso',['class'=>'label label-danger']);?>
                                             </div>
+                                            <div class="form-group">
+                                                <?php echo CHtml::activeLabelEx($internacionModel,'procedencia_ingreso');?><br>
+                                                <?php echo CHtml::activeRadioButtonList($internacionModel,'procedencia_ingreso',Internacion::getProcedencia(),['class'=>'icheck-radio','separator'=>'&nbsp;&nbsp;&nbsp;&nbsp;']);?>
+                                                <?php echo CHtml::error($internacionModel,'procedencia_ingreso',['class'=>'label label-danger']);?>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -48,11 +58,6 @@
                                         <?php echo CHtml::activeLabelEx($internacionModel,'observacion_ingreso');?>
                                         <?php echo CHtml::activeTextArea($internacionModel,'observacion_ingreso',['class'=>'form-control']);?>
                                         <?php echo CHtml::error($internacionModel,'observacion_ingreso',['class'=>'label label-danger']);?>
-                                    </div>
-                                    <div class="form-group">
-                                        <?php echo CHtml::activeLabelEx($internacionModel,'procedencia_ingreso');?><br>
-                                        <?php echo CHtml::activeRadioButtonList($internacionModel,'procedencia_ingreso',Internacion::getProcedencia(),['class'=>'icheck-radio','separator'=>'&nbsp;&nbsp;&nbsp;&nbsp;']);?>
-                                        <?php echo CHtml::error($internacionModel,'procedencia_ingreso',['class'=>'label label-danger']);?>
                                     </div>
                                 </div>
                             </div>

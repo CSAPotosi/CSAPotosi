@@ -64,7 +64,7 @@
     <?php endforeach;?>
 <?php else: ?>
     <div class="col-md-12">
-        <h4 class="alert alert-danger">Se han encontrado <strong>0</strong> resultados</h4>
+        <h4 class="alert alert-info">Se han encontrado <strong>0</strong> resultados</h4>
     </div>
 <?php endif;?>
 </div>
