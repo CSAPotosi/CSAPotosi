@@ -55,6 +55,7 @@ class AuthenticationController extends Controller
         $persona->num_doc = "123456";
         $persona->nombres = "admin";
         $persona->primer_apellido = "admin";
+        $persona->nacionalidad = "BOL";
         $persona->save();
         $usuario = new Usuario;
         $usuario->id_usuario = $persona->id_persona;
