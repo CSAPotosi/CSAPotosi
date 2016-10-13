@@ -38,6 +38,7 @@ class Internacion extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_historial, fecha_ingreso, motivo_ingreso', 'required','on'=>'ingreso'),
+            array('fecha_alta, tipo_alta','required','on'=>'alta'),
 			array('id_historial, motivo_ingreso, procedencia_ingreso, tipo_alta, estado', 'numerical', 'integerOnly'=>true),
 			array('observacion_ingreso, observacion_alta', 'length', 'max'=>256),
 			array('fecha_alta, fecha_egreso', 'safe'),
@@ -53,7 +54,8 @@ class Internacion extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'historial' => [self::BELONGS_TO, 'HistorialMedico', 'id_historial'],
-            'salaActual'=>[self::HAS_ONE,'InternacionSala','id_inter','condition'=> 'fecha_salida is null']
+            'salaActual'=>[self::HAS_ONE,'InternacionSala','id_inter','condition'=> 'fecha_salida is null'],
+            'salas'=>[self::HAS_MANY,'InternacionSala','id_inter','order'=>'fecha_entrada DESC']
 		);
 	}
 

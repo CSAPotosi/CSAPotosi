@@ -46,6 +46,9 @@ class HistorialMedico extends CActiveRecord
         // class name for the relations automatically generated below.
         return array(
             'paciente' => array(self::BELONGS_TO, 'Paciente', 'id_historial'),
+            'internaciones'=>[self::HAS_MANY,'Internacion','id_historial','order'=>'fecha_alta DESC'],
+            'internacionActual'=>[self::HAS_ONE, 'Internacion','id_historial','condition'=>'estado = 1'],
+            'diagnosticos'=>[self::HAS_MANY, 'Diagnostico','id_historial','order'=>'fecha_diag']
         );
     }
 

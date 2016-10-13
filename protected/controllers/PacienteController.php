@@ -28,7 +28,7 @@ class PacienteController extends Controller
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuPaciente();
+        $this->menu = OptionsMenu::menuPaciente([],['pacientes','index']);
 		$this->render('index');
 	}
 
@@ -43,6 +43,8 @@ class PacienteController extends Controller
 
 	public function actionCreate()
 	{
+        $this->menu = OptionsMenu::menuPaciente([],['pacientes','create']);
+        
 		$modelPerson = new PersonaForm();
 		$historial = new HistorialMedico();
 		if (isset($_POST['PersonaForm'])) {

@@ -90,8 +90,9 @@ class ServicioForm extends CFormModel
 
     private function loadServicioPrecio($id = null)
     {
-        if ($id === null)
+        if ($id === null){
             $this->modelServicio = new Servicio();
+        }
         else {
             $this->modelServicio = Servicio::model()->findByPk($id);
             if ($this->modelServicio === null)
@@ -107,7 +108,6 @@ class ServicioForm extends CFormModel
         $this->modelServExamen = ($id == null) ? new ServExamen() : ServExamen::model()->findByPk($id);
         $this->modelServExamen->setAttributes($this->getAttributes(), false);
         $this->loadServicioPrecio($id);
-
         if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServExamen])) {
             $this->saveServicio();
             if ($id == null)
@@ -122,10 +122,12 @@ class ServicioForm extends CFormModel
         $this->modelServTSala = ($id == null)? new ServTipoSala():ServTipoSala::model()->findByPk($id);
         $this->modelServTSala->setAttributes($this->getAttributes(),false);
         $this->loadServicioPrecio($id);
-
+        if($this->modelServicio->isNewRecord){
+            $this->modelServicio->cod_serv = 'S00';
+            $this->modelServicio->tipo_cobro = 2;//por dia
+        }
         if($this->validar([$this->modelServicio,$this->modelPrecio,$this->modelServTSala])){
             $this->saveServicio();
-            $this->savePrecio();
             if($id == null)
                 $this->modelServTSala->id_serv = $this->_idServicio;
             if ($this->modelServTSala->save())

@@ -2,19 +2,23 @@
 
 class InternacionController extends Controller{
     private $_historial = null;
+    private $_internacion = null;
     public $menu = [];
 
 
 	public function actionIndex()
 	{
-		$this->render('index');
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','index']);
+
+		$this->render('index',['internacionModel'=>$this->_internacion]);
 	}
 
 	public function actionCreateIngreso(){
-        $this->menu = OptionsMenu::menuInternacion();
+        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$this->_historial->id_historial],['historial','internacion']);
 
 		$internacionModel = new Internacion('ingreso');
 		$internacionModel->motivo_ingreso = 0;$internacionModel->procedencia_ingreso = 0;
+        $internacionModel->estado = 1;
 		$internacionModel->id_historial = $this->_historial->id_historial;
 		if(isset($_POST['Internacion'])){
 			$internacionModel->attributes = $_POST['Internacion'];
@@ -23,16 +27,48 @@ class InternacionController extends Controller{
                 $tempPaciente->estado_paciente = 2;//internado
                 $tempPaciente->save();
                 $this->addSala($internacionModel->id_inter);
-                $this->redirect(['index']);
+                $this->redirect(['index','i_id'=>$internacionModel->id_inter]);
             }
 		}
-		$this->render('createIngreso',['internacionModel'=>$internacionModel]);
+		$this->render('createIngreso',['internacionModel'=>$internacionModel, 'historialModel'=>$this->_historial]);
 	}
+
+    public function actionAlta(){
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','alta']);
+        $iModel =$this->_internacion;
+        $iModel->scenario = 'alta';
+        $iModel->estado = 0;
+        if(isset($_POST['Internacion'])){
+            $iModel->attributes = $_POST['Internacion'];
+            if($iModel->save()){
+                $salaTemp = $iModel->salaActual;
+                if($salaTemp){
+                    $salaTemp->sala->estado_sala = 3;
+                    $salaTemp->sala->save();
+                    $salaTemp->fecha_salida =date('d/m/Y H:i:s');
+                    $salaTemp->save();
+                }
+                $iModel->historial->paciente->estado_paciente = 1;
+                $iModel->historial->paciente->save();
+                $this->redirect(['historialMedico/index','id_paciente'=>$iModel->id_historial]);
+            }
+        }
+        $this->render('alta',['internacionModel'=>$iModel]);
+    }
+
+    public function actionChangeSala(){
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','changeSala']);
+        if(isset($_POST['InternacionSala'])){
+            $this->addSala($this->_internacion->id_inter);
+        }
+        $this->render('changeSala',['internacionModel'=>$this->_internacion]);
+    }
 
 	public function filters()
 	{
 		return [
-			'historialContext'
+			'historialContext + createIngreso',
+            'internacionContext - createIngreso'
 		];
 	}
 /*
@@ -57,7 +93,7 @@ class InternacionController extends Controller{
                 $salaActual->sala->estado_sala = 3;
                 $salaActual->sala->save();
 
-                $salaActual->fecha_salida =date('d-m-Y H:i:s');
+                $salaActual->fecha_salida =date('d/m/Y H:i:s');
                 $salaActual->save();
             }
             $interSalaModel = new InternacionSala();
@@ -83,6 +119,14 @@ class InternacionController extends Controller{
 		$filterChain->run();
 	}
 
+    public function filterInternacionContext($filterChain){
+        if(isset($_GET['i_id']))
+            $this->loadInternacion($_GET['i_id']);
+        else
+            throw new CHttpException(404, 'No ha especificado una internacion valida, vuelva a intentarlo');
+        $filterChain->run();
+    }
+
 	protected function loadHistorial($historialId){
 		if($this->_historial == null){
 			$this->_historial = HistorialMedico::model()->findByPk($historialId);
@@ -91,6 +135,15 @@ class InternacionController extends Controller{
 		}
 		return $this->_historial;
 	}
+
+    protected function loadInternacion($internacionId){
+        if($this->_internacion == null){
+            $this->_internacion = Internacion::model()->findByPk($internacionId);
+            if($this->_internacion == null)
+                throw new CHttpException(404,'Ha ocurrido un error en la solicitud.');
+        }
+        return $this->_internacion;
+    }
 
 
 }

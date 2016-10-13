@@ -31,7 +31,7 @@ class HorarioController extends Controller
         );
     }
 
-    public function actionindex()
+    public function actionIndex()
     {
         $listHorario = Horario::model()->findAll();
         $this->render('index', array('listHorario' => $listHorario));

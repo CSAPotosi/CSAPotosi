@@ -22,6 +22,8 @@
  */
 class Servicio extends CActiveRecord
 {
+    public $max_code = '';
+
 	public function tableName()
 	{
 		return 'servicio';
@@ -32,7 +34,7 @@ class Servicio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cod_serv, nombre_serv, id_entidad', 'required'),
+			array('nombre_serv, id_entidad', 'required'),
 			array('tipo_cobro, id_entidad', 'numerical', 'integerOnly' => true),
 			array('cod_serv', 'length', 'max'=>8),
 			array('nombre_serv', 'length', 'max'=>64),
@@ -117,4 +119,29 @@ class Servicio extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function beforeSave(){
+        if($this->isNewRecord){
+            $this->cod_serv = $this->getCode();
+        }
+        return parent::beforeSave();
+    }
+
+    private function getCode(){
+        $prefix = $this->cod_serv;
+        $criteria = new CDbCriteria();
+        $criteria->select = 'MAX(cod_serv) as max_code';
+        $criteria->condition = 'cod_serv like :code';
+        $criteria->params = [':code'=>"{$prefix}%"];
+        $model = $this->find($criteria);
+        $code = $model['max_code'];
+        $sufix = '';
+        if($code){
+            $sufix = HelpTools::appendToBaseNumber(substr($code,-3),36,1);
+        }else{
+            $sufix = HelpTools::appendToBaseNumber('000',36,1);
+        }
+        $code = $prefix.str_pad($sufix,3,'0',STR_PAD_LEFT);
+        return $code;
+    }
 }

@@ -376,10 +376,11 @@ create table if not exists convenio_servicios(
 create table if not exists diagnostico(
   id_diag serial primary key not null ,
   fecha_diag timestamp not null ,
-  anamnesis text ,
+  anamnesis text not NULL,
   exploracion text ,
   conclusion text ,
   observaciones text ,
+  tipo SMALLINT not NULL DEFAULT 0,--0externo, 1 internacion
   id_historial int not null ,
   id_diag_padre int,
   foreign key (id_historia) references historial_medico(id_historial),

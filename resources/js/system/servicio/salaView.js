@@ -16,7 +16,7 @@ $(".list-group-item .btn-edit-item-sala, .list-group-item .btn-cancel-item-sala"
 });
 
 $(".item-sala-new-form .btn-cancel-item-sala, .item-sala-new-form .btn-new-item-sala").on("click",function () {
-    var $parent = $(this).parents('.panel').eq(0);
+    var $parent = $(this).parents('.new-sala').eq(0);
     $parent.find('.item-sala-new-form').toggleClass('hidden');
 });
 
