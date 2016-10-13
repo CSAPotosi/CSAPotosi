@@ -18,14 +18,15 @@ class m161011_022521_diagnostico_cie extends CDbMigration
 			"FOREIGN KEY (num_cap) REFERENCES capitulo_cie(num_cap)"
 		]);
 
-		$this->createTable('item_cie',[
-			'codigo' => "VARCHAR(8) NOT NULL PRIMARY KEY",
-			'titulo' => "TEXT NOT NULL",
-			'codigo_padre' => "VARCHAR(8)",
-			'id_cat' => "INT NOT NULL",
-			"FOREIGN KEY (codigo_padre) REFERENCES item_cie(codigo)",
-			"FOREIGN KEY (id_cat) REFERENCES categoria_cie(id_cat)"
-		]);
+        $this->createTable('item_cie',[
+            'codigo' => "VARCHAR(8) NOT NULL PRIMARY KEY",
+            'titulo' => "TEXT NOT NULL",
+            'descripcion' => "TEXT",
+            'codigo_padre' => "VARCHAR(8)",
+            'id_cat' => "INT NOT NULL",
+            "FOREIGN KEY (codigo_padre) REFERENCES item_cie(codigo)",
+            "FOREIGN KEY (id_cat) REFERENCES categoria_cie(id_cat)"
+        ]);
 
 		$this->createTable('diagnostico',[
 			'id_diag' => "pk",
