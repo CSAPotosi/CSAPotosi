@@ -10,18 +10,14 @@ $this->breadcrumbs = array(
         <article class="col-md-12">
             <div class="jarviswidget" id="widget1">
                 <header></header>
-                <div>
-                    <div class="widget-body">
+                <div class="widget-body">
+                    <fieldset>
+                        <legend>Actualizar Unidad</legend>
                         <div class="row">
-                            <article class="col-md-6">
-                                <center><h5>Actualizar Unidades</h5></center>
-                                <br>
-                                <div class="well no-padding">
-                                    <?php $this->renderPartial("_form", array('modelUnidad' => $modelUnidad)) ?>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
+                            <div class="col-md-6 col-lg-offset-3">
+                                <?php $this->renderPartial("_form", array('modelUnidad' => $modelUnidad)) ?>
+                            </div>
+                    </fieldset>
                 </div>
             </div>
         </article>

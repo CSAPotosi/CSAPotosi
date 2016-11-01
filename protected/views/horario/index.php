@@ -23,7 +23,6 @@ $this->breadcrumbs = array(
                                                 <th>Nombre de Hoario</th>
                                                 <th>Descripcion</th>
                                                 <th>Ciclo en dias</th>
-                                                <th>Cargo</th>
                                                 <th>Acciones</th>
                                             </tr>
                                             </thead>
@@ -33,7 +32,6 @@ $this->breadcrumbs = array(
                                                     <td><?php echo $item->nombre_horario; ?></td>
                                                     <td><?php echo $item->descripcion; ?></td>
                                                     <td><?php echo $item->ciclo_total; ?></td>
-                                                    <td><?php echo $item->cargo; ?></td>
                                                     <td class="text-align-right">
                                                         <?php echo CHtml::link('Editar', array('horario/update', 'id' => $item->id_horario), array('class' => 'btn btn-info')); ?>
                                                         <span class="glyphicon glyphicon-eye-open"></span>

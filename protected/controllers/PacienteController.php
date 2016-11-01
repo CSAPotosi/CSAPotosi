@@ -48,7 +48,6 @@ class PacienteController extends Controller
 	public function actionCreate()
 	{
         $this->menu = OptionsMenu::menuPaciente([],['pacientes','create']);
-        
 		$modelPerson = new PersonaForm();
 		if (isset($_POST['PersonaForm'])) {
 			$modelPerson->attributes = $_POST['PersonaForm'];

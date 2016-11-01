@@ -48,11 +48,4 @@ class CargoController extends Controller
         }
         $this->render('create', array('modelCargo' => $modelCargo, 'id' => $id, 'modelUnidad' => $modelUnidad));
     }
-
-    public function actionChangeStateCargo($id)
-    {
-        $cargo = Cargo::model()->findByPk($id);
-        $cargo->estado = !$cargo->estado;
-        $cargo->save();
-    }
 }

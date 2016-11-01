@@ -1,8 +1,8 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Servicio <span> > Lista de Servicios </span>";
+$this->pageTitle = "Reporte <span> >Lista de Servicios de Examenes</span>";
 $this->breadcrumbs = array(
-    'Servicio',
+    'Reporte',
 );
 ?>
 <section id="widget-grid">
@@ -12,34 +12,35 @@ $this->breadcrumbs = array(
                 <header></header>
                 <div>
                     <div class="widget-body">
-                        <div class="row">
-                            <article class="col-md-12">
-                                <div class="table-responsive">
-                                    <center class="text-align-center"><h2>Lista de Servicios</h2></center>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="icon-addon addon-md">
-                                                <input type="text" placeholder="Nombre del Servicio"
-                                                       class="form-control" id="searchServicio">
-                                                <label class="glyphicon glyphicon-search"></label>
-                                            </div>
-                                        </div>
+                        <div class="widget-body-toolbar">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="icon-addon addon-md">
+                                        <input type="text" placeholder="Nombre del Servicio"
+                                               class="form-control" id="searchServicio">
+                                        <label class="glyphicon glyphicon-search"></label>
                                     </div>
-                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <fieldset>
+                            <legend>Lista de Servicios de Examenes</legend>
+                            <div class="row">
+                                <div class="col-md-10 col-lg-offset-1">
                                     <?php echo CHtml::link('Categorias', ['categoriaServicio/index', 'grupo' => $dataUrl['grupo'], 'tipo' => $dataUrl['tipo']]); ?>
-                                    <table class="table table-bordered table-striped">
+                                    <table class="table table-responsive table-bordered">
                                         <thead>
                                         <tr>
                                             <th>Codigo Servicio</th>
                                             <th>Servicio</th>
                                             <th>Precio del Servicio</th>
-                                            <th width="130px">
+                                            <th width="220px">
                                                 <?php
                                                 echo CHtml::dropDownList('ListaCategorias', null,
                                                     CHtml::listData(CategoriaServExamen::model()->findAll(
                                                         ['condition' => "tipo_ex='{$dataUrl['tipo']}' and activo=true",]
                                                     ), 'nombre_cat_ex', 'nombre_cat_ex'),
-                                                    array('empty' => "Categorias", 'class' => 'select2'));
+                                                    array('empty' => "TODAS LAS CATEGORIAS ", 'class' => 'select2'));
                                                 ?>
                                             </th>
                                             <th>Activo</th>
@@ -60,35 +61,32 @@ $this->breadcrumbs = array(
                                                     <span class="onoffswitch">
 													    <input
                                                             type="checkbox" <?php echo ($item->datosServicio->activo == true) ? 'checked' : ''; ?>
-                                                            name="start_interval" class="onoffswitch-checkbox"
+                                                            class="onoffswitch-checkbox"
                                                             id="<?php echo $item->datosServicio->id_serv ?>"
                                                             data-url="<?php echo CHtml::normalizeUrl(['Servicio/ChangeStateServicio', 'id' => $item->datosServicio->id_serv]); ?>">
 															<label class="onoffswitch-label"
                                                                    for="<?php echo $item->datosServicio->id_serv ?>">
-                                                                <span class="onoffswitch-inner" data-swchon-text="YES"
-                                                                      data-swchoff-text="NO"></span>
+                                                                <span class="onoffswitch-inner" data-swchon-text="SI"
+                                                                      data-swchoff-text="no"></span>
                                                                 <span class="onoffswitch-switch"></span>
-                                                            </label> 
+                                                            </label>
                                                     </span>
                                                     </td>
                                                     <td>
                                                         <?php
-                                                            echo CHtml::link('Editar',['servicio/update','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo'],'id'=>$item->id_serv ],['class'=>'btn btn-primary btn-xs']);
+                                                        echo CHtml::link('Editar', ['servicio/update', 'grupo' => $dataUrl['grupo'], 'tipo' => $dataUrl['tipo'], 'id' => $item->id_serv], ['class' => 'btn btn-primary btn-xs']);
                                                         ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach;
                                         } ?>
                                         </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="8"
-                                                class="text-align-right"><?php echo CHtml::link('Agregar Servicio', array('servicio/create','grupo'=>$dataUrl['grupo'],'tipo'=>$dataUrl['tipo'] ), array('class' => 'btn btn-info')); ?></td>
-                                        </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
-                            </article>
+                        </fieldset>
+                        <div class="form-actions">
+                            <?php echo CHtml::link('Agregar Servicio', array('servicio/create', 'grupo' => $dataUrl['grupo'], 'tipo' => $dataUrl['tipo']), array('class' => 'btn btn-info')); ?>
+
                         </div>
                     </div>
                 </div>
@@ -96,10 +94,9 @@ $this->breadcrumbs = array(
         </article>
     </div>
 </section>
+<!--Start Scripts-->
 <!-- start plugins-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/servicio/examenIndex.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/select2/select2.min.js', CClientScript::POS_END); ?>
 <!--end plugins-->
-<script>
-
-</script>
+<!--end plugins-->

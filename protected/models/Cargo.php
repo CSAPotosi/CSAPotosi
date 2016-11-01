@@ -43,38 +43,20 @@ class Cargo extends CActiveRecord
 		);
 	}
 
-<<<<<<< Updated upstream
-	/**
-	 * @return array relational rules.
-	 */
+
 	public function relations()
-	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-			'asignacionEmpleados' => array(self::HAS_MANY, 'AsignacionEmpleado', 'id_cargo'),
-			'idUnidad' => array(self::BELONGS_TO, 'Unidad', 'id_unidad'),
-			'idHorario' => array(self::BELONGS_TO, 'Horario', 'id_horario'),
-		);
-	}
-=======
-    /**
-     * @return array relational rules.
-     */
-    public function relations()
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idUnidad' => array(self::BELONGS_TO, 'Unidad', 'id_unidad'),
+			'asignacionEmpleados' => array(self::HAS_MANY, 'AsignacionEmpleado', 'id_cargo'),
+			'asignacionReporte' => array(self::HAS_MANY, 'AsignacionEmpleado', 'id_cargo', 'condition' => 'fecha_fin is null'),
+			'unidad' => array(self::BELONGS_TO, 'Unidad', 'id_unidad'),
+			'horario' => array(self::BELONGS_TO, 'Horario', 'id_horario'),
             
         );
     }
->>>>>>> Stashed changes
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
 	public function attributeLabels()
 	{
 		return array(
@@ -124,5 +106,10 @@ class Cargo extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getHorario()
+	{
+		return CHtml::listData(Horario::model()->findAll(), 'id_horario', 'nombre_horario');
 	}
 }

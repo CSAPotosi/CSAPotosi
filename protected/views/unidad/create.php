@@ -1,8 +1,8 @@
 <?php
-/* @var $this PacienteController */
-$this->pageTitle = "Unidad <span> > Crear Unidad </span>";
+/* $this ServicioController */
+$this->pageTitle = "Unidad <span> > Crear Unidades</span>";
 $this->breadcrumbs = array(
-    'Unidad',
+    'Crear Unidades ',
 );
 ?>
 <section id="widget-grid">
@@ -10,20 +10,24 @@ $this->breadcrumbs = array(
         <article class="col-md-12">
             <div class="jarviswidget" id="widget1">
                 <header></header>
-                <div>
-                    <div class="widget-body">
+                <div class="widget-body">
+                    <fieldset>
+                        <legend>Registro de Unidad</legend>
                         <div class="row">
-                            <article class="col-md-6">
-                                <center><h5><b>Registro de Unidades</b></h5></center>
-                                <br>
-                                <div class="well no-padding">
-                                    <?php $this->renderPartial("_form", array('modelUnidad' => $modelUnidad)) ?>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
+                            <div class="col-md-6 col-lg-offset-3">
+                                <?php $this->renderPartial("_form", array('modelUnidad' => $modelUnidad)) ?>
+                            </div>
+                    </fieldset>
                 </div>
             </div>
         </article>
     </div>
 </section>
+<!--Start Scripts-->
+
+<!--End plugins-->
+<!-- start plugins-->
+
+
+<!--end plugins-->
+

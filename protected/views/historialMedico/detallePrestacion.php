@@ -4,7 +4,8 @@
     'enableAjaxValidation' => false,
     'htmlOptions' => array('class' => 'form-horizontal'),
 )); ?>
-    <table class="table table-hover bordered" id="contenedorDetallePrestacion">
+    <table class="table table-responsive bordered">
+        <thead>
         <tr>
             <th>Estado</th>
             <th>Servicio</th>
@@ -13,7 +14,10 @@
             <th>Info</th>
 
         </tr>
+        </thead>
+        <tbody id="contenedorDetallePrestacion">
 
+        </tbody>
     </table>
     <div class="row">
         <div class="col-md-12">

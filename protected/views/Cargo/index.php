@@ -1,8 +1,8 @@
 <?php
-/* @var $this PacienteController */
-$this->pageTitle = "Unidad <span> > Lista de cargo </span>";
+/* $this ServicioController */
+$this->pageTitle = "Unidad <span> > Lista de Unidades</span>";
 $this->breadcrumbs = array(
-    'Cargo',
+    'Lista Unidades',
 );
 ?>
 <section id="widget-grid">
@@ -10,58 +10,45 @@ $this->breadcrumbs = array(
         <article class="col-md-12">
             <div class="jarviswidget" id="widget1">
                 <header></header>
-                <div>
-                    <div class="widget-body">
+                <div class="widget-body">
+                    <fieldset>
+                        <legend>Lista de cargos de <?php echo $modelUnidad->nombre_unidad ?></legend>
                         <div class="row">
-                            <article class="col-md-6">
+                            <div class="col-md-6 col-lg-offset-3">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                        <caption class="text-align-center"><h5><b>Lista de Cargos
-                                                    de <?php echo $modelUnidad->nombre_unidad ?></b></h5></caption>
+                                    <table class="table table-bordered">
                                         <tr>
                                             <th>Nombre de Cargo</th>
                                             <th>Descripcion</th>
-                                            <th>Estado</th>
+                                            <th>Horario</th>
                                             <th>Acciones</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
                                         <?php foreach ($listCargo as $item): ?>
                                             <tr>
                                                 <td><?php echo $item->nombre_cargo; ?></td>
                                                 <td><?php echo $item->descripcion_cargo; ?></td>
-                                                <td><input type="checkbox"
-                                                           class="btnChangeState" <?php echo ($item->estado == 1) ? 'checked' : ''; ?>
-                                                           data-toggle="toggle" data-size="mini" data-on="ACTIVO"
-                                                           data-onstyle="primary" data-offstyle="danger"
-                                                           data-off="INACTIVO"
-                                                           data-url="<?php echo CHtml::normalizeUrl(['Cargo/ChangeStateCargo', 'id' => $item->id_cargo]); ?>">
-                                                </td>
+                                                <td><?php echo $item->horario->nombre_horario ?></td>
                                                 <td class="text-align-right"><?php echo CHtml::link('Editar', array('cargo/update', 'id' => $item->id_cargo), array('class' => 'btn btn-info')); ?></td>
                                             </tr>
                                         <?php endforeach; ?>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="4"
-                                                class="text-align-right"><?php echo CHtml::link('Adicionar cargo', array('cargo/create', 'id' => $id), array('class' => 'btn btn-info')); ?></td>
-                                        </tr>
-                                        </tfoot>
                                     </table>
+                                    <div class="form-group">
+                                        <?php echo CHtml::link('Adicionar cargo', array('cargo/create', 'id' => $id), array('class' => 'btn btn-info')); ?>
+                                    </div>
                                 </div>
-                            </article>
+                            </div>
                         </div>
-                    </div>
+                    </fieldset>
                 </div>
             </div>
         </article>
     </div>
 </section>
-<!-- start plugins-->
-<!--plugin smartwizart
-<!--end plugins-->
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/cargo/index.js', CClientScript::POS_END); ?>
-<script>
+<!--Start Scripts-->
 
-</script>
+<!--End plugins-->
+<!-- start plugins-->
+
+
+<!--end plugins-->
+

@@ -59,11 +59,12 @@ class Registro extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'id_asignacion' => 'Id Asignacion',
+            'id_asignacion' => 'Empleado',
             'fecha' => 'Fecha',
             'hora_asistencia' => 'Hora Asistencia',
             'observaciones' => 'Observaciones',
             'estado' => 'Estado',
+
         );
     }
 
@@ -91,6 +92,7 @@ class Registro extends CActiveRecord
         $criteria->compare('observaciones', $this->observaciones, true);
         $criteria->compare('estado', $this->estado);
 
+
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
         ));
@@ -106,4 +108,6 @@ class Registro extends CActiveRecord
     {
         return parent::model($className);
     }
+
+
 }

@@ -144,9 +144,8 @@ $this->breadcrumbs = array(
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <?php echo CHtml::activelabelEx($modelPerson, 'Fecha de Contratacion'); ?>
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_contratacion', array('class' => 'form-control')); ?>
-                                                    <input type="date" name="fecha_contratacion" id="fecha_contratacion"
-                                                           class="form-control">
+                                                    <?php echo CHtml::activedateField($modelPerson, 'fecha_contratacion', array('class' => 'form-control')); ?>
+                                                    <?php echo CHtml::error($modelPerson, 'fecha_contratacion', array('class' => 'label label-danger')); ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <?php echo CHtml::activelabelEx($modelPerson, 'Codigo Maquina'); ?>

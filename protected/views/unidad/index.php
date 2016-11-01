@@ -1,8 +1,8 @@
 <?php
-/* @var $this PacienteController */
-$this->pageTitle = "Unidad <span> > Lista </span>";
+/* $this ServicioController */
+$this->pageTitle = "Unidad <span> > Lista de Unidades</span>";
 $this->breadcrumbs = array(
-    'Unidad',
+    'Lista Unidades',
 );
 ?>
 <section id="widget-grid">
@@ -10,22 +10,18 @@ $this->breadcrumbs = array(
         <article class="col-md-12">
             <div class="jarviswidget" id="widget1">
                 <header></header>
-                <div>
-                    <div class="widget-body">
+                <div class="widget-body">
+                    <fieldset>
+                        <legend>Lista De Unidades o departamentos</legend>
                         <div class="row">
-                            <article class="col-md-6">
+                            <div class="col-md-6 col-lg-offset-3">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                        <caption class="text-align-center"><h5><b>Lista de Unidades o
-                                                    Departamentos<b></b></h5></caption>
+                                    <table class="table table-bordered">
                                         <tr>
                                             <th>Nombre de Unidad</th>
                                             <th>Descripcion</th>
                                             <th>Acciones</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
                                         <?php foreach ($listUnidad as $item): ?>
                                             <tr>
                                                 <td><?php echo $item->nombre_unidad; ?></td>
@@ -36,20 +32,24 @@ $this->breadcrumbs = array(
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="3"
-                                                class="text-align-right"><?php echo CHtml::link('Adicionar Unidad', array('unidad/create'), array('class' => 'btn btn-info')); ?></td>
-                                        </tr>
-                                        </tfoot>
                                     </table>
+                                    <div class="form-group">
+                                        <?php echo CHtml::link('Adicionar Unidad', array('unidad/create'), array('class' => 'btn btn-info')); ?>
+                                    </div>
                                 </div>
-                            </article>
+                            </div>
                         </div>
-                    </div>
+                    </fieldset>
                 </div>
             </div>
         </article>
     </div>
 </section>
+<!--Start Scripts-->
+
+<!--End plugins-->
+<!-- start plugins-->
+
+
+<!--end plugins-->
+

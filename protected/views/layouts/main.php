@@ -18,6 +18,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/smartadmin-production.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/smartadmin-skins.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/js/plugin/iCheck/all.css">
+	<link rel="stylesheet" type="text/css" media="screen"
+		  href="<?php echo Yii::app()->request->baseUrl; ?>/resources/js/plugin/bootstrap-daterangepicker/css/daterangepicker.css">
 
 	<!-- Estilos propios -->
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/style.css">

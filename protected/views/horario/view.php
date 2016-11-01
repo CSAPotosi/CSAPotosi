@@ -11,10 +11,6 @@
                         <td width="80%"><?php echo Chtml::encode($horarioModel->nombre_horario);?></td>
                     </tr>
                     <tr>
-                        <th class="text-align-right" width="20%">CARGO ASIGNADO</th>
-                        <td width="80%"><?php echo Chtml::encode($horarioModel->cargoAsignado->nombre_cargo);?></td>
-                    </tr>
-                    <tr>
                         <th class="text-align-right" width="20%">DESCRIPCION</th>
                         <td width="80%"><?php echo Chtml::encode($horarioModel->descripcion);?></td>
                     </tr>

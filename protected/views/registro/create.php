@@ -17,13 +17,41 @@ $this->breadcrumbs = array(
                             <div class="row">
                                 <div class="col-md-8 col-lg-offset-2">
                                     <?php echo CHtml::beginForm(); ?>
-                                    <?php echo CHtml::errorSummary($modelRegistro); ?>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <?php echo CHtml::activeLabel($modelRegistro, 'Empleado'); ?>
-                                                <?php echo CHtml::activeTextField($modelRegistro, 'id_asignacion', ['class' => 'form-control']); ?>
-                                                <?php echo CHtml::error($modelRegistro, 'id_asignacion'); ?>
+                                                <label>Unidad</label>
+                                                <?php echo CHtml::dropDownList('unidad', null,
+                                                    CHtml::listData(Unidad::model()->findAll(), 'id_unidad', 'nombre_unidad'),
+                                                    array(
+                                                        'ajax' => array(
+                                                            'type' => 'post',
+                                                            'url' => CHtml::normalizeUrl(['Registro/getCargosAjax']),
+                                                            'update' => '#cargo',
+                                                        ), 'class' => 'form-control', 'prompt' => 'SELECCIONE'
+                                                    )
+                                                ); ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Cargo</label>
+                                                <?php echo CHtml::dropDownList('cargo', null,
+                                                    array(), array(
+                                                        'ajax' => array(
+                                                            'type' => 'post',
+                                                            'url' => CHtml::normalizeUrl(['Registro/getEmpleadoAjax']),
+                                                            'update' => '#Registro_id_asignacion',
+                                                        ), 'class' => 'form-control', 'prompt' => 'SELECCIONE'
+                                                    )
+                                                ); ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Empleado</label>
+                                                <?php echo CHtml::activedropDownList($modelRegistro, 'id_asignacion', [], ['class' => 'form-control', 'prompt' => 'SELECCIONE']); ?>
+                                                <?php echo CHtml::error($modelRegistro, 'id_asignacion', ['class' => 'label label-danger']); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -31,15 +59,15 @@ $this->breadcrumbs = array(
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabel($modelRegistro, 'Fecha'); ?>
-                                                <?php echo CHtml::activeDateField($modelRegistro, 'fecha', ['class' => 'form-control']) ?>
-                                                <?php echo CHtml::error($modelRegistro, 'fecha'); ?>
+                                                <?php echo CHtml::activeDateField($modelRegistro, 'fecha', ['class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy']) ?>
+                                                <?php echo CHtml::error($modelRegistro, 'fecha', ['class' => 'label label-danger']); ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabel($modelRegistro, 'Hora'); ?>
-                                                <?php echo CHtml::activeTimeField($modelRegistro, 'hora_asistencia', ['class' => 'form-control']) ?>
-                                                <?php echo CHtml::error($modelRegistro, 'hora_asistencia'); ?>
+                                                <?php echo CHtml::activeTextField($modelRegistro, 'hora_asistencia', ['class' => 'form-control clockpicker', 'data-autoclose' => 'true']); ?>
+                                                <?php echo CHtml::error($modelRegistro, 'hora_asistencia', ['class' => 'label label-danger']); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -52,14 +80,15 @@ $this->breadcrumbs = array(
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <?php echo CHtml::submitButton('Guardar', ['class' => 'btn btn-primary']); ?>
-                                    </div>
                                     <?php echo CHtml::endForm(); ?>
                                 </div>
                             </div>
                         </fieldset>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Guardar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,10 +96,15 @@ $this->breadcrumbs = array(
     </div>
 </section>
 <!--Start Scripts-->
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/servicio/index.js', CClientScript::POS_END); ?>
+
 <!--End plugins-->
 <!-- start plugins-->
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/jquery-nestable/jquery.nestable.min.js', CClientScript::POS_END); ?>
+<?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/clockpicker/clockpicker.min.js', CClientScript::POS_END);
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js', CClientScript::POS_END);
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/registro/create.js', CClientScript::POS_END);
+?>
+
 
 <!--end plugins-->
 <script>

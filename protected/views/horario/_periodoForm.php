@@ -47,17 +47,20 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="form-group">
                 <?php echo CHtml::activeLabelEx($periodoModel,'tolerancia')?>
                 <?php echo CHtml::activeTextField($periodoModel,'tolerancia',['class'=>'form-control spinner-both']);?>
                 <?php echo CHtml::error($periodoModel,'tolerancia',['class'=>'label label-danger']);?>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-group">
                 <?php echo CHtml::activeLabelEx($periodoModel,'tipo_periodo')?>
-                <?php echo CHtml::activeTextField($periodoModel,'tipo_periodo',['class'=>'form-control']);?>
+                <select class="form-control" name="Periodo[tipo_periodo]">
+                    <option value="0">Medio Tiempo</option>
+                    <option value="1">Dia Completo</option>
+                </select>
                 <?php echo CHtml::error($periodoModel,'tipo_periodo',['class'=>'label label-danger']);?>
             </div>
         </div>

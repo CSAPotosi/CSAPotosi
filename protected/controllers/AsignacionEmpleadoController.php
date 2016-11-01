@@ -42,6 +42,7 @@ class AsignacionEmpleadoController extends Controller
         $modelAsignacionEmpleado = new AsignacionEmpleado();
         if (isset($_POST['AsignacionEmpleado'])) {
             $modelAsignacionEmpleado->attributes = $_POST['AsignacionEmpleado'];
+            $modelAsignacionEmpleado->vigente = true;
             if ($modelAsignacionEmpleado->save()) {
                 $this->redirect(array('index'));
             }
@@ -54,10 +55,13 @@ class AsignacionEmpleadoController extends Controller
         $modelAsignacionEmpleado = AsignacionEmpleado::model()->findByPk($id);
         if (isset($_POST['AsignacionEmpleado'])) {
             $modelAsignacionEmpleado->attributes = $_POST['AsignacionEmpleado'];
+            $modelAsignacionEmpleado->vigente = ($_POST['AsignacionEmpleado']['fecha_fin'] != null) ? false : true;
+            if ($modelAsignacionEmpleado->vigente == true)
+                $modelAsignacionEmpleado->fecha_fin = null;
             if ($modelAsignacionEmpleado->save()) {
                 $this->redirect(array('index'));
             }
         }
-        $this->render('create', array('modelAsignacionEmpleado' => $modelAsignacionEmpleado));
+        $this->render('update', array('modelAsignacionEmpleado' => $modelAsignacionEmpleado));
     }
 }

@@ -3,6 +3,7 @@ $(document).ready(function () {
         var nombre = $(this).attr("data-nombre");
         var id = $(this).attr("data-id");
         $("#AsignacionEmpleadoNombre").val(nombre);
-        $("#AsignacionEmpleadoId").va(id);
+        $("#AsignacionEmpleadoId").val(id);
     });
+
 });

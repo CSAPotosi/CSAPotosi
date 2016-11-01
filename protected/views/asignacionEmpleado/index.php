@@ -1,8 +1,8 @@
 <?php
-/* @var $this PacienteController */
-$this->pageTitle = "Asignacion de Empleado <span> > Lista de Asignaciones de Cargo </span>";
+/* $this ServicioController */
+$this->pageTitle = "Asignacion <span> > Asignacionn Empleado</span>";
 $this->breadcrumbs = array(
-    'AsignacionEmpleado',
+    'Asignacion Empleado',
 );
 ?>
 <section id="widget-grid">
@@ -10,47 +10,46 @@ $this->breadcrumbs = array(
         <article class="col-md-12">
             <div class="jarviswidget" id="widget1">
                 <header></header>
-                <div>
-                    <div class="widget-body">
+                <div class="widget-body">
+                    <fieldset>
+                        <legend>Lista de Asignaciones a Empleados</legend>
                         <div class="row">
-                            <article class="col-md-6">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
-                                        <thead>
-                                        <caption class="text-align-center"><h5><b>Lista de Asignaciones de Cargo</b>
-                                            </h5></caption>
+                            <div class="col-md-8 col-lg-offset-2">
+                                <table class="table table-responsive table-bordered">
+                                    <tr>
+                                        <th>Fecha Inicio</th>
+                                        <th>Fecha Fin</th>
+                                        <th>Empleado</th>
+                                        <th>Cargo Asignado</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                    <?php foreach ($listAsignacion as $item): ?>
                                         <tr>
-                                            <th>Fecha Inicio</th>
-                                            <th>Fecha Fin</th>
-                                            <th>Empleado</th>
-                                            <th>Cargo Asignado</th>
-                                            <th>Estado</th>
+                                            <td><?php echo $item->fecha_inicio ?></td>
+                                            <td><?php echo ($item->fecha_fin == "") ? 'ACTIVO' : $item->fecha_fin ?></td>
+                                            <td><?php echo $item->empleado->empleadoPersona->getNombreCompleto(); ?></td>
+                                            <td><?php echo $item->cargo->nombre_cargo ?></td>
+                                            <td class="text-align-right"><?php echo CHtml::link('Editar', array('asignacionEmpleado/update', 'id' => $item->id_asignacion), array('class' => 'btn btn-info')); ?></td>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php foreach ($listAsignacion as $item): ?>
-                                            <tr>
-                                                <td><?php echo $item->fecha_inicio ?></td>
-                                                <td><?php echo $item->fecha_fin ?></td>
-                                                <td></td>
-                                                <td><?php echo $item->id_cargo ?></td>
-                                                <td class="text-align-right"><?php echo CHtml::link('Editar', array('asignacionEmpleado/update', 'id' => $item->id_asignacion), array('class' => 'btn btn-info')); ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td colspan="5"
-                                                class="text-align-right"><?php echo CHtml::link('Adicionar Asignacion', array('asignacionEmpleado/create'), array('class' => 'btn btn-info')); ?></td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </article>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
                         </div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <?php echo CHtml::link('Adicionar Asignacion', array('asignacionEmpleado/create'), array('class' => 'btn btn-info')); ?>
                     </div>
                 </div>
+
             </div>
         </article>
     </div>
 </section>
+<!--Start Scripts-->
+
+<!--End plugins-->
+<!-- start plugins-->
+
+
+<!--end plugins-->
+

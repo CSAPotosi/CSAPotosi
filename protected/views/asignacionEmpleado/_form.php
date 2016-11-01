@@ -2,11 +2,13 @@
 <label>Nombre Del Empleado</label>
 <div class="form-group">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <input type="text" class="form-control" id="AsignacionEmpleadoNombre" disabled>
-            <input type="hidden" name="AsignacionEmpleado[id_empleado]" id="AsignacionEmpleadoId">
+            <input type="hidden" name="AsignacionEmpleado[id_empleado]" id="AsignacionEmpleadoId" value="">
+            <?php echo CHtml::error($modelAsignacionEmpleado, 'id_empleado', array('class' => 'label label-danger')); ?>
+
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEmpleado"
                    value="Empleado">
         </div>
@@ -21,7 +23,7 @@
         </div>
         <div class="col-md-6">
             <?php echo CHtml::activelabelEx($modelAsignacionEmpleado, 'Fecha Fin'); ?>
-            <?php echo CHtml::activedateField($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'form-control', 'placeholder' => 'Nombre de la Unidad')); ?>
+            <?php echo CHtml::activedateField($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'form-control', 'placeholder' => 'Nombre de la Unidad', 'disabled' => 'disabled')); ?>
             <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'label label-danger')); ?>
         </div>
     </div>
@@ -34,9 +36,7 @@
             <?php echo CHtml::error($modelAsignacionEmpleado, 'id_cargo', array('class' => 'label label-danger')); ?>
         </div>
         <div class="col-md-6">
-            <br>
-            Vigencia<input type="radio" name="vigencia" value="1">
-            No Vigente<input type="radio" name="vigencia" value="0">
+
         </div>
     </div>
 </div>
@@ -58,7 +58,7 @@
             <div class="modal-body">
                 <div class="widget-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-responsive table-bordered">
                             <thead>
                             <tr>
                                 <th>Nombre del Empleado</th>
@@ -99,4 +99,5 @@
 <!--start script
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/asignacionEmpleado/_form.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/select2/select2.min.js', CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/iCheck/icheck.js', CClientScript::POS_END); ?>
 end script-->

@@ -192,6 +192,3 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
 <!-- start plugins-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/iCheck/icheck.js', CClientScript::POS_END); ?>
 <!--end plugins-->
-<script>
-
-</script>

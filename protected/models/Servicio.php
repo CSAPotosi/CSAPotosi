@@ -121,7 +121,9 @@ class Servicio extends CActiveRecord
 	}
 
     public function beforeSave(){
+		$this->fecha_edicion = date('d-m-Y H:i:s');
         if($this->isNewRecord){
+			$this->fecha_creacion = date('d-m-Y H:i:s');
             $this->cod_serv = $this->getCode();
         }
         return parent::beforeSave();

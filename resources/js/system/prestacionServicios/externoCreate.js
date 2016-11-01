@@ -34,7 +34,7 @@ $(document).ready(function () {
         $("#" + valor + "").children().children().children("[name='ocultar']").removeClass("hide");
         $("#" + valor + "").children().children().prop("class", "val2");
         $("#" + valor + "").parent().addClass("hide");
-        $("#contenedorDetallePrestacion").append($("#" + valor + "").children());
+        $("#contenedorDetallePrestacion").append($("#" + valor + "").children().children());
         calcular($(".val2"));
     });
     $(".checkeded").on("ifUnchecked", function () {
