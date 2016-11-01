@@ -12,7 +12,8 @@
                             <thead>
                             <tr>
                                 <th width="20%" style="text-align: center">NOMBRE</th>
-                                <th width="40%" style="text-align: center">DESCRIPCION</th>
+                                <th width="30%" style="text-align: center">DESCRIPCION</th>
+                                <th width="10%" style="text-align: center">TIPO</th>
                                 <th width="10%" style="text-align: center">COSTO</th>
                                 <th width="10" style="text-align: center">ACTIVO</th>
                                 <th width="20%"></th>
@@ -22,7 +23,15 @@
                                 <?php foreach ($tSalaList as $tSalaItem):?>
                                 <tr>
                                     <td><?php echo $tSalaItem->servicio->nombre_serv;?></td>
-                                    <td></td>
+                                    <td><?php echo $tSalaItem->descripcion_t_sala;?></td>
+                                    <td>
+                                        <?php
+                                            if($tSalaItem->servicio->tipo_cobro == 2)
+                                                echo '<span class="label label-info">INTERNACION</span>';
+                                            else
+                                                echo '<span class="label label-info">QUIROFANO</span>';
+                                        ?>
+                                    </td>
                                     <td style="text-align: right"><?php echo $tSalaItem->servicio->precio->monto;?></td>
                                     <td style="text-align: center">
                                         <?php

@@ -2,11 +2,6 @@
 
 class MedicamentoController extends Controller
 {
-	public $menu=[
-		['title'=>'LISTA', 'icon'=>'fa-list', 'url'=>['medicamento/index']],
-		['title'=>'ACTUALiZAR', 'icon'=>'fa-edit', 'url'=>['medicamento/update']]
-	];
-
 	public function actionIndex()
 	{
 		$this->render('index');
@@ -16,6 +11,18 @@ class MedicamentoController extends Controller
 		$uploadModel = new FileUploadForm('uploadMed');
 		$this->render('update',['uploadModel'=>$uploadModel]);
 	}
+
+    public function actionGetItemsAjax($selectable = false){
+        $param = '';
+        if(isset($_POST['param']))
+            $param = $_POST['param'];
+        $mediList = Medicamento::model()->findAll([
+            'condition' => 'nombre_med like :data OR codigo like :data',
+            'params'=>[':data' => "%{$param}%"],
+            'limit'=>10
+        ]);
+        $this->renderPartial('_tableMedicamento',['mediList' => $mediList,'selectable'=>$selectable]);
+    }
 
 	public function actionDownload(){
 		Yii::import('ext.phpexcel.XPHPExcel');

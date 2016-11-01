@@ -12,11 +12,11 @@
                         </li>
                         <li>
                             <a data-toggle="tab" href="#s2"><i class="fa fa-stethoscope"></i> <span
-                                    class="hidden-mobile hidden-tablet">Tratamientos</span></a>
+                                    class="hidden-mobile hidden-tablet">Evolucion</span></a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#s3"><span
-                                    class="hidden-mobile hidden-tablet">Evolucion</span></a>
+                                    class="hidden-mobile hidden-tablet">Tratamientos</span></a>
                         </li>
                     </ul>
                 </header>
@@ -25,15 +25,15 @@
                     <div class="widget-body no-padding">
                         <div id="historial-tab-content" class="tab-content padding-10">
                             <div class="tab-pane active" id="s1">
-                                <?php $this->renderPartial('_detailDiagnostico');?>
+                                <?php $this->renderPartial('_detailDiagnostico',['dModel' => $dModel]);?>
                             </div>
-
+        
                             <div class="tab-pane" id="s2">
-                                hola
+                                <?php $this->renderPartial('/evolucion/_tableEvolucion',['evoList'=>$dModel->evoluciones]);?>
                             </div>
 
                             <div class="tab-pane" id="s3">
-                                hola
+                                <?php $this->renderPartial('/tratamiento/_tableTratamiento',['tList'=>$dModel->tratamientos]);?>
                             </div>
                         </div>
                     </div>

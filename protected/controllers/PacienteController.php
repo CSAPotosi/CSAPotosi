@@ -20,7 +20,7 @@ class PacienteController extends Controller
 				'actions' => array('index', 'GetPatientListAjax'),
 				'roles' => array('indexPaciente'),
 			),
-			array('deny',  // deny all users
+			array('allow',
 				'users' => array('*'),
 			),
 		);
@@ -41,19 +41,21 @@ class PacienteController extends Controller
 		$this->renderPartial('_patientListView',['pacienteList'=>$pacienteList]);
 	}
 
+    public function actionGetMinimalListAjax(){
+        $this->renderPartial('_minimalPatientListView');
+    }
+
 	public function actionCreate()
 	{
         $this->menu = OptionsMenu::menuPaciente([],['pacientes','create']);
         
 		$modelPerson = new PersonaForm();
-		$historial = new HistorialMedico();
 		if (isset($_POST['PersonaForm'])) {
 			$modelPerson->attributes = $_POST['PersonaForm'];
 			//$modelPerson->scenario='paciente';
 			$id_paciente = $modelPerson->savePaciente();
 			if ($id_paciente != 0)
-				
-				$this->redirect(["historialMedico/index", 'id_persona' => $id_paciente]);
+				$this->redirect(["historialMedico/index", 'id_paciente' => $id_paciente]);
 		}
 		$this->render('create', array('modelPerson' => $modelPerson));
 	}

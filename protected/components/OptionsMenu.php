@@ -77,7 +77,10 @@ class OptionsMenu{
                 'label'=>'Internacion',
                 'items'=>[
                     'index'=>['url'=>['internacion/index','i_id'=>$i_id], 'label'=>'Indice'],
+                    'listServicio'=>['url'=>['prestacionServicios/indexForInter','i_id'=>$i_id],'label'=>'Servicios prestados'],
+                    'addServicio'=>['url'=>['prestacionServicios/createForInter','i_id'=>$i_id], 'label'=>'Agregar servicios'],
                     'alta'=>['url'=>['internacion/alta','i_id'=>$i_id],'label'=>'Alta'],
+                    'notasEnfermeria'=>['url'=>['notaEnfermeria/index','i_id'=>$i_id],'label'=>'Notas de enfermeria'],
                     'changeSala'=>['url'=>['internacion/changeSala','i_id'=>$i_id], 'label'=>'Cambiar salas'],
                 ]
             ]
@@ -85,25 +88,50 @@ class OptionsMenu{
         return self::selectMenu($menu,$selected);
     }
 
+    public static function menuCirugia($params = [], $selected = ['','']){
+        $menu =[
+            'cirugias' => [
+                'label' => 'Cirugias',
+                'items' =>[
+                    'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
+                    'programar' => ['url'=>['cirugia/programar'],'label'=>'Programar'],
+                    'registrar' => ['url'=>['cirugia/registrar'],'label'=>'Registrar']
+                ]
+            ],
+            'itemCirugia' => [
+                'label' => '',
+                'items' =>[
+                    'index'=>['url'=>[],'label'=>'Detalle'],
+                    'reprogramar'=>['url'=>[],'label'=>'Reprogramar'],
+                    'cancelar'=>['url'=>[],'label'=>'Cancelar'],
+                    'registrar/editar'=>['url'=>[],'label'=>'registrar/editar'],
+                ]
+            ]
+        ];
+        return self::selectMenu($menu,$selected);
+    }
+
     public static function menuDiagnostico($params = [], $selected = ['','']){
+        $dModel = Diagnostico::model()->findByPk($params['d_id']);
         $menu = [
             'historial'=>[
                 'label'=>'Historial',
                 'items'=>[
-                    'indexHistorial'=>['url'=>[],'label'=>'Indice'],
-                    'newHistorial'=>['url'=>[],'label'=>'Nuevo'],
+                    'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$dModel->id_historial],'label'=>'Indice'],
+                    'newDiagnostico'=>['url'=>['diagnostico/create','h_id'=>$dModel->id_historial],'label'=>'Nuevo Diagnostico'],
                 ]
             ],
-            'Diagnostico'=>[
+            'diagnostico'=>[
                 'label'=>'diagnostico',
                 'items'=>[
-                    'indexDiagnostico'=>['url'=>[],'label'=>'Detalle'],
-                    'addTratamiento'=>['url'=>[],'label'=>'Agregar Tratamiento'],
-                    'addEvolucion'=>['url'=>[],'label'=>'Agregar Evolucion']
+                    'view'=>['url'=>['diagnostico/view','d_id'=>$dModel->id_diag],'label'=>'Detalle'],
+                    'addEvolucion'=>['url'=>['evolucion/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Evolucion'],
+                    'indexTratamiento'=>['url'=>['tratamiento/index','d_id'=>$dModel->id_diag],'label'=>'Tratamientos realizados'],
+                    'addTratamiento'=>['url'=>['tratamiento/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Tratamiento']
                 ]
             ]
         ];
-        return $menu;
+        return self::selectMenu($menu,$selected);
     }
 
     private static function selectMenu($menu = [], $selected = ['','']){

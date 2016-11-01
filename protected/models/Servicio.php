@@ -14,7 +14,7 @@
  * @property integer $id_entidad
  *
  * The followings are the available model relations:
- * @property Entidad $idEntidad
+ * @property Entidad $entidad
  * @property Precio[] $precios
  * @property ServExamen $servExamen
  * @property ServClinico $servClinico

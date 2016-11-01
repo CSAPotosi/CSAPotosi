@@ -26,7 +26,7 @@ class InternacionController extends Controller{
                 $tempPaciente = $internacionModel->historial->paciente;
                 $tempPaciente->estado_paciente = 2;//internado
                 $tempPaciente->save();
-                $this->addSala($internacionModel->id_inter);
+                $this->addSala($internacionModel->id_inter,$internacionModel->fecha_ingreso);
                 $this->redirect(['index','i_id'=>$internacionModel->id_inter]);
             }
 		}
@@ -59,7 +59,11 @@ class InternacionController extends Controller{
     public function actionChangeSala(){
         $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','changeSala']);
         if(isset($_POST['InternacionSala'])){
-            $this->addSala($this->_internacion->id_inter);
+            $temp = new InternacionSala();
+            $temp->attributes = $_POST['InternacionSala'];
+            $temp->id_inter = $this->_internacion->id_inter;
+            if($temp->validate())
+                $this->addSala($this->_internacion->id_inter,$temp->fecha_entrada);
         }
         $this->render('changeSala',['internacionModel'=>$this->_internacion]);
     }
@@ -85,21 +89,21 @@ class InternacionController extends Controller{
 	}
 	*/
 
-    private function addSala($inter_id = 0){
+    private function addSala($inter_id = 0,$fecha = null){
         $interModel = Internacion::model()->findByPk($inter_id);
-        if($interModel != null && isset($_POST['InternacionSala'])){
+        if($fecha != null&& $interModel != null && isset($_POST['InternacionSala'])){
             $salaActual = $interModel->salaActual;
             if($salaActual!=null){
                 $salaActual->sala->estado_sala = 3;
                 $salaActual->sala->save();
-
-                $salaActual->fecha_salida =date('d/m/Y H:i:s');
+                $salaActual->fecha_salida = $fecha;
                 $salaActual->save();
             }
             $interSalaModel = new InternacionSala();
             $interSalaModel->attributes = $_POST['InternacionSala'];
             if($interSalaModel->id_sala!=0){
                 $interSalaModel->id_inter = $interModel->id_inter;
+                $interSalaModel->fecha_entrada = $fecha;
                 if($interSalaModel->save()){
                     $interSalaModel->sala->estado_sala = 2;
                     $interSalaModel->sala->save();

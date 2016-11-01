@@ -35,7 +35,7 @@ class DetallePrestacion extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_prestacion, id_servicio, fecha_solicitud, cantidad, subtotal', 'required'),
+            array('id_prestacion, id_servicio, cantidad, subtotal', 'required'),
             array('id_prestacion, id_servicio', 'numerical', 'integerOnly' => true),
             array('cantidad, subtotal', 'numerical'),
             array('pagado, realizado', 'safe'),
@@ -54,7 +54,7 @@ class DetallePrestacion extends CActiveRecord
         // class name for the relations automatically generated below.
         return array(
             'idPrestacion' => array(self::BELONGS_TO, 'PrestacionServicios', 'id_prestacion'),
-            'idServicio' => array(self::BELONGS_TO, 'Servicio', 'id_servicio'),
+            'servicio' => array(self::BELONGS_TO, 'Servicio', 'id_servicio'),
         );
     }
 
@@ -116,5 +116,12 @@ class DetallePrestacion extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function beforeSave(){
+        if($this->isNewRecord){
+            $this->fecha_solicitud = date('d/m/Y H:i');
+        }
+        return parent::beforeSave();
     }
 }

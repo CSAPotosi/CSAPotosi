@@ -7,7 +7,7 @@
 ?>
 <div class="row">
 <?php if($type == 0):?>
-    <div class="col-md-3">
+    <div class="col-md-3" id="ninguno">
         <a href="#" class="info-tiles tiles-facebook has-footer item-sala">
             <div class="tiles-heading text-align-center">
                 Ninguno

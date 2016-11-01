@@ -214,8 +214,8 @@
 					</li>
 				</ul>
 			</li>
-			<li class="active">
-				<a href="#"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Outlook</span> <span class="badge pull-right inbox-badge margin-right-13">14</span></a>
+			<li>
+				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="fa fa-lg fa-fw fa-heartbeat"></i> <span class="menu-item-parent">Cirugias</span></a>
 			</li>
 		</ul>
 	</nav>

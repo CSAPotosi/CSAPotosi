@@ -31,23 +31,23 @@
  * */
 //hecho-pacf: mostrar diagnostico realizadas
 //hecho-pacf: agregar diagnosticos
-//todo-pacf: mostrar detalle de diagnostico
-//todo-pacf: una vez hecho el diagnostic, agregar tratamiento
-//todo-pacf: tratamiento consta de indicaciones
-//todo-pacf: elegir medicamentos, y agregar posologia
+//hecho-pacf: mostrar detalle de diagnostico
+//hecho-pacf: una vez hecho el diagnostic, agregar tratamiento
+//hecho-pacf: tratamiento consta de indicaciones
+//hecho-pacf: elegir medicamentos, y agregar posologia
 
 /*
  * Control de serivicos medicos durante la internacion
  * */
-//todo-pacf: mostrar lista de servicios disponibles
-//todo-pacf: agregar servicios
-//todo-pacf: mostrar lista de servicios otorgados
+//hecho-pacf: mostrar lista de servicios disponibles
+//hecho-pacf: agregar servicios
+//hecho-pacf: mostrar lista de servicios otorgados
 
 /*
  * Registro de hojas de enfermeria
  * */
-//todo-pacf: lista de datos de evolucion medica (mostrar tambien el usuario
-//todo-pacf: agregar nuevo registro de evolucion
+//hecho-pacf: lista de datos de evolucion medica (mostrar tambien el usuario
+//heoho-pacf: agregar nuevo registro de evolucion
 
 /*
  * Manejo de resultados de examenes de laboratorio
@@ -61,7 +61,7 @@
 /*
  * Registro y control de salas de cirugia
  * */
-//todo-pacf: agregar salas de cirugia
+//hecho-pacf: agregar salas de cirugia
 
 /*
  * Registro de cirugias, personal involucrado, tipo e instrumental adicional usado

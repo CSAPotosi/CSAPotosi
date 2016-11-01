@@ -26,7 +26,7 @@ function selectSala(){
     var $selectedSala = $("#selected-sala");
     $selectedSala.find(".inner h3").html(code);
     $selectedSala.find(".inner p").html(sType);
-    $selectedSala.find("#form-inter-sala").html($input);
+    $("#item-sala").html($input);
     $(".btn-change-sala").removeAttr("disabled").removeClass("disabled");
     $("#modal-sala").modal('hide');
 }

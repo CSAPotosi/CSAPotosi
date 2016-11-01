@@ -27,7 +27,7 @@ class DiagnosticoController extends Controller
     }
 
     public function actionView(){
-        $this->menu = OptionsMenu::menuDiagnostico([],['','']);
+        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','view']);
         $this->render('view',['dModel'=>$this->_diagnostico]);
     }
 
