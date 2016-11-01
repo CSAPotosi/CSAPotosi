@@ -48,6 +48,12 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <?php echo CHtml::label('TIPO DE SALA',null);?>
+                                        <?php echo CHtml::activeDropDownList($tSala,'tipo_cobro',['2'=>'INTERNACION','1'=>'QUIROFANO'],['class'=>'form-control'] )?>
+                                        <?php echo CHtml::error($tSala, 'tipo_cobro',['class'=>'label label-danger']);?>
+                                    </div>
+
+                                    <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($tSala,'descripcion_t_sala');?>
                                         <?php echo CHtml::activeTextArea($tSala, 'descripcion_t_sala',['class'=>'form-control']);?>
                                         <?php echo CHtml::error($tSala, 'descripcion_t_sala',['class'=>'label label-danger']);?>

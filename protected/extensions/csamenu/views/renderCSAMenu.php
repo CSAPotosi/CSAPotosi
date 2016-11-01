@@ -1,3 +1,4 @@
+<?php if($this->menu):?>
 <div class="panel-group options-menu">
     <?php foreach ($this->menu as $menuItem):?>
         <div class="panel panel-default">
@@ -20,3 +21,4 @@
         </div>
     <?php endforeach;?>
 </div>
+<?php endif;?>

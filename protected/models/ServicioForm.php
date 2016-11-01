@@ -124,7 +124,6 @@ class ServicioForm extends CFormModel
         $this->loadServicioPrecio($id);
         if($this->modelServicio->isNewRecord){
             $this->modelServicio->cod_serv = 'S00';
-            $this->modelServicio->tipo_cobro = 2;//por dia
         }
         if($this->validar([$this->modelServicio,$this->modelPrecio,$this->modelServTSala])){
             $this->saveServicio();

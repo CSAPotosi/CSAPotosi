@@ -54,6 +54,8 @@ class Diagnostico extends CActiveRecord
 		return array(
 			'historial' => array(self::BELONGS_TO, 'HistorialMedico', 'id_historial'),
 			'itemCies' => array(self::MANY_MANY, 'ItemCie', 'diagnostico_cie(id_diag, codigo)'),
+            'evoluciones' => array(self::HAS_MANY,'Evolucion','id_diag'),
+            'tratamientos'=>array(self::HAS_MANY,'Tratamiento','id_diag')
 		);
 	}
 
@@ -87,7 +89,7 @@ class Diagnostico extends CActiveRecord
 
     protected function beforeSave(){
         if ($this->isNewRecord)
-            $this->fecha_diag = date("Y-m-d");
+            $this->fecha_diag = date("d/m/Y H:i");
         return parent::beforeSave();
     }
 }

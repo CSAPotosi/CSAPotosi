@@ -33,10 +33,7 @@ class InternacionSala extends CActiveRecord
 		return array(
 			array('id_inter, id_sala', 'required'),
 			array('id_inter, id_sala', 'numerical', 'integerOnly'=>true),
-			array('fecha_salida', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id_inter, id_sala, fecha_entrada, fecha_salida', 'safe', 'on'=>'search'),
+			array('fecha_entrada,fecha_salida', 'safe'),
 		);
 	}
 
@@ -77,10 +74,4 @@ class InternacionSala extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function beforeSave(){
-		if($this->isNewRecord){
-			$this->fecha_entrada = date('d-m-Y H:i:s');
-		}
-		return parent::beforeSave();
-	}
 }

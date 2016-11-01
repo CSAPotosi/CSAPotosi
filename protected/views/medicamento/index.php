@@ -5,7 +5,9 @@ $this->breadcrumbs=array(
 	'Medicamento',
 );
 
-$mediList = Medicamento::model()->findAll();
+$mediList = Medicamento::model()->findAll([
+    'condition'=>'estado_med > 0'
+]);
 
 ?>
 
@@ -23,32 +25,7 @@ $mediList = Medicamento::model()->findAll();
 				<header></header>
 				<div>
 					<div class="widget-body">
-						<?php if(count($mediList)>0):?>
-						<table class="table table-hovered table-bordered">
-							<thead>
-								<tr>
-									<th width="5%">Codigo</th>
-									<th width="55%%">Medicamento</th>
-									<th width="15%">Forma farmaceutica</th>
-									<th width="15%">Concentracion</th>
-									<th width="5%">Clasificacion A.T.Q.</th>
-									<th width="5%%">Uso restringido</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ($mediList as $medi):?>
-									<tr>
-										<td><?php echo $medi->codigo; ?></td>
-										<td><?php echo $medi->nombre_med;?></td>
-										<td><?php echo $medi->forma_farm;?></td>
-										<td><?php echo $medi->concentracion;?></td>
-										<td><?php echo $medi->ATQ;?></td>
-										<td><?php echo ($medi->restringido)?'R':''; ?></td>
-									</tr>
-								<?php endforeach;?>
-							</tbody>
-						</table>
-						<?php endif;?>
+						<?php $this->renderPartial('_tableMedicamento',['mediList'=>$mediList,'selectable'=>false]);?>
 					</div>
 				</div>
 			</div>

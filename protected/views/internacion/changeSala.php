@@ -33,14 +33,21 @@
                                         <a href="#" id="sala" class="small-box-footer" data-toggle="modal" data-target="#modal-sala">
                                             Elegir sala
                                         </a>
-                                        <?php echo CHtml::beginForm(null,'post',['id'=>'form-inter-sala']);?>
-                                            <?php echo CHtml::activeHiddenField($isModel,'id_sala');?>
-                                        <?php echo CHtml::endForm();?>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-block disabled btn-change-sala" disabled>
-                                        <i class="fa fa-exchange"></i>
-                                        Cambiar Sala
-                                    </button>
+                                    <?php echo CHtml::beginForm(null,'post',['id'=>'form-inter-sala']);?>
+                                    <div class="form-group">
+                                        <?php echo CHtml::activeTextField($isModel, 'fecha_entrada',['class'=>'form-control', 'value'=>date('d/m/Y H:i')]);?>
+                                    </div>
+                                    <div class="form-group" id="item-sala">
+                                        <?php echo CHtml::activeHiddenField($isModel,'id_sala');?>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary btn-block disabled btn-change-sala" disabled>
+                                            <i class="fa fa-exchange"></i>
+                                            Cambiar Sala
+                                        </button>
+                                    </div>
+                                    <?php echo CHtml::endForm();?>
                                 </div>
                                 <div class="col-md-10">
                                     <?php $this->renderPartial('_salaTable',['salas'=>$internacionModel->salas]);?>

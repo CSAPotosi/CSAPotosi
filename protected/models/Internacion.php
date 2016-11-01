@@ -55,9 +55,17 @@ class Internacion extends CActiveRecord
 		return array(
 			'historial' => [self::BELONGS_TO, 'HistorialMedico', 'id_historial'],
             'salaActual'=>[self::HAS_ONE,'InternacionSala','id_inter','condition'=> 'fecha_salida is null'],
-            'salas'=>[self::HAS_MANY,'InternacionSala','id_inter','order'=>'fecha_entrada DESC']
+            'salas'=>[self::HAS_MANY,'InternacionSala','id_inter','order'=>'fecha_entrada DESC'],
+            'notasEnfermeria' => [self::HAS_MANY,'NotaEnfermeria','id_inter','order'=>'fecha_n_enf DESC']
 		);
 	}
+
+    public function getPrestaciones(){
+        return PrestacionServicio::model()->find([
+            'condition' => 'id_historial = :id_historial AND tipo =1 AND fecha_solicitud = :fecha',
+            'params'=>[':id_historial'=>$this->id_historial,':fecha'=>$this->fecha_ingreso]
+        ]);
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -90,6 +98,17 @@ class Internacion extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function afterSave(){
+        if($this->isNewRecord && $this->scenario == 'ingreso'){
+            $psModel = new PrestacionServicio();
+            $psModel->id_historial = $this->id_historial;
+            $psModel->tipo = 1;
+            $psModel->fecha_solicitud = $this->fecha_ingreso;
+            $psModel->save();
+        }
+        return parent::afterSave();
+    }
 
 	public static function getMotivo(){
 		return [
