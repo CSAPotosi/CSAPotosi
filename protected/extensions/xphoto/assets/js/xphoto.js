@@ -115,7 +115,7 @@ var XPhoto = XPhotoClass({
         if (navigator.getUserMedia) { // Standard
             navigator.getUserMedia(videoObj, function (stream) {
                 video = obj.getVideo();
-                video.src = stream;
+                video.src = window.URL.createObjectURL(stream);
                 video.play();
             }, this.error);
         } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed

@@ -49,7 +49,6 @@ $this->breadcrumbs = array(
                                                         'attribute' => 'foto',
                                                         'width' => '270',
                                                         'height' => '315',
-                                                        'photoUrl' => null,
                                                     )); ?>
                                                 </div>
                                             </div>
