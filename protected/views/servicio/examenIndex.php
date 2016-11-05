@@ -55,6 +55,7 @@ $this->breadcrumbs = array(
                                                     data-categoria="<?php echo $item->categoria->nombre_cat_ex ?>">
                                                     <td><?php echo $item->datosServicio->cod_serv ?></td>
                                                     <td><?php echo $item->datosServicio->nombre_serv ?></td>
+                                                    
                                                     <td><?php echo $item->datosServicio->precio->monto ?></td>
                                                     <td><?php echo $item->categoria->nombre_cat_ex ?></td>
                                                     <td>

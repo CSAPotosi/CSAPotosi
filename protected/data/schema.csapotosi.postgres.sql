@@ -208,6 +208,7 @@ CREATE TABLE IF NOT EXISTS medicamento(
 CREATE TABLE IF NOT EXISTS entidad(
   id_entidad SERIAL NOT NULL PRIMARY KEY,
   razon_social VARCHAR(128) NOT NULL,
+  nit VARCHAR(15),
   direccion VARCHAR(64),
   telefono VARCHAR(16),
   tipo_entidad SMALLINT NOT NULL,-- consumidor,  proveedor,
@@ -391,4 +392,30 @@ create table if not exists consulta_cie10(
   foreign key (id_diag) references consulta(id_diag),
   foreign key (codigo) references item_cie(codigo),
   primary key (id_diag,codigo)
+);
+
+
+/************************************************/
+
+create table if not exists ciclo_contable(
+  id_ciclo serial not null primary key,
+  fecha_inicio date not null,
+  fecha_fin date not null,
+  descripcion varchar(200),
+  niveles_cuenta int,
+  digitos varchar(16),
+  estado char(1)    /* terminado, en proceso,               */
+);
+
+create table if not exists cuenta(
+  id_cuenta serial primary key not null,
+  codigo varchar(16) not null,
+  nombre varchar(128) not null,
+  descripcion varchar(512),
+  /* nivel, tipo */
+  estado boolean not null,
+  cuenta_superior int not null,
+  id_ciclo int not null,
+  foreign key (cuenta_superior) references cuenta(id_cuenta),
+  foreign key (id_ciclo) references ciclo_contable(id_ciclo)
 );
