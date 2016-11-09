@@ -7,7 +7,7 @@
 					<?php if($itemPaciente->estado_paciente==2):?>
 					<label for="" class="label label-danger pull-right">Internado</label>
 					<?php endif; ?>
-					<img src="https://s3.amazonaws.com/wll-community-production/images/no-avatar.png" class="online" alt="">
+					<img src="images/<?php echo $itemPaciente->id_paciente ?>/photo.png" class="online" alt="">
 					<span class="name">
 						<b>CSA-<?php echo $itemPaciente->codigo_paciente;?></b>
 					</span>
@@ -19,10 +19,9 @@
 					</span>
 				</div>
 				<ul class="links padding-5">
-					<li><a href="#" class="btn btn-danger btn-xs">Ver historia</a></li>
-					<li><?php echo CHtml::link('Prestacion Servicios', array('HistorialMedico/externoCreate', 'id' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-danger btn-xs')); ?></li>
-                    <li><?php echo CHtml::link('Programar cirugia', array('Cirugia/programar', 'h_id' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-primary btn-xs'))?></li>
-                    <li><?php echo CHtml::link('Registrar cirugia', array('Cirugia/registrar', 'h_id' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-primary btn-xs'))?></li>
+					<li><?php echo CHtml::link('Ver Historial', array('historialMedico/index', 'id_paciente' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-danger btn-xs')); ?></li>
+					<li><?php echo CHtml::link('Detalle', array('Paciente/DetallePaciente', 'id' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-danger btn-xs')); ?></li>
+
 				</ul>
 			</div>
 		</div>

@@ -15,5 +15,9 @@ $(document).ready(function () {
             }
         }
     });
+    $("input[type='checkbox'],input[type='radio']").iCheck({
+        checkboxClass: "icheckbox_minimal-red",
+        radioClass: "iradio_minimal-blue"
+    });
 });
 

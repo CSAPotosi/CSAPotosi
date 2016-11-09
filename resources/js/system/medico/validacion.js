@@ -9,11 +9,8 @@ $(document).ready(function () {
     $("#primer_apellido").keyup(function () {
         $("#PersonaForm_primer_apellido").val(($(this).val()));
     });
-    $("#fecha_nac").keyup(function () {
+    $("#fecha_nac").change(function () {
         $("#PersonaForm_fecha_nac").val($(this).val())
-    });
-    $("#fecha_contratacion").keyup(function () {
-        $("#PersonaForm_fecha_contratacion").val($(this).val())
     });
     var $validator = $("#wizard-1").validate({
         rules: {

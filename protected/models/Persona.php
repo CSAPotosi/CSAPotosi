@@ -46,7 +46,7 @@ class Persona extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombres, primer_apellido', 'required'),
+			array('nombres, primer_apellido,fecha_nac', 'required'),
 			array('tipo_doc', 'numerical', 'integerOnly'=>true),
 			array('num_doc, primer_apellido, segundo_apellido, estado_civil, ocupacion, telefono', 'length', 'max'=>32),
 			array('nombres, email', 'length', 'max'=>128),
@@ -71,7 +71,7 @@ class Persona extends CActiveRecord
 			'empleado' => array(self::HAS_ONE, 'Empleado', 'id_empleado'),
 			'paciente' => array(self::HAS_ONE, 'Paciente', 'id_paciente'),
 			'medico' => array(self::HAS_ONE, 'Medico', 'id_medico'),
-			'nacionalidad' => array(self::BELONGS_TO, 'Pais', 'nacionalidad'),
+			'nacionalidad1' => array(self::BELONGS_TO, 'Pais', 'nacionalidad'),
 			'usuarios' => array(self::HAS_MANY, 'Usuario', 'id_persona'),
 		);
 	}
@@ -156,8 +156,10 @@ class Persona extends CActiveRecord
 	{
 		return array(
 			'0' => 'Seleccione',
-			'1' => 'Pasaporte',
-			'2' => 'Documento Personal',
+			'1' => 'CARNET DE IDENTIDAD',
+			'2' => 'LIBRETA O DNI',
+			'3' => 'PASAPORTE',
+			'4' => 'PART. NACIMIENTO-IDENTIDAD'
 		);
 	}
 
@@ -174,9 +176,10 @@ class Persona extends CActiveRecord
 	{
 		return array(
 			'0' => 'SELECCIONE',
-			'1' => 'SOLTERO',
-			'2' => 'CASADO',
-			'3' => 'DIVORCIO',
+			'1' => 'SOLTERO(A)',
+			'2' => 'CASADO(A)',
+			'3' => 'DIVORCIADO(A)',
+			'4' => 'VIUDO(A)',
 		);
 	}
 

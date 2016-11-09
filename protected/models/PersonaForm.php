@@ -2,6 +2,7 @@
 
 class PersonaForm extends CFormModel
 {
+    //persona
     public $num_doc;
     public $tipo_persona;
     public $tipo_doc;
@@ -18,13 +19,21 @@ class PersonaForm extends CFormModel
     public $telefono;
     public $email;
     public $foto;
+    //paciente
     public $codigo_paciente;
     public $grupo_sanguineo;
     public $fecha_deceso;
     public $responsable;
+    //empelado
     public $fecha_contratacion;
     public $cod_maquina;
+    //medico
     public $matricula;
+    //objetos
+    private $modelPersona;
+    private $modelPaciente;
+    private $modelEmpleado;
+    private $modelMedico;
 
     public function attributeLabels()
     {
@@ -49,7 +58,7 @@ class PersonaForm extends CFormModel
             'fecha_deceso' => 'fecha Deceso',
             'estado_paciente' => 'Estado Paciente',
             'responsable' => 'Responsable',
-            'feccha_contratacion' => 'Fecha Contratacion',
+            'fecha_contratacion' => 'Fecha Contratacion',
             'estado_emp' => 'Estado Empleado',
             'cod_maquina' => 'Codigo Maquina',
             'matricula' => 'Matricula',
@@ -60,11 +69,12 @@ class PersonaForm extends CFormModel
     public function rules()
     {
         return array(
-            array('nombres, primer_apellido', 'required'),
+            array('nombres, primer_apellido, fecha_nac,fecha_contratacion', 'required'),
             array('tipo_doc, estado_paciente, cod_maquina,tipo_persona', 'numerical', 'integerOnly' => true),
             array('num_doc, primer_apellido, segundo_apellido, estado_civil, ocupacion, telefono', 'length', 'max' => 32),
-            array('nombres, email', 'length', 'max' => 128),
+            array('nombres, email,responsable', 'length', 'max' => 128),
             array('codigo_paciente, matricula', 'length', 'max' => 16),
+            array('matricula', 'unique'),
             array('grupo_sanguineo', 'length', 'max' => 8),
             array('nacionalidad', 'length', 'max' => 4),
             array('localidad, domicilio', 'length', 'max' => 64),
@@ -76,12 +86,9 @@ class PersonaForm extends CFormModel
 
     public function savePersona()
     {
-        $Persona = new Persona();
-        $Persona->attributes = $this->getAttributes();
+        $this->modelPersona->save();
         $foto = "";
-        $Persona->foto = $foto;
-        if (!$Persona->save())
-            return 0;
+        $this->modelPersona->foto = $foto;
         $filename = "no-photo.png";
         if (!empty($this->foto)) {
             $foto = $this->foto;
@@ -90,76 +97,151 @@ class PersonaForm extends CFormModel
             $data_foto = base64_decode($foto);
             $filename = 'photo.png';
             $carpetaRaiz = YiiBase::getPathOfAlias("webroot") . '/images/';
-            $carpetaPersonal = YiiBase::getPathOfAlias("webroot") . '/images/' . $Persona->id_persona;
+            $carpetaPersonal = YiiBase::getPathOfAlias("webroot") . '/images/' . $this->modelPersona->id_persona;
             if (!file_exists($carpetaRaiz))
                 mkdir($carpetaRaiz, 0777, true);
             else if (!file_exists($carpetaPersonal))
                 mkdir($carpetaPersonal, 0777, true);
-            $filepath = YiiBase::getPathOfAlias("webroot") . '/images/' . $Persona->id_persona . '/' . $filename;
+            $filepath = YiiBase::getPathOfAlias("webroot") . '/images/' . $this->modelPersona->id_persona . '/' . $filename;
             $writeToDisk = file_put_contents($filepath, $data_foto);
         }
-        $Persona->foto = $filename;
-        if ($Persona->save()) {
+        $this->modelPersona->foto = $filename;
+        if ($this->modelPersona->save()) {
             $this->codigo_paciente = Yii::app()->patientTools->generateCode($this->primer_apellido, $this->segundo_apellido, $this->nombres, $this->fecha_nac);
-            return $Persona->id_persona;
+            return $this->modelPersona->id_persona;
         } else
             return 0;
     }
 
-    public function savePaciente()
+    public function loadPersona($id)
     {
-        $historial = new HistorialMedico();
-        $Paciente = new Paciente();
-        $id_persona = $this->savePersona();
-        if ($id_persona != 0) {
-            $Paciente->id_paciente = $id_persona;
-            $Paciente->attributes = $this->getAttributes();
-            if ($Paciente->save()) {
-                $historial->id_historial = $Paciente->id_paciente;
-                $historial->save();
-                return $Paciente->id_paciente;
+        if ($id == null) {
+            $this->modelPersona = new Persona();
+        } else {
+            $this->modelPersona = Persona::model()->findByPk($id);
+        }
+
+        $this->modelPersona->setAttributes($this->getAttributes(), false);
+        $this->modelPersona->foto = "";
+
+    }
+
+    public function savePaciente($id = null)
+    {
+        $id_persona = 0;
+        $this->modelPaciente = ($id == null) ? new Paciente() : Paciente::model()->findByPk($id);
+        $this->modelPaciente->setAttributes($this->getAttributes(), false);
+        $this->modelPaciente->id_paciente = 1;
+        $this->loadPersona($id);
+        if ($this->validar([$this->modelPersona, $this->modelPaciente])) {
+            $val = Persona::model()->findAll(['condition' => "num_doc='{$this->modelPersona->num_doc}'"]);
+            if ($val != array() && $id == null) {
+                if (!$val[0]->paciente) {
+                    $historial = new HistorialMedico();
+                    $this->modelPaciente->id_paciente = $val[0]->id_persona;
+                    $this->modelPaciente->estado_paciente = 1;
+                    $historial->id_historial = $val[0]->id_persona;
+                    $this->modelPaciente->save();
+                    $historial->save();
+                    $id_persona = $historial->id_historial;
+                }
+            } else {
+                $valor = $this->savePersona();
+                if ($id == null) {
+                    $historial = new HistorialMedico();
+                    $this->modelPaciente->id_paciente = $valor;
+                    $this->modelPaciente->estado_paciente = 1;
+                    $historial->id_historial = $valor;
+                    $this->modelPaciente->save();
+                    $historial->save();
+                    $id_persona = $historial->id_historial;
+                } else {
+                    $this->modelPaciente->save();
+                    $id_persona = $this->modelPaciente->id_paciente;
+                }
             }
-            else
-                return 0;
-        } else
-            return false;
+        }
+        return $id_persona;
     }
 
-    public function saveEmpleado()
+    public function saveEmpleado($id = null)
     {
-        $empleado = new Empleado();
-        $id_persona = $this->savePersona();
-        if ($id_persona != 0) {
-            $empleado->id_empleado = $id_persona;
-            $empleado->attributes = $this->getAttributes();
-            if ($empleado->save())
-                return true;
-            else
-                return false;
-        } else
-            return false;
+        $id_persona = 0;
+        $this->modelEmpleado = ($id == null) ? new Empleado() : Empleado::model()->findByPk($id);
+        $this->modelEmpleado->setAttributes($this->getAttributes(), false);
+        $this->modelEmpleado->id_empleado = 1;
+        $this->loadPersona($id);
+        if ($this->validar([$this->modelPersona, $this->modelEmpleado])) {
+            $val = Persona::model()->findAll(['condition' => "num_doc='{$this->modelPersona->num_doc}'"]);
+            if ($val != array() && $id == null) {
+                if (!$val[0]->empleado) {
+                    $this->modelEmpleado->id_empleado = $val[0]->id_persona;
+                    $this->modelEmpleado->save();
+                    $id_persona = $this->modelEmpleado->id_empleado;
+                }
+            } else {
+                $valor = $this->savePersona();
+                if ($id == null) {
+                    $this->modelEmpleado->id_empleado = $valor;
+                    $this->modelEmpleado->save();
+                    $id_persona = $this->modelEmpleado->id_empleado;
+                } else {
+                    $this->modelEmpleado->save();
+                    $id_persona = $this->modelEmpleado->id_empleado;
+                }
+            }
+        }
+        return $id_persona;
     }
 
-    public function saveMedico()
+    public function saveMedico($id = null)
     {
-        $medico = new Medico();
-        $id_persona = $this->savePersona();
-        if ($id_persona != 0) {
-            $medico->id_medico = $id_persona;
-            $medico->attributes = $this->getAttributes();
-            if ($medico->save())
-                return true;
-            else
-                return false;
-        } else
+        $id_persona = 0;
+        $this->modelMedico = ($id == null) ? new Medico() : Medico::model()->findByPk($id);
+        $this->modelMedico->setAttributes($this->getAttributes(), false);
+        $this->modelMedico->id_medico = 1;
+        $this->loadPersona($id);
+        if ($this->validar([$this->modelPersona, $this->modelMedico])) {
+            $val = Persona::model()->findAll(['condition' => "num_doc='{$this->modelPersona->num_doc}'"]);
+            if ($val != array() && $id == null) {
+                if (!$val[0]->medico) {
+                    $this->modelMedico->id_medico = $val[0]->id_persona;
+                    $this->modelMedico->save();
+                    $id_persona = $this->modelMedico->id_Medico;
+                }
+            } else {
+                $valor = $this->savePersona();
+                if ($id == null) {
+                    $this->modelMedico->id_medico = $valor;
+                    $this->modelMedico->save();
+                    $id_persona = $this->modelMedico->id_medico;
+                } else {
+                    $this->modelMedico->save();
+                    $id_persona = $this->modelMedico->id_medico;
+                }
+            }
+        }
+        return $id_persona;
+    }
+
+    private function validar($modelList = [])
+    {
+        foreach ($modelList as $model) {
+            $model->validate();
+            $this->addErrors($model->getErrors());
+        }
+        if ($this->hasErrors())
             return false;
+        return true;
     }
     public function getTipoDocumento()
     {
         return array(
             '0' => 'Seleccione',
-            '1' => 'Pasaporte',
-            '2' => 'Documento Personal',
+            '1' => 'CARNET DE IDENTIDAD',
+            '2' => 'LIBRETA O DNI',
+            '3' => 'PASAPORTE',
+            '4' => 'PART. NACIMIENTO-IDENTIDAD'
         );
     }
 
@@ -176,9 +258,10 @@ class PersonaForm extends CFormModel
     {
         return array(
             '0' => 'SELECCIONE',
-            '1' => 'SOLTERO',
-            '2' => 'CASADO',
-            '3' => 'DIVORCIO',
+            '1' => 'SOLTERO(A)',
+            '2' => 'CASADO(A)',
+            '3' => 'DIVORCIADO(A)',
+            '4' => 'VIUDO(A)',
         );
     }
 
@@ -201,6 +284,7 @@ class PersonaForm extends CFormModel
     {
         return CHtml::listData(pais::model()->findAll(), 'cod_pais', 'nombre_pais');
     }
+
 }
 
 ?>

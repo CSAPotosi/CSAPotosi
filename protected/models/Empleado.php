@@ -30,7 +30,7 @@ class Empleado extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('id_empleado', 'required'),
+            array('id_empleado, fecha_contratacion', 'required'),
             array('id_empleado, cod_maquina', 'numerical', 'integerOnly' => true),
             array('fecha_contratacion, estado_emp', 'safe'),
             // The following rule is used by search().
@@ -103,5 +103,16 @@ class Empleado extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public static function getEmpleadoList($page = 0, $query = '')
+    {
+        return Empleado::model()->with('empleadoPersona')->
+        findAll([
+            'condition' => "num_doc like :query or concat_ws(' ',primer_apellido,segundo_apellido,nombres) like :query",
+            'offset' => $page,
+            'limit' => Yii::app()->params['itemListLimit'],
+            'params' => [':query' => '%' . $query . '%']
+        ]);
     }
 }

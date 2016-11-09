@@ -9,7 +9,8 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-1">
-                            <img src="https://organicthemes.com/demo/profile/files/2012/12/profile_img.png" alt="" class="img-responsive img-circle">
+                            <img src="images/<?php echo $infoPersona->id_persona ?>/photo.png" alt=""
+                                 class="img-responsive img-circle">
                         </div>
                         <div class="col-md-6">
                             <h1><?php echo $infoPersona->nombres;?> <span class="semi-bold"><?php echo $infoPersona->primer_apellido.' '.$infoPersona->segundo_apellido;?></span>

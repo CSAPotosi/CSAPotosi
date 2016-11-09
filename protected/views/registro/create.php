@@ -59,7 +59,9 @@ $this->breadcrumbs = array(
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabel($modelRegistro, 'Fecha'); ?>
-                                                <?php echo CHtml::activeDateField($modelRegistro, 'fecha', ['class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy']) ?>
+                                                <input type="datepicker" class="form-control datepicker"
+                                                       data-dateformat="dd/mm/yy" name="Registro[fecha]"
+                                                       id="Registro_fecha">
                                                 <?php echo CHtml::error($modelRegistro, 'fecha', ['class' => 'label label-danger']); ?>
                                             </div>
                                         </div>
@@ -80,7 +82,7 @@ $this->breadcrumbs = array(
                                             </div>
                                         </div>
                                     </div>
-                                    <?php echo CHtml::endForm(); ?>
+
                                 </div>
                             </div>
                         </fieldset>
@@ -89,6 +91,7 @@ $this->breadcrumbs = array(
                                 <i class="fa fa-save"></i> Guardar
                             </button>
                         </div>
+                        <?php echo CHtml::endForm(); ?>
                     </div>
                 </div>
             </div>

@@ -1,15 +1,15 @@
 <?php
 /* @var $this PersonaController */
-$this->pageTitle = "Paciente <span> > Crear </span>";
+$this->pageTitle = "Medico <span> > Crear Medico </span>";
 $this->breadcrumbs = array(
-    'Paciente',
+    'Medico',
 );
 ?>
 <section class="widget-grid">
     <div class="row">
         <div class="col-md-12">
             <div class="jarviswidget" id="widget1">
-                <header>Formulario de Registro de Paciente</header>
+                <header>Formulario de Registro de Medico</header>
                 <div>
                     <div class="jarviswidget-editbox">
                     </div>
@@ -59,6 +59,7 @@ $this->breadcrumbs = array(
                                                     <?php echo CHtml::activeHiddenField($modelPerson, 'num_doc', array('class' => 'form-control', 'placeholder' => 'Numero De Documento')); ?>
                                                     <input type="text" name="num_doc" id="num_doc" class="form-control"
                                                            placeholder="Numero de Docuemnto">
+                                                    <?php echo CHtml::error($modelPerson, 'num_doc', ['class' => 'label label-danger']); ?>
                                                 </div>
                                                 <?php echo CHtml::activeHiddenField($modelPerson, 'tipo_persona', array('class' => 'form-control', 'placeholder' => 'Numero De Documento', 'value' => '1')); ?>
                                                 <div class="form-group">
@@ -70,12 +71,14 @@ $this->breadcrumbs = array(
                                                     <?php echo CHtml::activeHiddenField($modelPerson, 'nombres', array('class' => 'form-control', 'placeholder' => 'Nombres')); ?>
                                                     <input type="text" name="nombres" id="nombres" class="form-control"
                                                            placeholder="Nombres">
+                                                    <?php echo CHtml::error($modelPerson, 'nombres', ['class' => 'label label-danger']); ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <?php echo CHtml::activelabelEx($modelPerson, 'primer_apellido'); ?>
                                                     <?php echo CHtml::activeHiddenField($modelPerson, 'primer_apellido', array('class' => 'form-control', 'placeholder' => 'Primer Apellido')); ?>
                                                     <input type="text" name="primer_apellido" id="primer_apellido"
                                                            class="form-control" placeholder="Primer Apellido">
+                                                    <?php echo CHtml::error($modelPerson, 'primer_apellido', ['class' => 'label label-danger']); ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <?php echo CHtml::activelabelEx($modelPerson, 'Segundo Apellido'); ?>
@@ -90,10 +93,13 @@ $this->breadcrumbs = array(
                                                     <?php echo CHtml::error($modelPerson, 'genero', array('class' => 'label label-danger')); ?>
                                                 </div>
                                                 <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Fecha Nacimiento'); ?>
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_nac', array('class' => 'form-control', 'prompt' => 'seleccione')) ?>
-                                                    <input type="date" name="fecha_nac" id="fecha_nac"
-                                                           class="form-control">
+                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_nac'); ?>
+                                                    <?php echo CHtml::activeLabel($modelPerson, 'Fecha Nacimiento'); ?>
+                                                    <input type="datepicker" class="form-control datepicker"
+                                                           data-dateformat="dd/mm/yy" name="fecha_nac" id="fecha_nac"
+                                                           placeholder="dd/mm/aaaa" maxDate='02/11/2016'
+                                                           value="<?php echo $modelPerson->fecha_nac ?>">
+                                                    <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger']); ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <?php echo CHtml::activelabelEx($modelPerson, 'Estado Civil'); ?>
@@ -113,7 +119,7 @@ $this->breadcrumbs = array(
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6 col-lg-offset-3">
                                                         <div class="form-group">
                                                             <?php echo CHtml::activelabelEx($modelPerson, 'Nacionalidad'); ?>
                                                             <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('class' => 'form-control')); ?>
@@ -147,33 +153,84 @@ $this->breadcrumbs = array(
                                     <div class="tab-pane" id="tab3">
                                         <br><br><br>
                                         <div class="row">
-                                            <article class="col-md-6">
-                                                <center><h5>Registro de Unidades</h5></center>
-                                                <br>
-                                                <div class="well no-padding">
-                                                    <div class="form-group">
-                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Matricula'); ?>
-                                                        <?php echo CHtml::activetextField($modelPerson, 'matricula', array('class' => 'form-control', 'placeholder' => 'Matricula')); ?>
-                                                        <?php echo CHtml::error($modelPerson, 'matricula', array('class' => 'label label-danger')); ?>
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <?php echo CHtml::beginForm(); ?>
+                                                <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                                                     data-widget-deletebutton="false"
+                                                     data-widget-fullscreenbutton="false"
+                                                     data-widget-custombutton="false">
+                                                    <header>
+                                                        <h2><strong>Informacion Medica</strong></h2>
+                                                    </header>
+                                                    <div class="widget-body">
+                                                        <div class="widget-body-toolbar">
 
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="form-group">
+                                                                    <?php echo CHtml::activeLabel($modelPerson, 'matricula'); ?>
+                                                                    <?php echo CHtml::activeTextField($modelPerson, 'matricula', ['class' => 'form-control']); ?>
+                                                                    <?php echo CHtml::error($modelPerson, 'matricula', ['class' => 'label label-danger']); ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <fieldset>
+                                                                    <legend>Especialidades Asignadas a Medico</legend>
+                                                                    <table class="table table-responsive table-bordered"
+                                                                           id="contenedorAsignadas">
+                                                                        <tr>
+                                                                            <th>Nombre Especialidad</th>
+                                                                            <th>Descripcion</th>
+                                                                            <th>Accion</th>
+                                                                        </tr>
+                                                                    </table>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </article>
-                                            <article class="col-md-6">
-                                                <div id="contenedorListaEspecialidad">
-                                                    <?php $this->renderPartial('_specialtyList', array('listSpecialty' => $listSpecialty)) ?>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                                                     data-widget-deletebutton="false"
+                                                     data-widget-fullscreenbutton="false"
+                                                     data-widget-custombutton="false">
+                                                    <header>
+                                                        <h2><strong>ESPECIALIDADES</strong></h2>
+                                                    </header>
+                                                    <div class="widget-body">
+                                                        <div id="contenedorListaEspecialidad">
+                                                            <?php $this->renderPartial('_specialtyList', array('listSpecialty' => $listSpecialty, 'modelMedicoEspe' => $modelMedicoEspe)) ?>
+                                                        </div>
+                                                        <div class="form-actions">
+                                                            <button type="button" class="btn btn-primary"
+                                                                    data-target="#modalEspecialidad"
+                                                                    data-toggle="modal">
+                                                                <i class="fa fa-plus"></i>Agregar Especialidad
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </article>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab4">
                                         <br><br><br>
                                         <div class="row">
-                                            <h1>Pasos Concluidos Correctamente</h1>
                                             <div class="box-footer">
                                                 <div class="form-group">
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <?php echo CHtml::submitButton('Registrar Paciente', array('class' => 'btn btn-primary btn-lg')); ?>
+                                                    <div class="col-md-6 col-lg-offset-3">
+                                                        <div class="alert alert-success fade in">
+                                                            <i class="fa-fw fa fa-check"></i>
+                                                            <h1><strong>Completado</strong> Informacion Completada.</h1>
+                                                        </div>
+                                                        <div class="col-md-8 col-lg-offset-2">
+                                                            <button class="btn btn-primary btn-lg" type="submit"><i
+                                                                    class='fa fa-save'></i> Enviar la Informacion del
+                                                                Medico
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -238,3 +295,6 @@ $this->breadcrumbs = array(
 <!--end plugins-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/medico/create.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/medico/validacion.js', CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/bootstrap-timepicker/bootstrap-timepicker.min.js', CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/iCheck/icheck.js', CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/medico/onlyMedico.js', CClientScript::POS_END); ?>

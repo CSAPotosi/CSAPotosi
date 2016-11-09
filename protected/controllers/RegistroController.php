@@ -411,4 +411,36 @@ class RegistroController extends Controller
         $interval = $interval->format('%a');
         $this->render('detalleAsistencia', array('asignacion' => $asignacion[0], 'fecha_ini' => $lunes, 'fecha_fin' => $domingo, 'interval' => $interval));
     }
+
+    public function actionCreatePdfAsistencia($header, $data)
+    {
+        spl_autoload_register(array('YiiBase', 'autoload'));
+        $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+
+        $pdf->SetTitle("Selling Report -2013");
+        $pdf->SetHeaderData('logoCSASin.png', PDF_HEADER_LOGO_WIDTH, "10 de noviembre, Zona San Roque ", "Tel(2-62-62457)");
+        $pdf->SetMargins(PDF_MARGIN_LEFT, "100px", PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetFont('helvetica', '', 8);
+        $pdf->SetTextColor(80, 80, 80);
+        $pdf->AddPage();
+
+        //Write the html
+        $html = "<div style='margin-bottom:15px;'>This is testing HTML.</div>";
+        //Convert the Html to a pdf document
+        $pdf->writeHTML($html, true, false, true, false, '');
+
+        // data loading
+        // print colored table
+        $pdf->ColoredTable($header, $data);
+        // reset pointer to the last page
+        $pdf->lastPage();
+
+        //Close and output PDF document
+        $pdf->Output('filename.pdf', 'I');
+        Yii::app()->end();
+    }
 }

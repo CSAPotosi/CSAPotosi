@@ -9,10 +9,15 @@ $(document).ready(function () {
     $("#primer_apellido").keyup(function () {
         $("#PersonaForm_primer_apellido").val(($(this).val()));
     });
-    $("#fecha_nac").keyup(function () {
+    $("#fecha_nac").change(function () {
         $("#PersonaForm_fecha_nac").val($(this).val())
     });
+    $("#email").keyup(function () {
+        $("#PersonaForm_email").val($(this).val())
+    });
+
     var $validator = $("#wizard-1").validate({
+
         rules: {
             num_doc: {
                 required: true
@@ -25,6 +30,9 @@ $(document).ready(function () {
             },
             fecha_nac: {
                 required: true
+            },
+            email: {
+                email: "El email formato ej. ejemplo@email.com"
             }
         },
         messages: {
@@ -38,7 +46,10 @@ $(document).ready(function () {
                 required: "El Apellido es necesario"
             },
             fecha_nac: {
-                required: "La Fecha de Nacimiento es necesario"
+                required: "La Fecha de Nacimiento es necesario",
+            },
+            email: {
+                email: "El email formato ej. ejemplo@email.com"
             }
         },
         highlight: function (element) {
@@ -58,3 +69,6 @@ $(document).ready(function () {
         }
     });
 });
+$("#btnEnviarPaciente").click(function () {
+    $("#PersonaForm_responsable").val($("#contacto").val() + "-" + $("#parentesco").val() + "-" + $("#telefono").val() + "-" + $("#direccion").val())
+})

@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS pais(
   nombre_pais VARCHAR(64) NOT NULL ,
   gentilicio  VARCHAR(32)
 );
-
+--Insert todos los paises
 CREATE TABLE IF NOT EXISTS persona(
   id_persona SERIAL NOT NULL PRIMARY KEY ,
   num_doc VARCHAR(32) NOT NULL DEFAULT '0',
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS persona(
   foto VARCHAR(256),
   FOREIGN KEY (nacionalidad) REFERENCES pais(cod_pais)
 );
-
+--insert para persona admin admin
 CREATE TABLE IF NOT EXISTS empleado(
   id_empleado INT PRIMARY KEY ,
   fecha_contratacion DATE,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS empleado(
   cod_maquina INT,
   FOREIGN KEY (id_empleado) REFERENCES persona(id_persona)
 );
-
+--insert para empleado admin admin
 CREATE TABLE IF NOT EXISTS medico(
   id_medico INT PRIMARY KEY ,
   matricula VARCHAR(16) UNIQUE NOT NULL ,
@@ -43,6 +43,7 @@ create table if not exists especialidad(
   nombre_especialidad  varchar(50) not null,
   descripcion varchar(128)
 );
+--*insert especialidades medicas*
 create table if not exists medico_especialidad(
   id_m_e serial not null primary key,
   id_medico int ,
@@ -74,7 +75,7 @@ CREATE TABLE IF NOT EXISTS usuario(
   estado_usuario SMALLINT DEFAULT 1 ,
   FOREIGN KEY (id_usuario) REFERENCES persona(id_persona)
 );
-
+--insert un usuario admin admin
 
 /***********/
 
@@ -83,7 +84,12 @@ create table if not exists unidad(
   nombre_unidad varchar(32) not null unique,
   descripcion_unidad varchar(128)
 );
-
+create table if not exists horario(
+  id_horario serial primary key ,
+  nombre_horario varchar(32) not null unique,
+  descripcion varchar (32),
+  ciclo_total int
+);
 create table if not exists cargo(
   id_cargo serial primary key ,
   nombre_cargo varchar (32) not null unique ,
@@ -93,14 +99,6 @@ create table if not exists cargo(
   foreign key (id_unidad) references unidad(id_unidad),
   foreign key (id_horario) REFERENCES horario(id_horario)
 );
-
-create table if not exists horario(
-  id_horario serial primary key ,
-  nombre_horario varchar(32) not null unique,
-  descripcion varchar (32),
-  ciclo_total int
-);
-
 create table if not exists periodo(
   id_periodo serial primary key,
   hora_entrada time not null,
@@ -112,7 +110,6 @@ create table if not exists periodo(
   tolerancia int default 15,
   tipo_periodo int
 );
-
 create table if not EXISTS horario_periodo(
   id_horario_periodo serial primary key not null,
   id_horario int,
@@ -121,18 +118,16 @@ create table if not EXISTS horario_periodo(
   foreign key (id_horario) references horario(id_horario),
   foreign key (id_periodo) references periodo(id_periodo)
 );
-
 create table if not exists asignacion_empleado(
   id_asignacion serial primary key,
   fecha_inicio date not null,
-  fecha_fin date,
+  fecha_fin date default null,
   vigente bool default false,
   id_empleado int,
   id_cargo int,
   foreign key (id_empleado) references empleado(id_empleado),
   foreign key (id_cargo) references cargo(id_cargo)
 );
-
 create table if not exists registro(
   id_asignacion int not null,
   fecha date not null,
@@ -177,7 +172,7 @@ CREATE TABLE IF NOT EXISTS capitulo_cie(
   num_cap VARCHAR(8) PRIMARY KEY NOT NULL,
   titulo_cap TEXT UNIQUE NOT NULL
 );
-
+--insert capitulo_cie
 CREATE TABLE IF NOT EXISTS categoria_cie(
   id_cat SERIAL PRIMARY KEY NOT NULL,
   titulo_cat TEXT UNIQUE NOT NULL,
@@ -186,7 +181,7 @@ CREATE TABLE IF NOT EXISTS categoria_cie(
   num_cap VARCHAR(8) NOT NULL,
   FOREIGN KEY (num_cap) REFERENCES capitulo_cie(num_cap)
 );
-
+--insert categoria_cie
 CREATE TABLE IF NOT EXISTS item_cie(
   codigo VARCHAR(8) PRIMARY KEY NOT NULL ,
   titulo TEXT NOT NULL ,
@@ -196,7 +191,7 @@ CREATE TABLE IF NOT EXISTS item_cie(
   FOREIGN KEY (codigo_padre) REFERENCES item_cie(codigo),
   FOREIGN KEY (id_cat) REFERENCES categoria_cie(id_cat)
 );
-
+--insert item_cie
 CREATE TABLE IF NOT EXISTS medicamento(
   codigo VARCHAR(8) NOT NULL PRIMARY KEY ,
   nombre_med VARCHAR(64) NOT NULL ,
@@ -206,7 +201,7 @@ CREATE TABLE IF NOT EXISTS medicamento(
   restringido BOOLEAN DEFAULT FALSE,
   estado_med SMALLINT DEFAULT 1 -- 0:Excluido, 1:normal, 2:incluido
 );
-
+--*insert cargar liname*
 
 -- modulo servicios
 
@@ -218,7 +213,11 @@ CREATE TABLE IF NOT EXISTS entidad(
   tipo_entidad SMALLINT NOT NULL,-- consumidor,  proveedor,
   naturaleza_juridica SMALLINT NOT NULL-- 0 natural, 1 juridica
 );
-
+--insert ID=1
+--       RAZON_SOCIAL=SANTA ANA, --PARTICULAR
+--		 DIRECCION=10 DE NOCIEMBRE,--""
+--		 TELEFONO=8768757,-""
+--		 PROVEEDOR=2-""
 CREATE TABLE IF NOT EXISTS servicio(
   id_serv SERIAL NOT NULL PRIMARY KEY ,
   cod_serv VARCHAR(8) NOT NULL,
@@ -357,7 +356,7 @@ create table if not exists internacion_sala(
 create table if not exists convenio(
   id_convenio serial not null primary key,
   fecha_creacion timestamp not null,
-  fecha_actualizacion timestamp not null,
+  fecha_edicion timestamp not null,
   nombre_convenio varchar (128) not null,
   id_entidad int not null,
   activo boolean DEFAULT false,

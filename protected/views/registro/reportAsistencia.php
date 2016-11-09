@@ -80,11 +80,7 @@ $this->breadcrumbs = array(
                                 </div>
                         </fieldset>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-save"></i>
-                                Generar Reporte
-                            </button>
-
+                            <?php echo CHtml::link('<i class="fa fa-file-pdf-o"></i>Genrar Reporte', array('registro/CreatePdfAsistencia', 'header' => ['unidad', 'Cargo de Enpleado', 'Nombre Empleado', 'Dias Trabajados. En dias', 'Horas Trabajadas. En (H:m:s)', 'Minutos de retraso. En minutos'], $data => $listaEmpleadosAsistencia), array('class' => 'btn btn-primary')); ?>
                         </div>
                     </div>
                 </div>

@@ -32,6 +32,8 @@ class Medico extends CActiveRecord
             array('id_medico, matricula', 'required'),
             array('id_medico', 'numerical', 'integerOnly' => true),
             array('matricula', 'length', 'max' => 16),
+            array('matricula', 'unique'),
+            array('matricula', 'unique'),
             array('estado_med', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
@@ -99,5 +101,16 @@ class Medico extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public static function getMedicoList($page = 0, $query = '')
+    {
+        return Medico::model()->with('persona')->
+        findAll([
+            'condition' => "num_doc like :query or concat_ws(' ',primer_apellido,segundo_apellido,nombres) like :query",
+            'offset' => $page,
+            'limit' => Yii::app()->params['itemListLimit'],
+            'params' => [':query' => '%' . $query . '%']
+        ]);
     }
 }
