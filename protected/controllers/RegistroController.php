@@ -2,6 +2,7 @@
 
 class RegistroController extends Controller
 {
+    public $listaEmpleados;
     public function actionCreate()
     {
         $modelRegistro = new Registro();
@@ -409,36 +410,55 @@ class RegistroController extends Controller
         $date2 = date_create($domingo);
         $interval = date_diff($date1, $date2);
         $interval = $interval->format('%a');
-        $this->render('detalleAsistencia', array('asignacion' => $asignacion[0], 'fecha_ini' => $lunes, 'fecha_fin' => $domingo, 'interval' => $interval));
+        $this->render('detalleAsistencia', array(
+            'asignacion' => $asignacion[0],
+            'fecha_ini' => $lunes,
+            'fecha_fin' => $domingo,
+            'fecha_ini_start' => $lunes,
+            'interval' => $interval,
+            'fecha_ini_real' => $fecha_ini,
+            'empleado' => $asignacion[0]->id_asignacion
+        ));
     }
 
-    public function actionCreatePdfAsistencia($header, $data)
+    public function actionCreatePdfAsistencia($data)
     {
+        $lista = stripcslashes($data);
+        $lista = urldecode($lista);
+        $data = unserialize($lista);
+        $header = array('unidad', 'Cargo de Enpleado', 'Nombre Empleado', 'Dias Trabajados. En dias', 'Horas Trabajadas. En (H:m:s)', 'Minutos de retraso. En minutos');
         spl_autoload_register(array('YiiBase', 'autoload'));
-        $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-        // set document information
+        $pdf = new MYPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
-
-        $pdf->SetTitle("Selling Report -2013");
-        $pdf->SetHeaderData('logoCSASin.png', PDF_HEADER_LOGO_WIDTH, "10 de noviembre, Zona San Roque ", "Tel(2-62-62457)");
-        $pdf->SetMargins(PDF_MARGIN_LEFT, "100px", PDF_MARGIN_RIGHT);
-        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+        $pdf->SetTitle("Reporte Asistencia");
+        //cabecera 1 logo santa ana
+        $pdf->cabecera1($pdf);
         $pdf->SetFont('helvetica', '', 8);
         $pdf->SetTextColor(80, 80, 80);
         $pdf->AddPage();
-
-        //Write the html
-        $html = "<div style='margin-bottom:15px;'>This is testing HTML.</div>";
-        //Convert the Html to a pdf document
-        $pdf->writeHTML($html, true, false, true, false, '');
-
-        // data loading
-        // print colored table
-        $pdf->ColoredTable($header, $data);
+        $pdf->usuario($pdf);
+        $pdf->ColoredTableAsistencia($header, $data);
         // reset pointer to the last page
         $pdf->lastPage();
+        //Close and output PDF document
+        $pdf->Output('filename.pdf', 'I');
+        Yii::app()->end();
+    }
 
+    public function actionCreatePdfDetalleAsistencia($fecha_ini, $interval, $fecha_in_real, $empleado)
+    {
+        spl_autoload_register(array('YiiBase', 'autoload'));
+        $pdf = new MYPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetTitle("Reporte Asistencia");
+        //cabecera 1 logo santa ana
+        $pdf->cabecera1($pdf);
+        $pdf->SetFont('helvetica', '', 8);
+        $pdf->SetTextColor(80, 80, 80);
+        $pdf->AddPage();
+        $pdf->usuario($pdf);
+        $pdf->createTableDetalleAistencia($fecha_ini, $interval, $fecha_in_real, $empleado);
+        $pdf->lastPage();
         //Close and output PDF document
         $pdf->Output('filename.pdf', 'I');
         Yii::app()->end();

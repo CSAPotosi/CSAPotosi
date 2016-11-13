@@ -108,6 +108,4 @@ class Registro extends CActiveRecord
     {
         return parent::model($className);
     }
-
-
 }

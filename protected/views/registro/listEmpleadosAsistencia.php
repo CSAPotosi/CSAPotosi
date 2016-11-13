@@ -1,4 +1,11 @@
 <?php if ($listaEmpleadosAsistencia != null) { ?>
+    <div class="row">
+        <div class="col-md-12">
+            <h2><span
+                    class="label label-default">Fecha Inicio <?php echo date('d-m-Y', strtotime($listaEmpleadosAsistencia[0][6])) ?>
+                    |  Fecha Fin <?php echo date('d-m-Y', strtotime($listaEmpleadosAsistencia[0][7])) ?></span></h2>
+        </div>
+    </div>
     <table class="table table-bordered table-responsive table-hover" align="center">
         <tr>
             <th>Unidad</th>

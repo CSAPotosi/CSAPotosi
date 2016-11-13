@@ -20,8 +20,8 @@ $this->breadcrumbs = array(
                             </div>
                             <div class="row">
                                 <div class="col-md-10 col-lg-offset-1">
-                                    <span class="label label-success">Tiqueos Validos</span>&nbsp;&nbsp;<span
-                                        class="label label-info">Tiqueos Invalidos</span>
+                                    <span class="label label-success" style='font-size: 15px'>Tiqueos Validos</span>&nbsp;&nbsp;<span
+                                        class="label label-info" style='font-size: 15px'>Tiqueos Invalidos</span>
                                     <br><br>
                                     <?php
                                     $i = 0;
@@ -30,28 +30,36 @@ $this->breadcrumbs = array(
                                         <div class="row">
                                             <table class="table table-responsive table-bordered">
                                                 <tr>
-                                                    <th>Lunes</th>
-                                                    <th>Martes</th>
-                                                    <th>Miercoles</th>
-                                                    <th>Jueves</th>
-                                                    <th>Viernes</th>
-                                                    <th>Sabado</th>
-                                                    <th>Domingo</th>
+                                                    <th style="font-size:14px"
+                                                        width="100px"><?php echo date('d-m-Y', strtotime($fecha_ini)) . " (Lun)" ?></th>
+                                                    <th style="font-size:14px"
+                                                        width="100px"><?php echo date('d-m-Y', strtotime('+1 day', strtotime($fecha_ini))) . " (Mar)" ?></th>
+                                                    <th style="font-size:14px"
+                                                        width="100px"><?php echo date('d-m-Y', strtotime('+2 day', strtotime($fecha_ini))) . " (Mie)" ?></th>
+                                                    <th style="font-size:14px"
+                                                        width="100px"><?php echo date('d-m-Y', strtotime('+3 day', strtotime($fecha_ini))) . " (Jue)" ?></th>
+                                                    <th style="font-size:14px"
+                                                        width="100px"><?php echo date('d-m-Y', strtotime('+4 day', strtotime($fecha_ini))) . " (Vie)" ?></th>
+                                                    <th style="font-size:14px"
+                                                        width="100px"><?php echo date('d-m-Y', strtotime('+5 day', strtotime($fecha_ini))) . " (Sab)" ?></th>
+                                                    <th style="font-size:14px"
+                                                        width="100px"><?php echo date('d-m-Y', strtotime('+6 day', strtotime($fecha_ini))) . " (Dom)" ?></th>
+
                                                 </tr>
                                                 <tr><?php for ($j = 0; $j <= 6; $j++) { ?>
-                                                        <td>
-                                                            <?php
-                                                            $registro = Registro::model()->findAll(array(
-                                                                'condition' => "id_asignacion={$asignacion->id_asignacion} and fecha='{$fecha_ini}'",
-                                                            ));
-                                                            if ($registro != array())
-                                                                foreach ($registro as $item) {
-                                                                    if ($item->estado == true)
-                                                                        echo "<span class='label label-success'>$item->fecha" . " | " . "$item->hora_asistencia</span>" . "<br>";
-                                                                    else
-                                                                        echo "<span class='label label-info'>$item->fecha" . " | " . "$item->hora_asistencia</span>" . "<br>";
-                                                                }
-                                                            ?>
+                                                        <td align="center">
+                                                            <?php if (strtotime($fecha_ini) >= strtotime($fecha_ini_real)) {
+                                                                $registro = Registro::model()->findAll(array(
+                                                                    'condition' => "id_asignacion={$asignacion->id_asignacion} and fecha='{$fecha_ini}' order by hora_asistencia",
+                                                                ));
+                                                                if ($registro != array())
+                                                                    foreach ($registro as $item) {
+                                                                        if ($item->estado == true)
+                                                                            echo "<div style='padding-top: 11px'><span class='label label-success' style='font-size: 15px'>" . $item->hora_asistencia . "</span></div>";
+                                                                        else
+                                                                            echo "<div style='padding-top: 11px'><span class='label label-info' style='font-size: 15px'>" . $item->hora_asistencia . "</span></div>";
+                                                                    }
+                                                            } ?>
                                                         </td>
                                                         <?php
                                                         $fecha_ini = strtotime('+1 day', strtotime($fecha_ini));
@@ -70,10 +78,10 @@ $this->breadcrumbs = array(
                             </div>
                         </fieldset>
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary"
-                                    data-url="<?php echo CHtml::normalizeUrl(array('registro/registrarAsistencia')) ?>">
-                                <i class="fa fa-save"></i> Generar Reporte
-                            </button>
+                            <?php echo CHtml::link("<i class=\"fa fa-file-pdf-o\"></i> Generar Reporte",
+                                array('Registro/CreatePdfDetalleAsistencia',
+                                    'fecha_ini' => $fecha_ini_start, 'interval' => $interval, 'fecha_in_real' => $fecha_ini_real, 'empleado' => $empleado),
+                                array('target' => '_blank', 'class' => 'btn btn-primary')); ?>
                         </div>
                     </div>
                 </div>
