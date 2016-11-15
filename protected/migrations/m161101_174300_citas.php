@@ -2,7 +2,7 @@
 
 class m161101_174300_citas extends CDbMigration
 {
-    public function up()
+    public function safeUp()
     {
         $this->createTable('cita', [
             'id_cita' => 'pk',

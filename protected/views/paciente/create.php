@@ -218,7 +218,7 @@ $this->breadcrumbs = array(
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'responsable'); ?>
+
                                                     <?php echo CHtml::error($modelPerson, 'responsable', array('class' => 'label label-danger', 'value' => 'hola')); ?>
                                                 </div>
                                             </div>

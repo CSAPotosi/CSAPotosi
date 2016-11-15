@@ -107,7 +107,6 @@ class PersonaForm extends CFormModel
         }
         $this->modelPersona->foto = $filename;
         if ($this->modelPersona->save()) {
-            $this->codigo_paciente = Yii::app()->patientTools->generateCode($this->primer_apellido, $this->segundo_apellido, $this->nombres, $this->fecha_nac);
             return $this->modelPersona->id_persona;
         } else
             return 0;
@@ -131,7 +130,7 @@ class PersonaForm extends CFormModel
         $id_persona = 0;
         $this->modelPaciente = ($id == null) ? new Paciente() : Paciente::model()->findByPk($id);
         $this->modelPaciente->setAttributes($this->getAttributes(), false);
-        $this->modelPaciente->id_paciente = 1;
+        $this->modelPaciente->id_paciente = ($id == null) ? 1 : $this->modelPaciente->id_paciente;
         $this->loadPersona($id);
         if ($this->validar([$this->modelPersona, $this->modelPaciente])) {
             $val = Persona::model()->findAll(['condition' => "num_doc='{$this->modelPersona->num_doc}'"]);
@@ -147,6 +146,7 @@ class PersonaForm extends CFormModel
                 }
             } else {
                 $valor = $this->savePersona();
+                $this->modelPaciente->codigo_paciente = Yii::app()->patientTools->generateCode($this->modelPersona->primer_apellido, $this->modelPersona->segundo_apellido, $this->modelPersona->nombres, $this->modelPersona->fecha_nac);
                 if ($id == null) {
                     $historial = new HistorialMedico();
                     $this->modelPaciente->id_paciente = $valor;
@@ -156,6 +156,7 @@ class PersonaForm extends CFormModel
                     $historial->save();
                     $id_persona = $historial->id_historial;
                 } else {
+
                     $this->modelPaciente->save();
                     $id_persona = $this->modelPaciente->id_paciente;
                 }
@@ -169,7 +170,7 @@ class PersonaForm extends CFormModel
         $id_persona = 0;
         $this->modelEmpleado = ($id == null) ? new Empleado() : Empleado::model()->findByPk($id);
         $this->modelEmpleado->setAttributes($this->getAttributes(), false);
-        $this->modelEmpleado->id_empleado = 1;
+        $this->modelEmpleado->id_empleado = ($id == null) ? 1 : $this->modelEmpleado->id_empleado;
         $this->loadPersona($id);
         if ($this->validar([$this->modelPersona, $this->modelEmpleado])) {
             $val = Persona::model()->findAll(['condition' => "num_doc='{$this->modelPersona->num_doc}'"]);
@@ -199,7 +200,7 @@ class PersonaForm extends CFormModel
         $id_persona = 0;
         $this->modelMedico = ($id == null) ? new Medico() : Medico::model()->findByPk($id);
         $this->modelMedico->setAttributes($this->getAttributes(), false);
-        $this->modelMedico->id_medico = 1;
+        $this->modelMedico->id_medico = ($id == null) ? 1 : $this->modelMedico->id_medico;
         $this->loadPersona($id);
         if ($this->validar([$this->modelPersona, $this->modelMedico])) {
             $val = Persona::model()->findAll(['condition' => "num_doc='{$this->modelPersona->num_doc}'"]);
@@ -248,9 +249,8 @@ class PersonaForm extends CFormModel
     public function getGenero()
     {
         return array(
-            '0' => 'SELECCIONE',
-            '1' => 'MASCULINO',
-            '2' => 'FEMENINO',
+            'true' => 'MASCULINO',
+            'false' => 'FEMENINO',
         );
     }
 

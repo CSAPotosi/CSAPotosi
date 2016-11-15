@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Paciente <span> > Detalle Paciente</span>";
+$this->pageTitle = "Empleado <span> > Detalle Empleado</span>";
 $this->breadcrumbs = array(
     'Paciente',
 );
@@ -13,15 +13,16 @@ $this->breadcrumbs = array(
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Detalle de Paciente</legend>
+                            <legend>Detalle de Empleado</legend>
                             <br>
                             <div class="row">
                                 <div class="col-sm-2 profile-pic">
-                                    <img src="images/<?php echo $paciente->id_paciente ?>/photo.png" alt="demo user">
+                                    <img src="images/<?php echo $empleado->id_empleado ?>/photo.png" alt="demo user">
                                     <div class="padding-10">
-                                        <h4 class="font-md"><strong><?php echo $paciente->persona->num_doc ?></strong>
+                                        <h4 class="font-md">
+                                            <strong><?php echo $empleado->empleadoPersona->num_doc ?></strong>
                                             <br>
-                                            <small><?php switch ($paciente->persona->tipo_doc) {
+                                            <small><?php switch ($empleado->empleadoPersona->tipo_doc) {
                                                     case 0:
                                                         echo '---';
                                                         break;
@@ -41,21 +42,18 @@ $this->breadcrumbs = array(
                                             </small>
                                         </h4>
                                         <br>
-                                        <h4 class="font-md"><strong><?php switch ($paciente->persona->genero) {
-                                                    case 0:
-                                                        echo '---';
-                                                        break;
-                                                    case 1:
+                                        <h4 class="font-md"><strong><?php switch ($empleado->empleadoPersona->genero) {
+                                                    case true:
                                                         echo 'MASCULINO';
                                                         break;
-                                                    case 2:
+                                                    case false:
                                                         echo 'FEMENINO';
                                                         break;
                                                 } ?></strong>
                                             <br>
                                             <small>Genero</small>
                                         </h4>
-                                        <h4 class="font-md"><strong><?php switch ($paciente->estado_paciente) {
+                                        <h4 class="font-md"><strong><?php switch ($empleado->estado_emp) {
                                                     case 0:
                                                         echo 'Murio' . ' ' . $paciente->fecha_deceso;
                                                         break;
@@ -72,8 +70,8 @@ $this->breadcrumbs = array(
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <h1><?php echo $paciente->persona->nombres ?> <span
-                                            class="semi-bold"><?php echo $paciente->persona->primer_apellido . ' ' . $paciente->persona->segundo_apellido ?></span>
+                                    <h1><?php echo $empleado->empleadoPersona->nombres ?> <span
+                                            class="semi-bold"><?php echo $empleado->empleadoPersona->primer_apellido . ' ' . $empleado->empleadoPersona->segundo_apellido ?></span>
                                         <br>
                                         <small></small>
                                     </h1>
@@ -82,35 +80,35 @@ $this->breadcrumbs = array(
                                         <li>
                                             <p class="text-muted">
                                                 <i class="fa fa-calendar"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo date('d/m/Y', strtotime($paciente->persona->fecha_nac)) ?></span>&nbsp;&nbsp;&nbsp;
+                                                    class="txt-color-darken"><?php echo date('d/m/Y', strtotime($empleado->empleadoPersona->fecha_nac)) ?></span>&nbsp;&nbsp;&nbsp;
                                                 <small>(Fecha Nacimiento)</small>
                                             </p>
                                         </li>
                                         <li>
                                             <p class="text-muted">
                                                 <i class="fa fa-phone"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $paciente->persona->telefono ?></span>&nbsp;&nbsp;&nbsp;
+                                                    class="txt-color-darken"><?php echo $empleado->empleadoPersona->telefono ?></span>&nbsp;&nbsp;&nbsp;
                                                 <small>(Telefono o Celular)</small>
                                             </p>
                                         </li>
                                         <li>
                                             <p class="text-muted">
                                                 <i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $paciente->persona->localidad . ' - ' . $paciente->persona->domicilio ?></span>&nbsp;&nbsp;&nbsp;
+                                                    class="txt-color-darken"><?php echo $empleado->empleadoPersona->localidad . ' - ' . $empleado->empleadoPersona->domicilio ?></span>&nbsp;&nbsp;&nbsp;
                                                 <small>(Localidad - Domicilio)</small>
                                             </p>
                                         </li>
                                         <li>
                                             <p class="text-muted">
                                                 <i class="fa fa-flag"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $paciente->persona->nacionalidad1->nombre_pais ?></span>&nbsp;&nbsp;&nbsp;
+                                                    class="txt-color-darken"><?php echo $empleado->empleadoPersona->nacionalidad1->nombre_pais ?></span>&nbsp;&nbsp;&nbsp;
                                                 <small>(Pais Nacimiento)</small>
                                             </p>
                                         </li>
                                         <li>
                                             <p class="text-muted">
                                                 <i class="fa fa-book"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php switch ($paciente->persona->estado_civil) {
+                                                    class="txt-color-darken"><?php switch ($empleado->empleadoPersona->estado_civil) {
                                                         case 0:
                                                             echo '---';
                                                             break;
@@ -133,14 +131,14 @@ $this->breadcrumbs = array(
                                         <li>
                                             <p class="text-muted">
                                                 <i class="fa fa-gavel"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $paciente->persona->ocupacion ?></span>&nbsp;&nbsp;&nbsp;
+                                                    class="txt-color-darken"><?php echo $empleado->empleadoPersona->ocupacion ?></span>&nbsp;&nbsp;&nbsp;
                                                 <small>(Ocupacion o Trabajo)</small>
                                             </p>
                                         </li>
                                         <li>
                                             <p class="text-muted">
                                                 <i class="fa fa-envelope"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $paciente->persona->email ?></span>&nbsp;&nbsp;&nbsp;
+                                                    class="txt-color-darken"><?php echo $empleado->empleadoPersona->email ?></span>&nbsp;&nbsp;&nbsp;
                                                 <small>(Correo Electronico)</small>
                                             </p>
                                         </li>
@@ -148,90 +146,49 @@ $this->breadcrumbs = array(
                                 </div>
                                 <div class="col-sm-3">
                                     <h1>
-                                        <small>Informacion de Paciente</small>
+                                        <small>Informacion de Empleado</small>
                                     </h1>
                                     <ul class="list-unstyled">
                                         <li>
                                             <p class="text-muted">
-                                                <i class="fa fa-file-code-o"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><strong><?php echo $paciente->codigo_paciente ?></strong></span>&nbsp;&nbsp;&nbsp;
-                                                <small>(Codigo Paciente)</small>
+                                                <i class="fa fa-calendar"></i>&nbsp;&nbsp;<span
+                                                    class="txt-color-darken"><?php echo $empleado->fecha_contratacion ?></span>&nbsp;&nbsp;&nbsp;
+                                                <small>(Fecha de Contratacion)</small>
                                             </p>
                                         </li>
                                         <li>
                                             <p class="text-muted">
-                                                <i class="fa fa-flask"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php switch ($paciente->grupo_sanguineo) {
-                                                        case 0:
-                                                            echo '---';
-                                                            break;
-                                                        case 1:
-                                                            echo 'O+';
-                                                            break;
-                                                        case 2:
-                                                            echo 'A+';
-                                                            break;
-                                                        case 3:
-                                                            echo 'A-';
-                                                            break;
-                                                        case 4:
-                                                            echo 'B+';
-                                                            break;
-                                                        case 5:
-                                                            echo 'B-';
-                                                            break;
-                                                        case 6:
-                                                            echo 'AB+';
-                                                            break;
-                                                        case 7:
-                                                            echo 'AB-';
-                                                            break;
-                                                        case 8:
-                                                            echo 'O-';
-                                                            break;
-                                                    } ?></span>&nbsp;&nbsp;&nbsp;
-                                                <small>(Grupo Sanguineo)</small>
+                                                <i class="fa fa-calculator"></i>&nbsp;&nbsp;<span
+                                                    class="txt-color-darken"><?php echo $empleado->cod_maquina ?></span>&nbsp;&nbsp;&nbsp;
+                                                <small>(Codigo Maquina)</small>
                                             </p>
                                         </li>
                                     </ul>
-                                    <h1>
-                                        <small>Informacion de Contacto</small>
-                                    </h1>
-                                    <?php $valor = explode("-", $paciente->responsable, 4); ?>
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <p class="text-muted">
-                                                <i class="fa fa-user"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $valor[0] ?></span>&nbsp;&nbsp;&nbsp;
-                                                <small>(Nombre Completo)</small>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p class="text-muted">
-                                                <i class="fa fa-exchange"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $valor[1] ?></span>&nbsp;&nbsp;&nbsp;
-                                                <small>(Parentesco)</small>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p class="text-muted">
-                                                <i class="fa fa-phone"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $valor[2] ?></span>&nbsp;&nbsp;&nbsp;
-                                                <small>(Telefono de Contacto)</small>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p class="text-muted">
-                                                <i class="fa fa-map-marker"></i>&nbsp;&nbsp;<span
-                                                    class="txt-color-darken"><?php echo $valor[3] ?></span>&nbsp;&nbsp;&nbsp;
-                                                <small>(Direccion de Contacto)</small>
-                                            </p>
-                                        </li>
-                                    </ul>
+                                    <?php if ($empleado->empleadoPersona->medico) { ?>
+                                        <h1>
+                                            <small>Informacion del Medico</small>
+                                        </h1>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-code"></i>&nbsp;&nbsp;<span
+                                                        class="txt-color-darken"><?php echo $empleado->empleadoPersona->medico->matricula ?></span>&nbsp;&nbsp;&nbsp;
+                                                    <small>(Codigo Matricula)</small>
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-code"></i>&nbsp;&nbsp;<span
+                                                        class="txt-color-darken"><?php echo $empleado->empleadoPersona->medico->estado ?></span>&nbsp;&nbsp;&nbsp;
+                                                    <small>(Codigo Matricula)</small>
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    <?php } ?>
                                 </div>
                                 <div class="col-md-3">
                                     <h1>
-                                        <small>Informacion de Seguros Clinicos</small>
+                                        <small></small>
                                     </h1>
                                     <ul class="list-unstyled">
 
@@ -240,8 +197,7 @@ $this->breadcrumbs = array(
                             </div>
                         </fieldset>
                         <div class="form-actions">
-                            <?php echo CHtml::link('<i class="fa fa-book"></i> Seguro de paciente', array('paciente/seguroPaciente', 'id' => $paciente->id_paciente), array('class' => 'btn btn-primary')); ?>
-                            <?php echo CHtml::link('<i class="fa fa-edit"></i> Editar Paciente', array('paciente/update', 'id' => $paciente->id_paciente), array('class' => 'btn btn-primary')); ?>
+                            <?php echo CHtml::link('<i class="fa fa-edit"></i> Editar Empleado', array('empleado/update', 'id' => $empleado->id_empleado), array('class' => 'btn btn-primary')); ?>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Paciente <span> > Actualizar Paciente</span>";
+$this->pageTitle = "Empleado <span> > Actualizar Empleado</span>";
 $this->breadcrumbs = array(
-    'Actualizar Paciente',
+    'Actualizar Empleado',
 );
 ?>
 <section id="widget-grid">
@@ -13,7 +13,7 @@ $this->breadcrumbs = array(
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Actualizar Paciente</legend>
+                            <legend>Actualizar Empleado</legend>
                             <br>
                             <?php echo CHtml::beginForm(array(), 'post', array()); ?>
                             <div class="row">
@@ -86,65 +86,18 @@ $this->breadcrumbs = array(
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <?php echo CHtml::activelabelEx($modelPerson, 'Genero'); ?>
-                                                <select name="PersonaForm[genero]" class="form-control">
-                                                    <option
-                                                        value="1" <?php echo ($persona->genero) ? 'selected' : '' ?>>
-                                                        MASCULINO
-                                                    </option>
-                                                    <option
-                                                        value="2" <?php echo (!$persona->genero) ? 'selected' : '' ?>>
-                                                        FEMENINO
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <?php echo CHtml::activelabelEx($modelPerson, 'Grupo Sanguineo'); ?>
-                                                <select name="PersonaForm[grupo_sanguineo]" class="form-control">
-                                                    <option
-                                                        value="0" <?php echo ($persona->paciente->grupo_sanguineo == 0) ? 'selected' : '' ?>>
-                                                        ELIJA TIPO DE SANGRE
-                                                    </option>
-                                                    <option
-                                                        value="1" <?php echo ($persona->paciente->grupo_sanguineo == 1) ? 'selected' : '' ?>>
-                                                        O+
-                                                    </option>
-                                                    <option
-                                                        value="2" <?php echo ($persona->paciente->grupo_sanguineo == 2) ? 'selected' : '' ?>>
-                                                        A+
-                                                    </option>
-                                                    <option
-                                                        value="3" <?php echo ($persona->paciente->grupo_sanguineo == 3) ? 'selected' : '' ?>>
-                                                        A-
-                                                    </option>
-                                                    <option
-                                                        value="4" <?php echo ($persona->paciente->grupo_sanguineo == 4) ? 'selected' : '' ?>>
-                                                        B+
-                                                    </option>
-                                                    <option
-                                                        value="5" <?php echo ($persona->paciente->grupo_sanguineo == 5) ? 'selected' : '' ?>>
-                                                        B-
-                                                    </option>
-                                                    <option
-                                                        value="6" <?php echo ($persona->paciente->grupo_sanguineo == 6) ? 'selected' : '' ?>>
-                                                        AB+
-                                                    </option>
-                                                    <option
-                                                        value="7" <?php echo ($persona->paciente->grupo_sanguineo == 7) ? 'selected' : '' ?>>
-                                                        AB-
-                                                    </option>
-                                                    <option
-                                                        value="8" <?php echo ($persona->paciente->grupo_sanguineo == 8) ? 'selected' : '' ?>>
-                                                        O-
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <?php echo CHtml::activelabelEx($modelPerson, 'Genero'); ?>
+                                        <select name="PersonaForm[genero]" class="form-control">
+                                            <option
+                                                value="1" <?php echo ($persona->genero == true) ? 'selected' : '' ?>>
+                                                MASCULINO
+                                            </option>
+                                            <option
+                                                value="0" <?php echo ($persona->genero == false) ? 'selected' : '' ?>>
+                                                FEMENINO
+                                            </option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabel($modelPerson, 'Fecha nacimiento'); ?>
@@ -226,52 +179,29 @@ $this->breadcrumbs = array(
                                         <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger')); ?>
                                     </div>
                                     <br>
-                                    <h1>Informacion de Contacto</h1>
-                                    <?php $valor = explode("-", $persona->paciente->responsable, 4); ?>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Contacto</label>
-                                                <input type="text" class="form-control"
-                                                       placeholder="Nombre completo de contacto"
-                                                       id="contacto" value="<?php echo $valor[0] ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Parentesco</label>
-                                                <input type="text" class="form-control"
-                                                       placeholder="Parentesco o relacion con el paciente"
-                                                       id="parentesco" value="<?php echo $valor[1] ?>">
-                                            </div>
-                                        </div>
+                                    <h1>Informacion de Empleado</h1>
+                                    <div class="form-group">
+                                        <?php echo CHtml::activeLabel($modelPerson, 'Fecha Contratacion'); ?>
+                                        <?php echo CHtml::activeTextField($modelPerson, 'fecha_contratacion', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa', 'value' => date('d/m/Y', strtotime($persona->empleado->fecha_contratacion)))); ?>
+                                        <?php echo CHtml::error($modelPerson, 'fecha_contratacion', ['class' => 'label label-danger']); ?>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Telefono</label>
-                                                <input type="text" class="form-control"
-                                                       placeholder="Telefono" id="telefono"
-                                                       value="<?php echo $valor[2] ?>">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Direccion</label>
-                                                <input type="text" class="form-control"
-                                                       placeholder="Direccion" id="direccion"
-                                                       value="<?php echo $valor[3] ?>">
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <?php echo CHtml::activelabelEx($modelPerson, 'Codigo Maquina'); ?>
+                                        <?php echo CHtml::activeTextField($modelPerson, 'cod_maquina', ['class' => 'form-control', 'placeholder' => 'Codigo Maquina', 'value' => $persona->empleado->cod_maquina]); ?>
+                                        <?php echo CHtml::error($modelPerson, 'cod_maquina', array('class' => 'label label-danger')); ?>
                                     </div>
-                                    <?php echo CHtml::activeHiddenField($modelPerson, 'responsable'); ?>
+                                    <div class="form-group hide">
+                                        <label>Medico de Turno en la Clinica </label>&nbsp;&nbsp;&nbsp;<br>
+                                        SI <input type="radio" name="medico" value="1">&nbsp;&nbsp;&nbsp;
+                                        NO <input type="radio" name="medico" checked value="0">
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
                         <div class="form-actions">
                             <button class="btn btn-primary" type="submit"
                                     id="btnEnviarUpdate"><i class='fa fa-save'></i>
-                                Actualizar informacion de Paciente
+                                Actualizar informacion de Empleado
                             </button>
                         </div>
                         <?php echo CHtml::endForm(); ?>
@@ -281,12 +211,13 @@ $this->breadcrumbs = array(
         </article>
     </div>
 </section>
+
 <!--Start Scripts-->
 
 <!--End plugins-->
 <!-- start plugins-->
 <?php
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/paciente/update.js', CClientScript::POS_END);
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/empleado/update.js', CClientScript::POS_END);
 ?>
 <!--end plugins-->
 

@@ -115,8 +115,8 @@ $this->breadcrumbs = array(
 
                                                 <div class="form-group">
                                                     <label>Medico de Turno en la Clinica </label>&nbsp;&nbsp;&nbsp;<br>
-                                                    SI <input type="radio" name="medico" value="true">&nbsp;&nbsp;&nbsp;
-                                                    NO <input type="radio" name="medico" checked value="false">
+                                                    SI <input type="radio" name="medico" value="1">&nbsp;&nbsp;&nbsp;
+                                                    NO <input type="radio" name="medico" checked value="0">
                                                 </div>
                                             </div>
                                         </div>

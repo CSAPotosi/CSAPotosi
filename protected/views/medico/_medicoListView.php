@@ -7,7 +7,7 @@
                         <?php if ($itemMedico->estado_med == 1): ?>
                             <label for="" class="label label-danger pull-right">activo</label>
                         <?php endif; ?>
-                        <img src="https://s3.amazonaws.com/wll-community-production/images/no-avatar.png" class="online"
+                        <img src="images/<?php echo $itemMedico->id_medico ?>/photo.png" class="online"
                              alt="">
 					<span class="name">
 
@@ -20,7 +20,7 @@
 					</span>
                     </div>
                     <ul class="links padding-5">
-
+                        <li><?php echo CHtml::link('Detalle', array('Medico/DetalleMedico', 'id' => $itemMedico->id_medico), array('class' => 'btn btn-danger btn-xs')); ?></li>
                     </ul>
                 </div>
             </div>
