@@ -52,11 +52,11 @@
 /*
  * Manejo de resultados de examenes de laboratorio
  * */
-//todo-pacf: mostrar lista de examenes a realizar
-//todo-pacf: creacion de parametros de laboratorio
-//todo-pacf: asignacion de parametros a examen
-//todo-pacf: formulario para resultados
-//todo-pacf: lista de resultados de examen para pacientes
+//hecho-pacf: mostrar lista de examenes a realizar
+//hecho-pacf: creacion de parametros de laboratorio
+//hecho-pacf: asignacion de parametros a examen
+//hecho-pacf: formulario para resultados
+//hecho-pacf: lista de resultados de examen para pacientes
 
 /*
  * Registro y control de salas de cirugia
@@ -66,13 +66,13 @@
 /*
  * Registro de cirugias, personal involucrado, tipo e instrumental adicional usado
  * */
-//todo-pacf: programar ciruga
-//todo-pacf: reprogramar cirugia
-//todo-pacf: cancelar cirugia
-//todo-pacf: confirmar cirugia
-//todo-pacf: cerrar cirugia,
-//todo-pacf: cerrar cirugia, agregar personal involucrado e instrumental
-//todo-pacf: nota, se agregara el tipo al empezar la cirugia (programar,reprogramar,confirmar)
+//hecho-pacf: programar ciruga
+//hecho-pacf: reprogramar cirugia
+//hecho-pacf: cancelar cirugia
+//hecho-pacf: confirmar cirugia
+//hecho-pacf: cerrar cirugia,
+//hecho-pacf: cerrar cirugia, agregar personal involucrado e instrumental
+//hecho-pacf: nota, se agregara el tipo al empezar la cirugia (programar,reprogramar,confirmar)
 
 /*
  * Reportes referentes a cirugias, internaciones y laboratorios

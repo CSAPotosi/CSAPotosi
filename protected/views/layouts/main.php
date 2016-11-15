@@ -11,7 +11,7 @@
 	<!-- #CSS Links -->
 	<!-- Basic Styles -->
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/font-awesome.css">
 
 	<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/smartadmin-production-plugins.min.css">
@@ -220,6 +220,17 @@
 			<li>
 				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="fa fa-lg fa-fw fa-heartbeat"></i> <span class="menu-item-parent">Cirugias</span></a>
 			</li>
+            <li>
+                <a href="<?php echo CHtml::normalizeUrl(['examen/index'])?>"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Examenes</span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-file-text-o"></i> <span class="menu-item-parent">Reportes</span></a>
+                <ul>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporteCirugia/index']);?>" title="Salas"><span class="menu-item-parent">Cirugias</span></a>
+                    </li>
+                </ul>
+            </li>
 		</ul>
 	</nav>
 

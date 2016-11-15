@@ -11,6 +11,7 @@
  * The followings are the available model relations:
  * @property Servicio $idServ
  * @property CategoriaServExamen $idCatEx
+ * @property ExamenParametro $examenParametros
  */
 class ServExamen extends CActiveRecord
 {
@@ -49,6 +50,7 @@ class ServExamen extends CActiveRecord
 		return array(
 			'datosServicio' => array(self::BELONGS_TO, 'Servicio', 'id_serv'),
 			'categoria' => array(self::BELONGS_TO, 'CategoriaServExamen', 'id_cat_ex'),
+            'examenParametros'=>array(self::HAS_MANY,'ExamenParametro','id_serv','order'=>'orden ASC')
 		);
 	}
 

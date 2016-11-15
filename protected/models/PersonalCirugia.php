@@ -31,7 +31,7 @@ class PersonalCirugia extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_cir, id_per', 'required'),
+			array('id_per', 'required'),
 			array('id_cir, id_per', 'numerical', 'integerOnly'=>true),
 			array('rol_cirugia', 'length', 'max'=>36),
 			array('responsable', 'safe'),
@@ -49,8 +49,8 @@ class PersonalCirugia extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idCir' => array(self::BELONGS_TO, 'Cirugia', 'id_cir'),
-			'idPer' => array(self::BELONGS_TO, 'Persona', 'id_per'),
+			'cirugia' => array(self::BELONGS_TO, 'Cirugia', 'id_cir'),
+			'persona' => array(self::BELONGS_TO, 'Persona', 'id_per'),
 		);
 	}
 
@@ -105,4 +105,14 @@ class PersonalCirugia extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public static function getRolPersonal(){
+        return [
+            'CIRUJANO' => 'CIRUJANO',
+            'ANESTESIOLOGO' => 'ANESTESIOLOGO',
+            'AUXILIAR 1' => 'AUXILIAR 1',
+            'AUXILIAR 2' => 'AUXILIAR 2',
+            'INSTRUMENTISTA' => 'INSTRUMENTISTA'
+        ];
+    }
 }

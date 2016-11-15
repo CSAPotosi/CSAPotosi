@@ -135,8 +135,7 @@ class ServicioForm extends CFormModel
         }
         return false;
     }
-
-
+    
     public function saveServicioClinico($id = null)
     {
         $this->modelServClinico = ($id == null) ? new ServClinico() : ServClinico::model()->findByPk($id);

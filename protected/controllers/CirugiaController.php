@@ -21,16 +21,19 @@ class CirugiaController extends Controller
                 'id'=>$cir->id_cir,
                 'title'=>$cir->historial->paciente->persona->nombres." - ".$cir->sala->tSala->servicio->nombre_serv." (".$cir->sala->cod_sala.")",
                 'start'=>$cir->fec_reserva,
-                'url'=>CHtml::normalizeUrl(['cirugia/view'])
+                'url'=>CHtml::normalizeUrl(['cirugia/view','c_id'=>$cir->id_cir])
             ];
             if($cir->reservado){
                 $di = new DateInterval('PT'.$cir->tiempo_estimado.'M');
                 $end = new DateTime($cir->fec_reserva);
                 $end->add($di);
+                $item['title'].= ' - R';
                 $item['end'] = $end->format('Y-m-d H:i');
-                $item['color'] = '#f00';
+                $item['color'] = '#6311C0';
             }else{
-                ;
+                $item['color'] = '#11A6C0';
+                $item['start'] = $cir->fec_inicio;
+                $item['end'] = $cir->fec_fin;
             }
             $cirugias[] = $item;
         }
@@ -38,51 +41,100 @@ class CirugiaController extends Controller
         Yii::app()->end();
     }
 
-    public function actionProgramar(){
-        $this->menu = OptionsMenu::menuCirugia([],['cirugias','programar']);
+    public function actionProgramar($c_id = 0){
+        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['cirugias','programar']);
 
         $cirugia = new Cirugia('reserva');
-      //  $cirugia->id_historial = $this->_historial->id_historial;
+        if($c_id){
+            $cirugia = Cirugia::model()->findByPk($c_id);
+            $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','reprogramar']);
+        }
+        $cirugia->reservado = true;
         if(isset($_POST['Cirugia'])){
             $cirugia->attributes = $_POST['Cirugia'];
             if($cirugia->save()){
-                return $this->redirect(['index']);
+                return $this->redirect(['view','c_id'=>$cirugia->id_cir]);
             }
         }
         $this->render('programar',['cirugia'=>$cirugia]);
     }
 
-    public function actionRegistrar(){
+    public function actionRegistrar($c_id = 0){
         $this->menu = OptionsMenu::menuCirugia([],['cirugias','registrar']);
-        $cirugia = new Cirugia();
-        $this->render('registrar',['cirugia'=>$cirugia]);
-    }
-
-    public function actionView(){
-        $this->render('view');
-    }
-
-    public function filters()
-    {
-        return [
-            //'historialContext - index,getEventsAjax'
-        ];
-    }
-
-    public function filterHistorialContext($filterChain){
-        if(isset($_GET['h_id']))
-            $this->loadHistorial($_GET['h_id']);
-        else
-            throw new CHttpException(404, 'No ha especificado un historial valido, vuelva a intentarlo');
-        $filterChain->run();
-    }
-
-    protected function loadHistorial($historialId){
-        if($this->_historial == null){
-            $this->_historial = HistorialMedico::model()->findByPk($historialId);
-            if($this->_historial == null)
-                throw new CHttpException(404,'Ha ocurrido un error en la solicitud.');
+        $cirugia = new Cirugia('registro');
+        $persList = $this->loadPersonal($c_id);
+        if($c_id){
+            $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','confirmar']);
+            $cirugia = Cirugia::model()->findByPk($c_id);
+            $cirugia->scenario = 'registro';
         }
-        return $this->_historial;
+        $cirugia->reservado = false;
+        if (isset($_POST['Cirugia'],$_POST['PersonalCirugia'])){
+            $cirugia->attributes = $_POST['Cirugia'];
+            if($this->validar(array_merge([$cirugia],$persList))){
+                $cirugia->save();
+                foreach ($cirugia->personalCirugias as $per)
+                    $per->delete();
+                foreach ($persList as $per){
+                    $per->id_cir = $cirugia->id_cir;
+                    $per->save();
+                }
+                return $this->redirect(['view','c_id'=>$cirugia->id_cir]);
+            }
+        }
+        $this->render('registrar',['cirugia'=>$cirugia,'persList'=>$persList]);
+    }
+
+    public function actionView($c_id = 0){
+        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','view']);
+        $cirugia = Cirugia::model()->findByPk($c_id);
+        $this->render('view',['cirugia'=>$cirugia]);
+    }
+
+    public function actionCancelar($c_id = 0){
+        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','cancelar']);
+        $cirugia = Cirugia::model()->findByPk($c_id);
+        if(isset($_POST['Cirugia'])){
+            $cirugia->delete();
+            return $this->redirect(['index']);
+        }
+        return $this->render('cancelar',['cirugia'=>$cirugia]);
+    }
+
+    public function actionGetMinimalList(){
+        $medicoList = Medico::model()->findAll(['limit'=>5]);
+        $enfList = Empleado::model()->findAll(['limit'=>5]);
+        $this->renderPartial('_minimalPersonList',['medicoList'=>$medicoList, 'enfList'=>$enfList]);
+    }
+
+    private function loadPersonal($id_cir=0){
+        $persList = [];
+        if(isset($_POST['PersonalCirugia'])){
+            foreach ($_POST['PersonalCirugia'] as $item){
+                $temp = new PersonalCirugia();
+                $temp->attributes = $item;
+                $persList[] = $temp;
+            }
+        }
+        else{
+            $cir = Cirugia::model()->findByPk($id_cir);
+            if($cir && $cir->personalCirugias){
+                $persList = $cir->personalCirugias;
+            }
+            else{
+                $pc = new PersonalCirugia();$pc->responsable=true;
+                $persList[]= $pc;
+            }
+
+        }
+
+        return $persList;
+    }
+
+    private function validar($lista = []){
+        $flag = true;
+        foreach ($lista as $item)
+            $flag = $flag && $item->validate();
+        return $flag;
     }
 }

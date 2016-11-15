@@ -11,7 +11,7 @@
  * @property string $fecha_solicitud
  *
  * The followings are the available model relations:
- * @property HistorialMedico $idHistorial
+ * @property HistorialMedico $historial
  * @property DetallePrestacion[] $detallePrestacions
  */
 class PrestacionServicio extends CActiveRecord
@@ -50,7 +50,7 @@ class PrestacionServicio extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idHistorial' => array(self::BELONGS_TO, 'HistorialMedico', 'id_historial'),
+            'historial' => array(self::BELONGS_TO, 'HistorialMedico', 'id_historial'),
             'detallePrestacions' => array(self::HAS_MANY, 'DetallePrestacion', 'id_prestacion'),
         );
     }

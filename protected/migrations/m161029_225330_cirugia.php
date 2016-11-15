@@ -11,6 +11,7 @@ class m161029_225330_cirugia extends CDbMigration
             'fec_fin' => "TIMESTAMP",
             'tiempo_estimado' => "INT DEFAULT 0",
             'tiempo_real' => "INT DEFAULT 0",
+            'detalle_instrumental' => "TEXT",
             'naturaleza' => "TEXT",
             'reservado'=>"BOOLEAN DEFAULT FALSE",//true si, false no
             'id_historial' => "INT NOT NULL",
@@ -20,6 +21,7 @@ class m161029_225330_cirugia extends CDbMigration
         ]);
 
         $this->createTable('personal_cirugia',[
+            'id_pc'=>"pk",
             'id_cir' => "INT NOT NULL",
             'id_per' => "INT NOT NULL",
             'responsable' => "BOOLEAN DEFAULT false",

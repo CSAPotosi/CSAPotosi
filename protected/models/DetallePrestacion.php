@@ -14,8 +14,8 @@
  * @property boolean $realizado
  *
  * The followings are the available model relations:
- * @property PrestacionServicios $idPrestacion
- * @property Servicio $idServicio
+ * @property PrestacionServicios $prestacion
+ * @property Servicio $servicio
  */
 class DetallePrestacion extends CActiveRecord
 {
@@ -53,8 +53,9 @@ class DetallePrestacion extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idPrestacion' => array(self::BELONGS_TO, 'PrestacionServicios', 'id_prestacion'),
+            'prestacion' => array(self::BELONGS_TO, 'PrestacionServicio', 'id_prestacion'),
             'servicio' => array(self::BELONGS_TO, 'Servicio', 'id_servicio'),
+            'resultadoExamen'=>array(self::HAS_ONE,'ResultadoExamen','id_det_pres')
         );
     }
 

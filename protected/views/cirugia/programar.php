@@ -20,9 +20,13 @@
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <div class="form-group">
+                                        <?php
+                                        $text = $cirugia->id_historial? $cirugia->historial->paciente->persona->nombres." ( {$cirugia->historial->paciente->persona->num_doc} )" :'';
+                                        ?>
                                         <?php echo CHtml::  activeLabelEx($cirugia,'id_historial');?>
                                         <div class="input-group">
-                                            <?php echo CHtml::activeTextField($cirugia,'id_historial',['class'=>'form-control','placeholder'=>'Seleccione un paciente','readonly'=>'readonly']);?>
+                                            <input type="text" id="paciente" class="form-control" value="<?php echo $text;?>" placeholder="Seleccione un paciente" disabled>
+                                            <?php echo CHtml::activeHiddenField($cirugia,'id_historial');?>
                                             <div class="input-group-btn">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-paciente">
                                                     <i class="fa fa-search"></i> Buscar
@@ -31,6 +35,7 @@
                                         </div>
                                         <?php echo CHtml::error($cirugia,'id_historial',['class'=>'label label-danger']);?>
                                     </div>
+
 
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($cirugia,'fec_reserva');?>
@@ -51,7 +56,7 @@
 
                                     <div class="form-group">
                                         <?php
-                                            $text = $cirugia->sala? $cirugia->sala->cod_sala." ( {$cirugia->sala->tSala->servicio->nombre_serv} )" :'';
+                                            $text = $cirugia->id_sala? $cirugia->sala->cod_sala." ( {$cirugia->sala->tSala->servicio->nombre_serv} )" :'';
                                         ?>
                                         <?php echo CHtml::  activeLabelEx($cirugia,'id_sala');?>
                                         <div class="input-group">
@@ -113,7 +118,12 @@
                         <h4 class="modal-title">Seleccione paciente</h4>
                     </div>
                     <div class="col-md-6">
-                        <?php// echo CHtml::dropDownList('tSala',null,CHtml::listData($modelTSala,'id_serv','servicio.nombre_serv'),['class'=>'input-sm form-control pull-left'])?>
+                        <div class="input-group">
+                            <input type="text" class="input-sm form-control pull-left" placeholder="Buscar paciente">
+                            <span class="input-group-addon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>

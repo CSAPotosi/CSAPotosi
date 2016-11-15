@@ -42,7 +42,10 @@ class PacienteController extends Controller
 	}
 
     public function actionGetMinimalListAjax(){
-        $this->renderPartial('_minimalPatientListView');
+        $pacienteList = Paciente::model()->findAll([
+            'limit'=>10
+        ]);
+        $this->renderPartial('_minimalPatientListView',['pacienteList'=> $pacienteList]);
     }
 
 	public function actionCreate()

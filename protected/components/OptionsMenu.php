@@ -89,25 +89,51 @@ class OptionsMenu{
     }
 
     public static function menuCirugia($params = [], $selected = ['','']){
-        $menu =[
-            'cirugias' => [
-                'label' => 'Cirugias',
-                'items' =>[
-                    'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
-                    'programar' => ['url'=>['cirugia/programar'],'label'=>'Programar'],
-                    'registrar' => ['url'=>['cirugia/registrar'],'label'=>'Registrar']
+        $cirugia = null;$menu = [];
+        if(isset($params['c_id'])){
+            $cirugia = Cirugia::model()->findByPk($params['c_id']);
+        }
+
+        if($cirugia){
+            if($cirugia->reservado){
+                $menu = [
+                    'itemCirugia' => [
+                        'label' => 'Cirugia programada',
+                        'items' =>[
+                            'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
+                            'view'=>['url'=>['cirugia/view','c_id'=>$cirugia->id_cir],'label'=>'Detalle'],
+                            'confirmar'=>['url'=>['cirugia/registrar','c_id'=>$cirugia->id_cir],'label'=>'Confirmar'],
+                            'reprogramar'=>['url'=>['cirugia/programar','c_id'=>$cirugia->id_cir],'label'=>'Reprogramar'],
+                            'cancelar'=>['url'=>['cirugia/cancelar','c_id'=>$cirugia->id_cir],'label'=>'Cancelar']
+                        ]
+                    ]
+                ];
+            }
+            else{
+                $menu = [
+                    'itemCirugia' => [
+                        'label' => 'Cirugia registrada',
+                        'items' =>[
+                            'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
+                            'view'=>['url'=>['cirugia/view','c_id'=>$cirugia->id_cir],'label'=>'Detalle'],
+                            'confirmar'=>['url'=>['cirugia/registrar','c_id'=>$cirugia->id_cir],'label'=>'Editar']
+                        ]
+                    ]
+                ];
+            }
+        }
+        else{
+            $menu =[
+                'cirugias' => [
+                    'label' => 'Cirugias',
+                    'items' =>[
+                        'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
+                        'programar' => ['url'=>['cirugia/programar'],'label'=>'Programar'],
+                        'registrar' => ['url'=>['cirugia/registrar'],'label'=>'Registrar']
+                    ]
                 ]
-            ],
-            'itemCirugia' => [
-                'label' => '',
-                'items' =>[
-                    'index'=>['url'=>[],'label'=>'Detalle'],
-                    'reprogramar'=>['url'=>[],'label'=>'Reprogramar'],
-                    'cancelar'=>['url'=>[],'label'=>'Cancelar'],
-                    'registrar/editar'=>['url'=>[],'label'=>'registrar/editar'],
-                ]
-            ]
-        ];
+            ];
+        }
         return self::selectMenu($menu,$selected);
     }
 
@@ -128,6 +154,21 @@ class OptionsMenu{
                     'addEvolucion'=>['url'=>['evolucion/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Evolucion'],
                     'indexTratamiento'=>['url'=>['tratamiento/index','d_id'=>$dModel->id_diag],'label'=>'Tratamientos realizados'],
                     'addTratamiento'=>['url'=>['tratamiento/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Tratamiento']
+                ]
+            ]
+        ];
+        return self::selectMenu($menu,$selected);
+    }
+
+    public static function menuExamen($params = [],$selected = ['','']){
+        $menu = [
+            'examen'=>[
+                'label' => 'Examenes laboratorio',
+                'items' => [
+                    'index' => ['url'=>['examen/index'],'label'=>'Pendientes'],
+                    'list' => ['url'=>['examen/list'],'label'=>'Realizados'],
+                    'examen' => ['url'=>['examen/examen'],'label'=>'Adm. de examenes'],
+                    'parametros' => ['url'=>['examen/parametros'],'label'=>'Adm. parametros']
                 ]
             ]
         ];

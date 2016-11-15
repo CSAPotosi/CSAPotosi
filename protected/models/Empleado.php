@@ -48,6 +48,7 @@ class Empleado extends CActiveRecord
         // class name for the relations automatically generated below.
         return array(
             'empleadoPersona' => array(self::BELONGS_TO, 'Persona', 'id_empleado'),
+            'persona' => array(self::BELONGS_TO, 'Persona', 'id_empleado'),
             'asignacion' => array(self::HAS_MANY, 'AsignacionEmpleado', 'id_empleado'),
             'asignacionValida' => array(self::HAS_MANY, 'AsignacionEmpleado', 'id_empleado', 'condition' => 'fecha_fin is null')
         );

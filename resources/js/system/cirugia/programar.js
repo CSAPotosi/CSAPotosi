@@ -31,11 +31,17 @@ $("#modal-paciente").on("show.bs.modal",getPacientes);
 
 //traer pacientes
 function getPacientes(){
-
     var url = $("#modal-paciente").data("url");
     $("#modal-paciente .modal-body .well").load(url,{id: 0},eventHandlersPaciente);
 }
 
 function eventHandlersPaciente(){
-    ;
+    $(".select-person").off().on("click",function () {
+        var id_p = $(this).data("id");
+        var nombre = $(this).data("name");
+        var doc = $(this).data("doc");
+        $("#paciente").val(nombre + " ( "+doc+" )");
+        $("#Cirugia_id_historial").val(id_p);
+        $("#modal-paciente").modal('hide');
+    });
 }

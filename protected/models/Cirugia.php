@@ -11,6 +11,7 @@
  * @property integer $tiempo_estimado
  * @property integer $tiempo_real
  * @property string $naturaleza
+ * @property string $detalle_instrumental
  * @property boolean $reservado
  * @property integer $id_historial
  * @property integer $id_sala
@@ -40,8 +41,9 @@ class Cirugia extends CActiveRecord
 		return array(
 			array('id_historial, id_sala', 'required'),
             array('fec_reserva, tiempo_estimado', 'required', 'on'=>'reserva'),
+            array('fec_inicio, fec_fin','required','on'=>'registro'),
 			array('tiempo_estimado, tiempo_real, id_historial, id_sala', 'numerical', 'integerOnly'=>true),
-			array('fec_reserva, fec_inicio, fec_fin, naturaleza, reservado', 'safe'),
+			array('fec_reserva, fec_inicio, fec_fin, naturaleza,detalle_instrumental , reservado', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_cir, fec_reserva, fec_inicio, fec_fin, tiempo_estimado, tiempo_real, naturaleza, reservado, id_historial, id_sala', 'safe', 'on'=>'search'),
@@ -124,4 +126,5 @@ class Cirugia extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
 }
