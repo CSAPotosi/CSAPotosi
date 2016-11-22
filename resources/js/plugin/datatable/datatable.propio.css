@@ -1,0 +1,30 @@
+div.dataTables_filter label {
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 5px;
+}
+
+div.dataTables_filter input:focus {
+    border-color: #66afe9;
+}
+
+div.dataTables_filter input {
+    border: 1px solid #DBE1EB;
+    font-family: Arial, Verdana;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    background: #FFFFFF;
+    background: linear-gradient(left, #FFFFFF, #F7F9FA);
+    background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+    background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+    background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+    color: #2E3133;
+}

@@ -9,6 +9,10 @@ return array(
 	// preloading 'log' component
 	'preload'=>array('log'),
 
+	'import' => array(
+		'application.models.*'
+	),
+
 	// application components
 	'components'=>array(
 
@@ -23,6 +27,12 @@ return array(
 					'levels'=>'error, warning',
 				),
 			),
+		),
+
+		'authManager' => array(
+			'class' => 'CDbAuthManager',
+			'connectionID' => 'db',
+			'defaultRoles' => array('admin'),
 		),
 
 	),

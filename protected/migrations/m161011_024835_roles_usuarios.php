@@ -8,7 +8,7 @@ class m161011_024835_roles_usuarios extends CDbMigration
 			'id_usuario' => "INT NOT NULL PRIMARY KEY",
 			'nombre_usuario' => "VARCHAR(32) UNIQUE NOT NULL",
 			'clave' => "VARCHAR(128) NOT NULL",
-			'estado_usuario' => "SMALLINT DEFAULT 1",
+			'estado_usuario' => "BOOLEAN DEFAULT TRUE",
 			"FOREIGN KEY (id_usuario) REFERENCES persona(id_persona)"
 		]);
 
@@ -36,7 +36,6 @@ class m161011_024835_roles_usuarios extends CDbMigration
 			'data' => "TEXt",
 			"PRIMARY KEY (itemname, userid)",
 			'FOREIGN KEY (itemname) REFERENCES "AuthItem" (name) ON DELETE CASCADE ON UPDATE CASCADE',
-			"FOREIGN KEY (userid) REFERENCES usuario(nombre_usuario) ON DELETE CASCADE ON UPDATE CASCADE"
 		]);
 	}
 

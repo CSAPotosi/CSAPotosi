@@ -172,9 +172,54 @@ class OptionsMenu{
                 ]
             ]
         ];
+
         return self::selectMenu($menu,$selected);
     }
 
+    public static function menuAuthenticacion($params = [], $selected = ['', ''])
+    {//USER: paso 3-definir menu como en el ejemplo, tomar nota de los items
+        $menu = [
+            'Roles' => [
+                'label' => 'Roles de Acceso al Sistema',
+                'items' => [
+                    'authentication_AdminRoles' => ['url' => ['authentication/adminRoles'], 'label' => 'Administrar Roles'],
+                    'authentication_CreateRole' => ['url' => ['authentication/CreateRole'], 'label' => 'Crear Rol'],
+                    'authentication_AdminTasks' => ['url' => ['authentication/adminTasks'], 'label' => 'Administrar Tareas'],
+                    'authentication_CreateTask' => ['url' => ['authentication/createTask'], 'label' => 'Crear Tarea'],
+                    'authentication_ViewOperations' => ['url' => ['examen/parametros'], 'label' => 'Ver Operaciones']
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuUsuario($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'Usuarios' => [
+                'label' => 'Usuarios del Sistema',
+                'items' => [
+                    'Pagina de Inicio de Usuario' => ['url' => ['authentication/adminRoles'], 'label' => 'Administrar Roles'],
+                    'usuario_Create' => ['url' => ['authentication/CreateRole'], 'label' => 'Adm. de examenes'],
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function verAcceso($menu)
+    {
+        foreach ($menu as $i => $item) {
+            foreach ($item['items'] as $index => $link) {
+                if (!(Yii::app()->authManager->checkAccess($index, Yii::app()->user->id)))
+                    unset($menu[$i]['items'][$index]);
+            }
+        }
+        return $menu;
+    }
+    
     private static function selectMenu($menu = [], $selected = ['','']){
         $submenu = [];
         if(count($selected)==2){

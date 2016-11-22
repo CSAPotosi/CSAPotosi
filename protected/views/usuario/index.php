@@ -1,5 +1,7 @@
 <?php
 /* @var $this UsuarioController */
+$this->pageTitle = "USUARIOS";
+
 $this->breadcrumbs = array(
     'Usuario',
 );
@@ -31,15 +33,13 @@ $this->breadcrumbs = array(
                                             </button>
                                             <ul class="dropdown-menu pull-right" id="pick-status-usuario">
                                                 <li class="active">
-                                                    <a href="javascript:void(0);" status="1">Todos</a>
+                                                    <a href="javascript:void(0);" status="all">Todos</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0);" status="0">Activos</a>
+                                                    <a href="javascript:void(0);" status="true">Activos</a>
                                                 </li>
                                                 <li>
-                                                    <a href="javascript:void(0);" status="0">
-                                                        Inactivos
-                                                    </a>
+                                                    <a href="javascript:void(0);" status="false">Inactivos</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -48,7 +48,7 @@ $this->breadcrumbs = array(
                             </div>
 
                             <div class="row" id="usuario-list">
-                                <!-- Lista de pacientes (_pacientListView)-->
+                                <!-- Lista de usuarios (_usuarioListView)-->
                             </div>
 
                             <div class="row">

@@ -2,6 +2,7 @@
 
 class AuthenticationController extends Controller
 {
+    public $defaultAction = 'adminRoles';
     public function filters()
     {
         return array(
@@ -12,14 +13,43 @@ class AuthenticationController extends Controller
 
     public function accessRules()
     {
+        //USER: paso 1 = agregar regla de acceso por cada action  controllerNameActionName
         return array(
-            array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions' => array('init'),
-                'users' => array('*'),
+            array('allow',
+                'actions' => array('viewOperations'),
+                'roles' => array('authenticationViewOperations'),
             ),
-            array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index'),
-                'roles' => array('authenticationIndex'),
+            array('allow',
+                'actions' => array('adminRoles'),
+                'roles' => array('authenticationAdminRoles'),
+            ),
+            array('allow',
+                'actions' => array('adminTasks'),
+                'roles' => array('authenticationAdminTasks'),
+            ),
+            array('allow',
+                'actions' => array('createTask'),
+                'roles' => array('authenticationCreateTask'),
+            ),
+            array('allow',
+                'actions' => array('updateTask'),
+                'roles' => array('authenticationUpdateTask'),
+            ),
+            array('allow',
+                'actions' => array('createRole'),
+                'roles' => array('authenticationCreateRole'),
+            ),
+            array('allow',
+                'actions' => array('updateRole'),
+                'roles' => array('authenticationUpdateRole'),
+            ),
+            array('allow',
+                'actions' => array('view'),
+                'roles' => array('authenticationView'),
+            ),
+            array('allow',
+                'actions' => array('deleteRole'),
+                'roles' => array('authenticationDeleteRole'),
             ),
             array('deny',  // deny all users
                 'users' => array('*'),
@@ -27,106 +57,203 @@ class AuthenticationController extends Controller
         );
     }
 
-    public function actionIndex()
+    public function actionViewOperations()
     {
-        $roleList = Yii::app()->authManager->getRoles();
-        $taskList = Yii::app()->authManager->getOperations();
-        $this->render('index', array('roleList' => $roleList, 'taskList' => $taskList));
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $listOperations = Yii::app()->authManager->getOperations();
+        $this->render("viewOperations", array(
+            'listOperations' => $listOperations,
+        ));
     }
 
-    public function actionInit()
+    public function actionAdminRoles()
     {
-        //var_dump(Yii::app()->user->name);
-        //Yii::app()->end();
-        if (isset($_POST['reset'])) {
-            $this->initDefaultAdmin();
-            $this->redirect(array('init'));
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $list = Yii::app()->authManager->getRoles();
+        $this->render("admin", array(
+            'list' => $list,
+            'tipo' => 2,
+        ));
+    }
+
+    public function actionAdminTasks()
+    {
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $list = Yii::app()->authManager->getTasks();
+        $this->render("admin", array(
+            'list' => $list,
+            'tipo' => 1,
+        ));
+    }
+
+    public function actionCreateTask()
+    {
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $task = new RoleForm;
+        if (isset($_POST["RoleForm"])) {
+            $task->attributes = $_POST["RoleForm"];
+            if ($task->validate()) {
+                $trans = Yii::app()->db->beginTransaction();
+                try {
+                    $tarea = Yii::app()->authManager->createTask(trim($task->name), $task->description);
+                    if (isset($_POST["operaciones"])) {
+                        foreach ($_POST["operaciones"] as $operacion) {
+                            $tarea->addChild($operacion);
+                        }
+                    }
+                    $trans->commit();
+                } catch (Exception $e) {
+                    echo "Excepcion: " . $e->getMessage() . "/n";
+                    $trans->rollback();
+                    //todo-le: Agregar pagina de excepcion
+                    Yii::app()->end();
+                }
+                $this->redirect(array('view', 'id' => $tarea->name));
+            }
         }
-        if (isset($_POST['adminuser'])) {
-            $this->resetRoles($_POST['adminuser']);
-            $this->redirect(array('index'));
+        $listOperations = Yii::app()->authManager->getOperations();
+        $this->render('createTask', array(
+            'task' => $task,
+            'listOperations' => $listOperations,
+        ));
+    }
+
+    public function actionUpdateTask($id)
+    {
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $task = Yii::app()->authManager->getAuthItem($id);
+        if (isset($_POST["oculto"])) {
+            $trans = Yii::app()->db->beginTransaction();
+            try {
+                if (isset($_POST['description'])) {
+                    $task->description = $_POST['description'];
+                    Yii::app()->authManager->saveAuthItem($task);
+                }
+                $query = "delete from \"AuthItemChild\" where parent= '" . $task->name . "';";
+                $command = Yii::app()->db->createCommand($query);
+                $command->execute();
+                if (isset($_POST["operaciones"])) {
+                    foreach ($_POST["operaciones"] as $operacion) {
+                        $task->addChild($operacion);
+                    }
+                }
+                $trans->commit();
+            } catch (Exception $e) {
+                echo "Excepcion: " . $e->getMessage() . "/n";
+                $trans->rollback();
+                //todo-le: Agregar pagina de excepcion
+                Yii::app()->end();
+            }
+            $this->redirect(array('view', 'id' => $task->name));
         }
-        $this->render('init');
+
+        $listOperations = Yii::app()->authManager->getOperations();
+        $listOperationsSelected = Yii::app()->authManager->getItemChildren($task->name);
+        $this->render('updateTask', array(
+            'task' => $task,
+            'listOperations' => $listOperations,
+            'listOperationsSelected' => $listOperationsSelected,
+        ));
     }
 
-    public function initDefaultAdmin()
+    public function actionCreateRole()
     {
-        $persona = new Persona;
-        $persona->num_doc = "123456";
-        $persona->nombres = "admin";
-        $persona->primer_apellido = "admin";
-        $persona->nacionalidad = "BOL";
-        $persona->save();
-        $usuario = new Usuario;
-        $usuario->id_usuario = $persona->id_persona;
-        $usuario->nombre_usuario = "admin";
-        $usuario->clave = sha1("admin");
-        $usuario->save();
-    }
-
-    public function resetRoles($user)
-    {
-        $auth = Yii::app()->authManager;
-        $auth->clearAll();
-        $this->addOperations();
-        $auth->createRole('admin', 'Rol de Administrador', 'return Yii::app()->user->name === "' . $user . '";');
-        $todos = Yii::app()->authManager->getOperations();
-        foreach ($todos as $item) {
-            $auth->addItemChild("admin", $item->name);
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $role = new RoleForm;
+        if (isset($_POST["RoleForm"])) {
+            $role->attributes = $_POST["RoleForm"];
+            if ($role->validate()) {
+                $trans = Yii::app()->db->beginTransaction();
+                try {
+                    $rol = Yii::app()->authManager->createRole(trim($role->name), $role->description);
+                    if (isset($_POST["tarea_rol"])) {
+                        foreach ($_POST["tarea_rol"] as $tarea_rol) {
+                            $rol->addChild($tarea_rol);
+                        }
+                    }
+                    $trans->commit();
+                } catch (Exception $e) {
+                    echo "Excepcion: " . $e->getMessage() . "/n";
+                    $trans->rollback();
+                    //todo-le: Agregar pagina de excepcion
+                    Yii::app()->end();
+                }
+                $this->redirect(array('view', 'id' => $rol->name));
+            }
         }
-        $auth->assign('admin', $user);
+        $listTasks = Yii::app()->authManager->getTasks();
+        $listRoles = Yii::app()->authManager->getRoles();
+        $this->render('createRole', array(
+            'role' => $role,
+            'listTasks' => $listTasks,
+            'listRoles' => $listRoles,
+        ));
     }
 
-    public function addOperations()
+    public function actionUpdateRole($id)
     {
-        $auth = Yii::app()->authManager;
-        $auth->createOperation('usuarioIndex', "index de usuario");
-        $auth->createOperation('usuarioCreate', "Crear un nuevo usuario");
-        $auth->createOperation('authenticationIndex', "Mostrar los Roles");
-        $auth->createOperation('createPaciente', "Crear Paciente");
-        $auth->createOperation('indexPaciente', "index de paciente");
-        $auth->createOperation('indexUnidad', "index de unidad");
-        $auth->createOperation('createUnidad', "crear una nueva Unidad");
-        $auth->createOperation('updateUnidad', "Actualizar Unidad");
-        $auth->createOperation('indexCargo', "index de Cargo");
-        $auth->createOperation('createCargo', "crear un nuevo Cargo");
-        $auth->createOperation('createMedico', "crear un nuevo medico");
-        $auth->createOperation('createHorario', "crear un nuevo Horario");
-        $auth->createOperation('indexHorario', "index de Horario");
-        $auth->createOperation('updateHorario', "Actualizar Horario");
-        $auth->createOperation('createTurno', "crear un nuevo Turno");
-        $auth->createOperation('updateTurno', "Actualizar un turno");
-        $auth->createOperation('indexTurno', "index de Turno");
-        $auth->createOperation('indexAsignacion', "index de Asignacion de Empleado");
-        $auth->createOperation('createAsignacion', "Crear una nueva Asignacion");
-        $auth->createOperation("updateAsignacion", "Actualizar Asignacion de Empleado");
-    }
-    //public function action
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $role = Yii::app()->authManager->getAuthItem($id);
+        if (isset($_POST["oculto"])) {
+            $trans = Yii::app()->db->beginTransaction();
+            try {
+                if (isset($_POST['description'])) {
+                    $role->description = $_POST['description'];
+                    Yii::app()->authManager->saveAuthItem($role);
+                }
+                $query = "delete from \"AuthItemChild\" where parent= '" . $role->name . "';";
+                $command = Yii::app()->db->createCommand($query);
+                $command->execute();
+                if (isset($_POST["tarea_rol"])) {
+                    foreach ($_POST["tarea_rol"] as $tarea_rol) {
+                        $role->addChild($tarea_rol);
+                    }
+                }
+                $trans->commit();
+            } catch (Exception $e) {
+                echo "Excepcion: " . $e->getMessage() . "/n";
+                $trans->rollback();
+                //todo-le: Agregar pagina de excepcion
+                Yii::app()->end();
+            }
+            $this->redirect(array('view', 'id' => $role->name));
+        }
 
-    // Uncomment the following methods and override them if needed
-    /*
-    public function filters()
-    {
-        // return the filter configuration for this controller, e.g.:
-        return array(
-            'inlineFilterName',
-            array(
-                'class'=>'path.to.FilterClass',
-                'propertyName'=>'propertyValue',
-            ),
-        );
+        $listTasks = Yii::app()->authManager->getTasks();
+        $listRoles = Yii::app()->authManager->getRoles();
+        $listTasksRolesSelected = Yii::app()->authManager->getItemChildren($role->name);
+        $this->render('updateRole', array(
+            'role' => $role,
+            'listTasks' => $listTasks,
+            'listRoles' => $listRoles,
+            'listTasksRolesSelected' => $listTasksRolesSelected,
+        ));
     }
 
-    public function actions()
+    public function actionView($id)
     {
-        // return external action classes, e.g.:
-        return array(
-            'action1'=>'path.to.ActionClass',
-            'action2'=>array(
-                'class'=>'path.to.AnotherActionClass',
-                'propertyName'=>'propertyValue',
-            ),
-        );
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+
+        $rol = Yii::app()->authManager->getAuthItem($id);
+        if ($rol->type == 0)
+            $this->redirect(array("viewOperations"));
+        $listSelected = Yii::app()->authManager->getItemChildren($rol->name);
+        $types = array("Operacion", "Tarea", "Rol");
+        $this->render('view', array(
+            'rol' => $rol,
+            'types' => $types,
+            'listSelected' => $listSelected,
+        ));
     }
-    */
+
+    public function actionDeleteRol($id)
+    {
+        $rol = Yii::app()->authManager->getAuthItem($id);
+        $var = $rol->type;
+        if ($var == 0)
+            $this->redirect(array("viewOperations"));
+        Yii::app()->authManager->removeAuthItem($id);
+        $this->redirect(array("admin", 'tipo' => $var));
+    }
+
 }

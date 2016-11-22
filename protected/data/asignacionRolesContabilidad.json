@@ -1,0 +1,89 @@
+[
+  //USER: paso 5, asignar hijos(operaciones)definidas en el paso 2, a los padres(tareas) definidas en el paso 4
+  //USER: paso 6, ejecutar las migraciones insertarRoles,asignarSubroles
+  //USER: opcional salir del sistema, ejecutar la migraciones crearAdministrador,(admin,admin)
+  {
+    "parent": "authentication_ViewOperations",
+    "child": "authenticationViewOperations"
+  },
+  {
+    "parent": "authentication_AdminRoles",
+    "child": "authenticationAdminRoles"
+  },
+  {
+    "parent": "authentication_AdminRoles",
+    "child": "authenticationDeleteRole"
+  },
+  {
+    "parent": "authentication_AdminRoles",
+    "child": "authenticationUpdateRole"
+  },
+  {
+    "parent": "authentication_AdminRoles",
+    "child": "authenticationView"
+  },
+  {
+    "parent": "authentication_AdminTasks",
+    "child": "authenticationAdminTasks"
+  },
+  {
+    "parent": "authentication_AdminTasks",
+    "child": "authenticationDeleteRole"
+  },
+  {
+    "parent": "authentication_AdminTasks",
+    "child": "authenticationUpdateTask"
+  },
+  {
+    "parent": "authentication_AdminTasks",
+    "child": "authenticationView"
+  },
+  {
+    "parent": "authentication_CreateTask",
+    "child": "authenticationCreateTask"
+  },
+  {
+    "parent": "authentication_CreateTask",
+    "child": "authenticationView"
+  },
+  {
+    "parent": "authentication_CreateRole",
+    "child": "authenticationCreateRole"
+  },
+  {
+    "parent": "authentication_CreateRole",
+    "child": "authenticationView"
+  },
+  {
+    "parent": "usuario_Create",
+    "child": "usuarioCreate"
+  },
+  {
+    "parent": "usuario_Create",
+    "child": "usuarioView"
+  },
+  {
+    "parent": "Pagina de Inicio de Usuario",
+    "child": "usuarioIndex"
+  },
+  {
+    "parent": "Pagina de Inicio de Usuario",
+    "child": "usuarioGetUsuarioListAjax"
+  },
+  {
+    "parent": "Pagina de Inicio de Usuario",
+    "child": "usuarioHabilitacionAjax"
+  },
+  {
+    "parent": "Pagina de Inicio de Usuario",
+    "child": "usuarioCreate"
+  },
+  {
+    "parent": "Pagina de Inicio de Usuario",
+    "child": "usuarioView"
+  },
+  {
+    "parent": "Pagina de Inicio de Usuario",
+    "child": "usuarioUpdate"
+  }
+]
