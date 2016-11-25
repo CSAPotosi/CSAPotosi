@@ -175,6 +175,47 @@ class OptionsMenu{
         return self::selectMenu($menu,$selected);
     }
 
+    public static function menuReporteCirugia($params = [],$selected = ['','']){
+        $menu = [
+            'cirugia'=>[
+                'label'=>'Reportes de cirugia',
+                'items'=>[
+                    'index'=>['url'=>['reporteCirugia/index'], 'label'=>'Realizados'],
+                    'index2'=>['url'=>['reporteCirugia/index2'], 'label'=>'Reservados'],
+                    'estadisticaSala'=>['url'=>['reporteCirugia/estadisticaSala'],'label'=>'Uso de quirofanos'],
+                    'estadisticaPersonal' => ['url'=>['reporteCirugia/estadisticaPersonal'],'label'=>'Personal']
+                ]
+            ]
+        ];
+        return self::selectMenu($menu,$selected);
+    }
+
+    public static function menuReporteInternacion($params = [],$selected = ['','']){
+        $menu = [
+          'internacion'=>[
+              'label'=>'Reportes de internacion',
+              'items'=>[
+                  'index'=>['url'=>['reporteInternacion/index'],'label'=>'Internaciones'],
+                  'grafica'=>['url'=>['reporteInternacion/graficas'],'label'=>'Graficas']
+              ]
+          ]
+        ];
+        return self::selectMenu($menu,$selected);
+    }
+
+    public static function menuReporteLaboratorio($params = [],$selected = ['','']){
+        $menu = [
+            'lab'=>[
+                'label'=>'Reportes de laboratorio',
+                'items'=>[
+                    'index'=>['url'=>['reporteLaboratorio/index'],'label'=>'Examenes de laboratorio'],
+                    'examenes'=>['url'=>['reporteLaboratorio/examenes'],'label'=>'Examenes mas realizados']
+                ]
+            ]
+        ];
+        return self::selectMenu($menu,$selected);
+    }
+
     private static function selectMenu($menu = [], $selected = ['','']){
         $submenu = [];
         if(count($selected)==2){
@@ -187,5 +228,6 @@ class OptionsMenu{
         }
         return $menu;
     }
+
 
 }

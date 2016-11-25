@@ -11,7 +11,7 @@
                             <tr>
                                 <th width="20%" class="text-align-right">PACIENTE</th>
                                 <td>
-                                    <?php echo $cirugia->historial->paciente->persona->nombres;?>
+                                    <?php echo $cirugia->historial->paciente->persona->nombreCompleto;?>
                                 </td>
                             </tr>
                             <tr>
@@ -72,7 +72,7 @@
                                             <tbody>
                                             <?php foreach ($cirugia->personalCirugias as $personal):?>
                                                 <tr>
-                                                    <td><?php echo $personal->persona->nombres;?></td>
+                                                    <td><?php echo $personal->persona->nombreCompleto;?></td>
                                                     <td><?php echo $personal->rol_cirugia;?></td>
                                                     <td>
                                                         <?php

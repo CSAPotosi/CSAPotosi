@@ -227,7 +227,13 @@
                 <a href="#"><i class="fa fa-lg fa-fw fa-file-text-o"></i> <span class="menu-item-parent">Reportes</span></a>
                 <ul>
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(['reporteCirugia/index']);?>" title="Salas"><span class="menu-item-parent">Cirugias</span></a>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporteCirugia/index']);?>" title="Cirugias"><span>Cirugias</span></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporteInternacion/index']);?>" title="Internaciones"><span>Internaciones</span></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporteLaboratorio/index']);?>" title="Laboratorio"><span>Examenes de laboratorio</span></a>
                     </li>
                 </ul>
             </li>

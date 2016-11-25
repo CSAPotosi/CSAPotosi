@@ -8,7 +8,7 @@
  * Control de pacientes en salas de internacion
  * */
 //hecho-pacf: listar tipos de salas
-//todo-pacf: mejorar formulario de creacion de tipos de salas, revisar los campos
+//hecho-pacf: mejorar formulario de creacion de tipos de salas, revisar los campos
 //hecho-pacf: editar tipos de salas, mejorar formulario
 //hecho-pacf: mostrar detalle de tipo de sala y las salas disponibles
 //hecho-pacf: agregar salas
@@ -77,27 +77,27 @@
 /*
  * Reportes referentes a cirugias, internaciones y laboratorios
  * */
-//todo-pacf: cirugia, lista de cirugias realizadas entre fechas
-//todo-pacf: cirugia, relacion de tiempos de uso de salas
-//todo-pacf: cirugia, relacion de personal en cirugias
-//todo-pacf: internacion, lista de internaciones entre fechas
-//todo-pacf: internacion, relacion diagnosticos por internacion o externos
-//todo-pacf: internacion, detalle de internacion
-//todo-pacf: laboratorio, cantidad de examenes realizados
-//todo-pacf: laboratorio, relacion laboratorios externos internos
-//todo-pacf: laboratorio, relacion de examenes, mas realizaos
+//hecho-pacf: cirugia, lista de cirugias realizadas entre fechas
+//hecho-pacf: cirugia, relacion de tiempos de uso de salas
+//hecho-pacf: cirugia, relacion de personal en cirugias
+//hecho-pacf: internacion, lista de internaciones entre fechas
+//hecho-pacf: internacion, relacion internacion por motivo y procedencia
+//pendiente-pacf: internacion, detalle de internacion
+//hecho-pacf: laboratorio, cantidad de examenes realizados
+//pendiente-pacf: laboratorio, relacion laboratorios externos internos
+//hecho-pacf: laboratorio, relacion de examenes, mas realizaos
 
 /*
  * reportes censales sobre internacino
  * */
 //todo-pacf: lista de pacientes internados
-//todo-pacf: salas de uso frecuente
-//todo-pacf: relacion de tiempos de uso de salas
+//pendiente-pacf: salas de uso frecuente
+//pendiente-pacf: relacion de tiempos de uso de salas
 //todo-pacf: relacion de entradas de pacietnes
 
 /*
  * Otros
  * */
-//todo-pacf: interaz de busqueda de cie10
+//pendiente-pacf: interaz de busqueda de cie10
 //hecho-pacf: asignar item cie10 a diagnostico
 
