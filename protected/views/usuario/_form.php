@@ -53,7 +53,6 @@
                     <?php echo $form->error($model, 'estado_usuario', array('class' => 'label label-danger')); ?>
                 </div>
             <?php endif; ?>
-
         </div>
     </div>
     <div class="row">

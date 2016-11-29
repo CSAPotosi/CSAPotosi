@@ -6,7 +6,6 @@ class RoleForm extends CFormModel
     public $description;
 
     //public $data;
-
     public function rules()
     {
         return array(

@@ -14,7 +14,6 @@ class m161122_011058_crearAdministrador extends CDbMigration
         $this->insert("usuario", array('id_usuario' => $persona->id_persona, 'nombre_usuario' => 'admin', 'clave' => sha1('admin')));
         $this->insert("AuthAssignment", array('itemname' => 'ADMIN', 'userid' => $persona->id_persona));
     }
-
     public function safeDown()
     {
         $this->delete("AuthAssignment", "itemname = 'ADMIN'");

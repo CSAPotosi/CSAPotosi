@@ -71,3 +71,4 @@ $("#pick-status-usuario a").on("click", function () {
     $this.parent().addClass('active');
     newAjaxRequest();
 });
+

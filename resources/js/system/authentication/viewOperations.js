@@ -29,3 +29,4 @@ $('#operaciones').dataTable({
         }
     },
 });
+

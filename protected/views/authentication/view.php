@@ -4,7 +4,6 @@
 
 $this->pageTitle = ($rol->type == 2) ? 'DATOS DEL ROL' : 'DATOS DE LA TAREA';
 ?>
-
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">

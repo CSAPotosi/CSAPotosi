@@ -48,3 +48,4 @@ $('#input-filter-2').keyup(function () {
 $('#activarOculto').on("click", function () {
     $("#oculto").val("valor");
 });
+

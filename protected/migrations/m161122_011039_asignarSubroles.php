@@ -17,12 +17,10 @@ class m161122_011039_asignarSubroles extends CDbMigration
             $this->insert("AuthItemChild", $rol);
         }
     }
-
     public function safeDown()
     {
         $this->delete("AuthItemChild");
     }
-
     private function getJson($tipo)
     {
         if ($tipo == 1)

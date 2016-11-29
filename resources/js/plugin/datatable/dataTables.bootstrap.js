@@ -176,7 +176,6 @@
             $(host).find('[data-dt-idx=' + activeEl + ']').focus();
         }
     };
-
-
+    
     return DataTable;
 }));

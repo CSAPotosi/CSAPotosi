@@ -4,7 +4,6 @@
 
 $this->pageTitle = 'ACTUALIZACION DE ROLES ASIGNADOS';
 ?>
-
     <section id="widget-grid">
         <div class="row">
             <article class="col-md-12">

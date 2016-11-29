@@ -2,7 +2,6 @@
 /* @var $this UsuarioController */
 /* @var $data Usuario */
 ?>
-
 <div class="view">
 
     <b><?php echo CHtml::encode($data->getAttributeLabel('id_usuario')); ?>:</b>

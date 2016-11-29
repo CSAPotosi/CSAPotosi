@@ -4,6 +4,7 @@
 
 $this->pageTitle = ($tipo == 1) ? 'LISTADO DE TAREAS DEL SISTEMA' : 'LISTADO DE ROLES DEL SISTEMA';
 ?>
+
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">

@@ -4,7 +4,6 @@
 
 $this->pageTitle = 'USUARIO: ' . $model->nombre_usuario;
 ?>
-
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">

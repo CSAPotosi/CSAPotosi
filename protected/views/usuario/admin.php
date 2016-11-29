@@ -25,7 +25,6 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-
 <h1>Manage Usuarios</h1>
 
 <p>

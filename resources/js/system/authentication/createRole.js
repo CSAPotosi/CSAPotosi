@@ -43,3 +43,4 @@ $('#input-filter-2').keyup(function () {
             }
         });
 });
+

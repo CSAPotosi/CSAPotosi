@@ -26,3 +26,4 @@ $('#input-filter').keyup(function () {
 $('#activarOculto').on("click", function () {
     $("#oculto").val("valor");
 });
+

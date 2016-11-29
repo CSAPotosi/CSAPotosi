@@ -4,6 +4,7 @@
 
 $this->pageTitle = 'LISTA DE OPERACIONES DEL SISTEMAS';
 ?>
+
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">

@@ -825,7 +825,6 @@
          */
         this.fnVersionCheck = _ext.fnVersionCheck;
 
-
         var _that = this;
         var emptyInit = options === undefined;
         var len = this.length;

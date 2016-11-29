@@ -4,7 +4,6 @@
 
 $this->pageTitle = 'Creacion de Nueva Tarea';
 ?>
-
     <section id="widget-grid">
         <div class="row">
             <article class="col-md-12">

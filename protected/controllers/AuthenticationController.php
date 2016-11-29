@@ -13,7 +13,7 @@ class AuthenticationController extends Controller
 
     public function accessRules()
     {
-        //USER: paso 1 = agregar regla de acceso por cada action  controllerNameActionName
+        //USER: paso 1 = agregar regla de acceso por cada action  controllerNameActionName.
         return array(
             array('allow',
                 'actions' => array('viewOperations'),

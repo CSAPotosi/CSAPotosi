@@ -17,12 +17,10 @@ class m161122_011007_insertarRoles extends CDbMigration
             $this->insert("AuthItem", $rol);
         }
     }
-
     public function safeDown()
     {
         $this->delete("AuthItem");
     }
-
     private function getJson($tipo)
     {
         if ($tipo == 1)

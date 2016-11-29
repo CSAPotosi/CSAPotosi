@@ -1,7 +1,7 @@
 [
   //USER: paso 5, asignar hijos(operaciones)definidas en el paso 2, a los padres(tareas) definidas en el paso 4
   //USER: paso 6, ejecutar las migraciones insertarRoles,asignarSubroles
-  //USER: opcional salir del sistema, ejecutar la migraciones crearAdministrador,(admin,admin)
+  //USER: opcional salir del sistema, ejecutar la migraciones crearAdministrador,(admin,admin). desloguearse si ya estaba loqueado (site/logout)
   {
     "parent": "authentication_ViewOperations",
     "child": "authenticationViewOperations"
