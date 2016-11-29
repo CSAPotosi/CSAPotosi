@@ -2,8 +2,7 @@
 
 class m161114_045934_asegurado extends CDbMigration
 {
-    public function safeUp()
-    {
+    public function safeUp(){
         $this->createTable('asegurado_convenio', [
             'id_ase_con' => 'pk',
             'convenio' => 'int not null',

@@ -8,46 +8,40 @@
                 <div>
                     <div class="widget-body">
                         <div class="widget-body-toolbar padding-5">
-                            <button id="btn-report-all" data-url="<?php echo CHtml::normalizeUrl(['reporteCirugia/indexPDF'])?>" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
+                            <button id="btn-report-all" data-url="<?php echo CHtml::normalizeUrl(['reporteCirugia/index2PDF'])?>" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
                             <?php echo CHtml::beginForm();?>
-                                <button type="submit" class="btn btn-primary btn-sm pull-right">Consultar</button>
-                                <div id="reportrange" class="pull-right margin-right-5" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
-                                    <input type="hidden" name="fec_ini" id="fec_ini">
-                                    <input type="hidden" name="fec_fin" id="fec_fin">
-                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                                    <span></span> <b class="caret"></b>
-                                </div>
+                            <button type="submit" class="btn btn-primary btn-sm pull-right">Consultar</button>
+                            <div id="reportrange" class="pull-right margin-right-5" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
+                                <input type="hidden" name="fec_ini" id="fec_ini">
+                                <input type="hidden" name="fec_fin" id="fec_fin">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                <span></span> <b class="caret"></b>
+                            </div>
                             <?php echo CHtml::endForm();?>
                         </div>
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                             <tr>
-                                <th width="10%">Fecha y hora inicio</th>
-                                <th width="10%">Fecha y hora fin</th>
+                                <th width="20%">Fecha y hora reserva</th>
                                 <th width="20%">Sala</th>
-                                <th width="15%">Paciente</th>
-                                <th width="5%">Tiempo (min)</th>
-                                <th width="20%">Naturaleza</th>
-                                <th width="15%">Instrumental</th>
+                                <th width="40%">Paciente</th>
+                                <th width="10%">Tiempo est.(min)</th>
                                 <th width="5%"></th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($cirugiaList as $cirugia):?>
-                            <tr>
-                                <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_inicio));?></td>
-                                <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_fin));?></td>
-                                <td><?php echo "{$cirugia->sala->cod_sala} ({$cirugia->sala->tSala->servicio->nombre_serv})";?></td>
-                                <td><?php echo $cirugia->historial->paciente->persona->nombreCompleto;?></td>
-                                <td><?php echo $cirugia->tiempo_real;?></td>
-                                <td><?php echo $cirugia->naturaleza?></td>
-                                <td><?php echo $cirugia->detalle_instrumental;?></td>
-                                <td>
-                                    <button type="button" class="btn btn-default btn-report">
-                                        <i class="fa fa-file-pdf-o"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_reserva));?></td>
+                                    <td><?php echo "{$cirugia->sala->cod_sala} ({$cirugia->sala->tSala->servicio->nombre_serv})";?></td>
+                                    <td><?php echo $cirugia->historial->paciente->persona->nombreCompleto;?></td>
+                                    <td><?php echo $cirugia->tiempo_estimado;?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-default btn-report">
+                                            <i class="fa fa-file-pdf-o"></i>
+                                        </button>
+                                    </td>
+                                </tr>
                             <?php endforeach;?>
                             </tbody>
                         </table>

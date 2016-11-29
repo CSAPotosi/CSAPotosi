@@ -374,7 +374,6 @@ class RegistroController extends Controller
             $this->renderPartial('infoEmpleado', array('cargo' => $var));
             return;
         }
-
     }
 
     public function actionregistrarAsistencia()

@@ -8,46 +8,38 @@
                 <div>
                     <div class="widget-body">
                         <div class="widget-body-toolbar padding-5">
-                            <button id="btn-report-all" data-url="<?php echo CHtml::normalizeUrl(['reporteCirugia/indexPDF'])?>" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
+                            <button id="btn-report-all" data-url="<?php echo CHtml::normalizeUrl(['seguridad/auditTXT']);?>" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-text-o"></i> TXT</button>
                             <?php echo CHtml::beginForm();?>
-                                <button type="submit" class="btn btn-primary btn-sm pull-right">Consultar</button>
-                                <div id="reportrange" class="pull-right margin-right-5" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
-                                    <input type="hidden" name="fec_ini" id="fec_ini">
-                                    <input type="hidden" name="fec_fin" id="fec_fin">
-                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                                    <span></span> <b class="caret"></b>
-                                </div>
+                            <button type="submit" class="btn btn-primary btn-sm pull-right">Consultar</button>
+                            <div id="reportrange" class="pull-right margin-right-5" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
+                                <input type="hidden" name="fec_ini" id="fec_ini">
+                                <input type="hidden" name="fec_fin" id="fec_fin">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                <span></span> <b class="caret"></b>
+                            </div>
                             <?php echo CHtml::endForm();?>
                         </div>
-                        <table class="table table-bordered table-hover table-striped">
+                        <table class="table table-bordered table-hover table-striped table-condensed">
                             <thead>
                             <tr>
-                                <th width="10%">Fecha y hora inicio</th>
-                                <th width="10%">Fecha y hora fin</th>
-                                <th width="20%">Sala</th>
-                                <th width="15%">Paciente</th>
-                                <th width="5%">Tiempo (min)</th>
-                                <th width="20%">Naturaleza</th>
-                                <th width="15%">Instrumental</th>
-                                <th width="5%"></th>
+                                <th>Tabla</th>
+                                <th>Fecha</th>
+                                <th>Accion</th>
+                                <th>Original</th>
+                                <th>Nuevo</th>
+                                <th>Consulta</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($cirugiaList as $cirugia):?>
-                            <tr>
-                                <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_inicio));?></td>
-                                <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_fin));?></td>
-                                <td><?php echo "{$cirugia->sala->cod_sala} ({$cirugia->sala->tSala->servicio->nombre_serv})";?></td>
-                                <td><?php echo $cirugia->historial->paciente->persona->nombreCompleto;?></td>
-                                <td><?php echo $cirugia->tiempo_real;?></td>
-                                <td><?php echo $cirugia->naturaleza?></td>
-                                <td><?php echo $cirugia->detalle_instrumental;?></td>
-                                <td>
-                                    <button type="button" class="btn btn-default btn-report">
-                                        <i class="fa fa-file-pdf-o"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php foreach ($audit as $au): ?>
+                                <tr>
+                                    <td><?php echo $au['table_name'];?></td>
+                                    <td><?php echo date('d/m/Y H:i:s',strtotime($au['action_tstamp']));?></td>
+                                    <td><?php echo $au['action'];?></td>
+                                    <td><?php echo $au['original_data'];?></td>
+                                    <td><?php echo $au['new_data'];?></td>
+                                    <td><?php echo $au['query'];?></td>
+                                </tr>
                             <?php endforeach;?>
                             </tbody>
                         </table>
@@ -97,6 +89,7 @@ Yii::app()->clientScript
             form.submit();
             return false;
         });
+
     ");
 ?>
 
