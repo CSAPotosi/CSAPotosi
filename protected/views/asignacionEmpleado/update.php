@@ -79,15 +79,15 @@ $this->breadcrumbs = array(
                                             </div>
                                         </div>
                                     </div>
-                                    <tfoot><br>
-                                    <input type="submit" value="Guardar" class="btn btn-info pull-rigth">
 
-                                    </tfoot>
-                                    <?php echo CHtml::endForm(); ?>
+
                                 </div>
                             </div>
                         </fieldset>
-
+                        <div class="form-actions">
+                            <input type="submit" value="Guardar" class="btn btn-primary">
+                        </div>
+                        <?php echo CHtml::endForm(); ?>
                     </div>
 
                 </div>

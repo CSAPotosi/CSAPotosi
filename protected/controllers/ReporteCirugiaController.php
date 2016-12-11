@@ -289,7 +289,7 @@ class ReporteCirugiaController extends Controller
         $pdf->SetTextColor(80, 80, 80);
         $pdf->AddPage();
         $pdf->usuario($pdf);
-
+        $this->Ln(5);
         $xc = 130;
         $yc = 60;
         $r = 30;

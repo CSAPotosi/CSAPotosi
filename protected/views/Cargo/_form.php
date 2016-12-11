@@ -15,7 +15,5 @@
         <?php echo CHtml::error($modelCargo, 'descripcion_cargo', array('class' => 'label label-danger')); ?>
     </div>
     <input type="hidden" name="Cargo[id_unidad]" value="<?php echo $id ?>">
-    <tfoot>
-    <?php echo CHtml::submitButton($modelCargo->isNewRecord ? 'Guardar Cargo' : 'Actualizar Cargo', array('class' => 'btn btn-info pull-rigth')); ?>
-    </tfoot>
-<?php echo CHtml::endForm(); ?>
+    
+    

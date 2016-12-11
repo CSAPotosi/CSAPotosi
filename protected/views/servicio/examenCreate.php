@@ -10,12 +10,12 @@ $this->breadcrumbs = array(
         <div class="row">
             <article class="col-md-12">
                 <div class="jarviswidget">
-                    <header>Formulario de Registro de Usuario</header>
+                    <header></header>
                     <div>
                         <div class="widget-body">
                             <?php echo CHtml::beginForm(); ?>
                             <fieldset>
-                                <legend>Titulo</legend>
+                                <legend>Registro de Examen de Laboratorio</legend>
                                 <?php echo CHtml::errorSummary($servicio, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger')); ?>
                                 <div class="row">
                                     <div class="col-md-6">

@@ -86,7 +86,7 @@ class ServicioController extends Controller
 	}
 
 	private function examenIndex($tipo = 1){
-
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'index']);
 		$listServicio = ServExamen::model()->with('categoria')->findAll(array(
 			'condition' => "tipo_ex = :tipo and activo=true",
 			'params' => [':tipo' => $tipo]
@@ -94,8 +94,9 @@ class ServicioController extends Controller
 		$this->render('examenIndex', array('listServicio' => $listServicio, 'dataUrl' => ['grupo' => 'examen', 'tipo' => $tipo]));
 	}
 
-	private function clinicoIndex()
+	private function clinicoIndex($tipo = 3)
 	{
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'index']);
 		$listServicio = ServClinico::model()->findAll();
 		$this->render('clinicoIndex', array('listServicio' => $listServicio, 'dataUrl' => array('grupo' => 'clinico')));
 	}
@@ -110,6 +111,7 @@ class ServicioController extends Controller
 ////////////////////////////////////////////////
 	private function examenCreate($tipo = 1)
 	{
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'create']);
 		$examen = new ServicioForm;
 		$examen->id_entidad = 1;
 		$categoria = CategoriaServExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
@@ -129,8 +131,9 @@ class ServicioController extends Controller
 		));
 	}
 
-	private function clinicoCreate()
+	private function clinicoCreate($tipo = 3)
 	{
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'create']);
 		$clinico = new ServicioForm;
 		$clinico->id_entidad = 1;
 		$categoria = CategoriaServClinico::model()->findAll("activo=true");
@@ -151,6 +154,7 @@ class ServicioController extends Controller
 	}
 	public function examenUpdate($tipo = 1, $id)
 	{
+		$this->menu = OptionsMenu::menuExamenLab(['id_servicio' => $id, 'tipo' => $tipo], ['examenLabs', 'update']);
 		$examen = new ServicioForm();
 		$examen->loadData($id);
 		if (isset($_POST['ServicioForm'])) {
@@ -181,6 +185,7 @@ class ServicioController extends Controller
 
 	private function atencionMedicaIndex($tipo)
 	{
+		$this->menu = OptionsMenu::menuAtencionMedica([], ['atenciones', 'index']);
 		$servicio = new Servicio();
 		$listSpecialty = Especialidad::model()->findAll();
 		$this->render('atencionMedicaIndex', array('listSpecialty' => $listSpecialty, 'servicio' => $servicio, 'dataUrl' => ['grupo' => 'atencionMedica', 'tipo' => $tipo]));
@@ -206,6 +211,7 @@ class ServicioController extends Controller
 
 	private function atencionMedicaUpdate($tipo, $id)
 	{
+		$this->menu = OptionsMenu::menuAtencionMedica([], ['atenciones', 'indexc']);
 		$medicoEspecialidad = MedicoEspecialidad::model()->findByPk($tipo);
 		$atencionMedica = new ServicioForm();
 		$atencionMedica->loadData($id);
@@ -249,7 +255,6 @@ class ServicioController extends Controller
 
 	private function salaUpdate($id = null){
         $this->menu = OptionsMenu::menuSalas(['ts_id'=>$id],['itemTSala','editTSala']);
-
 		$tSala = new ServicioForm();
 		$tSala->loadData($id);
 		if(isset($_POST['ServicioForm'])){

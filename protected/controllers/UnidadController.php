@@ -33,12 +33,14 @@ class UnidadController extends Controller
 
     public function actionIndex()
     {
+        $this->menu = OptionsMenu::menuUnidad([], ['unidades', 'index']);
         $listUnidad = Unidad::model()->findAll();
         $this->render('index', array('listUnidad' => $listUnidad));
     }
 
     public function actionCreate()
     {
+        $this->menu = OptionsMenu::menuUnidad([], ['unidades', 'create']);
         $modelUnidad = new Unidad();
         if (isset($_POST['Unidad'])) {
             $modelUnidad->attributes = $_POST['Unidad'];
@@ -51,6 +53,7 @@ class UnidadController extends Controller
 
     public function actionUpdate($id)
     {
+        $this->menu = OptionsMenu::menuUnidad(['id_unidad' => $id], ['unidad', 'updateunidad']);
         $modelUnidad = Unidad::model()->findByPk($id);
         if (isset($_POST['Unidad'])) {
             $modelUnidad->attributes = $_POST['Unidad'];

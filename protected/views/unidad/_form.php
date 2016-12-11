@@ -9,5 +9,4 @@
         <?php echo CHtml::activetextField($modelUnidad, 'descripcion_unidad', array('class' => 'form-control', 'placeholder' => 'Nombre de la Unidad')); ?>
         <?php echo CHtml::error($modelUnidad, 'descripcion_unidad', array('class' => 'label label-danger')); ?>
     </div>
-<?php echo CHtml::submitButton($modelUnidad->isNewRecord ? 'Guardar Unidad' : 'Actualizar Unidad', array('class' => 'btn btn-info')); ?>
-<?php echo CHtml::endForm(); ?>
+

@@ -15,15 +15,15 @@ class AsignacionEmpleadoController extends Controller
         return array(
             array('allow',
                 'actions' => array('index',),
-                'roles' => array('indexAsignacion'),
+                'roles' => array('asignacionIndex'),
             ),
             array('allow',
                 'actions' => array('create'),
-                'roles' => array('createAsignacion'),
+                'roles' => array('asignacionCreate'),
             ),
             array('allow',
                 'actions' => array('update'),
-                'roles' => array('updateAsignacion'),
+                'roles' => array('asignacionUpdate'),
             ),
             array('deny',  // deny all users
                 'users' => array('*'),
@@ -33,12 +33,14 @@ class AsignacionEmpleadoController extends Controller
 
     public function actionIndex()
     {
+        $this->menu = OptionsMenu::menuAsignacion([], ['asignaciones', 'index']);
         $listAsignacion = AsignacionEmpleado::model()->findAll();
         $this->render('index', array('listAsignacion' => $listAsignacion));
     }
 
     public function actionCreate()
     {
+        $this->menu = OptionsMenu::menuAsignacion([], ['asignaciones', 'create']);
         $modelAsignacionEmpleado = new AsignacionEmpleado();
         if (isset($_POST['AsignacionEmpleado'])) {
             $modelAsignacionEmpleado->attributes = $_POST['AsignacionEmpleado'];
@@ -52,6 +54,7 @@ class AsignacionEmpleadoController extends Controller
 
     public function actionUpdate($id)
     {
+        $this->menu = OptionsMenu::menuAsignacion(['id_asignacion' => $id], ['asignacion', 'updateasignacion']);
         $modelAsignacionEmpleado = AsignacionEmpleado::model()->findByPk($id);
         if (isset($_POST['AsignacionEmpleado'])) {
             $modelAsignacionEmpleado->attributes = $_POST['AsignacionEmpleado'];

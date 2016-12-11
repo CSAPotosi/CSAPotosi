@@ -33,12 +33,14 @@ class HorarioController extends Controller
 
     public function actionIndex()
     {
+        $this->menu = OptionsMenu::menuHorario([], ['horarios', 'index']);
         $listHorario = Horario::model()->findAll();
         $this->render('index', array('listHorario' => $listHorario));
     }
 
     public function actionCreate()
     {
+        $this->menu = OptionsMenu::menuHorario([], ['horarios', 'create']);
         $modelHorario = new Horario();
         if (isset($_POST['Horario'])) {
             $modelHorario->attributes = $_POST['Horario'];
@@ -51,6 +53,7 @@ class HorarioController extends Controller
 
     public function actionUpdate($id)
     {
+        $this->menu = OptionsMenu::menuHorario(['id_horario' => $id], ['horario', 'update']);
         $modelHorario = Horario::model()->findByPk($id);
         if (isset($_POST['Horario'])) {
             $modelHorario->attributes = $_POST['Horario'];
@@ -62,13 +65,14 @@ class HorarioController extends Controller
     }
 
     public function actionView($id){
-
+        $this->menu = OptionsMenu::menuHorario(['id_horario' => $id], ['horario', 'update']);
         $horarioModel = Horario::model()->findByPk($id);
         $periodoModel = new Periodo();
         $this->render('view',['horarioModel'=>$horarioModel, 'periodoModel'=>$periodoModel]);
     }
 
     public function actionCreatePeriodo($id){
+        $this->menu = OptionsMenu::menuHorario(['id_horario' => $id], ['horario', 'periodo']);
         $horarioModel = Horario::model()->findByPk($id);
         $periodoModel = new Periodo();
 

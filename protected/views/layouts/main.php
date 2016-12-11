@@ -52,12 +52,11 @@
 	<div id="logo-group">
 
 		<!-- PLACE YOUR LOGO HERE -->
-		<span id="logo"> <img src="img/logo.png" alt="CSA Potosi"> </span>
+		<span id="logo"> <img src="" alt="CSA Potosi"> </span>
 		<!-- END LOGO PLACEHOLDER -->
 
 		<!-- Note: The activity badge color changes when clicked and resets the number to 0
 			 Suggestion: You may want to set a flag when this happens to tick off all checked messages / notifications -->
-		<span id="activity" class="activity-dropdown"> <i class="fa fa-user"></i> <b class="badge"> 21 </b> </span>
 
 		<!-- AJAX-DROPDOWN : control this dropdown height, look and feel from the LESS variable file -->
 		<div class="ajax-dropdown">
@@ -210,10 +209,56 @@
                         <a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'sala']);?>" title="Salas"><i class="fa fa-lg fa-fw fa-bed"></i><span class="menu-item-parent">Salas</span></a>
                     </li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'examen','tipo'=>1]);?>" title="Laboratorio"><i class="fa fa-lg fa-fw fa-gear"></i> <span class="menu-item-parent">Ex. Laboratorio</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'examen', 'tipo' => 1]); ?>"
+						   title="Laboratorio"><i class="fa fa-lg fa-fw fa-flask"></i> <span class="menu-item-parent">Ex. Laboratorio</span></a>
 					</li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'examen','tipo'=>2])?>" title="Dashboard"><i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">Rayos X</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'examen', 'tipo' => 2]) ?>"
+						   title="Rayos x"><i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">Rayos X</span></a>
+					</li>
+					<li class="">
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'clinico', 'tipo' => 3]) ?>"
+						   title="Servicios Clinicos"><i class="fa fa-lg fa-fw fa-plus-square"></i> <span
+								class="menu-item-parent">Servicios Clinicos</span></a>
+					</li>
+					<li class="">
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'atencionMedica', 'tipo' => 4]) ?>"
+						   title="Atenciones Medicas"><i class="fa fa-lg fa-fw fa-stethoscope"></i> <span
+								class="menu-item-parent">Atenciones Medicas</span></a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#"><i class="fa fa-lg fa-fw fa-h-square"></i> <span class="menu-item-parent">R.R H.H</span></a>
+				<ul>
+					<li class="">
+						<a href="<?php echo CHtml::normalizeUrl(['Unidad/index']); ?>" title="Unidades"><i
+								class="fa fa-lg fa-fw "></i> <span class="menu-item-parent">Unidades</span></a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-lg fa-fw fa-group"></i> <span
+								class="menu-item-parent">Personal</span></a>
+						<ul>
+							<li>
+								<a href="<?php echo CHtml::normalizeUrl(['Empleado/index']); ?>" title="Empleados"><i
+										class="fa fa-lg fa-fw fa-suitcase"></i><span
+										class="menu-item-parent">Empleados</span></a>
+							</li>
+							<li class="">
+								<a href="<?php echo CHtml::normalizeUrl(['Medico/index']); ?>" title="Medicos"><i
+										class="fa fa-lg fa-fw fa-medkit"></i> <span
+										class="menu-item-parent">Medicos</span></a>
+							</li>
+						</ul>
+					</li>
+					<li class="">
+						<a href="<?php echo CHtml::normalizeUrl(['horario/index']); ?>" title="Horarios"><i
+								class="fa fa-lg fa-fw fa-clock-o"></i> <span
+								class="menu-item-parent">Horarios</span></a>
+					</li>
+					<li class="">
+						<a href="<?php echo CHtml::normalizeUrl(['AsignacionEmpleado/index']); ?>" title="Asignaciones"><i
+								class="fa fa-lg fa-fw"></i> <span class="menu-item-parent">Asignaciones</span></a>
 					</li>
 				</ul>
 			</li>
@@ -223,6 +268,10 @@
             <li>
                 <a href="<?php echo CHtml::normalizeUrl(['examen/index'])?>"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Examenes</span></a>
             </li>
+			<li>
+				<a href="<?php echo CHtml::normalizeUrl(['convenio/indexConvenio']); ?>" title="Seguro Medicos"><i
+						class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent">Seguros Medicos</span></a>
+			</li>
             <li>
                 <a href="#"><i class="fa fa-lg fa-fw fa-file-text-o"></i> <span class="menu-item-parent">Reportes</span></a>
                 <ul>
@@ -235,8 +284,16 @@
                     <li>
                         <a href="<?php echo CHtml::normalizeUrl(['reporteLaboratorio/index']);?>" title="Laboratorio"><span>Examenes de laboratorio</span></a>
                     </li>
+					<li>
+						<a href="<?php echo CHtml::normalizeUrl(['ReporteEstadistico/index']); ?>" title="Estadisticas"><span
+								class="menu-item-parent">Estadisticas</span></a>
+					</li>
                 </ul>
             </li>
+			<li>
+				<a href="<?php echo CHtml::normalizeUrl(['Empleado/indexBackup']); ?>" title="Backups"><i
+						class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent">Backup</span></a>
+			</li>
 		</ul>
 	</nav>
 

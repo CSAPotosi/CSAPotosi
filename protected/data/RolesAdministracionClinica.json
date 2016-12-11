@@ -2,4 +2,106 @@
   //{ "name" : "", "type" : "0", "description" : "" },
   //{ "name" : "", "type" : "0", "description" : "" },
   //{ "name" : "", "type" : "0", "description" : "" }
+  //Controller Paciente
+  {
+    "name": "pacienteCreate",
+    "type": "0",
+    "description": "Creacion del Paciente"
+  },
+  {
+    "name": "pacienteIndex",
+    "type": "0",
+    "description": "Lista de Pacientes"
+  },
+  {
+    "name": "pacienteGetPacientListAjax",
+    "type": "0",
+    "description": "Lista de Paciente medicante"
+  },
+  {
+    "name": "pacienteUpdate",
+    "type": "0",
+    "description": "Actualizar Paciente"
+  },
+  {
+    "name": "pacienteView",
+    "type": "0",
+    "description": "Detalle de Paciente"
+  },
+  {
+    "name": "pacienteSeguro",
+    "type": "0",
+    "description": "Lista de Pacientes"
+  },
+  {
+    "name": "pacienteSeguroCreate",
+    "type": "0",
+    "description": "Lista de Pacientes"
+  },
+  {
+    "name": "historialIndex",
+    "type": "0",
+    "description": "Index de historial medico"
+  },
+  {
+    "name": "historialExternoCreate",
+    "type": "0",
+    "description": "Lista de Prestaciones de Servicios"
+  },
+  {
+    "name": "historialPrestacionCreate",
+    "type": "0",
+    "description": "Crear Prestacion de Servicios"
+  },
+  {
+    "name": "historialDetallePrestacion",
+    "type": "0",
+    "description": "Detalle de la Pretacion de Servicios"
+  },
+  {
+    "name": "historialPdfComprobantePrestacion",
+    "type": "0",
+    "description": "Rerporte en pdf de prestacion de Servicios"
+  },
+  {
+    "name": "asignacionIndex",
+    "type": "0",
+    "description": "Lista de Asignaciones"
+  },
+  {
+    "name": "asignacionCreate",
+    "type": "0",
+    "description": "Crear asignacion"
+  },
+  {
+    "name": "asignacionUpdate",
+    "type": "0",
+    "description": "Actualizar asignacion"
+  },
+  //link del menu
+  {
+    "name": "Lista Paciente",
+    "type": "1",
+    "description": "Lista de Pacientes"
+  },
+  {
+    "name": "Crear Paciente",
+    "type": "1",
+    "description": "Lista de Pacientes"
+  },
+  {
+    "name": "Detalle Paciente",
+    "type": "1",
+    "description": "Detalle de datos de Paciente"
+  },
+  {
+    "name": "Actualizar Paciente",
+    "type": "1",
+    "description": "Detalle de datos de Paciente"
+  },
+  {
+    "name": "Prestacion Servicios",
+    "type": "1",
+    "description": "Detalle de datos de Paciente"
+  }
 ]

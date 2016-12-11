@@ -161,9 +161,7 @@
     </div>
 </section>
 
-<?php
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/convenio/indexConvenio.js', CClientScript::POS_END);
-?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/convenio/indexConvenio.js', CClientScript::POS_END); ?>
 
 
 

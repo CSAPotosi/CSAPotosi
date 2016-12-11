@@ -55,7 +55,7 @@ $this->breadcrumbs = array(
                                 </div>
                             </fieldset>
                             <div class="form-actions">
-                                <?php echo CHtml::submitButton('Guardar', array('class' => 'btn btn-primary btn-lg')); ?>
+                                <?php echo CHtml::submitButton('Guardar', array('class' => 'btn btn-primary')); ?>
                         </div>
                             <?php echo CHtml::endForm(); ?>
                     </div>

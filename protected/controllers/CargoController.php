@@ -18,7 +18,7 @@ class CargoController extends Controller
                 'roles' => array('indexCargo'),
             ),
             array('allow',
-                'actions' => array('create'),
+                'actions' => array('create,update'),
                 'roles' => array('createCargo'),
             ),
             array('deny',  // deny all users
@@ -29,6 +29,7 @@ class CargoController extends Controller
 
     public function actionIndex($id)
     {
+        $this->menu = OptionsMenu::menuUnidad(['id_unidad' => $id], ['unidad', 'cargosunidad']);
         $listCargo = Cargo::model()->findAll(array(
             'condition' => "id_unidad ='{$id}'",
         ));
@@ -38,6 +39,7 @@ class CargoController extends Controller
 
     public function actioncreate($id)
     {
+        $this->menu = OptionsMenu::menuUnidad(['id_unidad' => $id], ['unidad', 'createCargo']);
         $modelCargo = new Cargo();
         $modelUnidad = Unidad::model()->findByPk($id);
         if (isset($_POST['Cargo'])) {

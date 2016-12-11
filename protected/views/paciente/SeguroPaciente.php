@@ -4,7 +4,7 @@ $this->pageTitle = "Paciente <span> > Seguro Paciente</span>";
 $this->breadcrumbs = array(
     'Paciente',
 );
-?><?php $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $paciente->historialMedico]); ?>
+$this->renderPartial('/layouts/_cardProfile', ['historialModel' => $paciente->historialMedico]); ?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">

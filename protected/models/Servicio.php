@@ -146,4 +146,9 @@ class Servicio extends CActiveRecord
         $code = $prefix.str_pad($sufix,3,'0',STR_PAD_LEFT);
         return $code;
     }
+
+	public function getMedicos($id)
+	{
+		return MedicoEspecialidad::model()->findAll(['condition' => "id_especialidad=$id"]);
+	}
 }

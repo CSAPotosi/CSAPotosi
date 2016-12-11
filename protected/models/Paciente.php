@@ -55,6 +55,7 @@ class Paciente extends CActiveRecord
 		return array(
 			'persona' => array(self::BELONGS_TO, 'Persona', 'id_paciente'),
 			'historialMedico' => array(self::HAS_ONE, 'HistorialMedico', 'id_historial'),
+			'asegurado' => array(self::HAS_MANY, 'AseguradoConvenio', 'id_paciente'),
 		);
 	}
 

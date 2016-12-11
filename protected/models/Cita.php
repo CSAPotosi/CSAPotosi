@@ -33,7 +33,7 @@ class Cita extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('fecha, hora_cita', 'required'),
+            array('fecha, hora_cita,id_paciente,medico_consulta_servicio', 'required'),
             array('estado_cita, id_paciente, medico_consulta_servicio', 'numerical', 'integerOnly' => true),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
@@ -49,7 +49,7 @@ class Cita extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idPaciente' => array(self::BELONGS_TO, 'Paciente', 'id_paciente'),
+            'paciente' => array(self::BELONGS_TO, 'Paciente', 'id_paciente'),
             'medicoConsultaServicio' => array(self::BELONGS_TO, 'MedicoEspecialidad', 'medico_consulta_servicio'),
         );
     }
@@ -64,8 +64,8 @@ class Cita extends CActiveRecord
             'fecha' => 'Fecha',
             'hora_cita' => 'Hora Cita',
             'estado_cita' => 'Estado Cita',
-            'id_paciente' => 'Id Paciente',
-            'medico_consulta_servicio' => 'Medico Consulta Servicio',
+            'id_paciente' => 'Paciente',
+            'medico_consulta_servicio' => 'Especialidad',
         );
     }
 

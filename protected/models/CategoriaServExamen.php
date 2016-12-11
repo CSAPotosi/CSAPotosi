@@ -114,7 +114,7 @@ class CategoriaServExamen extends CActiveRecord
 	public function getTipoEx()
 	{
 		$atributo[] = "";
-		$valor = CategoriaServExamen::model()->findAll();
+		$valor = CategoriaServExamen::model()->findAll(['condition' => "tipo_ex>=0 order by tipo_ex"]);
 		$var = '';
 		foreach ($valor as $item):
 			if ($var != $item['tipo_ex']) {
@@ -129,6 +129,6 @@ class CategoriaServExamen extends CActiveRecord
 
 	public function getNombreTipo()
 	{
-		return $nombres = [0 => 'TODO', 1 => 'EXAMENES DE LABORATORIO', 2 => 'EXAMENES DE RAYOS X'];
+		return $nombres = [0 => 'TODO', 1 => 'EXAMENES DE LABORATORIO', 2 => 'EXAMENES DE RAYOS X', 3 => 'SERVICIO CLINICO'];
 	}
 }

@@ -53,11 +53,8 @@ $this->breadcrumbs = array(
                                             </div>
                                             <input type="hidden" name="ServicioForm[nombre_serv]"
                                                    value="<?php echo $MedicoEspecialidad->idEspecialidad->nombre_especialidad; ?>">
-                                            <input type="hidden" name="ServicioForm[cod_serv]"
-                                                   value="<?php echo "COD-123"; ?>">
                                             <input type="hidden" name="ServicioForm[id_m_e]"
                                                    value="<?php echo $MedicoEspecialidad->id_m_e ?>">
-                                            <input type="hidden" name="">
                                         </div>
                                     </div>
                                     <div class="row">

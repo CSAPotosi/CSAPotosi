@@ -14,8 +14,7 @@ $this->breadcrumbs = array(
                         <div class="widget-body">
                             <div class="row">
                                 <article class="col-md-12">
-                                    <div class="table-responsive">
-                                        <center class="text-align-center"><h2>Lista de Servicios</h2></center>
+                                    <div class="widget-body-toolbar">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="icon-addon addon-md">
@@ -25,9 +24,9 @@ $this->breadcrumbs = array(
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
                                         <br>
-                                        <?php echo CHtml::link('Categorias', ['categoriaServicio/index', 'grupo' => $dataUrl['grupo']]); ?>
-                                        <table class="table table-bordered table-striped">
+                                    <table class="table table-bordered table-responsive">
                                             <thead>
                                             <tr>
                                                 <th>Codigo Servicio</th>
@@ -80,14 +79,7 @@ $this->breadcrumbs = array(
                                                 <?php endforeach;
                                             } ?>
                                             </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <td colspan="10"
-                                                    class="text-align-right"><?php echo CHtml::link('Agregar Servicio', array('servicio/create', 'grupo' => $dataUrl['grupo']), array('class' => 'btn btn-info')); ?></td>
-                                            </tr>
-                                            </tfoot>
                                         </table>
-                                    </div>
                                 </article>
                             </div>
                         </div>

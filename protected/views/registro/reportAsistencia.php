@@ -72,6 +72,7 @@ $this->breadcrumbs = array(
                             </div>
                             <?php echo CHtml::endForm(); ?>
                         </div>
+
                         <fieldset>
                             <legend>Reporte de Asistencia</legend>
                             <div class="row">
@@ -89,6 +90,7 @@ $this->breadcrumbs = array(
                                 array('target' => '_blank', 'class' => 'btn btn-primary')); ?>
 
                         </div>
+
                     </div>
                 </div>
             </div>

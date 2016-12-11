@@ -18,7 +18,11 @@ $this->breadcrumbs = array(
                                 <?php $this->renderPartial("_form", array('modelUnidad' => $modelUnidad)) ?>
                             </div>
                     </fieldset>
+                    <div class="form-actions">
+                        <?php echo CHtml::submitButton($modelUnidad->isNewRecord ? 'Guardar Unidad' : 'Actualizar Unidad', array('class' => 'btn btn-primary')); ?>
+                    </div>
                 </div>
+                <?php echo CHtml::endForm(); ?>
             </div>
         </article>
     </div>

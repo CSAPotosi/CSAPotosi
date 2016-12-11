@@ -19,6 +19,7 @@ class CategoriaServicioController extends Controller
 	}
 
 	private function categoriaExamenIndex($tipo = 1){
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'categorias']);
 		$catExList = CategoriaServExamen::model()->findAll([
 			'condition'=>'tipo_ex = :tipo_ex',
 			'order'=>'activo DESC, id_cat_ex ASC',
@@ -29,8 +30,9 @@ class CategoriaServicioController extends Controller
 		$this->render('categoriaExamenIndex',['catExList'=>$catExList,'catExModel'=>$catExModel, 'dataUrl'=>['tipo'=>$tipo, 'grupo'=>'examen'] ]);
 	}
 
-	private function categoriaClinicoIndex()
+	private function categoriaClinicoIndex($tipo = 3)
 	{
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'categorias']);
 		$catCliList = CategoriaServClinico::model()->findAll([
 			'order' => 'activo DESC, id_cat_cli ASC'
 		]);

@@ -1,4 +1,36 @@
 [
   //{ "parent" : "", "child" : "" },
   //{ "parent" : "", "child" : "" }
+  {
+    "parent": "Lista Paciente",
+    "child": "pacienteIndex"
+  },
+  {
+    "parent": "Lista Paciente",
+    "child": "pacienteGetPacientListAjax"
+  },
+  {
+    "parent": "Crear Paciente",
+    "child": "pacienteCreate"
+  },
+  {
+    "parent": "Detalle Paciente",
+    "child": "pacienteView"
+  },
+  {
+    "parent": "Actualizar Paciente",
+    "child": "pacienteUpdate"
+  },
+  {
+    "parent": "Prestacion Servicios",
+    "child": "historialExternoCreate"
+  },
+  {
+    "parent": "Prestacion Servicios",
+    "child": "historialPrestacionCreate"
+  },
+  {
+    "parent": "Prestacion Servicios",
+    "child": "historialDetallePrestacion"
+  }
 ]

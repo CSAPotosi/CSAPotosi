@@ -17,24 +17,23 @@ $this->breadcrumbs = array(
                             <div class="col-md-6 col-lg-offset-3">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
+                                        <thead>
                                         <tr>
                                             <th>Nombre de Cargo</th>
                                             <th>Descripcion</th>
                                             <th>Horario</th>
                                             <th>Acciones</th>
                                         </tr>
+                                        </thead>
                                         <?php foreach ($listCargo as $item): ?>
                                             <tr>
                                                 <td><?php echo $item->nombre_cargo; ?></td>
                                                 <td><?php echo $item->descripcion_cargo; ?></td>
                                                 <td><?php echo $item->horario->nombre_horario ?></td>
-                                                <td class="text-align-right"><?php echo CHtml::link('Editar', array('cargo/update', 'id' => $item->id_cargo), array('class' => 'btn btn-info')); ?></td>
+                                                <td class="text-align-right"><?php echo CHtml::link('<i class="fa fa-edit"></i> Editar', array('cargo/update', 'id' => $item->id_cargo), array('class' => 'btn btn-primary btn-xs')); ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </table>
-                                    <div class="form-group">
-                                        <?php echo CHtml::link('Adicionar cargo', array('cargo/create', 'id' => $id), array('class' => 'btn btn-info')); ?>
-                                    </div>
                                 </div>
                             </div>
                         </div>

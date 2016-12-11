@@ -70,5 +70,5 @@ $(document).ready(function () {
     });
 });
 $("#btnEnviarPaciente").click(function () {
-    $("#PersonaForm_responsable").val($("#contacto").val() + "-" + $("#parentesco").val() + "-" + $("#telefono").val() + "-" + $("#direccion").val())
+    $("#PersonaForm_responsable").val($("#contacto").val() + "-" + $("#parentesco").val() + "-" + $("#telefono").val() + "-" + $("#direccion").val());
 })

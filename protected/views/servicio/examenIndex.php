@@ -27,7 +27,6 @@ $this->breadcrumbs = array(
                             <legend>Lista de Servicios de Examenes</legend>
                             <div class="row">
                                 <div class="col-md-10 col-lg-offset-1">
-                                    <?php echo CHtml::link('Categorias', ['categoriaServicio/index', 'grupo' => $dataUrl['grupo'], 'tipo' => $dataUrl['tipo']]); ?>
                                     <table class="table table-responsive table-bordered">
                                         <thead>
                                         <tr>

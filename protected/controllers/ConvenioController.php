@@ -4,6 +4,7 @@ class ConvenioController extends Controller
 {
     public function actionIndexConvenio()
     {
+        $this->menu = OptionsMenu::menuConvenio([], ['asistencia', 'informacion']);
         $listConvenio = Convenio::model()->findAll([]);
         $convenioModel = new Convenio();
         $this->render('indexConvenio', ['listConvenio' => $listConvenio, 'modelConvenio' => $convenioModel]);
@@ -38,6 +39,7 @@ class ConvenioController extends Controller
 
     public function actionindexServicioConvenio($id)
     {
+        $this->menu = OptionsMenu::menuConvenio(['id_convenio' => $id], ['convenio', 'convenioservicio']);
         $convenio = Convenio::model()->findByPk($id);
         $convenioServicio = new ConvenioServicio();
         $listServicio = Servicio::model()->findAll("id_serv not in (select id_servicio from convenio_servicio where id_convenio={$id})");

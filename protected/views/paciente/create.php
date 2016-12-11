@@ -218,8 +218,7 @@ $this->breadcrumbs = array(
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-
-                                                    <?php echo CHtml::error($modelPerson, 'responsable', array('class' => 'label label-danger', 'value' => 'hola')); ?>
+                                                    <?php echo CHtml::activehiddenField($modelPerson, 'responsable', []); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -235,7 +234,7 @@ $this->breadcrumbs = array(
                                                             <h1><strong>Completado</strong> Informacion Completada.</h1>
                                                         </div>
                                                         <div class="col-md-8 col-lg-offset-2">
-                                                            <button class="btn btn-primary btn-lg" type="submit"
+                                                            <button class="btn btn-primary btn-lg" type="sutmit"
                                                                     id="btnEnviarPaciente"><i class='fa fa-save'></i>
                                                                 Enviar la Informacion del Paciente
                                                             </button>

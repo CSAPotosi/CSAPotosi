@@ -217,7 +217,7 @@ $this->breadcrumbs = array(
                                         </tr>
                                         </thead>
                                     </table>
-                                    <h1 align="center">Especialidades por Asignar</h1>
+                                    <h1 align="center">Especialidades Disponibles</h1>
                                     <div id="contenedorListaEspecialidad">
                                         <?php $this->renderPartial('_specialtyList', array('listSpecialty' => $listSpecialty, 'modelMedicoEspe' => $modelMedicoEspe)) ?>
                                     </div>

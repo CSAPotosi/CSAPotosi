@@ -24,11 +24,13 @@ class MedicoController extends Controller
     }
     public function actionIndex()
     {
+        $this->menu = OptionsMenu::menuMedico([], ['medicos', 'index']);
         $this->render('index');
     }
 
     public function actionCreate()
     {
+        $this->menu = OptionsMenu::menuMedico([], ['medicos', 'create']);
         $modelPerson = new PersonaForm();
         $modelEspecialidad = new Especialidad();
         $listEspecialidad = Especialidad::model()->findAll();
@@ -73,6 +75,7 @@ class MedicoController extends Controller
 
     public function actiononlyMedico($id)
     {
+        $this->menu = OptionsMenu::menuEmpleado([], ['empelados', 'create']);
         $modelMedico = new Medico();
         $modelEmpleado = Empleado::model()->findByPk($id);
         $modelMedicoEspe = new MedicoEspecialidad();
@@ -109,12 +112,14 @@ class MedicoController extends Controller
 
     public function actionDetalleMedico($id)
     {
+        $this->menu = OptionsMenu::menuMedico(['id_medico' => $id], ['medico', 'detalleMedico']);
         $medico = Medico::model()->findByPk($id);
         $this->render('detalleMedico', array('medico' => $medico));
     }
 
     public function actionUpdate($id)
     {
+        $this->menu = OptionsMenu::menuMedico(['id_medico' => $id], ['medico', 'updateMedico']);
         $modelPerson = new PersonaForm();
         $modelEspecialidad = new Especialidad();
         $listEspecialidad = Especialidad::model()->findAll("id_especialidad not in (select id_especialidad from medico_especialidad where id_medico={$id})");

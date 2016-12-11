@@ -5,6 +5,7 @@ class RegistroController extends Controller
     public $listaEmpleados;
     public function actionCreate()
     {
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'create']);
         $modelRegistro = new Registro();
         if (isset($_POST['Registro'])) {
             $modelRegistro->attributes = $_POST['Registro'];
@@ -19,6 +20,7 @@ class RegistroController extends Controller
 
     public function actionSubir()
     {
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'cargar']);
         $ruta = "archivo/";
         $modelSubir = new Subir();
         $directorio = opendir('archivo/');
@@ -61,6 +63,7 @@ class RegistroController extends Controller
 
     public function actionreportAsistencia()
     {
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'informacion']);
         $listaAsistenciaEmpleados = null;
         if (isset($_POST['unidad'])) {
             $fechas = explode(' - ', $_POST['daterange'], 2);
@@ -350,6 +353,7 @@ class RegistroController extends Controller
 
     public function actionregistroManual()
     {
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'automatico']);
         $this->render('registroManual');
     }
 
@@ -431,17 +435,17 @@ class RegistroController extends Controller
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetTitle("Reporte Asistencia");
         //cabecera 1 logo santa ana
-        $pdf->cabecera1($pdf);
+        $pdf->cabecera1();
         $pdf->SetFont('helvetica', '', 8);
         $pdf->SetTextColor(80, 80, 80);
         $pdf->AddPage();
-        $pdf->usuario($pdf);
+        $pdf->usuario();
         $pdf->ColoredTableAsistencia($header, $data);
         // reset pointer to the last page
         $pdf->lastPage();
         //Close and output PDF document
         $pdf->Output('filename.pdf', 'I');
-        Yii::app()->end();
+
     }
 
     public function actionCreatePdfDetalleAsistencia($fecha_ini, $interval, $fecha_in_real, $empleado)
@@ -451,11 +455,11 @@ class RegistroController extends Controller
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetTitle("Reporte Asistencia");
         //cabecera 1 logo santa ana
-        $pdf->cabecera1($pdf);
+        $pdf->cabecera1();
         $pdf->SetFont('helvetica', '', 8);
         $pdf->SetTextColor(80, 80, 80);
         $pdf->AddPage();
-        $pdf->usuario($pdf);
+        $pdf->usuario();
         $pdf->createTableDetalleAistencia($fecha_ini, $interval, $fecha_in_real, $empleado);
         $pdf->lastPage();
         //Close and output PDF document

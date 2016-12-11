@@ -13,6 +13,7 @@ $listExamen = ServExamen::model()->findAll();
 $listCategoriaExamen = CategoriaServExamen::model()->findAll();
 $listCategoriaClinico = CategoriaServClinico::model()->findAll();
 ?>
+<?php $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $Paciente->historialMedico]); ?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -70,7 +71,7 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                                         echo "<fieldset class='servExamen' data-tipo='$item->tipo_ex'>
                                                                   <legend><strong>$item->nombre_cat_ex</strong></legend>";
                                                         foreach ($item->examenes as $var):
-                                                        echo "<div class='col-md-6'>"; ?>
+                                                        echo "<div class='col-md-6'>" ?>
                                                         <table class='table table-hover'
                                                                id="<?php echo $var->datosServicio->id_serv ?>">
                                                             <tr class='val'
@@ -112,7 +113,7 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                                         echo "<fieldset class='servClinicos'>
                                                                   <legend><strong>$item->nombre_cat_cli</strong></legend>";
                                                         foreach ($item->servClinicos as $var):
-                                                        echo "<div class='col-md-6'>;" ?>
+                                                        echo "<div class='col-md-6'>"; ?>
                                                         <table class='table table-hover'
                                                                id="<?php echo $var->datosServicio->id_serv ?>">
                                                             <tr class='val1'
@@ -126,7 +127,6 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                                                                                        value="1"
                                                                                                        class="cantidad">
                                                                 </td>
-                                                                <td><?php echo $var->datosServicio->precio->monto ?></td>
                                                                 <td><a style="color: black" href="#"
                                                                        data-toggle="tooltip"
                                                                        title="<?php echo $var->datosServicio->entidad->razon_social; ?>"><i

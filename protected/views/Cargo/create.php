@@ -19,6 +19,10 @@ $this->breadcrumbs = array(
                             </div>
                         </div>
                     </fieldset>
+                    <div class="form-actions">
+                        <?php echo CHtml::submitButton($modelCargo->isNewRecord ? "Guardar Cargo" : 'Actualizar Cargo', array('class' => 'btn btn-primary')); ?>
+                    </div>
+                    <?php echo CHtml::endForm(); ?>
                 </div>
             </div>
         </article>

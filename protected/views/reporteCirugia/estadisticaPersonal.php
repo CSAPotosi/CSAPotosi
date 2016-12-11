@@ -8,7 +8,6 @@
         }
     }
 ?>
-
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -115,7 +114,6 @@ Yii::app()->clientScript
                 target:'_blank',
                 method:'post'
             });
-            
             form.append($('#reportrange').find('input').clone());
             form.submit();
             return false;

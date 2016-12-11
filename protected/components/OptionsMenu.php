@@ -6,14 +6,192 @@ class OptionsMenu{
             'pacientes'=>[
                 'label'=>'<i class="fa fa-group"></i> Pacientes',
                 'items'=>[
-                    'index'=>['url'=>['paciente/index'],'label'=>'<i class="fa fa-th-list"></i> Lista'],
-                    'create'=>['url'=>['paciente/create'],'label'=>'<i class="fa fa-plus"></i> Nuevo Paciente']
+                    'Lista Paciente' => ['url' => ['paciente/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'Crear Paciente' => ['url' => ['paciente/create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Paciente']
+
                 ]
             ]
         ];
+        if (isset($params['id_paciente'])) {
+            $paciente = Paciente::model()->findByPk($params['id_paciente']);
+            $menu2 = [
+                'label' => '<i class="fa fa-user"></i>' . $paciente->persona->getNombreCompleto(),
+                'items' => [
+                    'Detalle Paciente' => ['url' => ['paciente/detallePaciente', 'id' => $params['id_paciente']], 'label' => 'Detalle Paciente'],
+                    'Actualizar Paciente' => ['url' => ['paciente/update', 'id' => $params['id_paciente']], 'label' => 'Actualizar Paciente'],
+                    'Prestacion Servicios' => ['url' => ['HistorialMedico/externoCreate', 'id' => $params['id_paciente']], 'label' => 'Solicitud de Servicios'],
+                    'seguroPaciente' => ['url' => ['paciente/seguroPaciente', 'id' => $params['id_paciente']], 'label' => 'Seguro de Paciente'],
+                    'seguroCreate' => ['url' => ['paciente/seguroCreate', 'id' => $params['id_paciente']], 'label' => 'Asegurar Paciente'],
+                    'cita' => ['url' => ['cita/indexCita', 'id' => $params['id_paciente']], 'label' => 'Dar Cita']
+                ]
+            ];
+            $menu['paciente'] = $menu2;
+        }
         return self::selectMenu($menu, $selected);
     }
 
+    public static function menuEmpleado($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'empleados' => [
+                'label' => '<i class="fa fa-suitcase"></i></i> Empleados',
+                'items' => [
+                    'index' => ['url' => ['empleado/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'create' => ['url' => ['empleado/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Empleado']
+
+                ]
+            ]
+        ];
+        if (isset($params['id_empleado'])) {
+            $empleado = Empleado::model()->findByPk($params['id_empleado']);
+            $menu2 = [
+                'label' => '<i class="fa fa-user"></i>' . $empleado->empleadoPersona->getNombreCompleto(),
+                'items' => [
+                    'detalleEmpleado' => ['url' => ['empleado/detalleEmpleado', 'id' => $params['id_empleado']], 'label' => 'Detalle Empleado'],
+                    'updateEmpleado' => ['url' => ['empleado/update', 'id' => $params['id_empleado']], 'label' => 'Actualizar Empleado'],
+                ]
+            ];
+            $menu['empleado'] = $menu2;
+        }
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuMedico($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'medicos' => [
+                'label' => '<i class="fa fa-medkit"></i></i> Medicos',
+                'items' => [
+                    'index' => ['url' => ['medico/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'create' => ['url' => ['medico/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Medico']
+
+                ]
+            ]
+        ];
+        if (isset($params['id_medico'])) {
+            $medico = Medico::model()->findByPk($params['id_medico']);
+            $menu2 = [
+                'label' => '<i class="fa fa-user"></i>' . $medico->persona->getNombreCompleto(),
+                'items' => [
+                    'detalleMedico' => ['url' => ['medico/detalleMedico', 'id' => $params['id_medico']], 'label' => 'Detalle Medico'],
+                    'updatemedico' => ['url' => ['medico/update', 'id' => $params['id_medico']], 'label' => 'Actualizar Medico'],
+                ]
+            ];
+            $menu['medico'] = $menu2;
+        }
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuUnidad($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'unidades' => [
+                'label' => '<i class=""></i></i> Unidades',
+                'items' => [
+                    'index' => ['url' => ['unidad/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'create' => ['url' => ['unidad/Create'], 'label' => '<i class="fa fa-plus"></i> Nueva Unidad']
+
+                ]
+            ]
+        ];
+        if (isset($params['id_unidad'])) {
+            $unidad = Unidad::model()->findByPk($params['id_unidad']);
+            $menu2 = [
+                'label' => '<i class=""></i>' . $unidad->nombre_unidad,
+                'items' => [
+                    'updateunidad' => ['url' => ['unidad/update', 'id' => $params['id_unidad']], 'label' => 'Editar Unidad'],
+                    'cargosunidad' => ['url' => ['cargo/index', 'id' => $params['id_unidad']], 'label' => 'Cragos de Unidad'],
+                    'createcargo' => ['url' => ['cargo/create', 'id' => $params['id_unidad']], 'label' => 'Nuevo Cargo'],
+                ]
+            ];
+            $menu['unidad'] = $menu2;
+        }
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuConvenio($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'convenios' => [
+                'label' => '<i class="fa fa-clock-o"></i></i> Convenios',
+                'items' => [
+                    'index' => ['url' => ['convenio/indexConvenio'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'create' => ['url' => ['Convenio/createConvenio'], 'label' => '<i class="fa fa-plus"></i> Nuevo Convenio']
+                ]
+            ]
+        ];
+        if (isset($params['id_convenio'])) {
+            $convenio = Convenio::model()->findByPk($params['id_convenio']);
+            $menu2 = [
+                'label' => '<i class=""></i>' . $convenio->nombre_convenio,
+                'items' => [
+                    'convenioservicio' => ['url' => ['convenio/indexServicioConvenio', 'id' => $params['id_convenio']], 'label' => 'detalle'],
+                ]
+            ];
+            $menu['convenio'] = $menu2;
+        }
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuAsignacion($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'asignaciones' => [
+                'label' => '<i class=""></i></i> Asignaciones',
+                'items' => [
+                    'index' => ['url' => ['AsignacionEmpleado/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'create' => ['url' => ['AsigancionEmpleado/Create'], 'label' => '<i class="fa fa-plus"></i> Nueva Asignacion'],
+
+                ]
+            ]
+        ];
+        $menu3 = [
+            'label' => '<i class=""></i>Asistencia',
+            'items' => [
+                'cargar' => ['url' => ['Registro/subir'], 'label' => '<i class=""></i> Cargar Asistencia'],
+                'create' => ['url' => ['Registro/Create'], 'label' => '<i class=""></i> Registro Manual'],
+                'automatico' => ['url' => ['Registro/registroManual'], 'label' => '<i class=""></i> Registro Automomatico'],
+                'informacion' => ['url' => ['Registro/reportAsistencia'], 'label' => '<i class=""></i> Informacion de Asistencia'],
+            ]
+        ];
+        $menu['asistencia'] = $menu3;
+        if (isset($params['id_asignacion'])) {
+            $asignacion = AsignacionEmpleado::model()->findByPk($params['id_asignacion']);
+            $menu2 = [
+                'label' => '<i class=""></i>' . $asignacion->empleado->empleadoPersona->getNombreCompleto(),
+                'items' => [
+                    'updateasigancion' => ['url' => ['AsignacionEmpleado/update', 'id' => $params['id_asignacion']], 'label' => 'Editar Asignacion'],
+                ]
+            ];
+            $menu['asignacion'] = $menu2;
+        }
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuHorario($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'horarios' => [
+                'label' => '<i class="fa fa-clock-o"></i></i> Horarios',
+                'items' => [
+                    'index' => ['url' => ['horario/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'create' => ['url' => ['horario/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Horario']
+                ]
+            ]
+        ];
+        if (isset($params['id_horario'])) {
+            $horario = Horario::model()->findByPk($params['id_horario']);
+            $menu2 = [
+                'label' => '<i class=""></i>' . $horario->nombre_horario,
+                'items' => [
+                    'updatehorario' => ['url' => ['horario/update', 'id' => $params['id_horario']], 'label' => 'Editar'],
+                    'periodo' => ['url' => ['horario/createPeriodo', 'id' => $params['id_horario']], 'label' => 'Pediodos'],
+                ]
+            ];
+            $menu['horario'] = $menu2;
+        }
+        return self::selectMenu($menu, $selected);
+    }
     public static function menuHistorial($params = [], $selected = ['','']){
         $menu = [
             'historial'=>[
@@ -62,6 +240,69 @@ class OptionsMenu{
         return self::selectMenu($menu,$selected);
     }
 
+    public static function menuExamenLab($params = [], $selected = ['', ''])
+    {
+        if ($params['tipo'] == 1) {
+            $menu = [
+                'examenLab' => [
+                    'label' => '<i class="fa fa-flask"></i></i> Exa. de Laboratorio',
+                    'items' => [
+                        'index' => ['url' => ['servicio/index', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                        'create' => ['url' => ['servicio/create', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-plus"></i> Examen de laboratorio'],
+                        'categorias' => ['url' => ['CategoriaServicio/index', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-cog"></i> Categorias']
+                    ]
+                ]
+            ];
+        }
+        if ($params['tipo'] == 2) {
+            $menu = [
+                'examenLab' => [
+                    'label' => '<i class="fa fa-image"></i></i> Exa. de Rayos X',
+                    'items' => [
+                        'index' => ['url' => ['servicio/index', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                        'create' => ['url' => ['servicio/create', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-plus"></i> Examen de Rayos x'],
+                        'categorias' => ['url' => ['CategoriaServicio/index', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-cog"></i> Categorias']
+                    ]
+                ]
+            ];
+        }
+        if ($params['tipo'] == 3) {
+            $menu = [
+                'examenLab' => [
+                    'label' => '<i class="fa fa-image"></i></i> Servicios Clinicos',
+                    'items' => [
+                        'index' => ['url' => ['servicio/index', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                        'create' => ['url' => ['servicio/create', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-plus"></i> Servicio Clinico'],
+                        'categorias' => ['url' => ['CategoriaServicio/index', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-cog"></i> Categorias']
+                    ]
+                ]
+            ];
+        }
+        if (isset($params['id_servicio'])) {
+            $servicio = ServExamen::model()->findByPk($params['id_servicio']);
+            $menu2 = [
+                'label' => '<i class=""></i>' . $servicio->datosServicio->nombre_serv,
+                'items' => [
+                    'update' => ['url' => ['servicio/update', 'id' => $params['id_servicio']], 'label' => 'update'],
+                ]
+            ];
+            $menu['examenLabs'] = $menu2;
+        }
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuAtencionMedica($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'atenciones' => [
+                'label' => 'Atenciones Medicas',
+                'items' => [
+                    'index' => ['url' => ['servicio/atencionMedicaIndex', 'grupo' => 'sala', 'tipo' => '4'], 'label' => 'Lista'],
+                ]
+            ]
+        ];
+        return self::selectMenu($menu, $selected);
+    }
     public static function menuInternacion($params = [], $selected = ['','']){
         $iModel = Internacion::model()->findByPk($params['i_id']);
         $i_id = $iModel->id_inter;$h_id=$iModel->id_historial;
