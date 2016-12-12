@@ -1182,14 +1182,14 @@ MODAL STYLES
 .panel-group.options-menu{ text-color: #646E75; }
 .panel-group.options-menu .glyphicon,
 .panel-group.options-menu .fa{margin-right: 10px;}
-.panel-group.options-menu .panel-heading{color: #fff; background: #2e3e57;}
+.panel-group.options-menu .panel-heading{color: #fff; background: #3c8dbc;}
 .panel-group.options-menu .panel-body{ padding: 0}
 .panel-group.options-menu .panel-body table tr td {padding-left: 15px;cursor: pointer;}
-.panel-group.options-menu .panel-body table tr td:hover {background:  #5E6C88;}
+.panel-group.options-menu .panel-body table tr td:hover {background:  #31749b;}
 .panel-group.options-menu .panel-body table tr td:hover a{color:#fff;}
-.panel-group.options-menu .panel-body table tr td a{color:#2e3e57; }
+.panel-group.options-menu .panel-body table tr td a{color:#444; }
 .panel-group.options-menu .panel-body .table{margin-bottom: 0;}
-.panel-group.options-menu .panel-body table tr.selected {border-left: solid 5px #2e3e57;}
+.panel-group.options-menu .panel-body table tr.selected {border-left: solid 5px #3c8dbc;}
 
 /*
 Estilos para diagnostico
@@ -1206,3 +1206,56 @@ Estilos para diagnostico
 }
 
 /*.jarviswidget-color-blue>header{background:#2e3e57!important;border-color:#2e3e57!important;}*/
+
+.smart-style-2 .jarviswidget-color-blue>header {
+    border-color: #3c8dbc!important;
+    background: #3c8dbc;
+    color: #fff;
+}
+
+.smart-style-2 .jarviswidget-color-blue{
+    border: solid thin #3c8dbc;
+}
+
+.smart-style-2 .btn-primary, .smart-style-2 .smart-form .button{
+    background-color: #3c8dbc;
+    border-color: #3c8dbc;
+}
+.smart-style-2 .project-selector, .smart-style-2 #logo-group span#activity
+,.smart-style-2 #hide-menu a>i, .smart-style-2 .btn-header>:first-child>a{
+    color: #fff !important;
+}
+.smart-style-2 .header-search>input[type=text] {
+    background: #fff;
+    border-color: #3c8dbc;
+    color:#000;
+}
+.smart-style-2.menu-on-top aside#left-panel nav>ul>li:hover {
+    background: #3c8dbc;
+
+}
+.smart-style-2.menu-on-top aside#left-panel nav>ul>li:hover>a {
+    color: #fff!important;
+    border-left: 1px solid #3c8dbc;
+    border-right: 1px solid #3c8dbc;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+}
+.smart-style-2.menu-on-top nav ul ul, .smart-style-2.menu-on-top nav ul ul ul {
+    background: #3c8dbc!important;
+    border: 1px solid transparent;
+}
+.smart-style-2.menu-on-top nav ul ul li a, .smart-style-2.menu-on-top nav ul ul ul li a {
+    color: #fff!important;
+}
+
+.smart-style-2.menu-on-top nav ul ul li a:hover, .smart-style-2.menu-on-top nav ul ul ul li a:hover {
+    color: #fff;
+    background-color: #31749b!important;
+}
+.smart-style-2 nav ul li a{
+    color:#444!important;
+}
+#project-context>:first-child, .project-context>:first-child{
+    color:#fff;
+}
