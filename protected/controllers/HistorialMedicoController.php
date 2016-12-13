@@ -9,7 +9,6 @@ class HistorialMedicoController extends Controller
             'postOnly + delete', // we only allow deletion via POST request
         );
     }
-
     public function accessRules()
     {
         return array(
@@ -89,7 +88,7 @@ class HistorialMedicoController extends Controller
             $detalle->save();
         endforeach;
         $prestacion = PrestacionServicio::model()->findByPk($detalle->id_prestacion);
-        $this->redirect(array('PrestacionDetalleComprobante', 'id' => $prestacion->id_prestacion));
+        $this->redirect(array('PdfComprobantePrestacion', 'id' => $prestacion->id_prestacion));
     }
 
     public function actionPdfComprobantePrestacion($id)

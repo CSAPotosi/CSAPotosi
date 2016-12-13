@@ -46,4 +46,28 @@ class SeguridadController extends Controller
         }
     }
 
+    public function actionindexBackup()
+    {
+        $backups = opendir('Backups/');
+        $this->render('indexBackup', ['backups' => $backups]);
+    }
+
+    public function actionCreateBackup()
+    {
+        chdir('c:\\Program Files\\PostgreSQL\\9.5\\bin\\');
+        $comando1 = 'SET PGPASSWORD=root';
+        $comando2 = "pg_dump -U postgres -F t -f c:\\wamp\\www\\CSAPotosi\\Backups\\SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup csapotosi_db";
+        shell_exec($comando1 . "&&" . $comando2);
+        $this->redirect(['indexBackup']);
+
+    }
+
+    public function actionCargarBackup($id)
+    {
+        chdir('c:\\Program Files\\PostgreSQL\\9.5\\bin\\');
+        $comando1 = 'SET PGPASSWORD=root';
+        $comando2 = "pg_restore -U postgres -c -d csapotosi_db -v c:\\wamp\\www\\CSAPotosi\\Backups\\SantaAna-" . $id . ".backup";
+        shell_exec($comando1 . "&&" . $comando2);
+        $this->redirect(['indexBackup']);
+    }
 }

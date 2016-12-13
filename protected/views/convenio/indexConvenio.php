@@ -1,7 +1,7 @@
 <section id="widget-grid">
     <div class="row">
         <div class="col-md-12">
-            <div class="jarviswidget" id="widget-index">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget-index">
                 <header></header>
                 <div>
                     <div class="widget-body">

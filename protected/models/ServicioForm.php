@@ -110,6 +110,8 @@ class ServicioForm extends CFormModel
         $this->modelServExamen = ($id == null) ? new ServExamen() : ServExamen::model()->findByPk($id);
         $this->modelServExamen->setAttributes($this->getAttributes(), false);
         $this->loadServicioPrecio($id);
+        $cat_ex = CategoriaServExamen::model()->findByPk($this->modelServExamen->id_cat_ex);
+        $this->modelServicio->cod_serv = $cat_ex->cod_cat_ex;
         if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServExamen])) {
             $this->saveServicio();
             if ($id == null)
@@ -143,6 +145,8 @@ class ServicioForm extends CFormModel
         $this->modelServClinico = ($id == null) ? new ServClinico() : ServClinico::model()->findByPk($id);
         $this->modelServClinico->setAttributes($this->getAttributes(), false);
         $this->loadServicioPrecio($id);
+        $cat_cli = CategoriaServClinico::model()->findByPk($this->modelServClinico->id_cat_cli);
+        $this->modelServicio->cod_serv = $cat_cli->cod_cat_cli;
         if ($this->validar([$this->modelServicio, $this->modelPrecio, $this->modelServClinico])) {
             $this->saveServicio();
             if ($id == null)

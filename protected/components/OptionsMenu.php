@@ -20,9 +20,9 @@ class OptionsMenu{
                     'Detalle Paciente' => ['url' => ['paciente/detallePaciente', 'id' => $params['id_paciente']], 'label' => 'Detalle Paciente'],
                     'Actualizar Paciente' => ['url' => ['paciente/update', 'id' => $params['id_paciente']], 'label' => 'Actualizar Paciente'],
                     'Prestacion Servicios' => ['url' => ['HistorialMedico/externoCreate', 'id' => $params['id_paciente']], 'label' => 'Solicitud de Servicios'],
-                    'seguroPaciente' => ['url' => ['paciente/seguroPaciente', 'id' => $params['id_paciente']], 'label' => 'Seguro de Paciente'],
-                    'seguroCreate' => ['url' => ['paciente/seguroCreate', 'id' => $params['id_paciente']], 'label' => 'Asegurar Paciente'],
-                    'cita' => ['url' => ['cita/indexCita', 'id' => $params['id_paciente']], 'label' => 'Dar Cita']
+                    'Seguro Paciente' => ['url' => ['paciente/seguroPaciente', 'id' => $params['id_paciente']], 'label' => 'Seguro de Paciente'],
+                    'Seguro Create' => ['url' => ['paciente/seguroCreate', 'id' => $params['id_paciente']], 'label' => 'Asegurar Paciente'],
+                    'Cita' => ['url' => ['cita/indexCita', 'id' => $params['id_paciente']], 'label' => 'Dar Cita']
                 ]
             ];
             $menu['paciente'] = $menu2;
@@ -36,8 +36,8 @@ class OptionsMenu{
             'empleados' => [
                 'label' => '<i class="fa fa-suitcase"></i></i> Empleados',
                 'items' => [
-                    'index' => ['url' => ['empleado/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                    'create' => ['url' => ['empleado/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Empleado']
+                    'Lista Empleado' => ['url' => ['empleado/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'Crear Empleado' => ['url' => ['empleado/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Empleado']
 
                 ]
             ]
@@ -47,8 +47,8 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class="fa fa-user"></i>' . $empleado->empleadoPersona->getNombreCompleto(),
                 'items' => [
-                    'detalleEmpleado' => ['url' => ['empleado/detalleEmpleado', 'id' => $params['id_empleado']], 'label' => 'Detalle Empleado'],
-                    'updateEmpleado' => ['url' => ['empleado/update', 'id' => $params['id_empleado']], 'label' => 'Actualizar Empleado'],
+                    'Detalle Empleado' => ['url' => ['empleado/detalleEmpleado', 'id' => $params['id_empleado']], 'label' => 'Detalle Empleado'],
+                    'Actualizar Empleado' => ['url' => ['empleado/update', 'id' => $params['id_empleado']], 'label' => 'Actualizar Empleado'],
                 ]
             ];
             $menu['empleado'] = $menu2;
@@ -62,8 +62,8 @@ class OptionsMenu{
             'medicos' => [
                 'label' => '<i class="fa fa-medkit"></i></i> Medicos',
                 'items' => [
-                    'index' => ['url' => ['medico/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                    'create' => ['url' => ['medico/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Medico']
+                    'Lista Medicos' => ['url' => ['medico/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'Crear Medicos' => ['url' => ['medico/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Medico']
 
                 ]
             ]
@@ -73,8 +73,8 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class="fa fa-user"></i>' . $medico->persona->getNombreCompleto(),
                 'items' => [
-                    'detalleMedico' => ['url' => ['medico/detalleMedico', 'id' => $params['id_medico']], 'label' => 'Detalle Medico'],
-                    'updatemedico' => ['url' => ['medico/update', 'id' => $params['id_medico']], 'label' => 'Actualizar Medico'],
+                    'Detalle Medicos' => ['url' => ['medico/detalleMedico', 'id' => $params['id_medico']], 'label' => 'Detalle Medico'],
+                    'Actualizar Medico' => ['url' => ['medico/update', 'id' => $params['id_medico']], 'label' => 'Actualizar Medico'],
                 ]
             ];
             $menu['medico'] = $menu2;
@@ -88,8 +88,8 @@ class OptionsMenu{
             'unidades' => [
                 'label' => '<i class=""></i></i> Unidades',
                 'items' => [
-                    'index' => ['url' => ['unidad/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                    'create' => ['url' => ['unidad/Create'], 'label' => '<i class="fa fa-plus"></i> Nueva Unidad']
+                    'Lista Unidad' => ['url' => ['unidad/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'Crear Unidad' => ['url' => ['unidad/Create'], 'label' => '<i class="fa fa-plus"></i> Nueva Unidad']
 
                 ]
             ]
@@ -99,24 +99,22 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class=""></i>' . $unidad->nombre_unidad,
                 'items' => [
-                    'updateunidad' => ['url' => ['unidad/update', 'id' => $params['id_unidad']], 'label' => 'Editar Unidad'],
-                    'cargosunidad' => ['url' => ['cargo/index', 'id' => $params['id_unidad']], 'label' => 'Cragos de Unidad'],
-                    'createcargo' => ['url' => ['cargo/create', 'id' => $params['id_unidad']], 'label' => 'Nuevo Cargo'],
+                    'Actualizar Unidad' => ['url' => ['unidad/update', 'id' => $params['id_unidad']], 'label' => 'Editar Unidad'],
+                    'Lista Cargos' => ['url' => ['cargo/index', 'id' => $params['id_unidad']], 'label' => 'Cragos de Unidad'],
+                    'Crear Cargo' => ['url' => ['cargo/create', 'id' => $params['id_unidad']], 'label' => 'Nuevo Cargo'],
                 ]
             ];
             $menu['unidad'] = $menu2;
         }
         return self::selectMenu($menu, $selected);
     }
-
     public static function menuConvenio($params = [], $selected = ['', ''])
     {
         $menu = [
             'convenios' => [
-                'label' => '<i class="fa fa-clock-o"></i></i> Convenios',
+                'label' => '<i class="fa fa-archive"></i></i> Convenios',
                 'items' => [
-                    'index' => ['url' => ['convenio/indexConvenio'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                    'create' => ['url' => ['Convenio/createConvenio'], 'label' => '<i class="fa fa-plus"></i> Nuevo Convenio']
+                    'Lista Convenio' => ['url' => ['convenio/indexConvenio'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
                 ]
             ]
         ];
@@ -125,7 +123,7 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class=""></i>' . $convenio->nombre_convenio,
                 'items' => [
-                    'convenioservicio' => ['url' => ['convenio/indexServicioConvenio', 'id' => $params['id_convenio']], 'label' => 'detalle'],
+                    'Convenio Servicio' => ['url' => ['convenio/indexServicioConvenio', 'id' => $params['id_convenio']], 'label' => 'detalle'],
                 ]
             ];
             $menu['convenio'] = $menu2;
@@ -139,8 +137,8 @@ class OptionsMenu{
             'asignaciones' => [
                 'label' => '<i class=""></i></i> Asignaciones',
                 'items' => [
-                    'index' => ['url' => ['AsignacionEmpleado/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                    'create' => ['url' => ['AsigancionEmpleado/Create'], 'label' => '<i class="fa fa-plus"></i> Nueva Asignacion'],
+                    'Lista Asignacion' => ['url' => ['AsignacionEmpleado/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'Crear Asignacion' => ['url' => ['AsignacionEmpleado/Create'], 'label' => '<i class="fa fa-plus"></i> Nueva Asignacion'],
 
                 ]
             ]
@@ -148,10 +146,10 @@ class OptionsMenu{
         $menu3 = [
             'label' => '<i class=""></i>Asistencia',
             'items' => [
-                'cargar' => ['url' => ['Registro/subir'], 'label' => '<i class=""></i> Cargar Asistencia'],
-                'create' => ['url' => ['Registro/Create'], 'label' => '<i class=""></i> Registro Manual'],
-                'automatico' => ['url' => ['Registro/registroManual'], 'label' => '<i class=""></i> Registro Automomatico'],
-                'informacion' => ['url' => ['Registro/reportAsistencia'], 'label' => '<i class=""></i> Informacion de Asistencia'],
+                'Cargar Asistencia' => ['url' => ['Registro/subir'], 'label' => '<i class=""></i> Cargar Asistencia'],
+                'Crear Registro' => ['url' => ['Registro/Create'], 'label' => '<i class=""></i> Registro manual'],
+                'Registro Automatico' => ['url' => ['Registro/registroManual'], 'label' => '<i class=""></i> Registro Automomatico'],
+                'Informacion Asistencia' => ['url' => ['Registro/reportAsistencia'], 'label' => '<i class=""></i> Informacion de Asistencia'],
             ]
         ];
         $menu['asistencia'] = $menu3;
@@ -160,7 +158,7 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class=""></i>' . $asignacion->empleado->empleadoPersona->getNombreCompleto(),
                 'items' => [
-                    'updateasigancion' => ['url' => ['AsignacionEmpleado/update', 'id' => $params['id_asignacion']], 'label' => 'Editar Asignacion'],
+                    'Actualizar Asignacion' => ['url' => ['AsignacionEmpleado/update', 'id' => $params['id_asignacion']], 'label' => 'Editar Asignacion'],
                 ]
             ];
             $menu['asignacion'] = $menu2;
@@ -174,8 +172,8 @@ class OptionsMenu{
             'horarios' => [
                 'label' => '<i class="fa fa-clock-o"></i></i> Horarios',
                 'items' => [
-                    'index' => ['url' => ['horario/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                    'create' => ['url' => ['horario/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Horario']
+                    'Lista Horario' => ['url' => ['horario/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                    'Crear Horario' => ['url' => ['horario/Create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Horario']
                 ]
             ]
         ];
@@ -184,8 +182,8 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class=""></i>' . $horario->nombre_horario,
                 'items' => [
-                    'updatehorario' => ['url' => ['horario/update', 'id' => $params['id_horario']], 'label' => 'Editar'],
-                    'periodo' => ['url' => ['horario/createPeriodo', 'id' => $params['id_horario']], 'label' => 'Pediodos'],
+                    'Actualizar Horario' => ['url' => ['horario/update', 'id' => $params['id_horario']], 'label' => 'Editar'],
+                    'Crear Periodo' => ['url' => ['horario/createPeriodo', 'id' => $params['id_horario']], 'label' => 'Pediodos'],
                 ]
             ];
             $menu['horario'] = $menu2;
@@ -247,9 +245,9 @@ class OptionsMenu{
                 'examenLab' => [
                     'label' => '<i class="fa fa-flask"></i></i> Exa. de Laboratorio',
                     'items' => [
-                        'index' => ['url' => ['servicio/index', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                        'create' => ['url' => ['servicio/create', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-plus"></i> Examen de laboratorio'],
-                        'categorias' => ['url' => ['CategoriaServicio/index', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-cog"></i> Categorias']
+                        'Lista ExamenLab' => ['url' => ['servicio/index', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                        'Crear ExamenLab' => ['url' => ['servicio/create', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-plus"></i> Examen de laboratorio'],
+                        'Categorias Laboratorio' => ['url' => ['CategoriaServicio/index', 'grupo' => 'examen', 'tipo' => '1'], 'label' => '<i class="fa fa-cog"></i> Categorias']
                     ]
                 ]
             ];
@@ -259,9 +257,9 @@ class OptionsMenu{
                 'examenLab' => [
                     'label' => '<i class="fa fa-image"></i></i> Exa. de Rayos X',
                     'items' => [
-                        'index' => ['url' => ['servicio/index', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                        'create' => ['url' => ['servicio/create', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-plus"></i> Examen de Rayos x'],
-                        'categorias' => ['url' => ['CategoriaServicio/index', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-cog"></i> Categorias']
+                        'Lista ExamenLab' => ['url' => ['servicio/index', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                        'Crear ExamenLab' => ['url' => ['servicio/create', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-plus"></i> Examen de Rayos x'],
+                        'Categorias Laboratorio' => ['url' => ['CategoriaServicio/index', 'grupo' => 'examen', 'tipo' => '2'], 'label' => '<i class="fa fa-cog"></i> Categorias']
                     ]
                 ]
             ];
@@ -271,9 +269,9 @@ class OptionsMenu{
                 'examenLab' => [
                     'label' => '<i class="fa fa-image"></i></i> Servicios Clinicos',
                     'items' => [
-                        'index' => ['url' => ['servicio/index', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                        'create' => ['url' => ['servicio/create', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-plus"></i> Servicio Clinico'],
-                        'categorias' => ['url' => ['CategoriaServicio/index', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-cog"></i> Categorias']
+                        'Lista ExamenLab' => ['url' => ['servicio/index', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
+                        'Crear ExamenLab' => ['url' => ['servicio/create', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-plus"></i> Servicio Clinico'],
+                        'Categorias Laboratorio' => ['url' => ['CategoriaServicio/index', 'grupo' => 'clinico', 'tipo' => '3'], 'label' => '<i class="fa fa-cog"></i> Categorias']
                     ]
                 ]
             ];
@@ -283,7 +281,7 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class=""></i>' . $servicio->datosServicio->nombre_serv,
                 'items' => [
-                    'update' => ['url' => ['servicio/update', 'id' => $params['id_servicio']], 'label' => 'update'],
+                    'Actualizar' => ['url' => ['servicio/update', 'id' => $params['id_servicio']], 'label' => 'update'],
                 ]
             ];
             $menu['examenLabs'] = $menu2;

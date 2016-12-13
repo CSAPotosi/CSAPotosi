@@ -2,9 +2,49 @@
 
 class ConvenioController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('IndexConvenio'),
+                'roles' => array('convenioIndex'),
+            ),
+            array('allow',
+                'actions' => array('CreateConvenio'),
+                'roles' => array('convenioCreateConvenio'),
+            ),
+            array('allow',
+                'actions' => array('UpdateConvenio'),
+                'roles' => array('convenioUpdateConvenio'),
+            ),
+            array('allow',
+                'actions' => array('indexServicioConvenio'),
+                'roles' => array('convenioindexServicioConvenio'),
+            ),
+            array('allow',
+                'actions' => array('detalleConvenioServicio'),
+                'roles' => array('conveniodetalleConvenioServicio'),
+            ),
+            array('allow',
+                'actions' => array('changeStateConvenioServivio'),
+                'roles' => array('conveniochangeStateConvenioServivio'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
     public function actionIndexConvenio()
     {
-        $this->menu = OptionsMenu::menuConvenio([], ['asistencia', 'informacion']);
+        $this->menu = OptionsMenu::menuConvenio([], ['convenios', 'Lista Convenio']);
         $listConvenio = Convenio::model()->findAll([]);
         $convenioModel = new Convenio();
         $this->render('indexConvenio', ['listConvenio' => $listConvenio, 'modelConvenio' => $convenioModel]);
@@ -12,6 +52,7 @@ class ConvenioController extends Controller
 
     public function actionCreateConvenio()
     {
+        $this->menu = OptionsMenu::menuConvenio([], ['convenios', 'Lista Convenio']);
         $modelConvenio = new Convenio();
         $this->ajaxValidation($modelConvenio);
         $listConvenio = Convenio::model()->findAll([
@@ -26,6 +67,7 @@ class ConvenioController extends Controller
 
     public function actionUpdateConvenio($id)
     {
+        $this->menu = OptionsMenu::menuConvenio([], ['convenios', 'Lista Convenio']);
         $modelConvenio = Convenio::model()->findByPk($id);
         $this->ajaxValidation($modelConvenio);
         $listConvenio = CategoriaServExamen::model()->findAll([]);
@@ -39,7 +81,7 @@ class ConvenioController extends Controller
 
     public function actionindexServicioConvenio($id)
     {
-        $this->menu = OptionsMenu::menuConvenio(['id_convenio' => $id], ['convenio', 'convenioservicio']);
+        $this->menu = OptionsMenu::menuConvenio(['id_convenio' => $id], ['convenio', 'Convenio Servicio']);
         $convenio = Convenio::model()->findByPk($id);
         $convenioServicio = new ConvenioServicio();
         $listServicio = Servicio::model()->findAll("id_serv not in (select id_servicio from convenio_servicio where id_convenio={$id})");

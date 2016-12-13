@@ -17,7 +17,7 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                 <header></header>
                 <div>
                     <div class="widget-body">
@@ -25,7 +25,8 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                             <legend>Prestacion De Servicios</legend>
                             <div class="row">
                                 <div class="col-md-7">
-                                    <div class="jarviswidget" id="wid-id-11" data-widget-togglebutton="false"
+                                    <div class="jarviswidget jarviswidget-color-blue" id="wid-id-11"
+                                         data-widget-togglebutton="false"
                                          data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                          data-widget-custombutton="false">
                                         <header>
@@ -157,7 +158,8 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                     </div>
                                 </div>
                                 <div class="col-md-5">
-                                    <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                                    <div class="jarviswidget jarviswidget-color-blue" id="widget1"
+                                         data-widget-togglebutton="false"
                                          data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                          data-widget-custombutton="false">
                                         <header>

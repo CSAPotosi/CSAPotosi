@@ -7878,6 +7878,8 @@ class TCPDF
                 $this->Error('Incorrect output destination: ' . $dest);
             }
         }
+
+        
         return '';
     }
 

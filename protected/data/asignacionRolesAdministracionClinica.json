@@ -32,5 +32,221 @@
   {
     "parent": "Prestacion Servicios",
     "child": "historialDetallePrestacion"
+  },
+  {
+    "parent": "Prestacion Servicios",
+    "child": "historialPdfComprobantePrestacion"
+  },
+  {
+    "parent": "Prestacion Servicios",
+    "child": "historialIndex"
+  },
+  {
+    "parent": "Seguro Paciente",
+    "child": "pacienteSeguro"
+  },
+  {
+    "parent": "Seguro Create",
+    "child": "pacienteSeguroCreate"
+  },
+  {
+    "parent": "Lista Empleado",
+    "child": "empleadoIndex"
+  },
+  {
+    "parent": "Lista Empleado",
+    "child": "empleadoGetEmpleadoListAjax"
+  },
+  {
+    "parent": "Crear Empleado",
+    "child": "empleadoCreate"
+  },
+  {
+    "parent": "Crear Empleado",
+    "child": "medicoonlyMedico"
+  },
+  {
+    "parent": "Detalle Empleado",
+    "child": "empleadoDetalleEmpleado"
+  },
+  {
+    "parent": "Actualizar Empleado",
+    "child": "empleadoUpdate"
+  },
+  {
+    "parent": "Lista Medicos",
+    "child": "medicoindex"
+  },
+  {
+    "parent": "Lista Medicos",
+    "child": "medicoCreateSpecialyAjax"
+  },
+  {
+    "parent": "Crear Medicos",
+    "child": "medicoCreate"
+  },
+  {
+    "parent": "Detalle Medicos",
+    "child": "medicoDetalleMedico"
+  },
+  {
+    "parent": "Actualizar Medico",
+    "child": "medicoupdate"
+  },
+  {
+    "parent": "Lista Unidad",
+    "child": "unidadIndex"
+  },
+  {
+    "parent": "Crear Unidad",
+    "child": "unidadCreate"
+  },
+  {
+    "parent": "Actualizar Unidad",
+    "child": "unidadUpdate"
+  },
+  {
+    "parent": "Lista Cargos",
+    "child": "cargoIndex"
+  },
+  {
+    "parent": "Lista Cargos",
+    "child": "cargoChangeStateCargo"
+  },
+  {
+    "parent": "Crear Cargo",
+    "child": "cargoCreate"
+  },
+  {
+    "parent": "Lista Convenio",
+    "child": "convenioIndex"
+  },
+  {
+    "parent": "Lista Convenio",
+    "child": "convenioCreateConvenio"
+  },
+  {
+    "parent": "Lista Convenio",
+    "child": "convenioUpdateConvenio"
+  },
+  {
+    "parent": "Convenio Servicio",
+    "child": "convenioindexServicioConvenio"
+  },
+  {
+    "parent": "Convenio Servicio",
+    "child": "conveniodetalleConvenioServicio"
+  },
+  {
+    "parent": "Convenio Servicio",
+    "child": "conveniochangeStateConvenioServivio"
+  },
+  {
+    "parent": "Lista Asignacion",
+    "child": "asignacionIndex"
+  },
+  {
+    "parent": "Crear Asignacion",
+    "child": "asignacionCreate"
+  },
+  {
+    "parent": "Actualizar Asignacion",
+    "child": "asignacionUpdate"
+  },
+  {
+    "parent": "Cargar Asistencia",
+    "child": "registroSubir"
+  },
+  {
+    "parent": "Crear Registro",
+    "child": "registroCreate"
+  },
+  {
+    "parent": "Registro Automatico",
+    "child": "registroRegistroManual"
+  },
+  {
+    "parent": "Registro Automatico",
+    "child": "registroBusquedaCi"
+  },
+  {
+    "parent": "Registro Automatico",
+    "child": "registroRegistrarAsistencia"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroReportAsistencia"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroGetCargosAjax"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroGetEmpleadosAjax"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroGetEmpleadoAjax"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroDetalleAsistencia"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroCreatePdfAsistencia"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroCreatePdfDetalleAsistencia"
+  },
+  {
+    "parent": "Lista Horario",
+    "child": "horarioIndex"
+  },
+  {
+    "parent": "Crear Horario",
+    "child": "horarioCreate"
+  },
+  {
+    "parent": "Actualizar Horario",
+    "child": "horarioUpdate"
+  },
+  {
+    "parent": "Crear Periodo",
+    "child": "horarioView"
+  },
+  {
+    "parent": "Crear Periodo",
+    "child": "horarioCreatePeriodo"
+  },
+  {
+    "parent": "Crear Periodo",
+    "child": "horarioSetPeriodos"
+  },
+  {
+    "parent": "Lista ExamenLab",
+    "child": "servicioIndex"
+  },
+  {
+    "parent": "Crear ExamenLab",
+    "child": "servicioCreate"
+  },
+  {
+    "parent": "Categorias Laboratorio",
+    "child": "categoriaCreate"
+  },
+  {
+    "parent": "Categorias Laboratorio",
+    "child": "categoriaIndex"
+  },
+  {
+    "parent": "Categorias Laboratorio",
+    "child": "categoriaUpdate"
+  },
+  {
+    "parent": "Actualizar",
+    "child": "servicioUpdate"
   }
 ]

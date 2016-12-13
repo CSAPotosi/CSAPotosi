@@ -8,7 +8,7 @@ $this->breadcrumbs = array(
     <section id="widget-grid">
         <div class="row">
             <article class="col-md-12">
-                <div class="jarviswidget" id="widget1">
+                <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                     <header></header>
                     <div>
                         <div class="widget-body">
@@ -84,7 +84,7 @@ $this->breadcrumbs = array(
                 </div>
                 <div class="modal-body">
                     <div id="contenedorprincipalconvenioservicio">
-                        <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                        <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-togglebutton="false"
                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                              data-widget-custombutton="false">
                             <header>
@@ -107,7 +107,7 @@ $this->breadcrumbs = array(
                                 <?php $this->renderPartial('listServicios', array('listServicio' => $listServicio, 'modelConvenio' => $modelConvenio, 'convenioServicio' => $convenioServicio,)) ?>
                             </div>
                         </div>
-                        <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                        <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-togglebutton="false"
                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                              data-widget-custombutton="false">
                             <header>

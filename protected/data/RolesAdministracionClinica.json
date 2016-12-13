@@ -36,7 +36,7 @@
   {
     "name": "pacienteSeguroCreate",
     "type": "0",
-    "description": "Lista de Pacientes"
+    "description": "Crear seguro para paciente"
   },
   {
     "name": "historialIndex",
@@ -64,6 +64,131 @@
     "description": "Rerporte en pdf de prestacion de Servicios"
   },
   {
+    "name": "empleadoIndex",
+    "type": "0",
+    "description": "Lista de Empleados"
+  },
+  {
+    "name": "empleadoCreate",
+    "type": "0",
+    "description": "Crear Empleado"
+  },
+  {
+    "name": "empleadoGetEmpleadoListAjax",
+    "type": "0",
+    "description": "Buscador de Empleados por ajax"
+  },
+  {
+    "name": "empleadoDetalleEmpleado",
+    "type": "0",
+    "description": "Detallle de Empleado"
+  },
+  {
+    "name": "empleadoUpdate",
+    "type": "0",
+    "description": "Actualizar Empleado"
+  },
+  {
+    "name": "medicoCreate",
+    "type": "0",
+    "description": "Crear Medico"
+  },
+  {
+    "name": "medicoCreateSpecialyAjax",
+    "type": "0",
+    "description": "Crear Especialidad Medica"
+  },
+  {
+    "name": "medicoonlyMedico",
+    "type": "0",
+    "description": "Informacion medica de Empleado"
+  },
+  {
+    "name": "medicoindex",
+    "type": "0",
+    "description": "Lista de Medicos"
+  },
+  {
+    "name": "medicoGetMedicoListAjax",
+    "type": "0",
+    "description": "Buscador de Medicos con Ajax"
+  },
+  {
+    "name": "medicoDetalleMedico",
+    "type": "0",
+    "description": "Detalle de Medico"
+  },
+  {
+    "name": "medicoupdate",
+    "type": "0",
+    "description": "Actualizar informacion Medico"
+  },
+  {
+    "name": "unidadIndex",
+    "type": "0",
+    "description": "Lista de Unidades o Departamentos"
+  },
+  {
+    "name": "unidadCreate",
+    "type": "0",
+    "description": "Crear de Unidades o Departamentos"
+  },
+  {
+    "name": "unidadUpdate",
+    "type": "0",
+    "description": "Actualizar de Unidades o Departamentos"
+  },
+  {
+    "name": "cargoIndex",
+    "type": "0",
+    "description": "Lista de Cargos de Unidad"
+  },
+  {
+    "name": "cargoChangeStateCargo",
+    "type": "0",
+    "description": "Cambiar de Estado de Cargo"
+  },
+  {
+    "name": "cargoCreate",
+    "type": "0",
+    "description": "Crear Cargo de Unidad"
+  },
+  {
+    "name": "cargoUpdate",
+    "type": "0",
+    "description": "Actualizar Cargo de Unidad"
+  },
+  {
+    "name": "convenioIndex",
+    "type": "0",
+    "description": "Lista de Convenios"
+  },
+  {
+    "name": "convenioCreateConvenio",
+    "type": "0",
+    "description": "Crear Convenio"
+  },
+  {
+    "name": "convenioUpdateConvenio",
+    "type": "0",
+    "description": "Actualizar Convenio"
+  },
+  {
+    "name": "convenioindexServicioConvenio",
+    "type": "0",
+    "description": "Lista de Servicios en Convenio"
+  },
+  {
+    "name": "conveniodetalleConvenioServicio",
+    "type": "0",
+    "description": "Detalle de Servicios Para convenio"
+  },
+  {
+    "name": "conveniochangeStateConvenioServivio",
+    "type": "0",
+    "description": "Cambiar de Estado de servicio de Convenio"
+  },
+  {
     "name": "asignacionIndex",
     "type": "0",
     "description": "Lista de Asignaciones"
@@ -77,6 +202,146 @@
     "name": "asignacionUpdate",
     "type": "0",
     "description": "Actualizar asignacion"
+  },
+  {
+    "name": "citaIndex",
+    "type": "0",
+    "description": "Lista de Citas y formulario"
+  },
+  {
+    "name": "citaUpdate",
+    "type": "0",
+    "description": "Actualizar cita"
+  },
+  {
+    "name": "citaPdfComprobanteCita",
+    "type": "0",
+    "description": "Comprobante de cita"
+  },
+  {
+    "name": "registroCreate",
+    "type": "0",
+    "description": "Registro de Asistencia Administrador"
+  },
+  {
+    "name": "registroSubir",
+    "type": "0",
+    "description": "Subir Archivo de asistencia"
+  },
+  {
+    "name": "registroReportAsistencia",
+    "type": "0",
+    "description": "Reporte de Asistencia General"
+  },
+  {
+    "name": "registroGetCargosAjax",
+    "type": "0",
+    "description": "Busqueda de Cargos Ajax"
+  },
+  {
+    "name": "registroGetEmpleadosAjax",
+    "type": "0",
+    "description": "Busqueda de Empledos Ajax"
+  },
+  {
+    "name": "registroGetEmpleadoAjax",
+    "type": "0",
+    "description": "Busqueda de Empleado Ajax"
+  },
+  {
+    "name": "registroRegistroManual",
+    "type": "0",
+    "description": "Vista de Asistencia Con el Sistema"
+  },
+  {
+    "name": "registroBusquedaCi",
+    "type": "0",
+    "description": "Busqueda de Cedula de identidad"
+  },
+  {
+    "name": "registroRegistrarAsistencia",
+    "type": "0",
+    "description": "Registro de Asistencia con el Sistema"
+  },
+  {
+    "name": "registroDetalleAsistencia",
+    "type": "0",
+    "description": "Detalle de Aistencia General"
+  },
+  {
+    "name": "registroCreatePdfAsistencia",
+    "type": "0",
+    "description": "Creacion de pdf para asistencia"
+  },
+  {
+    "name": "registroCreatePdfDetalleAsistencia",
+    "type": "0",
+    "description": "Creacion de pdf de detalle de asistencia"
+  },
+  {
+    "name": "horarioCreate",
+    "type": "0",
+    "description": "Crear Horario"
+  },
+  {
+    "name": "horarioIndex",
+    "type": "0",
+    "description": "Lista de Horarios"
+  },
+  {
+    "name": "horarioUpdate",
+    "type": "0",
+    "description": "Actualizar Horario"
+  },
+  {
+    "name": "horarioView",
+    "type": "0",
+    "description": "Detalle de Horario"
+  },
+  {
+    "name": "horarioCreatePeriodo",
+    "type": "0",
+    "description": "Crear Periodos de Horario"
+  },
+  {
+    "name": "horarioSetPeriodos",
+    "type": "0",
+    "description": "Asignar Periodo a Horario"
+  },
+  {
+    "name": "servicioCreate",
+    "type": "0",
+    "description": "Crear Servicios"
+  },
+  {
+    "name": "servicioIndex",
+    "type": "0",
+    "description": "Listar Servicios"
+  },
+  {
+    "name": "servicioUpdate",
+    "type": "0",
+    "description": "Actualizar Servicios"
+  },
+  {
+    "name": "servicioView",
+    "type": "0",
+    "description": "Detalle de Servicios"
+  },
+  {
+    "name": "categoriaCreate",
+    "type": "0",
+    "description": "Crear Categoria"
+  },
+  {
+    "name": "categoriaIndex",
+    "type": "0",
+    "description": "Lista de Categoria"
+  },
+  {
+    "name": "categoriaUpdate",
+    "type": "0",
+    "description": "Actualizar Categoria"
   },
   //link del menu
   {
@@ -103,5 +368,170 @@
     "name": "Prestacion Servicios",
     "type": "1",
     "description": "Detalle de datos de Paciente"
+  },
+  {
+    "name": "Seguro Paciente",
+    "type": "1",
+    "description": "Detalle de datos de Paciente"
+  },
+  {
+    "name": "Seguro Create",
+    "type": "1",
+    "description": "Detalle de datos de Paciente"
+  },
+  {
+    "name": "Cita",
+    "type": "1",
+    "description": "Detalle de datos de Paciente"
+  },
+  {
+    "name": "Lista Empleado",
+    "type": "1",
+    "description": "Lista de todos los Empleados"
+  },
+  {
+    "name": "Crear Empleado",
+    "type": "1",
+    "description": "Crear Nuevo empleado"
+  },
+  {
+    "name": "Detalle Empleado",
+    "type": "1",
+    "description": "Ver el detalle de informacion de empleado"
+  },
+  {
+    "name": "Actualizar Empleado",
+    "type": "1",
+    "description": "Actualizar datos de Empleado"
+  },
+  {
+    "name": "Lista Medicos",
+    "type": "1",
+    "description": "Lista de los medicos"
+  },
+  {
+    "name": "Crear Medicos",
+    "type": "1",
+    "description": "Actualizar datos de Empleado"
+  },
+  {
+    "name": "Detalle Medicos",
+    "type": "1",
+    "description": "Actualizar datos de Empleado"
+  },
+  {
+    "name": "Actualizar Medico",
+    "type": "1",
+    "description": "Actualizar datos de Empleado"
+  },
+  {
+    "name": "Lista Unidad",
+    "type": "1",
+    "description": "Lista de las Uniadades"
+  },
+  {
+    "name": "Crear Unidad",
+    "type": "1",
+    "description": "Crear una nueva Unidad o Departamento"
+  },
+  {
+    "name": "Actualizar Unidad",
+    "type": "1",
+    "description": "Actualizar datos de Unidad o Departamento"
+  },
+  {
+    "name": "Lista Cargos",
+    "type": "1",
+    "description": "Lista de Cargos que pertenecen a Uniadad"
+  },
+  {
+    "name": "Crear Cargo",
+    "type": "1",
+    "description": "Crear Cargo que pertenece a Unidad"
+  },
+  {
+    "name": "Lista Convenio",
+    "type": "1",
+    "description": "Lista de Convenios"
+  },
+  {
+    "name": "Convenio Servicio",
+    "type": "1",
+    "description": "Crear Servicios Para convenio"
+  },
+  {
+    "name": "Lista Asignacion",
+    "type": "1",
+    "description": "Lista de Asignaciones"
+  },
+  {
+    "name": "Crear Asignacion",
+    "type": "1",
+    "description": "Crear Asignacion"
+  },
+  {
+    "name": "Actualizar Asignacion",
+    "type": "1",
+    "description": "Actualizar Asignacion"
+  },
+  {
+    "name": "Cargar Asistencia",
+    "type": "1",
+    "description": "Cargar el archivo de Asistencia"
+  },
+  {
+    "name": "Crear Registro",
+    "type": "1",
+    "description": "Registro de Asistencia como administrador"
+  },
+  {
+    "name": "Registro Automatico",
+    "type": "1",
+    "description": "Registro de Asistencia Automatico con el sistema"
+  },
+  {
+    "name": "Informacion Asistencia",
+    "type": "1",
+    "description": "Reporte de la infoermacion de asistencia"
+  },
+  {
+    "name": "Lista Horario",
+    "type": "1",
+    "description": "Lista de los Horarios"
+  },
+  {
+    "name": "Crear Horario",
+    "type": "1",
+    "description": "Creacion de Horario"
+  },
+  {
+    "name": "Actualizar Horario",
+    "type": "1",
+    "description": "Actualizar Horario"
+  },
+  {
+    "name": "Crear Periodo",
+    "type": "1",
+    "description": "Creacion de Periodos para Horario"
+  },
+  {
+    "name": "Lista ExamenLab",
+    "type": "1",
+    "description": "Lista de Examnes"
+  },
+  {
+    "name": "Crear ExamenLab",
+    "type": "1",
+    "description": "Crear Examen"
+  },
+  {
+    "name": "Categorias Laboratorio",
+    "type": "1",
+    "description": "Categorias"
+  },
+  {
+    "name": "Actualizar",
+    "type": "1",
+    "description": ""
   }
 ]

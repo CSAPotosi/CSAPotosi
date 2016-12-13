@@ -1,7 +1,7 @@
 <section id="widget-grid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="jarviswidget" id="widget-index">
+			<div class="jarviswidget jarviswidget-color-blue" id="widget-index">
 				<header></header>
 				<div>
 					<div class="widget-body">
@@ -23,15 +23,12 @@
 										]
 									]);
 								?>
-									<div class="col-md-2">
-										<?php echo $form->textField($catExModel,'cod_cat_ex',['class'=>'form-control','placeholder'=>'CODIGO']);?>
-										<?php echo $form->error($catExModel,'cod_cat_ex',['class'=>'label label-danger']);?>
-									</div>
-									<div class="col-md-3">
+
+								<div class="col-md-4">
 										<?php echo $form->textField($catExModel,'nombre_cat_ex',['class'=>'form-control','placeholder'=>'NOMBRE']);?>
 										<?php echo $form->error($catExModel,'nombre_cat_ex',['class'=>'label label-danger'])?>
 									</div>
-									<div class="col-md-3">
+								<div class="col-md-4">
 										<?php echo $form->textField($catExModel,'descripcion_cat_ex',['class'=>'form-control','placeholder'=>'DESCRIPCION']);?>
 										<?php echo $form->error($catExModel,'descripcion_cat_ex',['class'=>'label label-danger'])?>
 									</div>

@@ -29,7 +29,6 @@ $("#AseguradoConvenio_tipo_asegurado").on('change', function () {
 })
 $("#btn-seguro").on("click", function () {
     if ($("#AseguradoConvenio_tipo_asegurado").val() == 1) {
-        alert('HHOOA');
         $("#AseguradoConvenio_id_paciente_titular").val($("#AseguradoConvenio_id_paciente").val());
     }
 })

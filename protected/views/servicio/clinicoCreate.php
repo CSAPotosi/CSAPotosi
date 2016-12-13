@@ -9,7 +9,7 @@ $this->breadcrumbs = array(
     <section id="widget-grid">
         <div class="row">
             <article class="col-md-12">
-                <div class="jarviswidget" id="widget1">
+                <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                     <header></header>
                     <div>
                         <div class="widget-body">
@@ -19,11 +19,6 @@ $this->breadcrumbs = array(
                                 <?php echo CHtml::errorSummary($servicio, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger')); ?>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <?php echo CHtml::activeLabelEx($servicio, 'cod_serv'); ?>
-                                            <?php echo CHtml::activeTextField($servicio, 'cod_serv', array('class' => 'form-control', 'placeholder' => 'Codigo Servicio')); ?>
-                                            <?php echo CHtml::error($servicio, 'cod_serv', array('class' => 'label label-danger')); ?>
-                                        </div>
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabel($servicio, 'nombre_serv'); ?>
                                             <?php echo CHtml::activeTextField($servicio, 'nombre_serv', array('class' => 'form-control', 'placeholder' => 'Nombre Servicio')); ?>

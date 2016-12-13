@@ -52,7 +52,8 @@
 	<div id="logo-group">
 
 		<!-- PLACE YOUR LOGO HERE -->
-		<span id="logo"> <img src="" alt="CSA Potosi"> </span>
+		<span id="logo"> <img style="width: 240px;height: 45px; " src="resources/img/logoSICCSAP.png"> </span>
+
 		<!-- END LOGO PLACEHOLDER -->
 
 		<!-- Note: The activity badge color changes when clicked and resets the number to 0
@@ -251,7 +252,7 @@
                 </ul>
             </li>
 			<li>
-				<a href="<?php echo CHtml::normalizeUrl(['Empleado/indexBackup']); ?>" title="Backups"><i
+				<a href="<?php echo CHtml::normalizeUrl(['Seguridad/indexBackup']); ?>" title="Backups"><i
 						class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent">Backup</span></a>
 			</li>
 		</ul>
@@ -301,8 +302,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <?php echo $content; ?>
-                    </div>
+						<?php echo $content ?>
+					</div>
                 </div>
 			</div>
 		</div>

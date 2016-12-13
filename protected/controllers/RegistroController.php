@@ -2,10 +2,73 @@
 
 class RegistroController extends Controller
 {
-    public $listaEmpleados;
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('Create'),
+                'roles' => array('registroCreate'),
+            ),
+            array('allow',
+                'actions' => array('Subir'),
+                'roles' => array('registroSubir'),
+            ),
+            array('allow',
+                'actions' => array('reportAsistencia'),
+                'roles' => array('registroReportAsistencia'),
+            ),
+            array('allow',
+                'actions' => array('getCargosAjax'),
+                'roles' => array('registroGetCargosAjax'),
+            ),
+            array('allow',
+                'actions' => array('getEmpleadosAjax'),
+                'roles' => array('registroGetEmpleadosAjax'),
+            ),
+            array('allow',
+                'actions' => array('getEmpleadoAjax'),
+                'roles' => array('registroGetEmpleadoAjax'),
+            ),
+            array('allow',
+                'actions' => array('registroManual'),
+                'roles' => array('registroRegistroManual'),
+            ),
+            array('allow',
+                'actions' => array('busquedaCi'),
+                'roles' => array('registroBusquedaCi'),
+            ),
+            array('allow',
+                'actions' => array('registrarAsistencia'),
+                'roles' => array('registroRegistrarAsistencia'),
+            ),
+            array('allow',
+                'actions' => array('detalleAsistencia'),
+                'roles' => array('registroDetalleAsistencia'),
+            ),
+            array('allow',
+                'actions' => array('CreatePdfAsistencia'),
+                'roles' => array('registroCreatePdfAsistencia'),
+            ),
+            array('allow',
+                'actions' => array('CreatePdfDetalleAsistencia'),
+                'roles' => array('registroCreatePdfDetalleAsistencia'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
     public function actionCreate()
     {
-        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'create']);
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'Crear Registro']);
         $modelRegistro = new Registro();
         if (isset($_POST['Registro'])) {
             $modelRegistro->attributes = $_POST['Registro'];
@@ -20,7 +83,7 @@ class RegistroController extends Controller
 
     public function actionSubir()
     {
-        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'cargar']);
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'Cargar Asistencia']);
         $ruta = "archivo/";
         $modelSubir = new Subir();
         $directorio = opendir('archivo/');
@@ -63,7 +126,7 @@ class RegistroController extends Controller
 
     public function actionreportAsistencia()
     {
-        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'informacion']);
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'Informacion Asistencia']);
         $listaAsistenciaEmpleados = null;
         if (isset($_POST['unidad'])) {
             $fechas = explode(' - ', $_POST['daterange'], 2);
@@ -353,7 +416,7 @@ class RegistroController extends Controller
 
     public function actionregistroManual()
     {
-        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'automatico']);
+        $this->menu = OptionsMenu::menuAsignacion([], ['asistencia', 'Registro Automatico']);
         $this->render('registroManual');
     }
 
@@ -423,7 +486,6 @@ class RegistroController extends Controller
             'empleado' => $asignacion[0]->id_asignacion
         ));
     }
-
     public function actionCreatePdfAsistencia($data)
     {
         $lista = stripcslashes($data);
@@ -443,7 +505,7 @@ class RegistroController extends Controller
         $pdf->ColoredTableAsistencia($header, $data);
         // reset pointer to the last page
         $pdf->lastPage();
-        //Close and output PDF document
+        //Close and output PDF documen
         $pdf->Output('filename.pdf', 'I');
 
     }

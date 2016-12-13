@@ -2,6 +2,38 @@
 
 class ServicioController extends Controller
 {
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+	public function accessRules()
+	{
+		return array(
+			array('allow',
+				'actions' => array('Create'),
+				'roles' => array('servicioCreate'),
+			),
+			array('allow',
+				'actions' => array('Index'),
+				'roles' => array('servicioIndex'),
+			),
+			array('allow',
+				'actions' => array('Update'),
+				'roles' => array('servicioUpdate'),
+			),
+			array('allow',
+				'actions' => array('View'),
+				'roles' => array('servicioView'),
+			),
+			array('deny',  // deny all users
+				'users' => array('*'),
+			),
+		);
+	}
 	public function actionIndex($grupo='examen', $tipo = 1)
 	{
 		switch ($grupo){
@@ -86,7 +118,7 @@ class ServicioController extends Controller
 	}
 
 	private function examenIndex($tipo = 1){
-		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'index']);
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'Lista ExamenLab']);
 		$listServicio = ServExamen::model()->with('categoria')->findAll(array(
 			'condition' => "tipo_ex = :tipo and activo=true",
 			'params' => [':tipo' => $tipo]
@@ -96,7 +128,7 @@ class ServicioController extends Controller
 
 	private function clinicoIndex($tipo = 3)
 	{
-		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'index']);
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'Lista ExamenLab']);
 		$listServicio = ServClinico::model()->findAll();
 		$this->render('clinicoIndex', array('listServicio' => $listServicio, 'dataUrl' => array('grupo' => 'clinico')));
 	}
@@ -111,7 +143,7 @@ class ServicioController extends Controller
 ////////////////////////////////////////////////
 	private function examenCreate($tipo = 1)
 	{
-		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'create']);
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'Crear ExamenLab']);
 		$examen = new ServicioForm;
 		$examen->id_entidad = 1;
 		$categoria = CategoriaServExamen::model()->findAll("activo=true and tipo_ex={$tipo}");
@@ -133,7 +165,7 @@ class ServicioController extends Controller
 
 	private function clinicoCreate($tipo = 3)
 	{
-		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'create']);
+		$this->menu = OptionsMenu::menuExamenLab(['tipo' => $tipo], ['examenLab', 'Crear ExamenLab']);
 		$clinico = new ServicioForm;
 		$clinico->id_entidad = 1;
 		$categoria = CategoriaServClinico::model()->findAll("activo=true");
@@ -154,7 +186,7 @@ class ServicioController extends Controller
 	}
 	public function examenUpdate($tipo = 1, $id)
 	{
-		$this->menu = OptionsMenu::menuExamenLab(['id_servicio' => $id, 'tipo' => $tipo], ['examenLabs', 'update']);
+		$this->menu = OptionsMenu::menuExamenLab(['id_servicio' => $id, 'tipo' => $tipo], ['examenLabs', 'Actualizar']);
 		$examen = new ServicioForm();
 		$examen->loadData($id);
 		if (isset($_POST['ServicioForm'])) {
@@ -185,7 +217,7 @@ class ServicioController extends Controller
 
 	private function atencionMedicaIndex($tipo)
 	{
-		$this->menu = OptionsMenu::menuAtencionMedica([], ['atenciones', 'index']);
+		$this->menu = OptionsMenu::menuAtencionMedica([], ['atenciones', 'Lista ExamenLab']);
 		$servicio = new Servicio();
 		$listSpecialty = Especialidad::model()->findAll();
 		$this->render('atencionMedicaIndex', array('listSpecialty' => $listSpecialty, 'servicio' => $servicio, 'dataUrl' => ['grupo' => 'atencionMedica', 'tipo' => $tipo]));

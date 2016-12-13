@@ -15,15 +15,15 @@ class UnidadController extends Controller
         return array(
             array('allow',
                 'actions' => array('index'),
-                'roles' => array('indexUnidad'),
+                'roles' => array('unidadIndex'),
             ),
             array('allow',
                 'actions' => array('create'),
-                'roles' => array('createUnidad'),
+                'roles' => array('unidadCreate'),
             ),
             array('allow',
                 'actions' => array('update'),
-                'roles' => array('updateUnidad'),
+                'roles' => array('unidadUpdate'),
             ),
             array('deny',  // deny all users
                 'users' => array('*'),

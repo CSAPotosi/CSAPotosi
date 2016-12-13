@@ -8,7 +8,7 @@ $this->breadcrumbs = array(
 <section class="widget-grid">
     <div class="row">
         <div class="col-md-12">
-            <div class="jarviswidget" id="widget1">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                 <header>Formulario de Registro de Empleado</header>
                 <div>
                     <div class="jarviswidget-editbox">

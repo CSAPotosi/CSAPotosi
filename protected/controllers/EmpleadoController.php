@@ -2,6 +2,42 @@
 
 class EmpleadoController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('Index'),
+                'roles' => array('empleadoIndex'),
+            ),
+            array('allow',
+                'actions' => array('Create'),
+                'roles' => array('empleadoCreate'),
+            ),
+            array('allow',
+                'actions' => array('GetEmpleadoListAjax'),
+                'roles' => array('empleadoGetEmpleadoListAjax'),
+            ),
+            array('allow',
+                'actions' => array('DetalleEmpleado'),
+                'roles' => array('empleadoDetalleEmpleado'),
+            ),
+            array('allow',
+                'actions' => array('Update'),
+                'roles' => array('empleadoUpdate'),
+            ),
+            array('deny',
+                'users' => array('*'),
+            ),
+        );
+    }
     public function actionIndex()
     {
         $this->menu = OptionsMenu::menuEmpleado([], ['empleados', 'index']);
@@ -58,30 +94,5 @@ class EmpleadoController extends Controller
 
         }
         $this->render('update', array('modelPerson' => $modelPerson, 'persona' => $persona));
-    }
-
-    public function actionindexBackup()
-    {
-        $backups = opendir('Backups/');
-        $this->render('indexBackup', ['backups' => $backups]);
-    }
-
-    public function actionCreateBackup()
-    {
-        chdir('c:\\Program Files\\PostgreSQL\\9.5\\bin\\');
-        $comando1 = 'SET PGPASSWORD=root';
-        $comando2 = "pg_dump -U postgres -F t -f c:\\wamp\\www\\CSAPotosi\\Backups\\SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup csapotosi_db";
-        shell_exec($comando1 . "&&" . $comando2);
-        $this->redirect(['indexBackup']);
-
-    }
-
-    public function actionCargarBackup($id)
-    {
-        chdir('c:\\Program Files\\PostgreSQL\\9.5\\bin\\');
-        $comando1 = 'SET PGPASSWORD=root';
-        $comando2 = "pg_restore -U postgres -c -d csapotosi_db -v c:\\wamp\\www\\CSAPotosi\\Backups\\SantaAna-" . $id . ".backup";
-        shell_exec($comando1 . "&&" . $comando2);
-        $this->redirect(['indexBackup']);
     }
 }

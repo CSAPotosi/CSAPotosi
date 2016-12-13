@@ -2,8 +2,34 @@
 
 class CategoriaServicioController extends Controller
 {
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
 
-
+	public function accessRules()
+	{
+		return array(
+			array('allow',
+				'actions' => array('Create'),
+				'roles' => array('categoriaCreate'),
+			),
+			array('allow',
+				'actions' => array('Index'),
+				'roles' => array('categoriaIndex'),
+			),
+			array('allow',
+				'actions' => array('Update'),
+				'roles' => array('categoriaUpdate'),
+			),
+			array('deny',  // deny all users
+				'users' => array('*'),
+			),
+		);
+	}
 	public function actionIndex($grupo = 'examen',$tipo = 1)
 	{
 		switch ($grupo){

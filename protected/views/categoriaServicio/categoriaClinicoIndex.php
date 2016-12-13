@@ -1,7 +1,7 @@
 <section id="widget-grid">
     <div class="row">
         <div class="col-md-12">
-            <div class="jarviswidget" id="widget-index">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget-index">
                 <header>Categoria Servicio Clinico</header>
                 <div>
                     <div class="widget-body">
@@ -23,15 +23,11 @@
                                     ]
                                 ]);
                                 ?>
-                                <div class="col-md-2">
-                                    <?php echo $form->textField($catCliModel, 'cod_cat_cli', ['class' => 'form-control', 'placeholder' => 'CODIGO']); ?>
-                                    <?php echo $form->error($catCliModel, 'cod_cat_cli', ['class' => 'label label-danger']); ?>
-                                </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <?php echo $form->textField($catCliModel, 'nombre_cat_cli', ['class' => 'form-control', 'placeholder' => 'NOMBRE']); ?>
                                     <?php echo $form->error($catCliModel, 'nombre_cat_cli', ['class' => 'label label-danger']) ?>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <?php echo $form->textField($catCliModel, 'descripcion_cat_cli', ['class' => 'form-control', 'placeholder' => 'DESCRIPCION']); ?>
                                     <?php echo $form->error($catCliModel, 'descripcion_cat_cli', ['class' => 'label label-danger']) ?>
                                 </div>
