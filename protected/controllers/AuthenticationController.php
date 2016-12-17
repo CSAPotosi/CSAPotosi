@@ -24,18 +24,6 @@ class AuthenticationController extends Controller
                 'roles' => array('authenticationAdminRoles'),
             ),
             array('allow',
-                'actions' => array('adminTasks'),
-                'roles' => array('authenticationAdminTasks'),
-            ),
-            array('allow',
-                'actions' => array('createTask'),
-                'roles' => array('authenticationCreateTask'),
-            ),
-            array('allow',
-                'actions' => array('updateTask'),
-                'roles' => array('authenticationUpdateTask'),
-            ),
-            array('allow',
                 'actions' => array('createRole'),
                 'roles' => array('authenticationCreateRole'),
             ),
@@ -57,15 +45,6 @@ class AuthenticationController extends Controller
         );
     }
 
-    public function actionViewOperations()
-    {
-        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
-        $listOperations = Yii::app()->authManager->getOperations();
-        $this->render("viewOperations", array(
-            'listOperations' => $listOperations,
-        ));
-    }
-
     public function actionAdminRoles()
     {
         $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
@@ -73,86 +52,6 @@ class AuthenticationController extends Controller
         $this->render("admin", array(
             'list' => $list,
             'tipo' => 2,
-        ));
-    }
-
-    public function actionAdminTasks()
-    {
-        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
-        $list = Yii::app()->authManager->getTasks();
-        $this->render("admin", array(
-            'list' => $list,
-            'tipo' => 1,
-        ));
-    }
-
-    public function actionCreateTask()
-    {
-        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
-        $task = new RoleForm;
-        if (isset($_POST["RoleForm"])) {
-            $task->attributes = $_POST["RoleForm"];
-            if ($task->validate()) {
-                $trans = Yii::app()->db->beginTransaction();
-                try {
-                    $tarea = Yii::app()->authManager->createTask(trim($task->name), $task->description);
-                    if (isset($_POST["operaciones"])) {
-                        foreach ($_POST["operaciones"] as $operacion) {
-                            $tarea->addChild($operacion);
-                        }
-                    }
-                    $trans->commit();
-                } catch (Exception $e) {
-                    echo "Excepcion: " . $e->getMessage() . "/n";
-                    $trans->rollback();
-                    //todo-le: Agregar pagina de excepcion
-                    Yii::app()->end();
-                }
-                $this->redirect(array('view', 'id' => $tarea->name));
-            }
-        }
-        $listOperations = Yii::app()->authManager->getOperations();
-        $this->render('createTask', array(
-            'task' => $task,
-            'listOperations' => $listOperations,
-        ));
-    }
-
-    public function actionUpdateTask($id)
-    {
-        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
-        $task = Yii::app()->authManager->getAuthItem($id);
-        if (isset($_POST["oculto"])) {
-            $trans = Yii::app()->db->beginTransaction();
-            try {
-                if (isset($_POST['description'])) {
-                    $task->description = $_POST['description'];
-                    Yii::app()->authManager->saveAuthItem($task);
-                }
-                $query = "delete from \"AuthItemChild\" where parent= '" . $task->name . "';";
-                $command = Yii::app()->db->createCommand($query);
-                $command->execute();
-                if (isset($_POST["operaciones"])) {
-                    foreach ($_POST["operaciones"] as $operacion) {
-                        $task->addChild($operacion);
-                    }
-                }
-                $trans->commit();
-            } catch (Exception $e) {
-                echo "Excepcion: " . $e->getMessage() . "/n";
-                $trans->rollback();
-                //todo-le: Agregar pagina de excepcion
-                Yii::app()->end();
-            }
-            $this->redirect(array('view', 'id' => $task->name));
-        }
-
-        $listOperations = Yii::app()->authManager->getOperations();
-        $listOperationsSelected = Yii::app()->authManager->getItemChildren($task->name);
-        $this->render('updateTask', array(
-            'task' => $task,
-            'listOperations' => $listOperations,
-            'listOperationsSelected' => $listOperationsSelected,
         ));
     }
 
@@ -165,7 +64,7 @@ class AuthenticationController extends Controller
             if ($role->validate()) {
                 $trans = Yii::app()->db->beginTransaction();
                 try {
-                    $rol = Yii::app()->authManager->createRole(trim($role->name), $role->description);
+                    $rol = Yii::app()->authManager->createRole(trim($role->name), $role->description, null, 1);
                     if (isset($_POST["tarea_rol"])) {
                         foreach ($_POST["tarea_rol"] as $tarea_rol) {
                             $rol->addChild($tarea_rol);
@@ -181,11 +80,9 @@ class AuthenticationController extends Controller
                 $this->redirect(array('view', 'id' => $rol->name));
             }
         }
-        $listTasks = Yii::app()->authManager->getTasks();
         $listRoles = Yii::app()->authManager->getRoles();
         $this->render('createRole', array(
             'role' => $role,
-            'listTasks' => $listTasks,
             'listRoles' => $listRoles,
         ));
     }
@@ -218,13 +115,10 @@ class AuthenticationController extends Controller
             }
             $this->redirect(array('view', 'id' => $role->name));
         }
-
-        $listTasks = Yii::app()->authManager->getTasks();
         $listRoles = Yii::app()->authManager->getRoles();
         $listTasksRolesSelected = Yii::app()->authManager->getItemChildren($role->name);
         $this->render('updateRole', array(
             'role' => $role,
-            'listTasks' => $listTasks,
             'listRoles' => $listRoles,
             'listTasksRolesSelected' => $listTasksRolesSelected,
         ));

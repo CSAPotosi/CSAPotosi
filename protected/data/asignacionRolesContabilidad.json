@@ -3,10 +3,6 @@
   //USER: paso 6, ejecutar las migraciones insertarRoles,asignarSubroles
   //USER: opcional salir del sistema, ejecutar la migraciones crearAdministrador,(admin,admin). desloguearse si ya estaba loqueado (site/logout)
   {
-    "parent": "authentication_ViewOperations",
-    "child": "authenticationViewOperations"
-  },
-  {
     "parent": "authentication_AdminRoles",
     "child": "authenticationAdminRoles"
   },
@@ -20,30 +16,6 @@
   },
   {
     "parent": "authentication_AdminRoles",
-    "child": "authenticationView"
-  },
-  {
-    "parent": "authentication_AdminTasks",
-    "child": "authenticationAdminTasks"
-  },
-  {
-    "parent": "authentication_AdminTasks",
-    "child": "authenticationDeleteRole"
-  },
-  {
-    "parent": "authentication_AdminTasks",
-    "child": "authenticationUpdateTask"
-  },
-  {
-    "parent": "authentication_AdminTasks",
-    "child": "authenticationView"
-  },
-  {
-    "parent": "authentication_CreateTask",
-    "child": "authenticationCreateTask"
-  },
-  {
-    "parent": "authentication_CreateTask",
     "child": "authenticationView"
   },
   {
@@ -85,5 +57,22 @@
   {
     "parent": "Pagina de Inicio de Usuario",
     "child": "usuarioUpdate"
+  },
+  //asignacion de tareas a roles
+  {
+    "parent": "administrador de roles",
+    "child": "authentication_AdminRoles"
+  },
+  {
+    "parent": "administrador de roles",
+    "child": "authentication_CreateRole"
+  },
+  {
+    "parent": "administrador de usuarios",
+    "child": "usuario_Create"
+  },
+  {
+    "parent": "administrador de usuarios",
+    "child": "Pagina de Inicio de Usuario"
   }
 ]

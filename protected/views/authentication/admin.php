@@ -24,7 +24,8 @@ $this->pageTitle = ($tipo == 1) ? 'LISTADO DE TAREAS DEL SISTEMA' : 'LISTADO DE 
                             <tr>
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
-                                <th>Acciones</th>
+                                <th>Tipo</th>
+                                <th style="width: 13%;">Acciones</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,10 +33,16 @@ $this->pageTitle = ($tipo == 1) ? 'LISTADO DE TAREAS DEL SISTEMA' : 'LISTADO DE 
                                 <tr>
                                     <td><?php echo $item->name; ?></td>
                                     <td><?php echo $item->description; ?></td>
+                                    <td><?php echo ($item->data == "usuario") ? 'USUARIO' : 'SISTEMA'; ?></td>
                                     <td>
-                                        <?php echo CHtml::link('Ver', array('authentication/view', 'id' => $item->name), array('class' => 'btn btn-primary')); ?>
-                                        <?php echo CHtml::link('Editar', array(($item->type == 2) ? 'authentication/updateRole' : 'authentication/updateTask', 'id' => $item->name), array('class' => 'btn btn-info')); ?>
-                                        <?php echo CHtml::link('Borrar', array('authentication/deleteRol', 'id' => $item->name), array('class' => 'btn btn-danger', "confirm" => "Esta seguro?")); ?>
+                                        <a href="<?php echo $this->createAbsoluteUrl('authentication/view', array('id' => $item->name)); ?>"
+                                           class="btn btn-primary btn-xs"><label class="fa fa-eye"></label></a>
+                                        <?php if ($item->data == "usuario"): ?>
+                                            <a href="<?php echo $this->createAbsoluteUrl('authentication/updateRole', array('id' => $item->name)); ?>"
+                                               class="btn btn-info btn-xs"><label class="fa fa-pencil"></label></a>
+                                            <a href="<?php echo $this->createAbsoluteUrl('authentication/deleteRol', array('id' => $item->name)); ?>"
+                                               class="btn btn-danger btn-xs"><label class="fa fa-trash-o"></label></a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                                 <?php

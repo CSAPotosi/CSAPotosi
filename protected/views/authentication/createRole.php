@@ -30,58 +30,7 @@ $this->pageTitle = 'Creacion de Roles';
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="jarviswidget" id="widget2" data-widget-togglebutton="false"
-                                             data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
-                                             data-widget-custombutton="false">
-                                            <header>
-                                                <h2><strong>LISTADO DE TAREAS</strong></h2>
-                                            </header>
-                                            <div>
-                                                <div class="widget-body no-padding">
-                                                    <div class="widget-body-toolbar">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <input type="text" class="form-control"
-                                                                       id="input-filter-1" placeholder="BUSCAR...">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="table-responsive"
-                                                         style="overflow: auto; height: 500px;">
-                                                        <table class="table table-condensed table-bordered "
-                                                               id="desasignado1" width="100%;">
-                                                            <thead>
-                                                            <tr>
-                                                                <th>Nombre</th>
-                                                                <th>Accion</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <?php foreach ($listTasks as $item): ?>
-                                                                <tr id="<?php echo str_replace(" ", "_", $item->name); ?>">
-                                                                    <td><?php echo $item->name; ?></td>
-                                                                    <td>
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox"
-                                                                                   class="checkbox style-0 tarea"
-                                                                                   name="tarea_rol[]"
-                                                                                   value="<?php echo $item->name; ?>">
-                                                                            <span></span>
-                                                                        </label>
-                                                                    </td>
-                                                                </tr>
-                                                                <?php
-                                                            endforeach; ?>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
+                                    <div class="col-md-5 col-md-offset-1">
                                         <div class="jarviswidget" id="widget3" data-widget-togglebutton="false"
                                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                              data-widget-custombutton="false">
@@ -110,6 +59,7 @@ $this->pageTitle = 'Creacion de Roles';
                                                             </thead>
                                                             <tbody>
                                                             <?php foreach ($listRoles as $item): ?>
+                                                                <?php if ($item->data == null): ?>
                                                                 <tr id="<?php echo str_replace(" ", "_", $item->name); ?>">
                                                                     <td><?php echo $item->name; ?></td>
                                                                     <td>
@@ -122,8 +72,8 @@ $this->pageTitle = 'Creacion de Roles';
                                                                         </label>
                                                                     </td>
                                                                 </tr>
-                                                                <?php
-                                                            endforeach; ?>
+                                                                <?php endif; ?>
+                                                            <?php endforeach; ?>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -132,7 +82,7 @@ $this->pageTitle = 'Creacion de Roles';
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <div class="jarviswidget" id="widget3" data-widget-togglebutton="false"
                                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                              data-widget-custombutton="false">
@@ -142,7 +92,7 @@ $this->pageTitle = 'Creacion de Roles';
                                             <div>
                                                 <div class="widget-body no-padding">
                                                     <div class="widget-body-toolbar">
-                                                        <span class="label label-info">SELECCIONE TAREAS O ROLES DE LAS TABLAS DE LA IZQUIERDA</span>
+                                                        <span class="label label-info">SELECCIONE ROLES DE LA TABLA DE LA IZQUIERDA</span>
                                                     </div>
                                                     <div class="table-responsive"
                                                          style="overflow: auto; height: 500px;">

@@ -1,29 +1,9 @@
 [
   //USER: paso 2 - llevar las operaciones del paso 1 a este array, type con 0, mas una descripcion
   {
-    "name": "authenticationViewOperations",
-    "type": "0",
-    "description": "Visualizacion de Todas las Operaciones"
-  },
-  {
     "name": "authenticationAdminRoles",
     "type": "0",
     "description": "Administracion de Roles"
-  },
-  {
-    "name": "authenticationAdminTasks",
-    "type": "0",
-    "description": "Administracion de Tareas"
-  },
-  {
-    "name": "authenticationCreateTask",
-    "type": "0",
-    "description": "Creacion de una Tarea"
-  },
-  {
-    "name": "authenticationUpdateTask",
-    "type": "0",
-    "description": "Actualizacion de una Tarea"
   },
   {
     "name": "authenticationCreateRole",
@@ -77,24 +57,9 @@
   },
   //USER: paso 4 - crear tarea por cada item del menu del paso 3, type =1, descripcion algo detallada
   {
-    "name": "authentication_ViewOperations",
-    "type": "1",
-    "description": "Visualizacion de Todas las Operaciones"
-  },
-  {
     "name": "authentication_AdminRoles",
     "type": "1",
     "description": "Administracion de Roles"
-  },
-  {
-    "name": "authentication_AdminTasks",
-    "type": "1",
-    "description": "Administracion de Tareas"
-  },
-  {
-    "name": "authentication_CreateTask",
-    "type": "1",
-    "description": "Creacion de una Tarea"
   },
   {
     "name": "authentication_CreateRole",
@@ -110,5 +75,16 @@
     "name": "Pagina de Inicio de Usuario",
     "type": "1",
     "description": "Index de Usuario"
+  },
+  //mis roles
+  {
+    "name": "administrador de roles",
+    "type": "2",
+    "description": "El administrador de roles"
+  },
+  {
+    "name": "administrador de usuarios",
+    "type": "2",
+    "description": "El administrador de Usuarios"
   }
 ]
