@@ -219,6 +219,11 @@
     "description": "Comprobante de cita"
   },
   {
+    "name": "citaBuscarHora",
+    "type": "0",
+    "description": "Hora de cita"
+  },
+  {
     "name": "registroCreate",
     "type": "0",
     "description": "Registro de Asistencia Administrador"
@@ -533,5 +538,61 @@
     "name": "Actualizar",
     "type": "1",
     "description": ""
+  },
+  //roles sistema
+  {
+    "name": "Gestion de pacientes",
+    "type": "2",
+    "description": "Administracion de pacientes"
+  },
+  {
+    "name": "Seguro de Paciente",
+    "type": "2",
+    "description": "Administracion de seguros de paciente"
+  },
+  {
+    "name": "Prestacion Servicio y citas Medicas",
+    "type": "2",
+    "description": "Prestacion de Servicios y Citas Medicas"
+  },
+  {
+    "name": "Gestion de Empleados",
+    "type": "2",
+    "description": "Administracion informacion de Empleado"
+  },
+  {
+    "name": "Gestion de Medicos",
+    "type": "2",
+    "description": "Administracion informacion de Medico y Especialidades"
+  },
+  {
+    "name": "Gestion de Unidades y Cargos",
+    "type": "2",
+    "description": "Administracion informacion de Unidades y Cargos"
+  },
+  {
+    "name": "Seguros Medicos",
+    "type": "2",
+    "description": "Adminitracion de Seguros Medicos"
+  },
+  {
+    "name": "Asignacion y Asistencia",
+    "type": "2",
+    "description": "Administracion de Asignaciones de empleados y Asistencia"
+  },
+  {
+    "name": "Registro Automatico de Tiqueos",
+    "type": "2",
+    "description": "Registro Automatico sustituto la Maquina de Tiqueos"
+  },
+  {
+    "name": "Gestion de Horarios y Periodos",
+    "type": "2",
+    "description": "Registro Automatico sustituto la Maquina de Tiqueos"
+  },
+  {
+    "name": "Gestion de Servicios Medicos",
+    "type": "2",
+    "description": "Administracion de Servicios de laboratorio, rayos x, clinicos, salas y atenciones Medicas"
   }
 ]

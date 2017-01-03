@@ -38,14 +38,14 @@ $this->breadcrumbs = array(
                                         </tr>
                                         </thead>
                                         <?php while ($archivo = readdir($backups)) {
-                                            if (basename($archivo) != '.' and basename($archivo) != '..') {
+                                            if (basename($archivo) != '.' and basename($archivo) != '..' and basename($archivo) != '.gitignore') {
                                                 ?>
                                                 <tr>
                                                     <td><?php echo basename($archivo) ?></td>
                                                     <?php $resultado = intval(preg_replace('/[^0-9]+/', '', basename($archivo))) ?>
                                                     <td><?php echo date('d-m-Y H:i:s', $resultado) ?></td>
                                                     <td><?php echo date("d/m/Y H:i:s", filectime("Backups/" . basename($archivo))) ?></td>
-                                                    <td align="center"><?php echo CHtml::link('<i class="fa fa-upload"></i> Cargar Backup',
+                                                    <td align="center"><?php echo CHtml::link('<i class="fa fa-upload"></i> Descargar',
                                                             array('Seguridad/CargarBackup', 'id' => $resultado),
                                                             array('class' => 'btn btn-primary btn-xs')); ?></td>
                                                 </tr>

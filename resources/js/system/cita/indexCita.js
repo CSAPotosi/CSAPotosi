@@ -19,4 +19,64 @@ $(".val1").on("click", function () {
     $("#especialidad").val(nombre);
     $("#codigoatencion").val(id_servicio);
     $("#modalAtencion").modal('hide');
+    activarHorario();
 });
+$("#Cita_fecha").on("change", function () {
+    activarHorario();
+})
+function activarHorario() {
+    if ($("#codigoatencion").val() != '' && $("#Cita_fecha").val() != '') {
+        $("#Cita_hora_cita").removeAttr('disabled');
+        $.ajax({
+            url: $("#Cita_hora_cita").attr('data-atencion'),
+            type: "post",
+            data: {
+                'atencion': $("#codigoatencion").val(),
+                'fecha': $("#Cita_fecha").val(),
+                'paciente': $("#paciente").val()
+            },
+            success: function (datos) {
+                $("#Cita_hora_cita").html(datos);
+            }
+        });
+        return false;
+    }
+}
+$(document).ready(function () {
+    pageSetUp();
+    var hdr = {
+        left: 'title',
+        center: 'month,agendaWeek,agendaDay',
+        right: 'prev,today,next'
+    };
+    $("#calendar").fullCalendar({});
+    $('#calendar').fullCalendar({
+        locale: 'es',
+        header: hdr
+    });
+    $('.fc-right, .fc-center').hide();
+    $('#calendar-buttons #btn-prev').click(function () {
+        $('.fc-prev-button').click();
+        return false;
+    });
+    $('#calendar-buttons #btn-next').click(function () {
+        $('.fc-next-button').click();
+        return false;
+    });
+    $('#calendar-buttons #btn-today').click(function () {
+        $('.fc-today-button').click();
+        return false;
+    });
+    $('#mt').click(function () {
+        $('#calendar').fullCalendar('changeView', 'month');
+    });
+    $('#ag').click(function () {
+        $('#calendar').fullCalendar('changeView', 'agendaWeek');
+    });
+
+    $('#td').click(function () {
+        $('#calendar').fullCalendar('changeView', 'agendaDay');
+    });
+})
+
+

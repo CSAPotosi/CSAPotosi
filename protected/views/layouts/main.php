@@ -160,9 +160,12 @@
 		-->
 
 		<ul>
+			<?php if (!(Yii::app()->authManager->checkAccess('', Yii::app()->user->id))) { ?>
             <li>
                 <a href="<?php echo CHtml::normalizeUrl(['paciente/index']);?>" title="Pacientes"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent">Pacientes</span></a>
             </li>
+			<?php } ?>
+			<?php if (!(Yii::app()->authManager->checkAccess('', Yii::app()->user->id))) { ?>
 			<li>
 				<a href="#"><i class="fa fa-lg fa-fw fa-plus-square"></i> <span class="menu-item-parent">Servicios</span></a>
 				<ul>
@@ -189,6 +192,7 @@
 					</li>
 				</ul>
 			</li>
+			<?php } ?>
 			<li>
 				<a href="#"><i class="fa fa-lg fa-fw fa-h-square"></i> <span class="menu-item-parent">R.R H.H</span></a>
 				<ul>

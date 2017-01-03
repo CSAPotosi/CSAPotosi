@@ -44,7 +44,7 @@
                         <div class="col-md-6">
 
                             <?php echo CHtml::activelabelEx($modelCita, 'hora_cita'); ?>
-                            <?php echo CHtml::activetimeField($modelCita, 'hora_cita', array('class' => 'form-control')); ?>
+                            <?php echo CHtml::activeDropDownList($modelCita, 'hora_cita', [], array('class' => 'form-control', 'disabled' => 'disabled', 'data-atencion' => CHtml::normalizeUrl(array('Cita/BuscarHora')))); ?>
                             <?php echo CHtml::error($modelCita, 'hora_cita', array('class' => 'label label-danger')); ?>
                         </div>
                     </div>
@@ -52,7 +52,6 @@
                 <div class="form-group">
                     <?php echo CHtml::activeHiddenField($modelCita, 'medico_consulta_servicio', array('class' => 'form-control', 'id' => 'codigoatencion')); ?>
                     <?php echo CHtml::activeHiddenField($modelCita, 'id_paciente', array('class' => 'form-control', 'id' => 'paciente', 'value' => ($paciente != '') ? $paciente->id_paciente : '')); ?>
-
                 </div>
                 <div class="form-group">
                     <div class="row">

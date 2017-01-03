@@ -109,4 +109,5 @@ class Cita extends CActiveRecord
     {
         return parent::model($className);
     }
+
 }

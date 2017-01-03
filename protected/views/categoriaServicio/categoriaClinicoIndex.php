@@ -28,7 +28,7 @@
                                     <?php echo $form->error($catCliModel, 'nombre_cat_cli', ['class' => 'label label-danger']) ?>
                                 </div>
                                 <div class="col-md-4">
-                                    <?php echo $form->textField($catCliModel, 'descripcion_cat_cli', ['class' => 'form-control', 'placeholder' => 'DESCRIPCION']); ?>
+                                    <?php echo $form->textArea($catCliModel, 'descripcion_cat_cli', ['class' => 'form-control', 'placeholder' => 'DESCRIPCION']); ?>
                                     <?php echo $form->error($catCliModel, 'descripcion_cat_cli', ['class' => 'label label-danger']) ?>
                                 </div>
                                 <div class="col-md-1">
@@ -108,15 +108,11 @@
                                                 ]
                                             ]);
                                             ?>
-                                            <div class="col-md-2">
-                                                <?php echo $form->textField($catCliItem, 'cod_cat_cli', ['class' => 'form-control']); ?>
-                                                <?php echo $form->error($catCliItem, 'cod_cat_cli', ['class' => 'label label-danger']); ?>
-                                            </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <?php echo $form->textField($catCliItem, 'nombre_cat_cli', ['class' => 'form-control']); ?>
                                                 <?php echo $form->error($catCliItem, 'nombre_cat_cli', ['class' => 'label label-danger']); ?>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <?php echo $form->textField($catCliItem, 'descripcion_cat_cli', ['class' => 'form-control']); ?>
                                             </div>
                                             <div class="col-md-1">

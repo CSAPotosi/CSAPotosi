@@ -45,7 +45,6 @@ class SeguridadController extends Controller
                 .$au['query'].PHP_EOL."";
         }
     }
-
     public function actionindexBackup()
     {
         $backups = opendir('Backups/');
@@ -55,11 +54,11 @@ class SeguridadController extends Controller
     public function actionCreateBackup()
     {
         chdir('c:\\Program Files\\PostgreSQL\\9.5\\bin\\');
-        $comando1 = 'SET PGPASSWORD=root';
-        $comando2 = "pg_dump -U postgres -F t -f c:\\wamp\\www\\CSAPotosi\\Backups\\SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup csapotosi_db";
-        shell_exec($comando1 . "&&" . $comando2);
+        $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('d-m-Y H:i:s')) . "backup";
+        $dumpcmd = array("pg_dump", "-i", "-U", "postgres", "-F", "t", "-f", $ruta, "csapotosi_db");
+        exec(join(' ', $dumpcmd), $cmdout, $cmdresult);
+        putenv("PGPASSWORD");
         $this->redirect(['indexBackup']);
-
     }
 
     public function actionCargarBackup($id)

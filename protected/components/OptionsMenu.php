@@ -27,6 +27,7 @@ class OptionsMenu{
             ];
             $menu['paciente'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
 
@@ -53,6 +54,7 @@ class OptionsMenu{
             ];
             $menu['empleado'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
 
@@ -79,6 +81,7 @@ class OptionsMenu{
             ];
             $menu['medico'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
 
@@ -106,6 +109,7 @@ class OptionsMenu{
             ];
             $menu['unidad'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
     public static function menuConvenio($params = [], $selected = ['', ''])
@@ -128,6 +132,7 @@ class OptionsMenu{
             ];
             $menu['convenio'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
 
@@ -163,6 +168,7 @@ class OptionsMenu{
             ];
             $menu['asignacion'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
 
@@ -188,6 +194,7 @@ class OptionsMenu{
             ];
             $menu['horario'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
     public static function menuHistorial($params = [], $selected = ['','']){
@@ -209,6 +216,7 @@ class OptionsMenu{
             else
                 $menu['historial']['items']['internacion'] = ['url'=>['internacion/createIngreso', 'h_id'=>$params['h_id']], 'label'=>'<i class="fa fa-ambulance"></i>Internar paciente'];
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -235,6 +243,7 @@ class OptionsMenu{
                 $menu['itemTSala']=$menu2;
             }
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -286,6 +295,7 @@ class OptionsMenu{
             ];
             $menu['examenLabs'] = $menu2;
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
 
@@ -299,6 +309,7 @@ class OptionsMenu{
                 ]
             ]
         ];
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
     public static function menuInternacion($params = [], $selected = ['','']){
@@ -324,6 +335,7 @@ class OptionsMenu{
                 ]
             ]
         ];
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -373,6 +385,7 @@ class OptionsMenu{
                 ]
             ];
         }
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -396,6 +409,7 @@ class OptionsMenu{
                 ]
             ]
         ];
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -411,7 +425,7 @@ class OptionsMenu{
                 ]
             ]
         ];
-
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -460,6 +474,7 @@ class OptionsMenu{
                 ]
             ]
         ];
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -473,6 +488,7 @@ class OptionsMenu{
               ]
           ]
         ];
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -486,6 +502,7 @@ class OptionsMenu{
                 ]
             ]
         ];
+        $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
     }
 
@@ -505,6 +522,7 @@ class OptionsMenu{
     public static function verAcceso($menu)
     {
         foreach ($menu as $i => $item) {
+
             foreach ($item['items'] as $index => $link) {
                 if (!(Yii::app()->authManager->checkAccess($index, Yii::app()->user->id)))
                     unset($menu[$i]['items'][$index]);

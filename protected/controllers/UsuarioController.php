@@ -99,8 +99,9 @@ class UsuarioController extends Controller
 				$this->redirect(array('view', 'id' => $model->id_usuario));
 			}
 		}
-		$personas = CHtml::listData(Persona::model()->findAll(array('order' => 'primer_apellido')), 'id_persona', function ($p) {
-			return $p->primer_apellido . " " . $p->segundo_apellido . " " . $p->nombres;
+		$personas = CHtml::listData(Empleado::model()->findAll(array()), 'id_empleado', function ($p) {
+			return $p->empleadoPersona->getNombreCompleto() . ' | ' . $p->empleadoPersona->ocupacion;
+
 		});
 		$roles = Yii::app()->authManager->getRoles();
 		$rolesAsignados = array();
@@ -145,8 +146,8 @@ class UsuarioController extends Controller
 			}
 		}
 		$model->claveCompare = $model->clave;
-		$personas = CHtml::listData(Persona::model()->findAll(array('order' => 'primer_apellido')), 'id_persona', function ($p) {
-			return $p->primer_apellido . " " . $p->segundo_apellido . " " . $p->nombres;
+		$personas = CHtml::listData(Empleado::model()->findAll(array()), 'id_empleado', function ($p) {
+			return $p->empleadoPersona->getNombreCompleto() . ' | ' . $p->empleadoPersona->ocupacion;
 		});
 		$roles = Yii::app()->authManager->getRoles();
 		$rolesAsignados = Yii::app()->authManager->getAuthItems(null, $model->id_usuario);

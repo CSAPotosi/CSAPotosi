@@ -105,14 +105,12 @@ class m161121_223436_ejemplo extends CDbMigration
             AFTER INSERT OR UPDATE OR DELETE ON internacion
             FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 		");
-
         $this->execute("
 		    CREATE TRIGGER servicio_if_modified_trg 
             AFTER INSERT OR UPDATE OR DELETE ON servicio
             FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 		");
     }
-
     private function dropTriggersAdmin(){
         $this->execute("
             DROP TRIGGER servicio_if_modified_trg on servicio;
@@ -121,6 +119,4 @@ class m161121_223436_ejemplo extends CDbMigration
             DROP TRIGGER internacion_if_modified_trg on internacion;
         ");
     }
-
-
 }

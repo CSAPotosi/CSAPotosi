@@ -248,5 +248,173 @@
   {
     "parent": "Actualizar",
     "child": "servicioUpdate"
+  },
+  {
+    "parent": "Cita",
+    "child": "citaIndex"
+  },
+  {
+    "parent": "Cita",
+    "child": "citaBuscarHora"
+  },
+  {
+    "parent": "Cita",
+    "child": "citaUpdate"
+  },
+  {
+    "parent": "Cita",
+    "child": "citaPdfComprobanteCita"
+  },
+  {
+    "parent": "Gestion de pacientes",
+    "child": "Lista Paciente"
+  },
+  {
+    "parent": "Gestion de pacientes",
+    "child": "Crear Paciente"
+  },
+  {
+    "parent": "Gestion de pacientes",
+    "child": "Detalle Paciente"
+  },
+  {
+    "parent": "Gestion de pacientes",
+    "child": "Actualizar Paciente"
+  },
+  {
+    "parent": "Seguro de Paciente",
+    "child": "Seguro Paciente"
+  },
+  {
+    "parent": "Seguro de Paciente",
+    "child": "Seguro Create"
+  },
+  {
+    "parent": "Prestacion Servicio y citas Medicas",
+    "child": "Prestacion Servicios"
+  },
+  {
+    "parent": "Prestacion Servicio y citas Medicas",
+    "child": "Cita"
+  },
+  {
+    "parent": "Gestion de Empleados",
+    "child": "Lista Empleado"
+  },
+  {
+    "parent": "Gestion de Empleados",
+    "child": "Crear Empleado"
+  },
+  {
+    "parent": "Gestion de Empleados",
+    "child": "Detalle Empleado"
+  },
+  {
+    "parent": "Gestion de Empleados",
+    "child": "Actualizar Empleado"
+  },
+  {
+    "parent": "Gestion de Medicos",
+    "child": "Lista Medicos"
+  },
+  {
+    "parent": "Gestion de Medicos",
+    "child": "Crear Medicos"
+  },
+  {
+    "parent": "Gestion de Medicos",
+    "child": "Detalle Medicos"
+  },
+  {
+    "parent": "Gestion de Medicos",
+    "child": "Actualizar Medico"
+  },
+  {
+    "parent": "Gestion de Unidades y Cargos",
+    "child": "Lista Unidad"
+  },
+  {
+    "parent": "Gestion de Unidades y Cargos",
+    "child": "Crear Unidad"
+  },
+  {
+    "parent": "Gestion de Unidades y Cargos",
+    "child": "Actualizar Unidad"
+  },
+  {
+    "parent": "Gestion de Unidades y Cargos",
+    "child": "Lista Cargos"
+  },
+  {
+    "parent": "Gestion de Unidades y Cargos",
+    "child": "Crear Cargo"
+  },
+  {
+    "parent": "Seguros Medicos",
+    "child": "Lista Convenio"
+  },
+  {
+    "parent": "Seguros Medicos",
+    "child": "Convenio Servicio"
+  },
+  {
+    "parent": "Asignacion y Asistencia",
+    "child": "Lista Asignacion"
+  },
+  {
+    "parent": "Asignacion y Asistencia",
+    "child": "Crear Asignacion"
+  },
+  {
+    "parent": "Asignacion y Asistencia",
+    "child": "Actualizar Asignacion"
+  },
+  {
+    "parent": "Asignacion y Asistencia",
+    "child": "Cargar Asistencia"
+  },
+  {
+    "parent": "Asignacion y Asistencia",
+    "child": "Crear Registro"
+  },
+  {
+    "parent": "Asignacion y Asistencia",
+    "child": "Informacion Asistencia"
+  },
+  {
+    "parent": "Registro Automatico de Tiqueos",
+    "child": "Registro Automatico"
+  },
+  {
+    "parent": "Gestion de Horarios y Periodos",
+    "child": "Lista Horario"
+  },
+  {
+    "parent": "Gestion de Horarios y Periodos",
+    "child": "Crear Horario"
+  },
+  {
+    "parent": "Gestion de Horarios y Periodos",
+    "child": "Actualizar Horario"
+  },
+  {
+    "parent": "Gestion de Horarios y Periodos",
+    "child": "Crear Periodo"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
+    "child": "Lista ExamenLab"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
+    "child": "Crear ExamenLab"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
+    "child": "Categorias Laboratorio"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
+    "child": "Actualizar"
   }
 ]

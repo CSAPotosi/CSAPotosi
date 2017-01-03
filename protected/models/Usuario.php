@@ -34,6 +34,7 @@ class Usuario extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_usuario, nombre_usuario, clave, claveCompare', 'required'),
+			array('id_usuario, nombre_usuario', 'unique'),
 			array('id_usuario', 'numerical', 'integerOnly' => true),
 			array('nombre_usuario', 'length', 'max' => 32),
 			array('clave, claveCompare', 'length', 'min' => 6),
@@ -63,7 +64,7 @@ class Usuario extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_usuario' => 'PERSONA',
+			'id_usuario' => 'Usuario',
 			'nombre_usuario' => 'NOMBRE DE USUARIO',
 			'clave' => 'CONTRASEÑA',
 			'claveCompare' => 'REPITA LA CONTRASEÑA',

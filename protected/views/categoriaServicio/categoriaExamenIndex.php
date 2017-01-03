@@ -29,7 +29,7 @@
 										<?php echo $form->error($catExModel,'nombre_cat_ex',['class'=>'label label-danger'])?>
 									</div>
 								<div class="col-md-4">
-										<?php echo $form->textField($catExModel,'descripcion_cat_ex',['class'=>'form-control','placeholder'=>'DESCRIPCION']);?>
+									<?php echo $form->textArea($catExModel, 'descripcion_cat_ex', ['class' => 'form-control', 'placeholder' => 'DESCRIPCION']); ?>
 										<?php echo $form->error($catExModel,'descripcion_cat_ex',['class'=>'label label-danger'])?>
 									</div>
 									<div class="col-md-1">
@@ -106,16 +106,12 @@
 												]
 											]);
 											?>
-												<div class="col-md-2">
-													<?php echo $form->textField($catExItem,'cod_cat_ex',['class'=>'form-control']);?>
-													<?php echo $form->error($catExItem,'cod_cat_ex',['class'=>'label label-danger']);?>
-												</div>
-												<div class="col-md-3">
+											<div class="col-md-4">
 													<?php echo $form->textField($catExItem,'nombre_cat_ex',['class'=>'form-control']);?>
 													<?php echo $form->error($catExItem,'nombre_cat_ex',['class'=>'label label-danger']);?>
 												</div>
-												<div class="col-md-3">
-													<?php echo $form->textField($catExItem,'descripcion_cat_ex',['class'=>'form-control']);?>
+											<div class="col-md-4">
+												<?php echo $form->textArea($catExItem, 'descripcion_cat_ex', ['class' => 'form-control']); ?>
 												</div>
 												<div class="col-md-1">
 													<span class="onoffswitch">

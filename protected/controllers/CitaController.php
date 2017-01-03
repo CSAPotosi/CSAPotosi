@@ -25,6 +25,10 @@ class CitaController extends Controller
                 'actions' => array('PdfComprobanteCita'),
                 'roles' => array('citaPdfComprobanteCita'),
             ),
+            array('allow',
+                'actions' => array('BuscarHora'),
+                'roles' => array('citaBuscarHora'),
+            ),
             array('deny',
                 'users' => array('*'),
             ),
@@ -93,5 +97,33 @@ class CitaController extends Controller
         $pdf->Output('filename.pdf', 'I');
         Yii::app()->end();
 
+    }
+
+    public function actionBuscarHora()
+    {
+        $especialidad = $_POST['atencion'];
+        $fecha = $_POST['fecha'];
+        $paciente = $_POST['paciente'];
+        $listaCitas = Cita::model()->findAll(['condition' => "fecha='$fecha' and id_paciente=$paciente and medico_consulta_servicio=$especialidad"]);
+        $listahoraOcupada = array();
+        foreach ($listaCitas as $item) {
+            $listahoraOcupada[] = date('H:i', strtotime($item->hora_cita));
+        }
+        foreach ($this->Horas() as $valor => $descripcion) {
+            echo CHtml::tag('option', array('value' => $descripcion), CHtml::encode($descripcion), true);
+        }
+    }
+
+    private function Horas()
+    {
+        $hora_inicio = '00:00';
+        $listahora = array();
+        $i = 0;
+        while ($i <= 95) {
+            $listahora[] = $hora_inicio;
+            $hora_inicio = date('H:i', strtotime($hora_inicio . '+15 minutes'));
+            $i++;
+        }
+        return $listahora;
     }
 }

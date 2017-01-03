@@ -1,5 +1,4 @@
 <?php
-
 class m161122_191045_audit_report extends CDbMigration
 {
 	public function safeUp(){
@@ -11,9 +10,7 @@ class m161122_191045_audit_report extends CDbMigration
             'content_report' => 'text not null'
         ]);
 	}
-
 	public function safeDown(){
         $this->dropTable('audit_report');
 	}
-
 }
