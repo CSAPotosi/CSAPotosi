@@ -1,16 +1,20 @@
 <?php
     $infoPersona = $historialModel->paciente->persona;
 ?>
-
+<style>
+    .card-profile{
+        border: solid 1px #3c8dbc!important;
+    }
+</style>
 <div class="row">
     <div class="col-md-12">
-        <div class="well well-light well-sm ">
+        <div class="well well-light well-sm card-profile">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-1">
                             <img src="images/<?php echo $infoPersona->id_persona ?>/photo.png" alt=""
-                                 class="img-responsive img-circle">
+                                 class="img-responsive img-thumbnail">
                         </div>
                         <div class="col-md-6">
                             <h1><?php echo $infoPersona->nombres;?> <span class="semi-bold"><?php echo $infoPersona->primer_apellido.' '.$infoPersona->segundo_apellido;?></span>

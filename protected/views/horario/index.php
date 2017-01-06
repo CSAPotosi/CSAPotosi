@@ -58,7 +58,3 @@ $this->breadcrumbs = array(
 <!-- start plugins-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/jquery-nestable/jquery.nestable.min.js', CClientScript::POS_END); ?>
 
-<!--end plugins-->
-<script>
-
-</script>

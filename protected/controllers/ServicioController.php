@@ -29,6 +29,30 @@ class ServicioController extends Controller
 				'actions' => array('View'),
 				'roles' => array('servicioView'),
 			),
+            array('allow',
+                'actions'=>array('salaAddItem'),
+                'roles'=>array('servicioSalaAddItem')
+            ),
+            array('allow',
+                'actions'=>array('salaEditItem'),
+                'roles'=>array('servicioSalaEditItem')
+            ),
+            array('allow',
+                'actions'=>array('changeStateServicio'),
+                'roles'=>array('servicioChangeStateServicio')
+            ),
+            array('allow',
+                'actions'=>array('sala'),
+                'roles'=>array('servicioSala')
+            ),
+            array('allow',
+                'actions'=>array('getSalasAjax'),
+                'roles'=>array('servicioGetSalasAjax')
+            ),
+            array('allow',
+                'actions'=>array('changeStateSalaAjax'),
+                'roles'=>array('servicioChangeStateSalaAjax')
+            ),
 			array('deny',  // deny all users
 				'users' => array('*'),
 			),
@@ -335,33 +359,6 @@ class ServicioController extends Controller
 		$servicio->activo = !$servicio->activo;
 		$servicio->save();
 	}
-
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 
 	public function actionSala(){
 		return $this->render('sala');

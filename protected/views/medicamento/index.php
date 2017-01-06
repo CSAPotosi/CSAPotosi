@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 $mediList = Medicamento::model()->findAll([
     'condition'=>'estado_med > 0'
 ]);
-
 ?>
 
 <style>
@@ -21,10 +20,10 @@ $mediList = Medicamento::model()->findAll([
 <section id="widget-grid">
 	<div class="row">
 		<article class="col-md-12">
-			<div class="jarviswidget" id="widget1">
+			<div class="jarviswidget jarviswidget-color-blue" id="widget1">
 				<header></header>
 				<div>
-					<div class="widget-body">
+					<div class="widget-body no-padding">
 						<?php $this->renderPartial('_tableMedicamento',['mediList'=>$mediList,'selectable'=>false]);?>
 					</div>
 				</div>
@@ -34,3 +33,12 @@ $mediList = Medicamento::model()->findAll([
 </section>
 
 
+<?php
+Yii::app()->clientScript
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/jquery.dataTables.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.colVis.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.tableTools.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.bootstrap.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatable-responsive/datatables.responsive.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/medicamento/index.js', CClientScript::POS_END);
+?>

@@ -1,13 +1,23 @@
 <?php if(count($mediList)>0):?>
-    <table class="table table-hovered table-bordered">
+    <table class="table table-hovered table-bordered table-striped table-condensed" id="medic-table">
         <thead>
+        <?php if(!$selectable):?>
+        <tr class="hasinput">
+            <th><input type="text" class="form-control" placeholder="CODIGO"></th>
+            <th><input type="text" class="form-control" placeholder="MEDICAMENTO"></th>
+            <th><input type="text" class="form-control" placeholder="FORMA FARM."></th>
+            <th><input type="text" class="form-control" placeholder="CONCENTRACION"></th>
+            <th><input type="text" class="form-control" placeholder="A.T.Q."></th>
+            <th></th>
+        </tr>
+        <?php endif;?>
         <tr>
-            <th width="5%">Codigo</th>
-            <th width="55%%">Medicamento</th>
+            <th width="10%">Codigo</th>
+            <th width="50%%">Medicamento</th>
             <th width="15%">Forma farmaceutica</th>
             <th width="15%">Concentracion</th>
             <th width="5%">Clasificacion A.T.Q.</th>
-            <th width="5%"></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -29,8 +39,6 @@
                             <i class="fa fa-hand-o-right"></i>
                             Seleccionar
                         </button>
-                    <?php else:?>
-                        hola mundo
                     <?php endif;?>
                 </td>
             </tr>

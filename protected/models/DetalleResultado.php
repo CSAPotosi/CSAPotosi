@@ -27,6 +27,7 @@ class DetalleResultado extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_par, valor_res', 'required'),
+            array('valor_res','jsonRule'),
 			array('id_res, id_par', 'numerical', 'integerOnly'=>true),
 			array('valor_res', 'length', 'max'=>32),
 			// The following rule is used by search().
@@ -55,35 +56,8 @@ class DetalleResultado extends CActiveRecord
 		return array(
 			'id_res' => 'Id Res',
 			'id_par' => 'Id Par',
-			'valor_res' => 'Valor Res',
+			'valor_res' => 'Valor',
 		);
-	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id_res',$this->id_res);
-		$criteria->compare('id_par',$this->id_par);
-		$criteria->compare('valor_res',$this->valor_res,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
 	}
 
 	/**
@@ -96,4 +70,19 @@ class DetalleResultado extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function jsonRule($attribute, $params){
+        $json_def = json_decode($this->parametro->def_par);
+        if($json_def->type == 'numeric'){
+            if(is_numeric($this->$attribute)){
+                if (isset($json_def->range)){
+                    if(!($this->$attribute>=$json_def->range->min && $this->$attribute<=$json_def->range->max))
+                        $this->addError($attribute,"Valor fuera de rango ({$json_def->range->min} - {$json_def->range->max})");
+                }
+            }else{
+                $this->addError($attribute,'El valor debe ser numerico.');
+            }
+        }
+    }
+
 }

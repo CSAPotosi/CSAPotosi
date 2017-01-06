@@ -2,8 +2,53 @@
 
 class CieController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('cieIndex'),
+            ),
+            array('allow',
+                'actions' => array('getCategoryAjax'),
+                'roles' => array('cieGetCategoryAjax'),
+            ),
+            array('allow',
+                'actions' => array('getGroupAjax'),
+                'roles' => array('cieGetGroupAjax'),
+            ),
+            array('allow',
+                'actions' => array('getItemAjax'),
+                'roles' => array('cieGetItemAjax'),
+            ),
+            array('allow',
+                'actions' => array('getDetailItemAjax'),
+                'roles' => array('cieGetDetailItemAjax'),
+            ),
+            array('allow',
+                'actions' => array('editDescripcion'),
+                'roles' => array('cieEditDescripcion'),
+            ),
+            array('allow',
+                'actions' => array('getCieAjax'),
+                'roles' => array('cieGetCieAjax'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 	public function actionIndex()
 	{
+        $this->menu = OptionsMenu::menuEspecialOptions([],['cie','cie_Index']);
 		$this->render('index');
 	}
 
@@ -76,30 +121,5 @@ class CieController extends Controller
     public function actionGetCieAjax(){
         $this->renderPartial('_cie');
     }
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
 
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

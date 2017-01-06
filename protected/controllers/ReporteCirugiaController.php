@@ -2,6 +2,55 @@
 
 class ReporteCirugiaController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('reporteCirugiaIndex'),
+            ),
+            array('allow',
+                'actions' => array('indexPDF'),
+                'roles' => array('reporteCirugiaIndexPDF'),
+            ),
+            array('allow',
+                'actions' => array('index2'),
+                'roles' => array('reporteCirugiaIndex2'),
+            ),
+            array('allow',
+                'actions' => array('index2PDF'),
+                'roles' => array('reporteCirugiaIndex2PDF'),
+            ),
+            array('allow',
+                'actions' => array('estadisticaSala'),
+                'roles' => array('reporteCirugiaEstadisticaSala'),
+            ),
+            array('allow',
+                'actions' => array('estadisticaSalaPDF'),
+                'roles' => array('reporteCirugiaEstadisticaSalaPDF'),
+            ),
+            array('allow',
+                'actions' => array('estadisticaPersonal'),
+                'roles' => array('reporteCirugiaEstadisticaPersonal'),
+            ),
+            array('allow',
+                'actions' => array('estadisticaPersonalPDF'),
+                'roles' => array('reporteCirugiaEstadisticaPersonalPDF'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 	public function actionIndex()
 	{
         $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','index']);
@@ -289,7 +338,7 @@ class ReporteCirugiaController extends Controller
         $pdf->SetTextColor(80, 80, 80);
         $pdf->AddPage();
         $pdf->usuario($pdf);
-        $this->Ln(5);
+        $pdf->Ln();
         $xc = 130;
         $yc = 60;
         $r = 30;

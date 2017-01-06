@@ -5,8 +5,35 @@ class DiagnosticoController extends Controller
     private $_historial = null;
     private $_diagnostico = null;
 
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+            'historialContext + create',
+            'diagnosticoContext - create'
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('diagnosticoCreate'),
+            ),
+            array('allow',
+                'actions' => array('view'),
+                'roles' => array('diagnosticoView'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 	public function actionCreate(){
-        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$this->_historial->id_historial], ['historial','newDiagnostico']);
+        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$this->_historial->id_historial], ['historial','diagnostico_Crear']);
         $dcList = [];
         $diagnosticoModel = new Diagnostico();
         $diagnosticoModel->id_historial = $this->_historial->id_historial;
@@ -27,17 +54,8 @@ class DiagnosticoController extends Controller
     }
 
     public function actionView(){
-        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','view']);
+        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','diagnostico_Ver']);
         $this->render('view',['dModel'=>$this->_diagnostico]);
-    }
-
-
-    public function filters()
-    {
-        return [
-            'historialContext + create',
-            'diagnosticoContext - create'
-        ];
     }
 
     public function filterHistorialContext($filterChain){

@@ -11,7 +11,7 @@ $this->pageTitle = 'CIE 10';
 <section id="widget-grid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="jarviswidget" id="cie-widget">
+			<div class="jarviswidget jarviswidget-color-blue" id="cie-widget">
 				<header></header>
 				<div>
 					<div class="widget-body">

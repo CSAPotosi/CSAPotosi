@@ -5,10 +5,30 @@ class PrestacionServiciosController extends Controller
     private $_internacion = null;
     public function filters()
     {
-        return [
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
             'internacionContext + createForInter, indexForInter'
-        ];
+        );
     }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('indexForInter'),
+                'roles' => array('prestacionServiciosIndexForInter'),
+            ),
+            array('allow',
+                'actions' => array('createForInter'),
+                'roles' => array('prestacionServiciosCreateForInter'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 
     public function actionIndexForInter(){
         $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','listServicio']);
@@ -29,13 +49,6 @@ class PrestacionServiciosController extends Controller
             $this->redirect(['prestacionServicios/indexForInter','i_id'=>$this->_internacion->id_inter]);
         }
         return $this->render('createForInter',['iModel'=> $this->_internacion]);
-    }
-
-    public function actionPrueba(){
-        if(isset($_POST['ajax'])){
-            echo 'envio por ajax';
-            Yii::app()->end();
-        }
     }
 
     public function filterInternacionContext($filterChain){

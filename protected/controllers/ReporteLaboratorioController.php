@@ -2,6 +2,35 @@
 
 class ReporteLaboratorioController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('reporteLaboratorioIndex'),
+            ),
+            array('allow',
+                'actions' => array('indexPDF'),
+                'roles' => array('reporteLaboratorioIndexPDF'),
+            ),
+            array('allow',
+                'actions' => array('examenes'),
+                'roles' => array('reporteLaboratorioExamenes'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 	public function actionIndex()
 	{
         $this->menu = OptionsMenu::menuReporteLaboratorio([],['lab','index']);

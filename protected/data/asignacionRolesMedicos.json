@@ -1,5 +1,408 @@
 [
-  //{ "parent" : "", "child" : "" },
-  //{ "parent" : "", "child" : "" },
-  //{ "parent" : "", "child" : "" }
+  {
+    "parent" : "antecedentes_Index",
+    "child" : "antecedentesIndex"
+  },
+  {
+    "parent" : "antecedentes_Index",
+    "child" : "antecedentesCreate"
+  },
+
+  {
+    "parent": "cie_Index",
+    "child": "cieIndex"
+  },
+  {
+    "parent": "cie_Index",
+    "child": "cieGetCategoryAjax"
+  },
+  {
+    "parent": "cie_Index",
+    "child": "cieGetGroupAjax"
+  },
+  {
+    "parent": "cie_Index",
+    "child": "cieGetItemAjax"
+  },
+  {
+    "parent": "cie_Index",
+    "child": "cieGetDetailItemAjax"
+  },
+  {
+    "parent": "cie_Index",
+    "child": "cieEditDescripcion"
+  },
+  {
+    "parent": "cie_Index",
+    "child": "cieGetCieAjax"
+  },
+  {
+    "parent": "cirugia_Index",
+    "child": "cirugiaIndex"
+  },
+  {
+    "parent": "cirugia_Index",
+    "child": "cirugiaGetEventsAjax"
+  },
+  {
+    "parent": "cirugia_Programar",
+    "child": "cirugiaProgramar"
+  },
+  {
+    "parent": "cirugia_Programar",
+    "child": "pacienteGetMinimalListAjax"
+  },
+  {
+    "parent": "cirugia_Programar",
+    "child": "servicioGetSalasAjax"
+  },
+  {
+    "parent": "cirugia_Registrar",
+    "child": "pacienteGetMinimalListAjax"
+  },
+  {
+    "parent": "cirugia_Registrar",
+    "child": "servicioGetSalasAjax"
+  },
+  {
+    "parent": "cirugia_Registrar",
+    "child": "cirugiaGetMinimalList"
+  },
+  {
+    "parent": "cirugia_Registrar",
+    "child": "cirugiaRegistrar"
+  },
+  {
+    "parent": "cirugia_Ver",
+    "child": "cirugiaView"
+  },
+  {
+    "parent": "cirugia_Cancelar",
+    "child": "cirugiaCancelar"
+  },
+  {
+    "parent": "diagnostico_Ver",
+    "child": "diagnosticoView"
+  },
+  {
+    "parent": "diagnostico_Crear",
+    "child": "diagnosticoCreate"
+  },
+  {
+    "parent": "evolucion_Crear",
+    "child": "evolucionCreate"
+  },
+  {
+    "parent": "examen_Index",
+    "child": "examenIndex"
+  },
+  {
+    "parent": "examen_List",
+    "child": "examenList"
+  },
+  {
+    "parent": "examen_Examen",
+    "child": "examenExamen"
+  },
+  {
+    "parent": "examen_AdminExamenParams",
+    "child": "examenAdminExamenParams"
+  },
+  {
+    "parent": "examen_AdminExamenParams",
+    "child": "examenGetParamsTable"
+  },
+  {
+    "parent": "examen_CreateResultadoExamen",
+    "child": "examenCreateResultadoExamen"
+  },
+  {
+    "parent": "examen_ViewResultadoExamen",
+    "child": "examenViewResultadoExamen"
+  },
+  {
+    "parent": "internacion_Index",
+    "child": "internacionIndex"
+  },
+  {
+    "parent": "internacion_CreateIngreso",
+    "child": "internacionCreateIngreso"
+  },
+  {
+    "parent": "internacion_Alta",
+    "child": "internacionAlta"
+  },
+  {
+    "parent": "internacion_ChangeSala",
+    "child": "internacionChangeSala"
+  },
+  {
+    "parent": "medicamento_Index",
+    "child": "medicamentoIndex"
+  },
+  {
+    "parent": "notaEnfermeria_Index",
+    "child": "notaEnfermeriaIndex"
+  },
+  {
+    "parent": "notaEnfermeria_Create",
+    "child": "notaEnfermeriaCreate"
+  },
+  {
+    "parent": "parametro_Index",
+    "child": "parametroIndex"
+  },
+  {
+    "parent": "parametro_Create",
+    "child": "parametroCreate"
+  },
+  {
+    "parent": "parametro_Edit",
+    "child": "parametroEdit"
+  },
+  {
+    "parent": "prestacionServicios_IndexForInter",
+    "child": "prestacionServiciosIndexForInter"
+  },
+  {
+    "parent": "prestacionServicios_CreateForInter",
+    "child": "prestacionServiciosCreateForInter"
+  },
+  {
+    "parent": "reporteCirugia_Index",
+    "child": "reporteCirugiaIndex"
+  },
+  {
+    "parent": "reporteCirugia_Index",
+    "child": "reporteCirugiaIndexPDF"
+  },
+  {
+    "parent": "reporteCirugia_Index2",
+    "child": "reporteCirugiaIndex2"
+  },
+  {
+    "parent": "reporteCirugia_Index2",
+    "child": "reporteCirugiaIndex2PDF"
+  },
+  {
+    "parent": "reporteCirugia_EstadisticaSala",
+    "child": "reporteCirugiaEstadisticaSala"
+  },
+  {
+    "parent": "reporteCirugia_EstadisticaSala",
+    "child": "reporteCirugiaEstadisticaSalaPDF"
+  },
+  {
+    "parent": "reporteCirugia_EstadisticaPersonal",
+    "child": "reporteCirugiaEstadisticaPersonal"
+  },
+  {
+    "parent": "reporteCirugia_EstadisticaPersonal",
+    "child": "reporteCirugiaEstadisticaPersonalPDF"
+  },
+  {
+    "parent": "reporteInternacion_Index",
+    "child": "reporteInternacionIndex"
+  },
+  {
+    "parent": "reporteInternacion_Index",
+    "child": "reporteInternacionIndexPDF"
+  },
+  {
+    "parent": "reporteInternacion_Graficas",
+    "child": "reporteInternacionGraficas"
+  },
+  {
+    "parent": "reporteLaboratorio_Index",
+    "child": "reporteLaboratorioIndex"
+  },
+  {
+    "parent": "reporteLaboratorio_Index",
+    "child": "reporteLaboratorioIndexPDF"
+  },
+  {
+    "parent": "reporteLaboratorio_Examenes",
+    "child": "reporteLaboratorioExamenes"
+  },
+  {
+    "parent": "tratamiento_Index",
+    "child": "tratamientoIndex"
+  },
+  {
+    "parent": "tratamiento_Index",
+    "child": "tratamientoGetViewAjax"
+  },
+  {
+    "parent": "tratamiento_Create",
+    "child": "tratamientoCreate"
+  },
+  {
+    "parent": "tratamiento_Create",
+    "child": "medicamentoGetItemsAjax"
+  },
+  {
+    "parent": "vitales_Index",
+    "child": "vitalesIndex"
+  },
+  {
+    "parent": "vitales_Index",
+    "child": "vitalesCreate"
+  },
+
+  {
+    "parent": "Gestion de antecedentes medicos",
+    "child": "antecedentes_Index"
+  },
+  {
+    "parent": "Administracion varios",
+    "child": "cie_Index"
+  },
+  {
+    "parent": "Administracion varios",
+    "child": "medicamento_Index"
+  },
+  {
+    "parent": "Administracion varios",
+    "child": "parametro_Index"
+  },
+  {
+    "parent": "Administracion varios",
+    "child": "parametro_Create"
+  },
+  {
+    "parent": "Administracion varios",
+    "child": "parametro_Edit"
+  },
+  {
+    "parent": "Administracion de cirugias",
+    "child": "cirugia_Index"
+  },
+  {
+    "parent": "Administracion de cirugias",
+    "child": "cirugia_Programar"
+  },
+  {
+    "parent": "Administracion de cirugias",
+    "child": "cirugia_Registrar"
+  },
+  {
+    "parent": "Administracion de cirugias",
+    "child": "cirugia_Ver"
+  },
+  {
+    "parent": "Administracion de cirugias",
+    "child": "cirugia_Cancelar"
+  },
+  {
+    "parent": "Crear y ver diagnosticos",
+    "child": "diagnostico_Ver"
+  },
+  {
+    "parent": "Crear y ver diagnosticos",
+    "child": "diagnostico_Crear"
+  },
+  {
+    "parent": "Crear y ver evolucion",
+    "child": "evolucion_Crear"
+  },
+  {
+    "parent": "Administracion de examenes de laboratorio",
+    "child": "examen_Index"
+  },
+  {
+    "parent": "Administracion de examenes de laboratorio",
+    "child": "examen_List"
+  },
+  {
+    "parent": "Administracion de examenes de laboratorio",
+    "child": "examen_Examen"
+  },
+  {
+    "parent": "Administracion de examenes de laboratorio",
+    "child": "examen_AdminExamenParams"
+  },
+  {
+    "parent": "Administracion de examenes de laboratorio",
+    "child": "examen_CreateResultadoExamen"
+  },
+  {
+    "parent": "Administracion de examenes de laboratorio",
+    "child": "examen_ViewResultadoExamen"
+  },
+  {
+    "parent": "Control de internaciones",
+    "child": "internacion_Index"
+  },
+  {
+    "parent": "Control de internaciones",
+    "child": "internacion_CreateIngreso"
+  },
+  {
+    "parent": "Control de internaciones",
+    "child": "internacion_Alta"
+  },
+  {
+    "parent": "Control de internaciones",
+    "child": "internacion_ChangeSala"
+  },
+  {
+    "parent": "Control de notas de enfermeria",
+    "child": "notaEnfermeria_Index"
+  },
+  {
+    "parent": "Control de notas de enfermeria",
+    "child": "notaEnfermeria_Create"
+  },
+  {
+    "parent": "Prestacion de servicios de internacion",
+    "child": "prestacionServicios_IndexForInter"
+  },
+  {
+    "parent": "Prestacion de servicios de internacion",
+    "child": "prestacionServicios_CreateForInter"
+  },
+  {
+    "parent": "Reportes cirugias",
+    "child": "reporteCirugia_Index"
+  },
+  {
+    "parent": "Reportes cirugias",
+    "child": "reporteCirugia_Index2"
+  },
+  {
+    "parent": "Reportes cirugias",
+    "child": "reporteCirugia_EstadisticaSala"
+  },
+  {
+    "parent": "Reportes cirugias",
+    "child": "reporteCirugia_EstadisticaPersonal"
+  },
+  {
+    "parent": "Reportes internacion",
+    "child": "reporteInternacion_Index"
+  },
+  {
+    "parent": "Reportes internacion",
+    "child": "reporteInternacion_Graficas"
+  },
+  {
+    "parent": "Reportes laboratorio",
+    "child": "reporteLaboratorio_Index"
+  },
+  {
+    "parent": "Reportes laboratorio",
+    "child": "reporteLaboratorio_Examenes"
+  },
+  {
+    "parent": "Gestion de tratamientos",
+    "child": "tratamiento_Index"
+  },
+  {
+    "parent": "Gestion de tratamientos",
+    "child": "tratamiento_Create"
+  },
+  {
+    "parent": "Gestion de signos vitales",
+    "child": "vitales_Index"
+  }
 ]

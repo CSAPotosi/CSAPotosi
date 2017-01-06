@@ -3,8 +3,30 @@
 class EvolucionController extends Controller
 {
     private $_diagnostico = null;
+
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+            'diagnosticoContext'
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('evolucionCreate'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
 	public function actionCreate(){
-        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','addEvolucion']);
+        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','evolucion_Crear']);
 
         $eModel = new Evolucion();
         $eModel->id_diag = $this->_diagnostico->id_diag;
@@ -14,13 +36,6 @@ class EvolucionController extends Controller
                 $this->redirect(['create','d_id'=>$this->_diagnostico->id_diag]);
         }
         $this->render('create',['eModel'=>$eModel,'dModel' => $this->_diagnostico]);
-    }
-
-    public function filters()
-    {
-        return [
-            'diagnosticoContext'
-        ];
     }
 
     public function filterDiagnosticoContext($filterChain){

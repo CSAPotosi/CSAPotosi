@@ -24,6 +24,10 @@ class PacienteController extends Controller
 				'actions' => array('GetPatientListAjax'),
 				'roles' => array('pacienteGetPacientListAjax')
 			),
+            array('allow',
+                'actions'=>array('getMinimalListAjax'),
+                'roles'=>array('pacienteGetMinimalListAjax')
+            ),
 			array('allow',
 				'actions' => array('DetallePaciente'),
 				'roles' => array('pacienteView'),
@@ -135,30 +139,4 @@ class PacienteController extends Controller
 			'listPaciente' => $listPaciente,
 		]);
 	}
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

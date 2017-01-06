@@ -15,15 +15,38 @@
                                     <?php if($detalleList):?>
                                     <div class="row margin-bottom-10">
                                         <?php $index = 1;foreach ($detalleList as $detalle):?>
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 margin-top-5">
                                                     <label><?php echo $detalle->parametro->nombre_par;?></label>
                                                     <div class="input-group">
-                                                        <?php echo CHtml::activeTextField($detalle,"[{$index}]valor_res",['class'=>'form-control']);?>
+                                                        <?php $flag=false;$json = json_decode($detalle->parametro->def_par); ?>
+                                                        <?php
+                                                            switch ($json->type){
+                                                                case 'numeric':
+                                                                    echo CHtml::activeTextField($detalle,"[{$index}]valor_res",['class'=>'form-control']);
+                                                                    break;
+                                                                case 'list':
+                                                                    $lista = [];
+                                                                    foreach ($json->list as $item)
+                                                                        $lista[$item]=$item;
+                                                                    echo CHtml::activeDropDownList($detalle,"[{$index}]valor_res",$lista,['class'=>'form-control']);
+                                                                    break;
+                                                                case 'boolean':
+                                                                    echo CHtml::activeCheckBox($detalle,"[{$index}]valor_res",['value'=>'1']);
+                                                                    $flag = true;
+                                                                    break;
+                                                                default:
+                                                                    echo CHtml::activeTextArea($detalle,"[{$index}]valor_res",['class'=>'form-control']);
+                                                                    break;
+                                                            }
+                                                        ?>
                                                         <?php echo CHtml::activeHiddenField($detalle,"[{$index}]id_par");?>
+                                                        <?php if(!$flag):?>
                                                         <span class="input-group-addon">
                                                             <?php echo $detalle->parametro->ext_par;?>
                                                         </span>
+                                                        <?php endif;?>
                                                     </div>
+
                                                     <?php echo CHtml::error($detalle,"[{$index}]valor_res",['class'=>'label label-danger']);?>
                                                 </div>
                                             <?php $index++; endforeach;?>

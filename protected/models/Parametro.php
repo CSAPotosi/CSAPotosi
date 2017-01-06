@@ -63,41 +63,13 @@ class Parametro extends CActiveRecord
 	{
 		return array(
 			'id_par' => 'Id Par',
-			'nombre_par' => 'Nombre Par',
-			'ext_par' => 'Aux Par',
-			'tipo_par' => 'Tipo Par',
+			'nombre_par' => 'NOMBRE',
+			'ext_par' => 'UNIDAD',
+			'tipo_par' => 'TIPO',
 			'def_par' => 'Def Par',
 		);
 	}
-
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id_par',$this->id_par);
-		$criteria->compare('nombre_par',$this->nombre_par,true);
-		$criteria->compare('ext_par',$this->ext_par,true);
-		$criteria->compare('tipo_par',$this->tipo_par);
-		$criteria->compare('def_par',$this->def_par,true);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
+    
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -112,9 +84,9 @@ class Parametro extends CActiveRecord
 
     public function getTipo(){
         return [
-            0=>'EXAMENES',
-            1=>'MEDICOS',
-            2=>'ANTECEDENTES MEDICOS'
+            0=>'EXAMEN',
+            1=>'SIGNOS VITALES',
+            2=>'ANTECEDENTES'
         ];
     }
 }

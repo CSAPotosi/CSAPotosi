@@ -2,11 +2,53 @@
 
 class CirugiaController extends Controller
 {
-    //private $_historial = null;
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('cirugiaIndex'),
+            ),
+            array('allow',
+                'actions' => array('getEventsAjax'),
+                'roles' => array('cirugiaGetEventsAjax'),
+            ),
+            array('allow',
+                'actions' => array('programar'),
+                'roles' => array('cirugiaProgramar'),
+            ),
+            array('allow',
+                'actions' => array('registrar'),
+                'roles' => array('cirugiaRegistrar'),
+            ),
+            array('allow',
+                'actions' => array('view'),
+                'roles' => array('cirugiaView'),
+            ),
+            array('allow',
+                'actions' => array('cancelar'),
+                'roles' => array('cirugiaCancelar'),
+            ),
+            array('allow',
+                'actions' => array('getMinimalList'),
+                'roles' => array('cirugiaGetMinimalList'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuCirugia([],['cirugias','index']);
+        $this->menu = OptionsMenu::menuCirugia([],['cirugias','cirugia_Index']);
 
         $listCirugia = Cirugia::model()->findAll();
 		$this->render('index',['listCirugia'=>$listCirugia]);
@@ -42,12 +84,12 @@ class CirugiaController extends Controller
     }
 
     public function actionProgramar($c_id = 0){
-        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['cirugias','programar']);
+        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['cirugias','cirugia_Programar']);
 
         $cirugia = new Cirugia('reserva');
         if($c_id){
             $cirugia = Cirugia::model()->findByPk($c_id);
-            $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','reprogramar']);
+            $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','cirugia_Programar']);
         }
         $cirugia->reservado = true;
         if(isset($_POST['Cirugia'])){
@@ -60,11 +102,11 @@ class CirugiaController extends Controller
     }
 
     public function actionRegistrar($c_id = 0){
-        $this->menu = OptionsMenu::menuCirugia([],['cirugias','registrar']);
+        $this->menu = OptionsMenu::menuCirugia([],['cirugias','cirugia_Registrar']);
         $cirugia = new Cirugia('registro');
         $persList = $this->loadPersonal($c_id);
         if($c_id){
-            $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','confirmar']);
+            $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','cirugia_Registrar']);
             $cirugia = Cirugia::model()->findByPk($c_id);
             $cirugia->scenario = 'registro';
         }
@@ -86,13 +128,13 @@ class CirugiaController extends Controller
     }
 
     public function actionView($c_id = 0){
-        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','view']);
+        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','cirugia_Ver']);
         $cirugia = Cirugia::model()->findByPk($c_id);
         $this->render('view',['cirugia'=>$cirugia]);
     }
 
     public function actionCancelar($c_id = 0){
-        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','cancelar']);
+        $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','cirugia_Cancelar']);
         $cirugia = Cirugia::model()->findByPk($c_id);
         if(isset($_POST['Cirugia'])){
             $cirugia->delete();

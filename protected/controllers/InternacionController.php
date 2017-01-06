@@ -3,8 +3,41 @@
 class InternacionController extends Controller{
     private $_historial = null;
     private $_internacion = null;
-    public $menu = [];
 
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+            'historialContext + createIngreso',
+            'internacionContext - createIngreso'
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('internacionIndex'),
+            ),
+            array('allow',
+                'actions' => array('createIngreso'),
+                'roles' => array('internacionCreateIngreso'),
+            ),
+            array('allow',
+                'actions' => array('alta'),
+                'roles' => array('internacionAlta'),
+            ),
+            array('allow',
+                'actions' => array('changeSala'),
+                'roles' => array('internacionChangeSala'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
 
 	public function actionIndex()
 	{
@@ -67,27 +100,6 @@ class InternacionController extends Controller{
         }
         $this->render('changeSala',['internacionModel'=>$this->_internacion]);
     }
-
-	public function filters()
-	{
-		return [
-			'historialContext + createIngreso',
-            'internacionContext - createIngreso'
-		];
-	}
-/*
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 
     private function addSala($inter_id = 0,$fecha = null){
         $interModel = Internacion::model()->findByPk($inter_id);

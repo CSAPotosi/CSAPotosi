@@ -1,5 +1,615 @@
 [
-  //{ "name" : "", "type" : "0", "description" : "" },
-  //{ "name" : "", "type" : "0", "description" : "" },
-  //{ "name" : "", "type" : "0", "description" : "" }
+  {
+    "name": "antecedentesIndex",
+    "type": "0",
+    "description": "Lista de antecedentes de paciente"
+  },
+  {
+    "name": "antecedentesCreate",
+    "type": "0",
+    "description": "Creacion de antecedente de paciente"
+  },
+
+  {
+    "name": "cieIndex",
+    "type": "0",
+    "description": "Pagina principal cie 10"
+  },
+  {
+    "name": "cieGetCategoryAjax",
+    "type": "0",
+    "description": "Categorias cie 10 por ajax"
+  },
+  {
+    "name": "cieGetGroupAjax",
+    "type": "0",
+    "description": "Grupos cie 10 por ajax"
+  },
+  {
+    "name": "cieGetItemAjax",
+    "type": "0",
+    "description": "Items cie 10 por ajax"
+  },
+  {
+    "name": "cieGetDetailItemAjax",
+    "type": "0",
+    "description": "Detalle de item cie10"
+  },
+  {
+    "name": "cieEditDescripcion",
+    "type": "0",
+    "description": "Editar descripcion cie10"
+  },
+  {
+    "name": "cieGetCieAjax",
+    "type": "0",
+    "description": "Lista cie 10 por ajax"
+  },
+
+  {
+    "name": "cirugiaIndex",
+    "type": "0",
+    "description": "Lista cirugias"
+  },
+  {
+    "name": "cirugiaGetEventsAjax",
+    "type": "0",
+    "description": "Eventos de cirugias por ajax"
+  },
+  {
+    "name": "cirugiaProgramar",
+    "type": "0",
+    "description": "Programar cirugia"
+  },
+  {
+    "name": "cirugiaRegistrar",
+    "type": "0",
+    "description": "Registrar cirugia"
+  },
+  {
+    "name": "cirugiaView",
+    "type": "0",
+    "description": "Vista cirugia"
+  },
+  {
+    "name": "cirugiaCancelar",
+    "type": "0",
+    "description": "Cancelar cirugia"
+  },
+  {
+    "name": "cirugiaGetMinimalList",
+    "type": "0",
+    "description": "Lista de personal para cirugia"
+  },
+
+  {
+    "name": "diagnosticoCreate",
+    "type": "0",
+    "description": "Crear diagnostico"
+  },
+  {
+    "name": "diagnosticoView",
+    "type": "0",
+    "description": "Ver diagnostico"
+  },
+
+  {
+    "name": "evolucionCreate",
+    "type": "0",
+    "description": "Lista y formulario de evoluciones"
+  },
+
+  {
+    "name": "examenIndex",
+    "type": "0",
+    "description": "indice de examenenes"
+  },
+  {
+    "name": "examenList",
+    "type": "0",
+    "description": "lista de examenenes"
+  },
+  {
+    "name": "examenExamen",
+    "type": "0",
+    "description": "Examen"
+  },
+  {
+    "name": "examenAdminExamenParams",
+    "type": "0",
+    "description": "Administracion de parametros de examen"
+  },
+  {
+    "name": "examenGetParamsTable",
+    "type": "0",
+    "description": "Lista de parametros de examen"
+  },
+  {
+    "name": "examenCreateResultadoExamen",
+    "type": "0",
+    "description": "Formulario de creacion de resultado"
+  },
+  {
+    "name": "examenViewResultadoExamen",
+    "type": "0",
+    "description": "Vista resultado de lab"
+  },
+
+  {
+    "name": "internacionIndex",
+    "type": "0",
+    "description": "Indice internacion"
+  },
+  {
+    "name": "internacionCreateIngreso",
+    "type": "0",
+    "description": "Internar paciente"
+  },
+  {
+    "name": "internacionAlta",
+    "type": "0",
+    "description": "Alta de paciente"
+  },
+  {
+    "name": "internacionChangeSala",
+    "type": "0",
+    "description": "Cambiar sala de internacion"
+  },
+
+  {
+    "name": "medicamentoIndex",
+    "type": "0",
+    "description": "Indice de medicamentos"
+  },
+  {
+    "name": "medicamentoUpdate",
+    "type": "0",
+    "description": "Edicion de medicamentos"
+  },
+  {
+    "name": "medicamentoGetItemsAjax",
+    "type": "0",
+    "description": "Lista de medicamentos ajax"
+  },
+  {
+    "name": "medicamentoDownload",
+    "type": "0",
+    "description": "Descarga de plantilla"
+  },
+  {
+    "name": "medicamentoUpload",
+    "type": "0",
+    "description": "Subida de plantilla"
+  },
+
+  {
+    "name": "notaEnfermeriaIndex",
+    "type": "0",
+    "description": "Lista notas de enfermeria"
+  },
+  {
+    "name": "notaEnfermeriaCreate",
+    "type": "0",
+    "description": "Nueva nota de enfermeria"
+  },
+
+  {
+    "name": "parametroIndex",
+    "type": "0",
+    "description": "Lista de parametros"
+  },
+  {
+    "name": "parametroCreate",
+    "type": "0",
+    "description": "Creacion de parametros"
+  },
+  {
+    "name": "parametroEdit",
+    "type": "0",
+    "description": "Edicion de parametros"
+  },
+
+  {
+    "name": "prestacionServiciosIndexForInter",
+    "type": "0",
+    "description": "Lista servicios para internacion"
+  },
+  {
+    "name": "prestacionServiciosCreateForInter",
+    "type": "0",
+    "description": "Creacion servicios para internacion"
+  },
+
+  {
+    "name": "reporteCirugiaIndex",
+    "type": "0",
+    "description": "Index reporte cirugia"
+  },
+  {
+    "name": "reporteCirugiaIndexPDF",
+    "type": "0",
+    "description": "Index reporte cirugia pdf"
+  },
+  {
+    "name": "reporteCirugiaIndex2",
+    "type": "0",
+    "description": "Index 2 reporte cirugia"
+  },
+  {
+    "name": "reporteCirugiaIndex2PDF",
+    "type": "0",
+    "description": "Index 2 reporte cirugia pdf"
+  },
+  {
+    "name": "reporteCirugiaEstadisticaSala",
+    "type": "0",
+    "description": "cirugias por sala"
+  },
+  {
+    "name": "reporteCirugiaEstadisticaSalaPDF",
+    "type": "0",
+    "description": "cirugias por sala pdf"
+  },
+  {
+    "name": "reporteCirugiaEstadisticaPersonal",
+    "type": "0",
+    "description": "cirugias por personal"
+  },
+  {
+    "name": "reporteCirugiaEstadisticaPersonalPDF",
+    "type": "0",
+    "description": "cirugias por personal pdf"
+  },
+
+  {
+    "name": "reporteInternacionIndex",
+    "type": "0",
+    "description": "index reporte internacion"
+  },
+  {
+    "name": "reporteInternacionIndexPDF",
+    "type": "0",
+    "description": "index reporte internacion pdf"
+  },
+  {
+    "name": "reporteInternacionGraficas",
+    "type": "0",
+    "description": "Graficas reporte internacion"
+  },
+
+  {
+    "name": "reporteLaboratorioIndex",
+    "type": "0",
+    "description": "index reporte laboratorio"
+  },
+  {
+    "name": "reporteLaboratorioIndexPDF",
+    "type": "0",
+    "description": "index reporte laboratorio pdf"
+  },
+  {
+    "name": "reporteLaboratorioExamenes",
+    "type": "0",
+    "description": "examenes"
+  },
+
+  {
+    "name": "tratamientoIndex",
+    "type": "0",
+    "description": "Indice de tratamientos"
+  },
+  {
+    "name": "tratamientoCreate",
+    "type": "0",
+    "description": "Nuevos tratamientos"
+  },
+  {
+    "name": "tratamientoGetViewAjax",
+    "type": "0",
+    "description": "Ver tratamiento"
+  },
+
+  {
+    "name": "vitalesIndex",
+    "type": "0",
+    "description": "Lista signos vitales"
+  },
+  {
+    "name": "vitalesCreate",
+    "type": "0",
+    "description": "registro de signos vitales"
+  },
+
+  {
+    "name": "seguridadAudit",
+    "type": "0",
+    "description": "Registros de auditoria"
+  },
+  {
+    "name": "seguridadAuditTxt",
+    "type": "0",
+    "description": "Registros de auditoria txt"
+  },
+  {
+    "name": "seguridadIndexBackup",
+    "type": "0",
+    "description": "Lista de backups"
+  },
+  {
+    "name": "seguridadCreateBackup",
+    "type": "0",
+    "description": "Nuevo backups"
+  },
+  {
+    "name": "seguridadCargarBackup",
+    "type": "0",
+    "description": "Cargar backup"
+  },
+
+  {
+    "name": "antecedentes_Index",
+    "type": "1",
+    "description":"Indice antecedentes"
+  },
+  {
+    "name": "cie_Index",
+    "type": "1",
+    "description":"Indice cie10"
+  },
+  {
+    "name": "cirugia_Index",
+    "type": "1",
+    "description": "Lista cirugias"
+  },
+  {
+    "name": "cirugia_Programar",
+    "type": "1",
+    "description": "Programar cirugia"
+  },
+  {
+    "name": "cirugia_Registrar",
+    "type": "1",
+    "description": "Lista cirugias"
+  },
+  {
+    "name": "cirugia_Cancelar",
+    "type": "1",
+    "description": "Lista cirugias"
+  },
+  {
+    "name": "cirugia_Ver",
+    "type": "1",
+    "description": "Lista cirugias"
+  },
+  {
+    "name": "diagnostico_Ver",
+    "type": "1",
+    "description": "Ver diagnostico"
+  },
+  {
+    "name": "diagnostico_Crear",
+    "type": "1",
+    "description": "Agregar diagnostico"
+  },
+  {
+    "name": "evolucion_Crear",
+    "type": "1",
+    "description": "Agregar evolucion"
+  },
+  {
+    "name": "examen_Index",
+    "type": "1",
+    "description": "Lista de examenes pendientes"
+  },
+  {
+    "name": "examen_List",
+    "type": "1",
+    "description": "Lista de examenes realizados"
+  },
+  {
+    "name": "examen_Examen",
+    "type": "1",
+    "description": "Lista de examenes disponibles"
+  },
+  {
+    "name": "examen_AdminExamenParams",
+    "type": "1",
+    "description": "Administracion de examen (parametros)"
+  },
+  {
+    "name": "examen_CreateResultadoExamen",
+    "type": "1",
+    "description": "Formulario de resultados de examen"
+  },
+  {
+    "name": "examen_ViewResultadoExamen",
+    "type": "1",
+    "description": "Resultado laboratorio"
+  },
+  {
+    "name": "internacion_Index",
+    "type": "1",
+    "description": "inicio internacion"
+  },
+  {
+    "name": "internacion_CreateIngreso",
+    "type": "1",
+    "description": "internar"
+  },
+  {
+    "name": "internacion_Alta",
+    "type": "1",
+    "description": "alta de paciente interno"
+  },
+  {
+    "name": "internacion_ChangeSala",
+    "type": "1",
+    "description": "Cambiar sala de paciente interno"
+  },
+  {
+    "name": "medicamento_Index",
+    "type": "1",
+    "description": "Lista de medicamentos"
+  },
+  {
+    "name": "notaEnfermeria_Index",
+    "type":"1",
+    "description": "Lista de notas de enfermeria"
+  },
+  {
+    "name": "notaEnfermeria_Create",
+    "type":"1",
+    "description": "Crear notas de enfermeria"
+  },
+  {
+    "name": "parametro_Index",
+    "type":"1",
+    "description": "Lista de parametros"
+  },
+  {
+    "name": "parametro_Create",
+    "type":"1",
+    "description": "Creacion de parametros"
+  },
+  {
+    "name": "parametro_Edit",
+    "type":"1",
+    "description": "Edicion de parametros"
+  },
+  {
+    "name": "prestacionServicios_IndexForInter",
+    "type": "1",
+    "description": "Lista de servicios prestados internacion"
+  },
+  {
+    "name": "prestacionServicios_CreateForInter",
+    "type": "1",
+    "description": "Nuevo servicio internacion"
+  },
+  {
+    "name": "reporteCirugia_Index",
+    "type": "1",
+    "description": "Reporte de cirugias 1"
+  },
+  {
+    "name": "reporteCirugia_Index2",
+    "type": "1",
+    "description": "Reporte de cirugias 2"
+  },
+  {
+    "name": "reporteCirugia_EstadisticaSala",
+    "type": "1",
+    "description": "Reporte de cirugias (salas)"
+  },
+  {
+    "name": "reporteCirugia_EstadisticaPersonal",
+    "type": "1",
+    "description": "Reporte de cirugias (personal)"
+  },
+  {
+    "name": "reporteInternacion_Index",
+    "type": "1",
+    "description": "Reporte de internacion 1"
+  },
+  {
+    "name": "reporteInternacion_Graficas",
+    "type": "1",
+    "description": "Reporte de internacion (grafica)"
+  },
+  {
+    "name": "reporteLaboratorio_Index",
+    "type": "1",
+    "description": "Reporte de laboratorio 1"
+  },
+  {
+    "name": "reporteLaboratorio_Examenes",
+    "type": "1",
+    "description": "Reporte de laboratorio (examenes mas realizados)"
+  },
+  {
+    "name": "tratamiento_Index",
+    "type": "1",
+    "description": "Lista de tratamientos por diagnostico"
+  },
+  {
+    "name": "tratamiento_Create",
+    "type": "1",
+    "description": "Nuevo tratamiento"
+  },
+  {
+    "name": "vitales_Index",
+    "type": "1",
+    "description": "Signos vitales"
+  },
+
+  {
+    "name": "Gestion de antecedentes medicos",
+    "type": "2",
+    "description": "Interfaz de regitro y listado de antecedentes de paciente"
+  },
+  {
+    "name": "Administracion varios",
+    "type": "2",
+    "description": "Administracion cie10, vademecum, parametros"
+  },
+  {
+    "name": "Administracion de cirugias",
+    "type": "2",
+    "description": "Admin de cirugias"
+  },
+  {
+    "name": "Crear y ver diagnosticos",
+    "type": "2",
+    "description": "Se puede ver y tambien agregar diagnosticos"
+  },
+  {
+    "name": "Crear y ver evolucion",
+    "type": "2",
+    "description": "Se puede agregar evolucion medica"
+  },
+  {
+    "name": "Administracion de examenes de laboratorio",
+    "type": "2",
+    "description": "examenes de laboratorio"
+  },
+  {
+    "name": "Control de internaciones",
+    "type": "2",
+    "description": "Control de internaciones"
+  },
+  {
+    "name": "Control de notas de enfermeria",
+    "type":"2",
+    "description":"Lista y creacion de notas de enfermeria"
+  },
+  {
+    "name": "Prestacion de servicios de internacion",
+    "type": "2",
+    "description": "Control de servicios para pacientes internados"
+  },
+  {
+    "name": "Reportes cirugias",
+    "type": "2",
+    "description": "Reportes de produccion de cirugias"
+  },
+  {
+    "name": "Reportes internacion",
+    "type": "2",
+    "description": "Reportes de produccion de internacion"
+  },
+  {
+    "name": "Reportes laboratorio",
+    "type": "2",
+    "description": "Reportes de produccion de laboratorio"
+  },
+  {
+    "name": "Gestion de tratamientos",
+    "type": "2",
+    "description": "Lista y creacion de tratamientos por diagnostico"
+  },
+  {
+    "name": "Gestion de signos vitales",
+    "type": "2",
+    "description": "Lista y creacion de signos vitales"
+  }
 ]

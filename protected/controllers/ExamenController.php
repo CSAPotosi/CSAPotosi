@@ -2,9 +2,54 @@
 
 class ExamenController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('examenIndex'),
+            ),
+            array('allow',
+                'actions' => array('list'),
+                'roles' => array('examenList'),
+            ),
+            array('allow',
+                'actions' => array('examen'),
+                'roles' => array('examenExamen'),
+            ),
+            array('allow',
+                'actions' => array('adminExamenParams'),
+                'roles' => array('examenAdminExamenParams'),
+            ),
+            array('allow',
+                'actions' => array('getParamsTable'),
+                'roles' => array('examenGetParamsTable'),
+            ),
+            array('allow',
+                'actions' => array('createResultadoExamen'),
+                'roles' => array('examenCreateResultadoExamen'),
+            ),
+            array('allow',
+                'actions' => array('viewResultadoExamen'),
+                'roles' => array('examenViewResultadoExamen'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuExamen([],['examen','index']);
+        $this->menu = OptionsMenu::menuExamen([],['examen','examen_Index']);
 
         $examenList = DetallePrestacion::model()->findAll([
             'condition' => 'NOT realizado',
@@ -14,7 +59,7 @@ class ExamenController extends Controller
 	}
 
     public function actionList(){
-        $this->menu = OptionsMenu::menuExamen([],['examen','list']);
+        $this->menu = OptionsMenu::menuExamen([],['examen','examen_List']);
 
         $examenList = DetallePrestacion::model()->findAll([
             'condition' => 'realizado',
@@ -24,7 +69,7 @@ class ExamenController extends Controller
     }
 
     public function actionExamen(){
-        $this->menu = OptionsMenu::menuExamen([],['examen','examen']);
+        $this->menu = OptionsMenu::menuExamen([],['examen','examen_Examen']);
 
         $examenList = ServExamen::model()->with([
             'categoria'=>['condition'=>'tipo_ex = 1']
@@ -33,7 +78,7 @@ class ExamenController extends Controller
     }
 
     public function actionAdminExamenParams($id_ex=0){
-        $this->menu = OptionsMenu::menuExamen([],['examen','examen']);
+        $this->menu = OptionsMenu::menuExamen([],['examen','examen_Examen']);
 
         $examen = ServExamen::model()->findByPk($id_ex);
         $epList = $examen->examenParametros;
@@ -53,44 +98,13 @@ class ExamenController extends Controller
         $this->render('adminExamenParams',['examen'=>$examen,'epList'=>$epList]);
     }
 
-    public function actionParametros(){
-        $this->menu = OptionsMenu::menuExamen([],['examen','parametros']);
-        $this->render('parametros');
-    }
-
-    public function actionCreateParametro(){
-        $this->menu = OptionsMenu::menuExamen([],['examen','parametros']);
-
-        $parametro = new Parametro();
-        if(isset($_POST['Parametro'])){
-            $parametro->attributes = $_POST['Parametro'];
-            if($parametro->save()){
-                return $this->redirect(['parametros']);
-            }
-        }
-        $this->render('formParametro',['parametro'=>$parametro]);
-    }
-
-    public function actionEditParametro($id_p = 0){
-        $this->menu = OptionsMenu::menuExamen([],['examen','parametros']);
-
-        $parametro = Parametro::model()->findByPk($id_p);
-        if(isset($_POST['Parametro'])){
-            $parametro->attributes = $_POST['Parametro'];
-            if($parametro->save()){
-                return $this->redirect(['parametros']);
-            }
-        }
-        $this->render('formParametro',['parametro'=>$parametro]);
-    }
-
     public function actionGetParamsTable(){
         $paramsList = Parametro::model()->findAll(['condition'=>'tipo_par = 0']);
         $this->renderPartial('_paramsTable',['paramsList'=>$paramsList]);
     }
 
     public function actionCreateResultadoExamen($id_det_pres = 0){
-        $this->menu = OptionsMenu::menuExamen([],['examen','index']);
+        $this->menu = OptionsMenu::menuExamen([],['examen','examen_Index']);
 
         $detallePrestacion = DetallePrestacion::model()->findByPk($id_det_pres);
         $resultado = new ResultadoExamen();
@@ -98,7 +112,7 @@ class ExamenController extends Controller
         $detalleList = $this->loadForm($detallePrestacion->id_servicio);
         if(isset($_POST['ResultadoExamen'])){
             $resultado->attributes = $_POST['ResultadoExamen'];
-            $this->validar(array_merge([$resultado],$detalleList));
+            $this->validar(array_merge($detalleList,[$resultado]));
             if($resultado->save()){
                 foreach ($detalleList as $detalle){
                     $detalle->id_res = $resultado->id_res;
@@ -113,7 +127,7 @@ class ExamenController extends Controller
     }
 
     public function actionViewResultadoExamen($id_res = 0){
-        $this->menu = OptionsMenu::menuExamen([],['examen','list']);
+        $this->menu = OptionsMenu::menuExamen([],['examen','examen_List']);
 
         $resultado = ResultadoExamen::model()->findByPk($id_res);
         $this->render('viewResultadoExamen',['resultado'=>$resultado]);

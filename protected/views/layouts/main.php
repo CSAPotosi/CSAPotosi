@@ -64,7 +64,14 @@
 	<div class="project-context hidden-xs">
 
 		<span class="label">Usuario:</span>
-		<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+		<span class="project-selector dropdown-toggle" data-toggle="dropdown">
+            <?php if(Yii::app()->user->isGuest):?>
+                Usuario no autenticado
+            <?php else:?>
+                <?= Yii::app()->user->name;?>
+            <?php endif;?>
+            <i class="fa fa-angle-down"></i>
+        </span>
 
 		<!-- Suggestion: populate this list with fetch and push technique -->
 		<ul class="dropdown-menu">
@@ -231,6 +238,9 @@
 				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="fa fa-lg fa-fw fa-heartbeat"></i> <span class="menu-item-parent">Cirugias</span></a>
 			</li>
             <li>
+                <a href="<?php echo CHtml::normalizeUrl(['medicamento/index'])?>"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Config</span></a>
+            </li>
+            <li>
                 <a href="<?php echo CHtml::normalizeUrl(['examen/index'])?>"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Examenes</span></a>
             </li>
 			<li>
@@ -323,7 +333,7 @@
 <div class="page-footer">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 text-align-center">
-			<span class="txt-color-white">CSA Potosi <span class="hidden-xs"> - Sistema</span> © 2016</span>
+			<span class="txt-color-white">SSANA <span class="hidden-xs"> - Sistema</span> © 2016</span>
 		</div>
 	</div>
 </div>

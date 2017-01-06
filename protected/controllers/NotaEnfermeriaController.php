@@ -3,9 +3,36 @@
 class NotaEnfermeriaController extends Controller
 {
     private $_internacion = null;
+
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+            'internacionContext'
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('notaEnfermeriaIndex'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('notaEnfermeriaCreate'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','notasEnfermeria']);
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','notaEnfermeria_Index']);
         $neModel = new NotaEnfermeria();
 		$this->render('index', ['iModel'=> $this->_internacion,'neModel'=>$neModel]);
 	}
@@ -19,15 +46,8 @@ class NotaEnfermeriaController extends Controller
                 return $this->redirect(['index','i_id'=>$this->_internacion->id_inter]);
         }
 
-        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','notasEnfermeria']);
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','notaEnfermeria_Index']);
         return $this->render('index', ['iModel'=> $this->_internacion,'neModel'=>$nota]);
-    }
-
-    public function filters()
-    {
-        return [
-            'internacionContext'
-        ];
     }
 
     public function filterInternacionContext($filterChain){

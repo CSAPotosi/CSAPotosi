@@ -37,12 +37,12 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>CSAPotosi</b> 1.0</a>
+        <a href="../../index2.html"><b>SSANA</b> 1.0</a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         <center><img src="<?php echo Yii::app()->request->baseUrl; ?>/resources/img/logoCSA.png" class="img-responsive">
         </center>
-        <p class="login-box-msg">Ingrese sus datos para iniciar sesion.</p>
+        <p class="login-box-msg text-center">Ingrese sus datos para iniciar sesion.</p>
 
         <?php echo CHtml::beginForm(); ?>
         <div class="form-group has-feedback">

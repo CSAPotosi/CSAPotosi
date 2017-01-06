@@ -3,6 +3,36 @@
 class TratamientoController extends Controller
 {
     private $_diagnostico = null;
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+            'diagnosticoContext - getViewAjax'
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('index'),
+                'roles' => array('tratamientoIndex'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('tratamientoCreate'),
+            ),
+            array('allow',
+                'actions' => array('getViewAjax'),
+                'roles' => array('tratamientoGetViewAjax'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
     public function actionIndex(){
         $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','indexTratamiento']);
 
@@ -46,12 +76,6 @@ class TratamientoController extends Controller
             }
         }
         return $rList;
-    }
-    public function filters()
-    {
-        return [
-            'diagnosticoContext - getViewAjax'
-        ];
     }
 
     public function filterDiagnosticoContext($filterChain){

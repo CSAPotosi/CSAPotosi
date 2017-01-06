@@ -202,8 +202,10 @@ class OptionsMenu{
             'historial'=>[
                 'label'=>'<i class="fa fa-files-o"></i>Historial',
                 'items'=>[
+                    'antecedentes_Index'=>['url'=>['antecedentes/index','h_id'=>$params['h_id']],'label'=>'Antecedentes'],
                     'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$params['h_id']], 'label'=>'<i class="fa fa-files-o"></i>Historial'],
-                    'newDiagnostico'=>['url'=>['diagnostico/create','h_id'=>$params['h_id']],'label'=>'<i class="fa fa-stethoscope"></i>Nuevo diagnostico']
+                    'diagnostico_Crear'=>['url'=>['diagnostico/create','h_id'=>$params['h_id']],'label'=>'<i class="fa fa-stethoscope"></i>Nuevo diagnostico'],
+                    'vitales_Index'=>['url'=>['vitales/index','h_id'=>$params['h_id']],'label'=>'Signos vitales']
                 ]
             ]
         ];
@@ -212,9 +214,9 @@ class OptionsMenu{
             $hisTemp = HistorialMedico::model()->findByPk($params['h_id']);
             $interModel = $hisTemp->internacionActual;
             if($interModel)
-                $menu['historial']['items']['internacion'] = ['url'=>['internacion/index','i_id'=>$interModel->id_inter],'label'=>'Ver internacion actual'];
+                $menu['historial']['items']['internacion_Index'] = ['url'=>['internacion/index','i_id'=>$interModel->id_inter],'label'=>'Ver internacion actual'];
             else
-                $menu['historial']['items']['internacion'] = ['url'=>['internacion/createIngreso', 'h_id'=>$params['h_id']], 'label'=>'<i class="fa fa-ambulance"></i>Internar paciente'];
+                $menu['historial']['items']['internacion_CreateIngreso'] = ['url'=>['internacion/createIngreso', 'h_id'=>$params['h_id']], 'label'=>'<i class="fa fa-ambulance"></i>Internar paciente'];
         }
         $menu = self::verAcceso($menu);
         return self::selectMenu($menu,$selected);
@@ -320,18 +322,18 @@ class OptionsMenu{
                 'label'=>'<i class="fa fa-files-o"></i>Historial',
                 'items'=>[
                     'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$h_id], 'label'=>'<i class="fa fa-files-o"></i>Historial'],
-                    'newDiagnostico'=>['url'=>['diagnostico/create','h_id'=>$h_id],'label'=>'<i class="fa fa-stethoscope"></i>Nuevo diagnostico']
+                    'diagnostico_Crear'=>['url'=>['diagnostico/create','h_id'=>$h_id],'label'=>'<i class="fa fa-stethoscope"></i>Nuevo diagnostico']
                 ]
             ],
             'internacion'=>[
                 'label'=>'Internacion',
                 'items'=>[
-                    'index'=>['url'=>['internacion/index','i_id'=>$i_id], 'label'=>'Indice'],
-                    'listServicio'=>['url'=>['prestacionServicios/indexForInter','i_id'=>$i_id],'label'=>'Servicios prestados'],
-                    'addServicio'=>['url'=>['prestacionServicios/createForInter','i_id'=>$i_id], 'label'=>'Agregar servicios'],
-                    'alta'=>['url'=>['internacion/alta','i_id'=>$i_id],'label'=>'Alta'],
-                    'notasEnfermeria'=>['url'=>['notaEnfermeria/index','i_id'=>$i_id],'label'=>'Notas de enfermeria'],
-                    'changeSala'=>['url'=>['internacion/changeSala','i_id'=>$i_id], 'label'=>'Cambiar salas'],
+                    'internacion_Index'=>['url'=>['internacion/index','i_id'=>$i_id], 'label'=>'Indice'],
+                    'prestacionServicios_IndexForInter'=>['url'=>['prestacionServicios/indexForInter','i_id'=>$i_id],'label'=>'Servicios prestados'],
+                    'prestacionServicios_CreateForInter'=>['url'=>['prestacionServicios/createForInter','i_id'=>$i_id], 'label'=>'Agregar servicios'],
+                    'internacion_Alta'=>['url'=>['internacion/alta','i_id'=>$i_id],'label'=>'Alta'],
+                    'notaEnfermeria_Index'=>['url'=>['notaEnfermeria/index','i_id'=>$i_id],'label'=>'Notas de enfermeria'],
+                    'internacion_ChangeSala'=>['url'=>['internacion/changeSala','i_id'=>$i_id], 'label'=>'Cambiar salas'],
                 ]
             ]
         ];
@@ -351,11 +353,11 @@ class OptionsMenu{
                     'itemCirugia' => [
                         'label' => 'Cirugia programada',
                         'items' =>[
-                            'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
-                            'view'=>['url'=>['cirugia/view','c_id'=>$cirugia->id_cir],'label'=>'Detalle'],
-                            'confirmar'=>['url'=>['cirugia/registrar','c_id'=>$cirugia->id_cir],'label'=>'Confirmar'],
-                            'reprogramar'=>['url'=>['cirugia/programar','c_id'=>$cirugia->id_cir],'label'=>'Reprogramar'],
-                            'cancelar'=>['url'=>['cirugia/cancelar','c_id'=>$cirugia->id_cir],'label'=>'Cancelar']
+                            'cirugia_Index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
+                            'cirugia_Ver'=>['url'=>['cirugia/view','c_id'=>$cirugia->id_cir],'label'=>'Detalle'],
+                            'cirugia_Registrar'=>['url'=>['cirugia/registrar','c_id'=>$cirugia->id_cir],'label'=>'Confirmar'],
+                            'cirugia_Programar'=>['url'=>['cirugia/programar','c_id'=>$cirugia->id_cir],'label'=>'Reprogramar'],
+                            'cirugia_Cancelar'=>['url'=>['cirugia/cancelar','c_id'=>$cirugia->id_cir],'label'=>'Cancelar']
                         ]
                     ]
                 ];
@@ -365,9 +367,9 @@ class OptionsMenu{
                     'itemCirugia' => [
                         'label' => 'Cirugia registrada',
                         'items' =>[
-                            'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
-                            'view'=>['url'=>['cirugia/view','c_id'=>$cirugia->id_cir],'label'=>'Detalle'],
-                            'confirmar'=>['url'=>['cirugia/registrar','c_id'=>$cirugia->id_cir],'label'=>'Editar']
+                            'cirugia_Index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
+                            'cirugia_Ver'=>['url'=>['cirugia/view','c_id'=>$cirugia->id_cir],'label'=>'Detalle'],
+                            'cirugia_Registrar'=>['url'=>['cirugia/registrar','c_id'=>$cirugia->id_cir],'label'=>'Editar']
                         ]
                     ]
                 ];
@@ -378,9 +380,9 @@ class OptionsMenu{
                 'cirugias' => [
                     'label' => 'Cirugias',
                     'items' =>[
-                        'index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
-                        'programar' => ['url'=>['cirugia/programar'],'label'=>'Programar'],
-                        'registrar' => ['url'=>['cirugia/registrar'],'label'=>'Registrar']
+                        'cirugia_Index' => ['url'=>['cirugia/index'],'label'=>'Calendario'],
+                        'cirugia_Programar' => ['url'=>['cirugia/programar'],'label'=>'Programar'],
+                        'cirugia_Registrar' => ['url'=>['cirugia/registrar'],'label'=>'Registrar']
                     ]
                 ]
             ];
@@ -396,16 +398,16 @@ class OptionsMenu{
                 'label'=>'Historial',
                 'items'=>[
                     'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$dModel->id_historial],'label'=>'Indice'],
-                    'newDiagnostico'=>['url'=>['diagnostico/create','h_id'=>$dModel->id_historial],'label'=>'Nuevo Diagnostico'],
+                    'diagnostico_Crear'=>['url'=>['diagnostico/create','h_id'=>$dModel->id_historial],'label'=>'Nuevo Diagnostico'],
                 ]
             ],
             'diagnostico'=>[
                 'label'=>'diagnostico',
                 'items'=>[
-                    'view'=>['url'=>['diagnostico/view','d_id'=>$dModel->id_diag],'label'=>'Detalle'],
-                    'addEvolucion'=>['url'=>['evolucion/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Evolucion'],
-                    'indexTratamiento'=>['url'=>['tratamiento/index','d_id'=>$dModel->id_diag],'label'=>'Tratamientos realizados'],
-                    'addTratamiento'=>['url'=>['tratamiento/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Tratamiento']
+                    'diagnostico_Ver'=>['url'=>['diagnostico/view','d_id'=>$dModel->id_diag],'label'=>'Detalle'],
+                    'evolucion_Crear'=>['url'=>['evolucion/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Evolucion'],
+                    'tratamiento_Index'=>['url'=>['tratamiento/index','d_id'=>$dModel->id_diag],'label'=>'Tratamientos realizados'],
+                    'tratamiento_Create'=>['url'=>['tratamiento/create','d_id'=>$dModel->id_diag],'label'=>'Agregar Tratamiento']
                 ]
             ]
         ];
@@ -418,10 +420,9 @@ class OptionsMenu{
             'examen'=>[
                 'label' => 'Examenes laboratorio',
                 'items' => [
-                    'index' => ['url'=>['examen/index'],'label'=>'Pendientes'],
-                    'list' => ['url'=>['examen/list'],'label'=>'Realizados'],
-                    'examen' => ['url'=>['examen/examen'],'label'=>'Adm. de examenes'],
-                    'parametros' => ['url'=>['examen/parametros'],'label'=>'Adm. parametros']
+                    'examen_Index' => ['url'=>['examen/index'],'label'=>'Pendientes'],
+                    'examen_List' => ['url'=>['examen/list'],'label'=>'Realizados'],
+                    'examen_Examen' => ['url'=>['examen/examen'],'label'=>'Adm. de examenes']
                 ]
             ]
         ];
@@ -467,10 +468,10 @@ class OptionsMenu{
             'cirugia'=>[
                 'label'=>'Reportes de cirugia',
                 'items'=>[
-                    'index'=>['url'=>['reporteCirugia/index'], 'label'=>'Realizados'],
-                    'index2'=>['url'=>['reporteCirugia/index2'], 'label'=>'Reservados'],
-                    'estadisticaSala'=>['url'=>['reporteCirugia/estadisticaSala'],'label'=>'Uso de quirofanos'],
-                    'estadisticaPersonal' => ['url'=>['reporteCirugia/estadisticaPersonal'],'label'=>'Personal']
+                    'reporteCirugia_Index'=>['url'=>['reporteCirugia/index'], 'label'=>'Realizados'],
+                    'reporteCirugia_Index2'=>['url'=>['reporteCirugia/index2'], 'label'=>'Reservados'],
+                    'reporteCirugia_EstadisticaSala'=>['url'=>['reporteCirugia/estadisticaSala'],'label'=>'Uso de quirofanos'],
+                    'reporteCirugia_EstadisticaPersonal' => ['url'=>['reporteCirugia/estadisticaPersonal'],'label'=>'Personal']
                 ]
             ]
         ];
@@ -483,8 +484,8 @@ class OptionsMenu{
           'internacion'=>[
               'label'=>'Reportes de internacion',
               'items'=>[
-                  'index'=>['url'=>['reporteInternacion/index'],'label'=>'Internaciones'],
-                  'grafica'=>['url'=>['reporteInternacion/graficas'],'label'=>'Graficas']
+                  'reporteInternacion_Index'=>['url'=>['reporteInternacion/index'],'label'=>'Internaciones'],
+                  'reporteInternacion_Graficas'=>['url'=>['reporteInternacion/graficas'],'label'=>'Graficas']
               ]
           ]
         ];
@@ -497,8 +498,8 @@ class OptionsMenu{
             'lab'=>[
                 'label'=>'Reportes de laboratorio',
                 'items'=>[
-                    'index'=>['url'=>['reporteLaboratorio/index'],'label'=>'Examenes de laboratorio'],
-                    'examenes'=>['url'=>['reporteLaboratorio/examenes'],'label'=>'Examenes mas realizados']
+                    'reporteLaboratorio_Index'=>['url'=>['reporteLaboratorio/index'],'label'=>'Examenes de laboratorio'],
+                    'reporteLaboratorio_Examenes'=>['url'=>['reporteLaboratorio/examenes'],'label'=>'Examenes mas realizados']
                 ]
             ]
         ];
@@ -506,6 +507,31 @@ class OptionsMenu{
         return self::selectMenu($menu,$selected);
     }
 
+    public static function menuEspecialOptions($params = [], $selected = ['','']){
+        $menu =[
+            'vademecum' =>[
+                'label'=>'Vademecum',
+                'items'=>[
+                    'medicamento_Index'=>['url'=>['medicamento/index'],'label'=>'Listado']
+                ]
+            ],
+            'cie'=>[
+                'label'=>'CIE10',
+                'items'=>[
+                    'cie_Index'=>['url'=>['cie/index'],'label'=>'Listado']
+                ]
+            ],
+            'parametros'=>[
+                'label'=>'Parametros',
+                'items'=>[
+                    'parametro_Index'=>['url'=>['parametro/index'],'label'=>'Listado'],
+                    'parametro_Create'=>['url'=>['parametro/create'],'label'=>'Nuevo P.']
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu,$selected);
+    }
     private static function selectMenu($menu = [], $selected = ['','']){
         $submenu = [];
         if(count($selected)==2){
@@ -522,7 +548,6 @@ class OptionsMenu{
     public static function verAcceso($menu)
     {
         foreach ($menu as $i => $item) {
-
             foreach ($item['items'] as $index => $link) {
                 if (!(Yii::app()->authManager->checkAccess($index, Yii::app()->user->id)))
                     unset($menu[$i]['items'][$index]);

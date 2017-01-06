@@ -19,6 +19,11 @@
     "description": "Lista de Paciente medicante"
   },
   {
+    "name": "pacienteGetMinimalListAjax",
+    "type": "0",
+    "description": "Lista minimizada de pacientes"
+  },
+  {
     "name": "pacienteUpdate",
     "type": "0",
     "description": "Actualizar Paciente"
@@ -332,6 +337,36 @@
     "name": "servicioView",
     "type": "0",
     "description": "Detalle de Servicios"
+  },
+  {
+    "name": "servicioSalaAddItem",
+    "type": "0",
+    "description": "Agregar salas a tipo de sala"
+  },
+  {
+    "name": "servicioSalaEditItem",
+    "type": "0",
+    "description": "Editar salas"
+  },
+  {
+    "name": "servicioChangeStateServicio",
+    "type": "0",
+    "description": "Cambiar estado servicio"
+  },
+  {
+    "name": "servicioSala",
+    "type": "0",
+    "description": "Ver sala"
+  },
+  {
+    "name": "servicioGetSalasAjax",
+    "type": "0",
+    "description": "Obtener salas"
+  },
+  {
+    "name": "servicioChangeStateSalaAjax",
+    "type": "0",
+    "description": "Cambiar estado de salas"
   },
   {
     "name": "categoriaCreate",

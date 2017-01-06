@@ -2,6 +2,43 @@
 
 class SeguridadController extends Controller
 {
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions' => array('audit'),
+                'roles' => array('seguridadAudit'),
+            ),
+            array('allow',
+                'actions' => array('auditTxt'),
+                'roles' => array('seguridadAuditTxt'),
+            ),
+            array('allow',
+                'actions' => array('indexBackup'),
+                'roles' => array('seguridadIndexBackup'),
+            ),
+            array('allow',
+                'actions' => array('createBackup'),
+                'roles' => array('seguridadCreateBackup'),
+            ),
+            array('allow',
+                'actions' => array('cargarBackup'),
+                'roles' => array('seguridadCargarBackup'),
+            ),
+            array('deny',  // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
+
 	public function actionAudit()
 	{
         $fec_ini = date('d/m/Y');
