@@ -234,9 +234,11 @@
 					</li>
 				</ul>
 			</li>
+            <?php if(Yii::app()->user->checkAccess('Administracion de cirugias')):?>
 			<li>
 				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="fa fa-lg fa-fw fa-heartbeat"></i> <span class="menu-item-parent">Cirugias</span></a>
 			</li>
+            <?php endif;?>
             <li>
                 <a href="<?php echo CHtml::normalizeUrl(['medicamento/index'])?>"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Config</span></a>
             </li>

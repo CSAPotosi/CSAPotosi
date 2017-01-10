@@ -206,7 +206,7 @@ class OptionsMenu{
                     'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$params['h_id']], 'label'=>'<i class="fa fa-files-o"></i>Historial'],
                     'diagnostico_Crear'=>['url'=>['diagnostico/create','h_id'=>$params['h_id']],'label'=>'<i class="fa fa-stethoscope"></i>Nuevo diagnostico'],
                     'vitales_Index'=>['url'=>['vitales/index','h_id'=>$params['h_id']],'label'=>'Signos vitales']
-                ]
+                ]   
             ]
         ];
 
