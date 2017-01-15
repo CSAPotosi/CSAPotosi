@@ -1,6 +1,6 @@
 <?php
 /* @var $this PersonaController */
-$this->pageTitle = "Paciente <span> > Crear </span>";
+$this->pageTitle = "Paciente <span></span>";
 $this->breadcrumbs = array(
     'Paciente',
 );
@@ -9,267 +9,275 @@ $this->breadcrumbs = array(
     <div class="row">
         <div class="col-md-12">
             <div class="jarviswidget jarviswidget-color-blue" id="widget1">
-                <header>Formulario de Registro de Paciente</header>
+                <header></header>
                 <div>
                     <div class="jarviswidget-editbox">
                     </div>
                     <div class="widget-body">
-                        <div class="row">
-                            <?php echo CHtml::beginForm(array(), 'post', array('id' => 'wizard-1')); ?>
-                            <div id="bootstrap-wizard-1" class="col-sm-12">
-                                <div class="form-bootstrapWizard">
-                                    <ul class="bootstrapWizard form-wizard">
-                                        <li class="active" data-target="#step1">
-                                            <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span
-                                                    class="title">Informacion paciente</span> </a>
-                                        </li>
-                                        <li data-target="#step2">
-                                            <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span
-                                                    class="title">Informacion Complementaria</span> </a>
-                                        </li>
-                                        <li data-target="#step3">
-                                            <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span
-                                                    class="title">Informacion Contacto</span> </a>
-                                        </li>
-                                        <li data-target="#step4">
-                                            <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span
-                                                    class="title">Registro Completado</span> </a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab1">
-                                        <br><br><br>
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-6">
-                                                <div align="center">
-                                                    <?php $this->widget('application.extensions.xphoto.Xphoto', array(
-                                                        'model' => $modelPerson,
-                                                        'attribute' => 'foto',
-                                                        'width' => '270',
-                                                        'height' => '315',
-                                                    )); ?>
+                        <fieldset>
+                            <legend>Crear Paciente</legend>
+                            <div class="row">
+                                <?php echo CHtml::beginForm(array(), 'post', array('id' => 'wizard-1')); ?>
+                                <div id="bootstrap-wizard-1" class="col-sm-12">
+                                    <div class="form-bootstrapWizard">
+                                        <ul class="bootstrapWizard form-wizard">
+                                            <li class="active" data-target="#step1">
+                                                <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span
+                                                        class="title">Informacion paciente</span> </a>
+                                            </li>
+                                            <li data-target="#step2">
+                                                <a href="#tab2" data-toggle="tab"> <span class="step">2</span> <span
+                                                        class="title">Informacion Complementaria</span> </a>
+                                            </li>
+                                            <li data-target="#step3">
+                                                <a href="#tab3" data-toggle="tab"> <span class="step">3</span> <span
+                                                        class="title">Informacion Contacto</span> </a>
+                                            </li>
+                                            <li data-target="#step4">
+                                                <a href="#tab4" data-toggle="tab"> <span class="step">4</span> <span
+                                                        class="title">Registro Completado</span> </a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab1">
+                                            <br><br><br>
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div align="center">
+                                                        <?php $this->widget('application.extensions.xphoto.Xphoto', array(
+                                                            'model' => $modelPerson,
+                                                            'attribute' => 'foto',
+                                                            'width' => '270',
+                                                            'height' => '315',
+                                                        )); ?>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-6">
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Numero de Documento'); ?>
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'num_doc', array('class' => 'form-control', 'placeholder' => 'Numero De Documento')); ?>
-                                                    <input type="text" name="num_doc" id="num_doc" class="form-control"
-                                                           placeholder="Numero de Docuemnto"
-                                                           value="<?php echo $modelPerson->num_doc ?>">
-                                                    <?php echo CHtml::error($modelPerson, 'num_doc', ['class' => 'label label-danger']); ?>
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Numero de Documento'); ?>
+                                                        <?php echo CHtml::activeHiddenField($modelPerson, 'num_doc', array('class' => 'form-control', 'placeholder' => 'Numero De Documento')); ?>
+                                                        <input type="text" name="num_doc" id="num_doc"
+                                                               class="form-control"
+                                                               placeholder="Numero de Docuemnto"
+                                                               value="<?php echo $modelPerson->num_doc ?>">
+                                                        <?php echo CHtml::error($modelPerson, 'num_doc', ['class' => 'label label-danger']); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Tipo de Documento'); ?>
+                                                        <?php echo CHtml::activedropDownList($modelPerson, 'tipo_doc', $modelPerson->getTipoDocumento(), array('class' => 'form-control', 'placeholder' => 'dni')); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'nombres'); ?>
+                                                        <?php echo CHtml::activeHiddenField($modelPerson, 'nombres', array('class' => 'form-control', 'placeholder' => 'Nombres')); ?>
+                                                        <input type="text" name="nombres" id="nombres"
+                                                               class="form-control"
+                                                               placeholder="Nombres"
+                                                               value="<?php echo $modelPerson->nombres ?>">
+                                                        <?php echo CHtml::error($modelPerson, 'nombres', ['class' => 'label label-danger']); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'primer_apellido'); ?>
+                                                        <?php echo CHtml::activeHiddenField($modelPerson, 'primer_apellido', array('class' => 'form-control', 'placeholder' => 'Primer Apellido')); ?>
+                                                        <input type="text" name="primer_apellido" id="primer_apellido"
+                                                               class="form-control" placeholder="Primer Apellido"
+                                                               value="<?php echo $modelPerson->primer_apellido ?>">
+                                                        <?php echo CHtml::error($modelPerson, 'primer_apellido', ['class' => 'label label-danger']); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Segundo Apellido'); ?>
+                                                        <?php echo CHtml::activetextField($modelPerson, 'segundo_apellido', array('class' => 'form-control', 'placeholder' => 'Segundo Apellido')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'segundo_apellido', array('class' => 'label label-danger')); ?>
+                                                    </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Tipo de Documento'); ?>
-                                                    <?php echo CHtml::activedropDownList($modelPerson, 'tipo_doc', $modelPerson->getTipoDocumento(), array('class' => 'form-control', 'placeholder' => 'dni')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'nombres'); ?>
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'nombres', array('class' => 'form-control', 'placeholder' => 'Nombres')); ?>
-                                                    <input type="text" name="nombres" id="nombres" class="form-control"
-                                                           placeholder="Nombres"
-                                                           value="<?php echo $modelPerson->nombres ?>">
-                                                    <?php echo CHtml::error($modelPerson, 'nombres', ['class' => 'label label-danger']); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'primer_apellido'); ?>
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'primer_apellido', array('class' => 'form-control', 'placeholder' => 'Primer Apellido')); ?>
-                                                    <input type="text" name="primer_apellido" id="primer_apellido"
-                                                           class="form-control" placeholder="Primer Apellido"
-                                                           value="<?php echo $modelPerson->primer_apellido ?>">
-                                                    <?php echo CHtml::error($modelPerson, 'primer_apellido', ['class' => 'label label-danger']); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Segundo Apellido'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'segundo_apellido', array('class' => 'form-control', 'placeholder' => 'Segundo Apellido')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'segundo_apellido', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Grupo Sanguineo'); ?>
-                                                    <?php echo CHtml::activedropDownList($modelPerson, 'grupo_sanguineo', $modelPerson->getGrupoSanguineo(), array('class' => 'form-control')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'grupo_sanguineo', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Genero'); ?>
-                                                    <?php echo CHtml::activedropDownList($modelPerson, 'genero', $modelPerson->getGenero(), array('class' => 'form-control')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'genero', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_nac'); ?>
-                                                    <?php echo CHtml::activeLabel($modelPerson, 'Fecha Nacimiento'); ?>
-                                                    <input type="datepicker" class="form-control datepicker"
-                                                           data-dateformat="dd/mm/yy" name="fecha_nac" id="fecha_nac"
-                                                           placeholder="dd/mm/aaaa" maxDate='02/11/2016'
-                                                           value="<?php echo $modelPerson->fecha_nac ?>">
-                                                    <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger']); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Estado Civil'); ?>
-                                                    <?php echo CHtml::activedropDownList($modelPerson, 'estado_civil', $modelPerson->getEstadoCivil(), array('class' => 'form-control')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'estado_civil', array('class' => 'label label-danger')); ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Ocupacion'); ?>
-                                                    <?php echo CHtml::activetextField($modelPerson, 'ocupacion', array('class' => 'form-control', 'placeholder' => 'Ocupacion')); ?>
-                                                    <?php echo CHtml::error($modelPerson, 'ocupacion', array('class' => 'label label-danger')); ?>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Grupo Sanguineo'); ?>
+                                                        <?php echo CHtml::activedropDownList($modelPerson, 'grupo_sanguineo', $modelPerson->getGrupoSanguineo(), array('class' => 'form-control')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'grupo_sanguineo', array('class' => 'label label-danger')); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Genero'); ?>
+                                                        <?php echo CHtml::activedropDownList($modelPerson, 'genero', $modelPerson->getGenero(), array('class' => 'form-control')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'genero', array('class' => 'label label-danger')); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_nac'); ?>
+                                                        <?php echo CHtml::activeLabel($modelPerson, 'Fecha Nacimiento'); ?>
+                                                        <input type="datepicker" class="form-control datepicker"
+                                                               data-dateformat="dd/mm/yy" name="fecha_nac"
+                                                               id="fecha_nac"
+                                                               placeholder="dd/mm/aaaa" maxDate='02/11/2016'
+                                                               value="<?php echo $modelPerson->fecha_nac ?>">
+                                                        <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger']); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Estado Civil'); ?>
+                                                        <?php echo CHtml::activedropDownList($modelPerson, 'estado_civil', $modelPerson->getEstadoCivil(), array('class' => 'form-control')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'estado_civil', array('class' => 'label label-danger')); ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Ocupacion'); ?>
+                                                        <?php echo CHtml::activetextField($modelPerson, 'ocupacion', array('class' => 'form-control', 'placeholder' => 'Ocupacion')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'ocupacion', array('class' => 'label label-danger')); ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab2">
-                                        <br><br><br>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-6 col-lg-offset-3">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Nacionalidad'); ?>
-                                                                    <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('class' => 'form-control')); ?>
-                                                                    <?php echo CHtml::error($modelPerson, 'nacionalidad', array('class' => 'label label-danger')); ?>
+                                        <div class="tab-pane" id="tab2">
+                                            <br><br><br>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-lg-offset-3">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Nacionalidad'); ?>
+                                                                        <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('class' => 'form-control')); ?>
+                                                                        <?php echo CHtml::error($modelPerson, 'nacionalidad', array('class' => 'label label-danger')); ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <?php echo CHtml::activelabelEx($modelPerson, 'Localidad'); ?>
+                                                                        <?php echo CHtml::activetextField($modelPerson, 'localidad', array('class' => 'form-control', 'placeholder' => 'Localidad o Departamento')); ?>
+                                                                        <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger')); ?>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <?php echo CHtml::activelabelEx($modelPerson, 'Localidad'); ?>
-                                                                    <?php echo CHtml::activetextField($modelPerson, 'localidad', array('class' => 'form-control', 'placeholder' => 'Localidad o Departamento')); ?>
-                                                                    <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger')); ?>
-                                                                </div>
+                                                            <div class="form-group">
+                                                                <?php echo CHtml::activelabelEx($modelPerson, 'Domicilio'); ?>
+                                                                <?php echo CHtml::activetextField($modelPerson, 'domicilio', array('class' => 'form-control', 'placeholder' => 'Direccion')); ?>
+                                                                <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger')); ?>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <?php echo CHtml::activelabelEx($modelPerson, 'Domicilio'); ?>
-                                                            <?php echo CHtml::activetextField($modelPerson, 'domicilio', array('class' => 'form-control', 'placeholder' => 'Direccion')); ?>
-                                                            <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger')); ?>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <?php echo CHtml::activelabelEx($modelPerson, 'Telefono'); ?>
-                                                            <?php echo CHtml::activetextField($modelPerson, 'telefono', array('class' => 'form-control', 'placeholder' => 'Telefono')); ?>
-                                                            <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger')); ?>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <?php echo CHtml::activelabelEx($modelPerson, 'Email'); ?>
-                                                            <?php echo CHtml::activehiddenField($modelPerson, 'email', []); ?>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="ejemplo@email.com" id="email"
-                                                                   name="email"
-                                                                   value="<?php echo $modelPerson->email ?>">
-                                                            <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger')); ?>
+                                                            <div class="form-group">
+                                                                <?php echo CHtml::activelabelEx($modelPerson, 'Telefono'); ?>
+                                                                <?php echo CHtml::activetextField($modelPerson, 'telefono', array('class' => 'form-control', 'placeholder' => 'Telefono')); ?>
+                                                                <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger')); ?>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <?php echo CHtml::activelabelEx($modelPerson, 'Email'); ?>
+                                                                <?php echo CHtml::activehiddenField($modelPerson, 'email', []); ?>
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="ejemplo@email.com" id="email"
+                                                                       name="email"
+                                                                       value="<?php echo $modelPerson->email ?>">
+                                                                <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger')); ?>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab3">
-                                        <br><br><br>
-                                        <div class="row">
-                                            <div class="col-md-6 col-lg-offset-3">
-                                                <?php
-                                                if ($modelPerson->responsable != '') {
-                                                    $valor = explode("-", $modelPerson->responsable, 4);
-                                                } else {
-                                                    $valor[0] = "";
-                                                    $valor[1] = "";
-                                                    $valor[2] = "";
-                                                    $valor[3] = "";
-                                                }
+                                        <div class="tab-pane" id="tab3">
+                                            <br><br><br>
+                                            <div class="row">
+                                                <div class="col-md-6 col-lg-offset-3">
+                                                    <?php
+                                                    if ($modelPerson->responsable != '') {
+                                                        $valor = explode("-", $modelPerson->responsable, 4);
+                                                    } else {
+                                                        $valor[0] = "";
+                                                        $valor[1] = "";
+                                                        $valor[2] = "";
+                                                        $valor[3] = "";
+                                                    }
 
-                                                ?>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Contacto</label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Nombre completo de contacto"
-                                                                   id="contacto" value="<?php echo $valor[0] ?>">
+                                                    ?>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Contacto</label>
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="Nombre completo de contacto"
+                                                                       id="contacto" value="<?php echo $valor[0] ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Parentesco</label>
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="Parentesco o relacion con el paciente"
+                                                                       id="parentesco" value="<?php echo $valor[1] ?>">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Parentesco</label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Parentesco o relacion con el paciente"
-                                                                   id="parentesco" value="<?php echo $valor[1] ?>">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Telefono</label>
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="Telefono" id="telefono"
+                                                                       value="<?php echo $valor[2] ?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Direccion</label>
+                                                                <input type="text" class="form-control"
+                                                                       placeholder="Direccion" id="direccion"
+                                                                       value="<?php echo $valor[3] ?>">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Telefono</label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Telefono" id="telefono"
-                                                                   value="<?php echo $valor[2] ?>">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Direccion</label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Direccion" id="direccion"
-                                                                   value="<?php echo $valor[3] ?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <?php echo CHtml::activehiddenField($modelPerson, 'responsable', []); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab4">
-                                        <br><br><br>
-                                        <div class="row">
-                                            <div class="box-footer">
-                                                <div class="form-group">
-                                                    <div class="col-md-6 col-lg-offset-3">
-                                                        <div class="alert alert-success fade in">
-                                                            <i class="fa-fw fa fa-check"></i>
-                                                            <h1><strong>Completado</strong> Informacion Completada.</h1>
-                                                        </div>
-                                                        <div class="col-md-8 col-lg-offset-2">
-                                                            <button class="btn btn-primary btn-lg" type="sutmit"
-                                                                    id="btnEnviarPaciente"><i class='fa fa-save'></i>
-                                                                Enviar la Informacion del Paciente
-                                                            </button>
-                                                        </div>
+                                                    <div class="form-group">
+                                                        <?php echo CHtml::activehiddenField($modelPerson, 'responsable', []); ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <ul class="pager wizard no-margin">
-                                                    <!--<li class="previous first disabled">
-                                                    <a href="javascript:void(0);" class="btn btn-lg btn-default"> First </a>
-                                                    </li>-->
-                                                    <li class="previous disabled">
-                                                        <a href="javascript:void(0);"
-                                                           class="btn btn-lg btn-default"> Anterior </a>
-                                                    </li>
-                                                    <!--<li class="next last">
-                                                    <a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
-                                                    </li>-->
-                                                    <li class="next">
-                                                        <a href="javascript:void(0);"
-                                                           class="btn btn-lg txt-color-darken"> Siguiente </a>
-                                                    </li>
-                                                </ul>
+                                        <div class="tab-pane" id="tab4">
+                                            <br><br><br>
+                                            <div class="row">
+                                                <div class="box-footer">
+                                                    <div class="form-group">
+                                                        <div class="col-md-6 col-lg-offset-3">
+                                                            <div class="alert alert-success fade in">
+                                                                <i class="fa-fw fa fa-check"></i>
+                                                                <h1><strong>Completado</strong> Informacion Completada.
+                                                                </h1>
+                                                            </div>
+                                                            <div class="col-md-8 col-lg-offset-2">
+                                                                <button class="btn btn-primary btn-lg" type="sutmit"
+                                                                        id="btnEnviarPaciente"><i
+                                                                        class='fa fa-save'></i>
+                                                                    Enviar la Informacion del Paciente
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <ul class="pager wizard no-margin">
+                                                        <!--<li class="previous first disabled">
+                                                        <a href="javascript:void(0);" class="btn btn-lg btn-default"> First </a>
+                                                        </li>-->
+                                                        <li class="previous disabled">
+                                                            <a href="javascript:void(0);"
+                                                               class="btn btn-lg btn-default"> Anterior </a>
+                                                        </li>
+                                                        <!--<li class="next last">
+                                                        <a href="javascript:void(0);" class="btn btn-lg btn-primary"> Last </a>
+                                                        </li>-->
+                                                        <li class="next">
+                                                            <a href="javascript:void(0);"
+                                                               class="btn btn-lg txt-color-darken"> Siguiente </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <?php echo CHtml::endForm(); ?>
                             </div>
-                            <?php echo CHtml::endForm(); ?>
-                        </div>
+                        </fieldset>
                     </div>
                 </div>
             </div>

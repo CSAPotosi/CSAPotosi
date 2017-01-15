@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Servicio <span> > Editar Atencion Medica</span>";
+$this->pageTitle = "Atencion Medica<span></span>";
 $this->breadcrumbs = array(
     'atencionMedicaEdit',
 );
@@ -13,7 +13,7 @@ $this->breadcrumbs = array(
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Editar Atencion Medica</legend>
+                            <legend>Actualizar Atencion Medica</legend>
                             <div class="row">
                                 <div class="col-md-6 col-lg-offset-3">
                                     <div class="row">

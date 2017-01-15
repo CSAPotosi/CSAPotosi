@@ -14,6 +14,10 @@
     "child": "pacienteCreate"
   },
   {
+    "parent": "Paciente Emergencia",
+    "child": "pacienteEmergencia"
+  },
+  {
     "parent": "Detalle Paciente",
     "child": "pacienteView"
   },
@@ -280,6 +284,10 @@
   {
     "parent": "Gestion de pacientes",
     "child": "Actualizar Paciente"
+  },
+  {
+    "parent": "Gestion de pacientes",
+    "child": "Paciente Emergencia"
   },
   {
     "parent": "Seguro de Paciente",

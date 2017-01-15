@@ -1,6 +1,6 @@
 <?php
 /* @var $this PacienteController */
-	$this->pageTitle = "Paciente <span> > Lista </span>";
+$this->pageTitle = "Paciente <span> </span>";
 	$this->breadcrumbs = array(
 		'Paciente',
 	);
@@ -43,18 +43,22 @@
 								</div>
 							</div>
 						</div>
-
-						<div class="row" id="patient-list">
-							<!-- Lista de pacientes (_pacientListView)-->
-						</div>
-
-						<div class="row">
-							<div class="col-md-12 text-center">
-								<button class="btn btn-default" id="btn-load-patients" data-page="0" data-limit="<?php echo Yii::app()->params['itemListLimit'];?>" data-url="<?php echo CHtml::normalizeUrl(['paciente/getPatientListAjax'])?>">
-									Ver mas
-								</button>
+						<fieldset>
+							<legend>Lista de Pacientes</legend>
+							<div class="row" id="patient-list">
+								<!-- Lista de pacientes (_pacientListView)-->
 							</div>
-						</div>
+
+							<div class="row">
+								<div class="col-md-12 text-center">
+									<button class="btn btn-default" id="btn-load-patients" data-page="0"
+											data-limit="<?php echo Yii::app()->params['itemListLimit']; ?>"
+											data-url="<?php echo CHtml::normalizeUrl(['paciente/getPatientListAjax']) ?>">
+										Ver mas
+									</button>
+								</div>
+							</div>
+						</fieldset>
 					</div>
 				</div>
 			</div>

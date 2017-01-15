@@ -48,8 +48,8 @@ class MYPDF extends TCPDF
             $this->Cell($w[1], 6, $row[1], 'LR', 0, 'L', $fill);
             $this->Cell($w[2], 6, $row[2], 'LR', 0, 'L', $fill);
             $this->Cell($w[3], 6, $row[3], 'LR', 0, 'R', $fill);
-            $this->Cell($w[4], 6, $row[3], 'LR', 0, 'R', $fill);
-            $this->Cell($w[5], 6, $row[3], 'LR', 0, 'R', $fill);
+            $this->Cell($w[4], 6, $row[4], 'LR', 0, 'R', $fill);
+            $this->Cell($w[5], 6, $row[5], 'LR', 0, 'R', $fill);
             $this->Ln();
             $fill = !$fill;
         }

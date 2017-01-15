@@ -44,6 +44,10 @@ class PacienteController extends Controller
 				'actions' => array('SeguroCreate'),
 				'roles' => array('pacienteSeguroCreate'),
 			),
+			array('allow',
+				'actions' => array('Emergencia'),
+				'roles' => array('pacienteEmergencia'),
+			),
 			array('deny',
 				'users' => array('*'),
 			),
@@ -52,7 +56,7 @@ class PacienteController extends Controller
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuPaciente([],['pacientes','index']);
+		$this->menu = OptionsMenu::menuPaciente([], ['pacientes', 'Lista Paciente']);
 		$this->render('index');
 	}
 
@@ -74,7 +78,7 @@ class PacienteController extends Controller
 
 	public function actionCreate()
 	{
-		$this->menu = OptionsMenu::menuPaciente([], ['pacientes', 'index']);
+		$this->menu = OptionsMenu::menuPaciente([], ['pacientes', 'Crear Paciente']);
 		$modelPerson = new PersonaForm();
 		if (isset($_POST['PersonaForm'])) {
 			$modelPerson->setAttributes($_POST['PersonaForm'], false);
@@ -87,14 +91,14 @@ class PacienteController extends Controller
 
 	public function actionDetallePaciente($id)
 	{
-		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'detallePaciente']);
+		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'Detalle Paciente']);
 		$paciente = Paciente::model()->findByPk($id);
 		$this->render('detallePaciente', ['paciente' => $paciente]);
 	}
 
 	public function actionUpdate($id)
 	{
-		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'updatePaciente']);
+		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'Actualizar Paciente']);
 		$modelPerson = new PersonaForm();
 		$persona = Persona::model()->findByPk($id);
 		if (isset($_POST['PersonaForm'])) {
@@ -109,7 +113,7 @@ class PacienteController extends Controller
 
 	public function actionSeguroPaciente($id)
 	{
-		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'seguroPaciente']);
+		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'Seguro Paciente']);
 		$paciente = Paciente::model()->findByPk($id);
 		$listSeguro = AseguradoConvenio::model()->findAll([
 			'condition' => "id_paciente=$id",
@@ -122,7 +126,7 @@ class PacienteController extends Controller
 
 	public function actionSeguroCreate($id)
 	{
-		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'updateCreate']);
+		$this->menu = OptionsMenu::menuPaciente(['id_paciente' => $id], ['paciente', 'Seguro Create']);
 		$paciente = Paciente::model()->findByPk($id);
 		$modelAsegurado = new AseguradoConvenio();
 		$listPaciente = Paciente::model()->findAll([
@@ -137,6 +141,21 @@ class PacienteController extends Controller
 			'paciente' => $paciente,
 			'modelAsegurado' => $modelAsegurado,
 			'listPaciente' => $listPaciente,
+		]);
+	}
+
+	public function actionEmergencia()
+	{
+		$this->menu = OptionsMenu::menuPaciente([], ['pacientes', 'Paciente Emergencia']);
+		$modelPerson = new PersonaForm();
+		if (isset($_POST['PersonaForm'])) {
+			$modelPerson->setAttributes($_POST['PersonaForm'], false);
+			$id_paciente = $modelPerson->savePaciente();
+			if ($id_paciente != 0)
+				$this->redirect(["historialMedico/index", 'id_paciente' => $id_paciente]);
+		}
+		$this->render('formEmergencia', [
+			'modelPerson' => $modelPerson
 		]);
 	}
 }

@@ -109,7 +109,8 @@ class CitaController extends Controller
         foreach ($listaCitas as $item) {
             $listahoraOcupada[] = date('H:i', strtotime($item->hora_cita));
         }
-        foreach ($this->Horas() as $valor => $descripcion) {
+        $vectorResult = array_diff($this->Horas(), $listahoraOcupada);
+        foreach ($vectorResult as $valor => $descripcion) {
             echo CHtml::tag('option', array('value' => $descripcion), CHtml::encode($descripcion), true);
         }
     }

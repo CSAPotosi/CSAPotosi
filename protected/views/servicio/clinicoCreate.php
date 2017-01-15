@@ -1,7 +1,7 @@
 <?php
 /* @var $this UsuarioController */
 
-$this->pageTitle = "Crear <span> > Servicio </span>";
+$this->pageTitle = "Servicio Clinico <span></span>";
 $this->breadcrumbs = array(
     'Create',
 );

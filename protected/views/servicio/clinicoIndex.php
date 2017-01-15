@@ -1,6 +1,6 @@
 <?php
 
-$this->pageTitle = "Servicio <span> > Lista de Servicios </span>";
+$this->pageTitle = "Servicio Clinico <span></span>";
 $this->breadcrumbs = array(
     'Servicio',
 );
@@ -22,11 +22,13 @@ $this->breadcrumbs = array(
                                                            class="form-control" id="searchServicio">
                                                     <label class="glyphicon glyphicon-search"></label>
                                                 </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <fieldset>
+                                        <legend>Lista de Servicios Clinicos</legend>
                                         <br>
-                                    <table class="table table-bordered table-responsive">
+                                        <table class="table table-bordered table-responsive">
                                             <thead>
                                             <tr>
                                                 <th>Codigo Servicio</th>
@@ -67,7 +69,7 @@ $this->breadcrumbs = array(
                                                                 <span class="onoffswitch-inner" data-swchon-text="YES"
                                                                       data-swchoff-text="NO"></span>
                                                                 <span class="onoffswitch-switch"></span>
-                                                            </label> 
+                                                            </label>
                                                     </span>
                                                         </td>
                                                         <td>
@@ -80,6 +82,7 @@ $this->breadcrumbs = array(
                                             } ?>
                                             </tbody>
                                         </table>
+                                    </fieldset>
                                 </article>
                             </div>
                         </div>

@@ -7,8 +7,8 @@ class OptionsMenu{
                 'label'=>'<i class="fa fa-group"></i> Pacientes',
                 'items'=>[
                     'Lista Paciente' => ['url' => ['paciente/index'], 'label' => '<i class="fa fa-th-list"></i> Lista'],
-                    'Crear Paciente' => ['url' => ['paciente/create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Paciente']
-
+                    'Crear Paciente' => ['url' => ['paciente/create'], 'label' => '<i class="fa fa-plus"></i> Nuevo Paciente'],
+                    'Paciente Emergencia' => ['url' => ['paciente/emergencia'], 'label' => '<i class="fa fa-ambulance"></i> Paciente Emergencia']
                 ]
             ]
         ];

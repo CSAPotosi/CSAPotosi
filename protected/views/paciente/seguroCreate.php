@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Paciente <span> > Crear Seguro</span>";
+$this->pageTitle = "Paciente <span></span>";
 $this->breadcrumbs = array(
     'Paciente',
 );

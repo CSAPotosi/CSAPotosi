@@ -61,7 +61,11 @@ class RegistroController extends Controller
                 'actions' => array('CreatePdfDetalleAsistencia'),
                 'roles' => array('registroCreatePdfDetalleAsistencia'),
             ),
-            array('deny',  // deny all users
+            array('allow',
+                'actions' => array('CreatePdfDetalleAsistenciaGeneral'),
+                'roles' => array('registroCreatePdfDetalleAsistenciaGeneral'),
+            ),
+            array('allow',  // deny all users
                 'users' => array('*'),
             ),
         );
@@ -523,6 +527,109 @@ class RegistroController extends Controller
         $pdf->AddPage();
         $pdf->usuario();
         $pdf->createTableDetalleAistencia($fecha_ini, $interval, $fecha_in_real, $empleado);
+        $pdf->lastPage();
+        //Close and output PDF document
+        $pdf->Output('filename.pdf', 'I');
+        Yii::app()->end();
+    }
+
+    public function actionCreatePdfDetalleAsistenciaGeneral($data)
+    {
+        spl_autoload_register(array('YiiBase', 'autoload'));
+        $pdf = new MYPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetTitle("Reporte Asistencia");
+        //cabecera 1 logo santa ana
+        $pdf->cabecera1();
+        $pdf->SetFont('helvetica', '', 8);
+        $pdf->SetTextColor(80, 80, 80);
+        $pdf->AddPage();
+        $pdf->usuario();
+        $lista = stripcslashes($data);
+        $lista = urldecode($lista);
+        $data = unserialize($lista);
+        $fecha_ini = $data[0][6];
+        $fecha_fin = $data[0][7];
+        $fecha_ini_real = $data[0][6];
+        $dia_inicial = date('N', strtotime($fecha_ini)) - 1;
+        $dia_final = 7 - date('N', strtotime($fecha_fin));
+        $dia_lunes = strtotime("-" . $dia_inicial . " day", strtotime($fecha_ini));
+        $dia_domingo = strtotime("+" . $dia_final . " day", strtotime($fecha_fin));
+        $lunes = date('Y-m-d', $dia_lunes);
+        $domingo = date('Y-m-d', $dia_domingo);
+        $date1 = date_create($lunes);
+        $date2 = date_create($domingo);
+        $interval = date_diff($date1, $date2);
+        $interval = $interval->format('%a');
+        foreach ($data as $item) {
+            $fecha_ini = $item[6];
+            $asignacion = AsignacionEmpleado::model()->findByPk($item[8]);
+            $pdf->SetFont('helvetica', '', 20);
+            $pdf->Write(0, $item[1] . ' | ' . $asignacion->empleado->empleadoPersona->getNombreCompleto(), '', 0, 'L', true, 0, false, false, 0);
+            $pdf->SetFont('helvetica', '', 8);
+            $pdf->SetFillColor(46, 139, 87);
+            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetFont('');
+            $pdf->Cell(30, 6, 'Tiqueos Validos', '', 0, 'C', 1);
+            $pdf->SetFillColor(70, 130, 180);
+            $pdf->SetTextColor(255, 255, 255);
+            $pdf->SetFont('');
+            $pdf->Cell(30, 6, 'Tiqueos Invalidos', '', 0, 'C', 1);
+            $pdf->Ln(8);
+            $header = array('Lunes', 'Martes', 'Miercoles', 'Juevez', 'Viernes', 'Sabado', 'Domingo');
+            $i = 0;
+            while ($i <= $interval) {
+                $lunes = date('d/m/Y', strtotime($fecha_ini));
+                $martes = date('d/m/Y', strtotime('+1 day', strtotime($fecha_ini)));
+                $miercoles = date('d/m/Y', strtotime('+2 day', strtotime($fecha_ini)));
+                $juevez = date('d/m/Y', strtotime('+3 day', strtotime($fecha_ini)));
+                $viernes = date('d/m/Y', strtotime('+4 day', strtotime($fecha_ini)));
+                $sabado = date('d/m/Y', strtotime('+5 day', strtotime($fecha_ini)));
+                $domingo = date('d/m/Y', strtotime('+6 day', strtotime($fecha_ini)));
+                $pdf->SetTextColor(0, 0, 0);
+                $textoHtml = '';
+                for ($j = 1; $j <= 7; $j++) {
+                    $var = '';
+                    if (strtotime($fecha_ini) >= strtotime($fecha_ini_real)) {
+                        $registro = Registro::model()->findAll(array(
+                            'condition' => "id_asignacion={$asignacion->id_asignacion} and fecha='{$fecha_ini}' order by hora_asistencia",
+                        ));
+                        if ($registro != []) {
+                            foreach ($registro as $item) {
+                                if ($item->estado) {
+
+                                    $var = "" . $var . "<b style=\"color: #00a65a\">" . $item->hora_asistencia . "</b><br>";
+                                } else
+                                    $var = "" . $var . "<b style=\"color: blue\">" . $item->hora_asistencia . "</b><br>";
+                            }
+                        }
+                    }
+                    $textoHtml = "" . $textoHtml . "<td style=\"font-size:12px\" width=\"105px\">" . $var . "</td>";
+                    $fecha_ini = strtotime('+1 day', strtotime($fecha_ini));
+                    $fecha_ini = date('Y-m-d', $fecha_ini);
+                    $i++;
+                }
+
+                $tbl = <<<EOD
+            <table cellspacing="0" cellpadding="1" border="1">
+                <tr>
+                    <th style="font-size:12px" width="105px">$lunes(Lun)</th>
+                    <th style="font-size:12px" width="105px">$martes(Mar)</th>
+                    <th style="font-size:12px" width="105px">$miercoles(Mie)</th>
+                    <th style="font-size:12px" width="105px">$juevez(Jue)</th>
+                    <th style="font-size:12px" width="105px">$viernes(Vie)</th>
+                    <th style="font-size:12px" width="105px">$sabado(Sab)</th>
+                    <th style="font-size:12px" width="105px">$domingo(Dom)</th>
+                </tr>
+                <tr>
+                    $textoHtml
+                </tr>
+            </table>
+EOD;
+                $pdf->writeHTML($tbl, true, false, false, false, '');
+                $pdf->Ln();
+            }
+        }
         $pdf->lastPage();
         //Close and output PDF document
         $pdf->Output('filename.pdf', 'I');

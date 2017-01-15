@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Reporte <span> >Lista de Servicios de Examenes</span>";
+$this->pageTitle = "Examen<span></span>";
 $this->breadcrumbs = array(
     'Reporte',
 );
@@ -24,7 +24,7 @@ $this->breadcrumbs = array(
                             </div>
                         </div>
                         <fieldset>
-                            <legend>Lista de Servicios de Examenes</legend>
+                            <legend>Lista Examenes</legend>
                             <div class="row">
                                 <div class="col-md-10 col-lg-offset-1">
                                     <table class="table table-responsive table-bordered">

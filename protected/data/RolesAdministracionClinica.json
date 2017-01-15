@@ -44,6 +44,11 @@
     "description": "Crear seguro para paciente"
   },
   {
+    "name": "pacienteEmergencia",
+    "type": "0",
+    "description": "Crear paciente de Emergencia"
+  },
+  {
     "name": "historialIndex",
     "type": "0",
     "description": "Index de historial medico"
@@ -392,7 +397,12 @@
   {
     "name": "Crear Paciente",
     "type": "1",
-    "description": "Lista de Pacientes"
+    "description": "Crear de Pacientes"
+  },
+  {
+    "name": "Paciente Emergencia",
+    "type": "1",
+    "description": "Paciente de Emergencia"
   },
   {
     "name": "Detalle Paciente",

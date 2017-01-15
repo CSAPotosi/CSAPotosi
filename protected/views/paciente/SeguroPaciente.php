@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Paciente <span> > Seguro Paciente</span>";
+$this->pageTitle = "Paciente <span></span>";
 $this->breadcrumbs = array(
     'Paciente',
 );
@@ -13,7 +13,7 @@ $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $paciente->hi
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Seguro de Paciente</legend>
+                            <legend>Informacion de Seguro de Paciente</legend>
                             <br>
                             <div class="row">
                                 <div class="col-md-10 col-lg-offset-1">

@@ -81,14 +81,17 @@ $this->breadcrumbs = array(
                                 </div>
                         </fieldset>
                         <div class="form-actions">
-
                             <?php $lista_enviar = serialize($listaEmpleadosAsistencia);
                             $lista_enviar = urlencode($lista_enviar);
-                            echo CHtml::link("<i class=\"fa fa-file-pdf-o\"></i> Generar Reporte",
+                            echo CHtml::link("<i class=\"fa fa-file-pdf-o\"></i> Generar Detalle Asistencia",
+                                array('Registro/CreatePdfDetalleAsistenciaGeneral',
+                                    'data' => $lista_enviar),
+                                array('target' => '_blank', 'class' => 'btn btn-primary')); ?>&nbsp;&nbsp;&nbsp;
+                            <?php echo CHtml::link("<i class=\"fa fa-file-pdf-o\"></i> Generar Reporte",
                                 array('Registro/CreatePdfAsistencia',
                                     'data' => $lista_enviar),
-                                array('target' => '_blank', 'class' => 'btn btn-primary')); ?>
-
+                                array('target' => '_blank', 'class' => 'btn btn-primary'));
+                            ?>
                         </div>
 
                     </div>

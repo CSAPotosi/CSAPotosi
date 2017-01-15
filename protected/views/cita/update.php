@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Cita <span> > Detalle Cita</span>";
+$this->pageTitle = "Cita <span></span>";
 $this->breadcrumbs = array(
     'Detalle de Cita',
 );
@@ -13,7 +13,7 @@ $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $modelCita->p
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Datos de Cita</legend>
+                            <legend>Actualizar Cita</legend>
                             <div class="col-md-8 col-lg-offset-2">
                                 <table class="table table-responsive table-bordered">
                                     <tr>
