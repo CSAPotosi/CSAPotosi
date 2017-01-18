@@ -57,7 +57,7 @@ class ServTipoSala extends CActiveRecord
     {
         return array(
             'id_serv' => 'Id Serv',
-            'descripcion_t_sala' => 'Descripcion T Sala',
+            'descripcion_t_sala' => 'DESCRIPCION',
         );
     }
 

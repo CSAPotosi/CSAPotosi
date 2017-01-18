@@ -1,5 +1,5 @@
 <?php
-    $this->pageTitle = 'Editar '.$tSala->nombre_serv;
+    $this->pageTitle = 'Grupos de salas';
 ?>
 
 <section id="widget-grid">
@@ -12,7 +12,7 @@
                         <?php echo CHtml::beginForm();?>
                         <fieldset>
                             <legend>
-                                Formulario de edicion
+                                <?= 'Editar '.$tSala->nombre_serv?>
                             </legend>
                             <?php echo CHtml::errorSummary($tSala,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
                             <div class="row">

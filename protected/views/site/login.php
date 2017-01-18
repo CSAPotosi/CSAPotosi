@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" media="screen"
           href="<?php echo Yii::app()->request->baseUrl; ?>/resources/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen"
-          href="<?php echo Yii::app()->request->baseUrl; ?>/resources/css/font-awesome.min.css">
+          href="<?php echo Yii::app()->request->baseUrl; ?>/resources/css/font-awesome.css">
 
     <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
 
@@ -25,8 +25,8 @@
 
 
     <!-- #FAVICONS -->
-    <link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/img/favicon.ico" type="image/x-icon">
 
     <!-- #GOOGLE FONT -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -37,7 +37,7 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>SSANA</b> 1.0</a>
+        <a href=""><b>SSANA</b> 1.0</a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         <center><img src="<?php echo Yii::app()->request->baseUrl; ?>/resources/img/logoCSA.png" class="img-responsive">
@@ -51,7 +51,7 @@
             <?php echo CHtml::error($model, 'username', ['class' => 'label label-danger']); ?>
         </div>
         <div class="form-group has-feedback">
-            <?php echo CHtml::activePasswordField($model, 'password', ['class' => 'form-control', 'placeholder' => 'Password']); ?>
+            <?php echo CHtml::activePasswordField($model, 'password', ['class' => 'form-control', 'placeholder' => 'Contraseña']); ?>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             <?php echo CHtml::error($model, 'password', ['class' => 'label label-danger']); ?>
         </div>

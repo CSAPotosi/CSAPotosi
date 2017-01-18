@@ -584,6 +584,31 @@
     "type": "1",
     "description": ""
   },
+  {
+    "name": "salaList",
+    "type": "1",
+    "description": "Lista de grupos de sala"
+  },
+  {
+    "name": "salaCreate",
+    "type": "1",
+    "description": "Creacion de grupos de sala"
+  },
+  {
+    "name": "salaUpdate",
+    "type": "1",
+    "description": "Edicion de grupos de sala"
+  },
+  {
+    "name": "salaView",
+    "type": "1",
+    "description": "Ver detalle de grupo de sala"
+  },
+  {
+    "name": "salaControl",
+    "type": "1",
+    "description": "Control de salas"
+  },
   //roles sistema
   {
     "name": "Gestion de pacientes",
@@ -639,5 +664,10 @@
     "name": "Gestion de Servicios Medicos",
     "type": "2",
     "description": "Administracion de Servicios de laboratorio, rayos x, clinicos, salas y atenciones Medicas"
+  },
+  {
+    "name": "Control de salas de internacion",
+    "type": "2",
+    "description": "Dashboard para el control de internaciones"
   }
 ]

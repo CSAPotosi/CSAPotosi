@@ -238,6 +238,43 @@
     "child": "servicioCreate"
   },
   {
+    "parent": "salaList",
+    "child": "servicioIndex"
+  },
+  {
+    "parent": "salaCreate",
+    "child": "servicioCreate"
+  },
+  {
+    "parent": "salaUpdate",
+    "child": "servicioUpdate"
+  },
+  {
+    "parent": "salaView",
+    "child": "servicioView"
+  },
+  {
+    "parent": "salaView",
+    "child": "servicioSalaAddItem"
+  },
+  {
+    "parent": "salaView",
+    "child": "servicioSalaEditItem"
+  },
+  {
+    "parent": "salaControl",
+    "child": "servicioSala"
+  },
+  {
+    "parent": "salaControl",
+    "child": "servicioGetSalasAjax"
+  },
+  {
+    "parent": "salaControl",
+    "child": "servicioChangeStateSalaAjax"
+  },
+
+  {
     "parent": "Categorias Laboratorio",
     "child": "categoriaCreate"
   },
@@ -423,6 +460,26 @@
   },
   {
     "parent": "Gestion de Servicios Medicos",
+    "child": "salaList"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
+    "child": "salaCreate"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
+    "child": "salaUpdate"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
+    "child": "salaView"
+  },
+  {
+    "parent": "Gestion de Servicios Medicos",
     "child": "Actualizar"
+  },
+  {
+    "parent": "Control de salas de internacion",
+    "child": "salaControl"
   }
 ]

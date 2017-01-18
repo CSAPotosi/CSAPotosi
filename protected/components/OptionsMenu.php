@@ -225,10 +225,10 @@ class OptionsMenu{
     public static function menuSalas($params=[],$selected = ['','']){
         $menu = [
             'tipoSala'=>[
-                'label'=>'Tipos de salas',
+                'label'=>'Grupos de salas',
                 'items'=>[
-                    'indexTSala'=>['url'=>['servicio/index','grupo'=>'sala'],'label'=>'Lista'],
-                    'newTSala'=>['url'=>['servicio/create','grupo'=>'sala'],'label'=>'Nuevo']
+                    'salaList'=>['url'=>['servicio/index','grupo'=>'sala'],'label'=>'Lista'],
+                    'salaCreate'=>['url'=>['servicio/create','grupo'=>'sala'],'label'=>'Nuevo']
                 ]
             ]
         ];
@@ -238,8 +238,8 @@ class OptionsMenu{
                 $menu2 = [
                     'label'=>$tsModel->servicio->nombre_serv,
                     'items'=>[
-                        'viewTSala'=>['url'=>['servicio/view','grupo'=>'sala','id'=>$tsModel->id_serv], 'label'=>'Detalle'],
-                        'editTSala'=>['url'=>['servicio/update','grupo'=>'sala','id'=>$tsModel->id_serv], 'label'=>'Editar']
+                        'salaView'=>['url'=>['servicio/view','grupo'=>'sala','id'=>$tsModel->id_serv], 'label'=>'Detalle'],
+                        'salaUpdate'=>['url'=>['servicio/update','grupo'=>'sala','id'=>$tsModel->id_serv], 'label'=>'Editar']
                     ]
                 ];
                 $menu['itemTSala']=$menu2;

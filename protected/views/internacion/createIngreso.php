@@ -1,7 +1,7 @@
 <?php
     $this->pageTitle = 'Nueva internacion';
     $modelTSala = ServTipoSala::model()->with([
-        'servicio'=>['condition'=>'activo']
+        'servicio'=>['condition'=>'activo AND tipo_cobro = 2']
     ])->findAll();
 ?>
 

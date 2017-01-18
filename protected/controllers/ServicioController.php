@@ -158,7 +158,7 @@ class ServicioController extends Controller
 	}
 
 	private function salaIndex(){
-        $this->menu = OptionsMenu::menuSalas([],['tipoSala','indexTSala']);
+        $this->menu = OptionsMenu::menuSalas([],['tipoSala','salaList']);
 		$tSalaList = ServTipoSala::model()->findAll();
 		$this->render('salaIndex', ['tSalaList'=>$tSalaList, 'dataUrl'=>['grupo'=>'sala','tipo'=>0] ]);
 	}
@@ -298,7 +298,7 @@ class ServicioController extends Controller
 */
 	private function salaCreate()
 	{
-        $this->menu = OptionsMenu::menuSalas([],['tipoSala','newTSala']);
+        $this->menu = OptionsMenu::menuSalas([],['tipoSala','salaCreate']);
 
 		$tSala = new ServicioForm();
 		if(isset($_POST['ServicioForm'])){
@@ -310,7 +310,7 @@ class ServicioController extends Controller
 	}
 
 	private function salaUpdate($id = null){
-        $this->menu = OptionsMenu::menuSalas(['ts_id'=>$id],['itemTSala','editTSala']);
+        $this->menu = OptionsMenu::menuSalas(['ts_id'=>$id],['itemTSala','salaUpdate']);
 		$tSala = new ServicioForm();
 		$tSala->loadData($id);
 		if(isset($_POST['ServicioForm'])){
@@ -322,7 +322,7 @@ class ServicioController extends Controller
 	}
 
 	private function salaView($id = null){
-        $this->menu = OptionsMenu::menuSalas(['ts_id'=>$id],['itemTSala','viewTSala']);
+        $this->menu = OptionsMenu::menuSalas(['ts_id'=>$id],['itemTSala','salaView']);
 
 		$tSala = ServTipoSala::model()->findByPk($id);
 		$itemSalaModel = new Sala();

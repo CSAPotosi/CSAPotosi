@@ -1,22 +1,22 @@
 <?php
-    $this->pageTitle = 'Detalle de '.$tSala->servicio->nombre_serv;
+    $this->pageTitle = 'Grupos de salas';//'Detalle de '.$tSala->servicio->nombre_serv;
 ?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                 <header></header>
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Tipo sala</legend>
+                            <legend>Detalle de grupo</legend>
                             <table class="table table-bordered table-hovered" id="t-sala-detail" data-activo="<?php echo $tSala->servicio->activo;?>" >
                                 <tr>
-                                    <th style="text-align: right" width="20%">CODIGO:</th>
+                                    <th style="text-align: right" width="20%">CODIGO</th>
                                     <td><?php echo CHtml::encode($tSala->servicio->cod_serv);?></td>
                                 </tr>
                                 <tr>
-                                    <th style="text-align: right" width="20%">TIPO DE SALA</th>
+                                    <th style="text-align: right" width="20%">NOMBRE DE GRUPO</th>
                                     <td><?php echo CHtml::encode($tSala->servicio->nombre_serv);?></td>
                                 </tr>
                                 <tr>
@@ -26,6 +26,17 @@
                                 <tr>
                                     <th style="text-align: right" width="20%">DESCRIPCION</th>
                                     <td><?php echo CHtml::encode($tSala->descripcion_t_sala);?></td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align: right" width="20%">DESCRIPCION</th>
+                                    <td>
+                                        <?php
+                                        if($tSala->servicio->tipo_cobro == 2)
+                                            echo '<span class="label label-info">INTERNACION</span>';
+                                        else
+                                            echo '<span class="label label-info">QUIROFANO</span>';
+                                        ?>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th style="text-align: right" width="20%">ESTADO</th>
@@ -40,12 +51,12 @@
                                 </tr>
                             </table>
 
-                            <legend>Salas</legend>
+                            <legend>Salas disponibles</legend>
                             <div class="row">
                                 <div class="col-md-12 new-sala margin-top-10 margin-bottom-10">
                                     <div class="row item-sala-new-form">
                                         <div class="col-md-12 text-right">
-                                            <div class="btn btn-primary btn-sm btn-new-item-sala"><i class="fa fa-plus"></i> Nuevo</div>
+                                            <div class="btn btn-primary btn-sm btn-new-item-sala"><i class="fa fa-plus"></i> Agregar</div>
                                         </div>
                                     </div>
                                     <div class="well well-sm item-sala-new-form hidden">

@@ -25,8 +25,8 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/style.css">
 
 	<!-- #FAVICONS -->
-	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/img/favicon.ico" type="image/x-icon">
 
 	<!-- #GOOGLE FONT -->
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -267,10 +267,17 @@
 					</li>
                 </ul>
             </li>
-			<li>
-				<a href="<?php echo CHtml::normalizeUrl(['Seguridad/indexBackup']); ?>" title="Backups"><i
-						class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent">Backup</span></a>
-			</li>
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">Adm. Seguridad</span></a>
+                <ul>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['Seguridad/indexBackup']);?>" title="Backup"><span>Copias de seguridad</span></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['Seguridad/audit']);?>" title="Auditoria"><span>Auditoria</span></a>
+                    </li>
+                </ul>
+            </li>
 		</ul>
 	</nav>
 
@@ -300,6 +307,7 @@
 	<div id="content">
 		<!-- contenido -->
 		<div class="row">
+            <?php if($this->menu):?>
 			<div class="col-md-2">
                 <?php
                 $this->widget('application.extensions.csamenu.CSAMenu',['menu'=>$this->menu]);
@@ -310,7 +318,7 @@
                     <div class="col-md-12">
                         <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 no-padding">
                             <h1 class="txt-color-blueDark">
-                                <i class="fa-fw fa fa-home"></i>
+                                <i class="fa-fw fa fa-chevron-right"></i>
                                 <?php echo $this->pageTitle; ?>
                             </h1>
                         </div>
@@ -318,10 +326,15 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-						<?php echo $content ?>
+						<?php echo $content; ?>
 					</div>
                 </div>
 			</div>
+            <?php else:?>
+            <div class="col-md-12">
+                <?php echo $content; ?>
+            </div>
+            <?php endif;?>
 		</div>
 		<!-- fin contenido -->
 

@@ -53,7 +53,7 @@ class ServicioForm extends CFormModel
     {
         return array(
             'cod_serv' => 'CODIGO DE SERVICIO',
-            'nombre_serv' => 'NOMBRE DE SERVICIO',
+            'nombre_serv' => 'NOMBRE',
             'tipo_cobro' => 'TIPO DE COBRO',
             'activo' => 'ACTIVO',
             'id_entidad' => 'ENTIDAD',
@@ -63,6 +63,7 @@ class ServicioForm extends CFormModel
             'id_cat_ex' => 'CATEGORIA',
             'tipo_atencion' => 'TIPO ATENCION',
             'id_serv' => 'Servicio',
+            'descripcion_t_sala'=>'DESCRIPCION'
         );
     }
 
