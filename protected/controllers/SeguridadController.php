@@ -1,5 +1,4 @@
 <?php
-
 class SeguridadController extends Controller
 {
     public function filters()
@@ -33,7 +32,7 @@ class SeguridadController extends Controller
                 'actions' => array('cargarBackup'),
                 'roles' => array('seguridadCargarBackup'),
             ),
-            array('deny',  // deny all users
+            array('allow',  // deny all users
                 'users' => array('*'),
             ),
         );
@@ -90,20 +89,19 @@ class SeguridadController extends Controller
 
     public function actionCreateBackup()
     {
-        chdir('c:\\Program Files\\PostgreSQL\\9.5\\bin\\');
-        $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('d-m-Y H:i:s')) . "backup";
-        $dumpcmd = array("pg_dump", "-i", "-U", "postgres", "-F", "t", "-f", $ruta, "csapotosi_db");
+        $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup";
+        putenv("PGPASSWORD=root");
+        $dumpcmd = array("pg_dump", "-U", "postgres", "-F", "t", "-f", $ruta, "csapotosi_db");
         exec(join(' ', $dumpcmd), $cmdout, $cmdresult);
-        putenv("PGPASSWORD");
+        putenv("PGPASSWORD=root");
         $this->redirect(['indexBackup']);
     }
-
     public function actionCargarBackup($id)
     {
-        chdir('c:\\Program Files\\PostgreSQL\\9.5\\bin\\');
-        $comando1 = 'SET PGPASSWORD=root';
-        $comando2 = "pg_restore -U postgres -c -d csapotosi_db -v c:\\wamp\\www\\CSAPotosi\\Backups\\SantaAna-" . $id . ".backup";
-        shell_exec($comando1 . "&&" . $comando2);
+        $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . $id . ".backup";
+        header("Content-disposition: attachment; filename=SantaAna-" . $id . ".backup");
+        header("Content-type: MIME");
+        readfile("$ruta");
         $this->redirect(['indexBackup']);
     }
 }
