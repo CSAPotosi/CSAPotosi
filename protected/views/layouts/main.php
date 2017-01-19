@@ -172,9 +172,13 @@
                 <a href="<?php echo CHtml::normalizeUrl(['paciente/index']);?>" title="Pacientes"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent">Pacientes</span></a>
             </li>
 			<?php } ?>
+            <li>
+                <a href="<?php echo CHtml::normalizeUrl(['servicio/sala']);?>" title="Control de salas"><i class="fa fa-lg fa-fw fa-bed"></i> <span class="menu-item-parent">Control de salas</span></a>
+            </li>
+
 			<?php if (!(Yii::app()->authManager->checkAccess('', Yii::app()->user->id))) { ?>
 			<li>
-				<a href="#"><i class="fa fa-lg fa-fw fa-plus-square"></i> <span class="menu-item-parent">Servicios</span></a>
+				<a href="#"><i class="fa fa-lg fa-fw fa-plus-square"></i> <span class="menu-item-parent">Adm. Servicios</span></a>
 				<ul>
                     <li>
                         <a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'sala']);?>" title="Salas"><i class="fa fa-lg fa-fw fa-bed"></i><span class="menu-item-parent">Salas</span></a>
