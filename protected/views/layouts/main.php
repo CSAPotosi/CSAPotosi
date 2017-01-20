@@ -205,7 +205,7 @@
 			</li>
 			<?php } ?>
 			<li>
-				<a href="#"><i class="fa fa-lg fa-fw fa-h-square"></i> <span class="menu-item-parent">R.R H.H</span></a>
+				<a href="#"><i class="fa fa-lg fa-fw fa-medkit"></i> <span class="menu-item-parent">R.R H.H</span></a>
 				<ul>
 					<li class="">
 						<a href="<?php echo CHtml::normalizeUrl(['Unidad/index']); ?>" title="Unidades"><i

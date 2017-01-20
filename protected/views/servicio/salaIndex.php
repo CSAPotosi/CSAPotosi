@@ -8,7 +8,7 @@
                 <header></header>
                 <div>
                     <div class="widget-body no-padding">
-                        <legend class="padding-5">Lista de grupos</legend>
+                        <legend class="padding-10">Lista de grupos</legend>
                         <table class="table table-hovered table-hover table-bordered" id="groups-table">
                             <thead>
                             <tr>

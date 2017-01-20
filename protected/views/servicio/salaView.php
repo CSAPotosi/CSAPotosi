@@ -8,7 +8,7 @@
                 <header></header>
                 <div>
                     <div class="widget-body">
-                        <fieldset>
+                        
                             <legend>Detalle de grupo</legend>
                             <table class="table table-bordered table-hovered" id="t-sala-detail" data-activo="<?php echo $tSala->servicio->activo;?>" >
                                 <tr>
@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
+
                     </div>
                 </div>
             </div>
