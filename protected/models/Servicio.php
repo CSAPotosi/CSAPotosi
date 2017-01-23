@@ -68,7 +68,7 @@ class Servicio extends CActiveRecord
 		return array(
 			'id_serv' => 'Id Serv',
 			'cod_serv' => 'Cod Serv',
-			'nombre_serv' => 'Nombre Serv',
+			'nombre_serv' => 'NOMBRE',
 			'tipo_cobro' => 'Tipo Cobro',
 			'fecha_creacion' => 'Fecha Creacion',
 			'fecha_edicion' => 'Fecha Edicion',

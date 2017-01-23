@@ -29,7 +29,7 @@
                 <div class="tiles-heading text-align-center">
                     <?php
                         if($itemSala->estado_sala == 2){
-                            echo $itemSala->internacionSala->internacion->historial->paciente->persona->nombres;
+                            echo $itemSala->internacionSala->internacion->historial->paciente->persona->nombreCompleto;
                         }
                         else
                             echo $opt_sala[$itemSala->estado_sala]['title'];

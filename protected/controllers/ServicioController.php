@@ -304,7 +304,7 @@ class ServicioController extends Controller
 		if(isset($_POST['ServicioForm'])){
 			$tSala->setAttributes($_POST['ServicioForm'],false);
 			if($tSala->saveTipoSala())
-				$this->redirect(['index','grupo'=>'sala']);
+				$this->redirect(['view','grupo'=>'sala']);
 		}
 		$this->render('salaCreate', ['tSala' => $tSala, 'dataUrl'=> ['grupo'=>'sala','tipo'=>0] ]);
 	}
@@ -331,10 +331,10 @@ class ServicioController extends Controller
 
 	public function actionSalaAddItem($id){
 		$itemSalaModel = new Sala();
+        $itemSalaModel->id_t_sala = $id;
 		$this->ajaxValidation($itemSalaModel);
 		if(isset($_POST['Sala'])){
 			$itemSalaModel->attributes = $_POST['Sala'];
-			$itemSalaModel->id_t_sala = $id;
 			if($itemSalaModel->save())
 				$this->redirect(['view','grupo'=>'sala','id'=>$id]);
 		}

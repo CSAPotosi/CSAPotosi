@@ -15,7 +15,7 @@
                     <div class="widget-body">
                         <div class="widget-body-toolbar">
                             <div class="row">
-                                <div class="col-md-6 col-md-offset-6">
+                                <div class="col-md-3">
                                     <?php echo CHtml::beginForm(['Servicio/getSalasAjax','type'=>1],'post',['class'=>'smart-form','id'=>'form-t-sala'])?>
                                         <label class="select">
                                             <?php echo CHtml::dropDownList('tSala',null,CHtml::listData($modelTSala,'id_serv','servicio.nombre_serv'),['class'=>'input-sm'])?>

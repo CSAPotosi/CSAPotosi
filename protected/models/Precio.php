@@ -33,7 +33,8 @@ class Precio extends CActiveRecord
         // will receive user inputs.
         return array(
             array('monto', 'required'),
-            array('id_serv, monto', 'numerical', 'integerOnly' => true),
+            array('id_serv', 'numerical', 'integerOnly' => true),
+            array('monto', 'numerical'),
             array('fecha_fin, activo', 'safe'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.

@@ -32,6 +32,7 @@ class Sala extends CActiveRecord
         // will receive user inputs.
         return array(
             array('cod_sala, id_t_sala', 'required'),
+            array('cod_sala','unique','criteria'=>['condition'=>'id_t_sala = :t_sala','params'=>[':t_sala'=>$this->id_t_sala]]),
             array('estado_sala, id_t_sala', 'numerical', 'integerOnly' => true),
             array('cod_sala', 'length', 'max' => 8),
             array('ubicacion_sala', 'length', 'max' => 32),
@@ -61,7 +62,7 @@ class Sala extends CActiveRecord
     {
         return array(
             'id_sala' => 'Id Sala',
-            'cod_sala' => 'Cod Sala',
+            'cod_sala' => 'CODIGO',
             'ubicacion_sala' => 'Ubicacion Sala',
             'estado_sala' => 'Estado Sala',
             'id_t_sala' => 'Id T Sala',

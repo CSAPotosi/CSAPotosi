@@ -49,7 +49,7 @@ var otable = $('#groups-table').DataTable({
     }
 });
 
-$("#antecedentes-table thead th input[type=text],#groups-table thead th select").on( 'keyup change', function () {
+$("#groups-table thead th input[type=text],#groups-table thead th select").on( 'keyup change', function () {
     otable
         .column( $(this).parent().index()+':visible' )
         .search( this.value )

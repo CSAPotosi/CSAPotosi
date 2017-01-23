@@ -32,21 +32,7 @@ class ServicioForm extends CFormModel
     private $modelServExamen;
     private $modelServTSala;
     private $modelServAtencionMedica;
-    /*
-    private $_myAttributes=[];
 
-
-    public function setAttributes($values, $safeOnly = false){
-        $this->_myAttributes = $values;
-        parent::setAttributes($values,$safeOnly);
-    }
-
-    public function getAttributes($names = null)
-    {
-        //var_dump($this->_myAttributes);
-        return $this->_myAttributes;
-    }
-    */
     private $modelServClinico;
 
     public function attributeLabels()
@@ -64,6 +50,13 @@ class ServicioForm extends CFormModel
             'tipo_atencion' => 'TIPO ATENCION',
             'id_serv' => 'Servicio',
             'descripcion_t_sala'=>'DESCRIPCION'
+        );
+    }
+
+    public function rules()
+    {
+        return array(
+            array('nombre_serv', 'length', 'max'=>64),
         );
     }
 

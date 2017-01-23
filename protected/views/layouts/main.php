@@ -181,25 +181,34 @@
 				<a href="#"><i class="fa fa-lg fa-fw fa-plus-square"></i> <span class="menu-item-parent">Adm. Servicios</span></a>
 				<ul>
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'sala']);?>" title="Salas"><i class="fa fa-lg fa-fw fa-bed"></i><span class="menu-item-parent">Salas</span></a>
+                        <a href="<?php echo CHtml::normalizeUrl(['servicio/index','grupo'=>'sala']);?>" title="Salas">
+                            <i class="fa fa-lg fa-fw fa-circle"></i>
+                            <span>Salas</span>
+                        </a>
                     </li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'examen', 'tipo' => 1]); ?>"
-						   title="Laboratorio"><i class="fa fa-lg fa-fw fa-flask"></i> <span class="menu-item-parent">Ex. Laboratorio</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'examen', 'tipo' => 1]); ?>"				   title="Laboratorio">
+                            <i class="fa fa-lg fa-fw fa-circle"></i>
+                            <span>Ex. Laboratorio</span>
+                        </a>
 					</li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'examen', 'tipo' => 2]) ?>"
-						   title="Rayos x"><i class="fa fa-lg fa-fw fa-picture-o"></i> <span class="menu-item-parent">Rayos X</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'examen', 'tipo' => 2]) ?>" title="Rayos x">
+                            <i class="fa fa-lg fa-fw fa-circle"></i>
+                            <span>Rayos X</span>
+                        </a>
 					</li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'clinico', 'tipo' => 3]) ?>"
-						   title="Servicios Clinicos"><i class="fa fa-lg fa-fw fa-plus-square"></i> <span
-								class="menu-item-parent">Servicios Clinicos</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'clinico', 'tipo' => 3]) ?>" title="Servicios Clinicos">
+                            <i class="fa fa-lg fa-fw fa-circle"></i>
+                            <span>Servicios Clinicos</span>
+                        </a>
 					</li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'atencionMedica', 'tipo' => 4]) ?>"
-						   title="Atenciones Medicas"><i class="fa fa-lg fa-fw fa-stethoscope"></i> <span
-								class="menu-item-parent">Atenciones Medicas</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['servicio/index', 'grupo' => 'atencionMedica', 'tipo' => 4]) ?>"  title="Atenciones Medicas">
+                            <i class="fa fa-lg fa-fw fa-circle"></i>
+                            <span>Atenciones Medicas</span>
+                        </a>
 					</li>
 				</ul>
 			</li>

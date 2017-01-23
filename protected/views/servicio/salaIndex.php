@@ -1,5 +1,5 @@
 <?php
-    $this->pageTitle = 'Grupos de salas';
+    $this->pageTitle = 'GRUPOS DE SALAS';
 ?>
 <section id="widget-grid">
     <div class="row">
@@ -8,7 +8,7 @@
                 <header></header>
                 <div>
                     <div class="widget-body no-padding">
-                        <legend class="padding-10">Lista de grupos</legend>
+                        <legend class="padding-10">LISTA DE GRUPOS</legend>
                         <table class="table table-hovered table-hover table-bordered" id="groups-table">
                             <thead>
                             <tr>
@@ -26,7 +26,7 @@
                                     </select>
                                 </th>
                                 <th class="hasinput">
-                                    <input type="text" class="form-control" placeholder="COSTO">
+                                    <input type="text" class="form-control" placeholder="MONTO">
                                 </th>
                                 <th class="hasinput">
                                     <select class="form-control">
@@ -41,7 +41,7 @@
                                 <th width="20%" style="text-align: center">NOMBRE</th>
                                 <th width="30%" style="text-align: center">DESCRIPCION</th>
                                 <th width="10%" style="text-align: center">TIPO</th>
-                                <th width="10%" style="text-align: center">COSTO (Bs.)</th>
+                                <th width="10%" style="text-align: center">MONTO (Bs.)</th>
                                 <th width="10" style="text-align: center">ACTIVO</th>
                                 <th width="20%"></th>
                             </tr>
@@ -59,7 +59,7 @@
                                                 echo '<span class="label label-info">QUIROFANO</span>';
                                         ?>
                                     </td>
-                                    <td style="text-align: right"><?php echo $tSalaItem->servicio->precio->monto;?></td>
+                                    <td style="text-align: right"><?php echo number_format($tSalaItem->servicio->precio->monto,2);?></td>
                                     <td style="text-align: center">
                                         <?php
                                             if($tSalaItem->servicio->activo)
