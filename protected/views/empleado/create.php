@@ -1,6 +1,6 @@
 <?php
 /* @var $this PersonaController */
-$this->pageTitle = "Empleado <span></span>";
+$this->pageTitle = "EMPLEADO";
 $this->breadcrumbs = array(
     'Empleado',
 );
@@ -15,7 +15,7 @@ $this->breadcrumbs = array(
                     </div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Crear Empleado</legend>
+                            <legend>CREAR EMPLEADO</legend>
                             <div class="row">
                                 <?php echo CHtml::beginForm(array(), 'post', array('id' => 'wizard-1')); ?>
                                 <div id="bootstrap-wizard-1" class="col-sm-12">

@@ -217,33 +217,30 @@
 				<a href="#"><i class="fa fa-lg fa-fw fa-medkit"></i> <span class="menu-item-parent">R.R H.H</span></a>
 				<ul>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['Unidad/index']); ?>" title="Unidades"><i
-								class="fa fa-lg fa-fw "></i> <span class="menu-item-parent">Unidades</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['Unidad/index']); ?>" title="Unidades"> <span
+								class="menu-item-parent">Unidades</span></a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-lg fa-fw fa-group"></i> <span
+						<a href="#"><span
 								class="menu-item-parent">Personal</span></a>
 						<ul>
 							<li>
-								<a href="<?php echo CHtml::normalizeUrl(['Empleado/index']); ?>" title="Empleados"><i
-										class="fa fa-lg fa-fw fa-suitcase"></i><span
+								<a href="<?php echo CHtml::normalizeUrl(['Empleado/index']); ?>" title="Empleados"><span
 										class="menu-item-parent">Empleados</span></a>
 							</li>
 							<li class="">
-								<a href="<?php echo CHtml::normalizeUrl(['Medico/index']); ?>" title="Medicos"><i
-										class="fa fa-lg fa-fw fa-medkit"></i> <span
+								<a href="<?php echo CHtml::normalizeUrl(['Medico/index']); ?>" title="Medicos"> <span
 										class="menu-item-parent">Medicos</span></a>
 							</li>
 						</ul>
 					</li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['horario/index']); ?>" title="Horarios"><i
-								class="fa fa-lg fa-fw fa-clock-o"></i> <span
+						<a href="<?php echo CHtml::normalizeUrl(['horario/index']); ?>" title="Horarios"><span
 								class="menu-item-parent">Horarios</span></a>
 					</li>
 					<li class="">
-						<a href="<?php echo CHtml::normalizeUrl(['AsignacionEmpleado/index']); ?>" title="Asignaciones"><i
-								class="fa fa-lg fa-fw"></i> <span class="menu-item-parent">Asignaciones</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['AsignacionEmpleado/index']); ?>" title="Asignaciones"><span
+								class="menu-item-parent">Asignaciones</span></a>
 					</li>
 				</ul>
 			</li>

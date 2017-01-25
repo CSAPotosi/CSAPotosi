@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Paciente <span></span>";
+$this->pageTitle = "PACIENTE <span></span>";
 $this->breadcrumbs = array(
     'Paciente',
 );
@@ -14,23 +14,23 @@ $this->breadcrumbs = array(
                     <div class="widget-body">
                         <?php echo CHtml::beginForm(array(), 'post', array()); ?>
                         <fieldset>
-                            <legend>Crear Seguro Para paciente</legend>
+                            <legend>CREAR SEGURO</legend>
                             <br>
                             <div class="col-md-10 col-lg-offset-1">
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <?php echo CHtml::activelabelEx($modelAsegurado, 'tipo_asegurado'); ?>
+                                            <label>TIPO DE ASEGURADO</label>
                                             <?php echo CHtml::activedropDownList($modelAsegurado, 'tipo_asegurado', $modelAsegurado->getTipoAsegurado(), array('class' => 'form-control')); ?>
                                             <?php echo CHtml::error($modelAsegurado, 'tipo_asegurado', array('class' => 'label label-danger')); ?>
                                         </div>
                                         <div class="form-group">
-                                            <?php echo CHtml::activeLabel($modelAsegurado, 'Fecha Inicio'); ?>
+                                            <label>FECHA INICIO</label>
                                             <?php echo CHtml::activeTextField($modelAsegurado, 'fecha_inicio', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa')); ?>
                                             <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger']); ?>
                                         </div>
                                         <div class="form-group">
-                                            <?php echo CHtml::activeLabel($modelAsegurado, 'convenio'); ?>
+                                            <label>CONVENIO</label>
                                             <?php echo CHtml::activedropDownList($modelAsegurado, 'convenio', $modelAsegurado->getConvenios(), array('class' => 'form-control')); ?>
                                             <?php echo CHtml::error($modelAsegurado, 'convenio', ['class' => 'label label-danger']); ?>
                                         </div>

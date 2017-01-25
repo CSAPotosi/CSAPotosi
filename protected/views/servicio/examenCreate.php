@@ -1,7 +1,7 @@
 <?php
 /* @var $this UsuarioController */
 
-$this->pageTitle = "Examen <span></span>";
+$this->pageTitle = "EXAMEN <span></span>";
 $this->breadcrumbs = array(
     'Create',
 );
@@ -15,7 +15,7 @@ $this->breadcrumbs = array(
                         <div class="widget-body">
                             <?php echo CHtml::beginForm(); ?>
                             <fieldset>
-                                <legend>Crear Examen</legend>
+                                <legend>CREAR EXAMEN</legend>
                                 <?php echo CHtml::errorSummary($servicio, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger')); ?>
                                 <div class="row">
                                     <div class="col-md-6">

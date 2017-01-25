@@ -1,6 +1,6 @@
 <?php
 /* @var $this PacienteController */
-$this->pageTitle = "Unidad <span> > Actualizar Unidad </span>";
+$this->pageTitle = "UNIDAD</span>";
 $this->breadcrumbs = array(
     'Unidad',
 );
@@ -12,14 +12,14 @@ $this->breadcrumbs = array(
                 <header></header>
                 <div class="widget-body">
                     <fieldset>
-                        <legend>Actualizar Unidad</legend>
+                        <legend>ACTUALIZAR UNIDAD</legend>
                         <div class="row">
                             <div class="col-md-6 col-lg-offset-3">
                                 <?php $this->renderPartial("_form", array('modelUnidad' => $modelUnidad)) ?>
                             </div>
                     </fieldset>
                     <div class="form-actions">
-                        <?php echo CHtml::submitButton($modelUnidad->isNewRecord ? 'Guardar Unidad' : 'Actualizar Unidad', array('class' => 'btn btn-primary')); ?>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Guardar</button>
                     </div>
                 </div>
                 <?php echo CHtml::endForm(); ?>

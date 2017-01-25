@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Unidad <span> > Crear Unidades</span>";
+$this->pageTitle = "UNIDAD</span>";
 $this->breadcrumbs = array(
     'Crear Unidades ',
 );
@@ -12,15 +12,12 @@ $this->breadcrumbs = array(
                 <header></header>
                 <div class="widget-body">
                     <fieldset>
-                        <legend>Registro de Unidad</legend>
+                        <legend>REGISTRO DE UNIDAD</legend>
                         <div class="row">
                             <div class="col-md-6 col-lg-offset-3">
                                 <?php $this->renderPartial("_form", array('modelUnidad' => $modelUnidad)) ?>
                             </div>
                     </fieldset>
-                    <div class="form-actions">
-                        <?php echo CHtml::submitButton($modelUnidad->isNewRecord ? 'Guardar Unidad' : 'Actualizar Unidad', array('class' => 'btn btn-info')); ?>
-                    </div>
                 </div>
                 <?php echo CHtml::endForm(); ?>
             </div>

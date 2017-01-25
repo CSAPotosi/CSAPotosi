@@ -41,8 +41,8 @@ class PersonaForm extends CFormModel
             'num_doc' => 'Numero de Documento',
             'tipo_doc' => 'Tipo de Documento',
             'tipo_persona' => 'tipo_persona',
-            'nombres' => 'Nombres',
-            'primer_apellido' => 'Primer Apellido',
+            'nombres' => 'NOMBRES',
+            'primer_apellido' => 'PRIMER APELLIDO',
             'segundo_apellido' => 'Segunfo Apellido',
             'genero' => 'Genero',
             'fecha_nac' => 'Fecha Nacimiento',
@@ -284,7 +284,5 @@ class PersonaForm extends CFormModel
     {
         return CHtml::listData(pais::model()->findAll(), 'cod_pais', 'nombre_pais');
     }
-
 }
-
 ?>

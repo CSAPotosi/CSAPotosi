@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Unidad <span> > Lista de Unidades</span>";
+$this->pageTitle = "UNIDAD</span>";
 $this->breadcrumbs = array(
     'Lista Unidades',
 );
@@ -12,7 +12,7 @@ $this->breadcrumbs = array(
                 <header></header>
                 <div class="widget-body">
                     <fieldset>
-                        <legend>Lista De Unidades o departamentos</legend>
+                        <legend>LISTA DE UNIDADES</legend>
                         <div class="row">
                             <div class="col-md-6 col-lg-offset-3">
                                 <div class="table-responsive">

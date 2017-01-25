@@ -18,11 +18,10 @@
 						<b><?php echo $itemPaciente->persona->num_doc;?></b>
 					</span>
 				</div>
-				<ul class="links padding-5">
-					<li><?php echo CHtml::link('Ver Historial', array('historialMedico/index', 'id_paciente' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-danger btn-xs')); ?></li>
-					<li><?php echo CHtml::link('Detalle', array('Paciente/DetallePaciente', 'id' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-danger btn-xs')); ?></li>
-
-				</ul>
+				<div class="btn btn-group btn-group-justified">
+					<?php echo CHtml::link('Ver Historial', array('historialMedico/index', 'id_paciente' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-primary btn-xs')); ?>
+					<?php echo CHtml::link('Detalle', array('Paciente/DetallePaciente', 'id' => $itemPaciente->persona->id_persona), array('class' => 'btn btn-info btn-xs')); ?>
+				</div>
 			</div>
 		</div>
 	</div>

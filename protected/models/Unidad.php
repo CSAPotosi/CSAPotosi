@@ -57,8 +57,8 @@ class Unidad extends CActiveRecord
     {
         return array(
             'id_unidad' => 'Id Unidad',
-            'nombre_unidad' => 'Nombre Unidad',
-            'descripcion_unidad' => 'Descripcion Unidad',
+            'nombre_unidad' => 'NOMBRE UNIDAD',
+            'descripcion_unidad' => 'DESCRIPCION DE UNIDAD',
         );
     }
 

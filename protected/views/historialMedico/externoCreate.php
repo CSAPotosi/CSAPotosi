@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Prestacion <span></span>";
+$this->pageTitle = "PRESTACION <span></span>";
 $this->breadcrumbs = array(
     'AtencionMedica',
 );
@@ -22,7 +22,7 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Prestacion De Servicios</legend>
+                            <legend>PRESTACION DE SERVICIOS</legend>
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="jarviswidget jarviswidget-color-blue" id="wid-id-11"

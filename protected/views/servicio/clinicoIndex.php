@@ -1,6 +1,6 @@
 <?php
 
-$this->pageTitle = "Servicio Clinico <span></span>";
+$this->pageTitle = "SERVICIOS <span></span>";
 $this->breadcrumbs = array(
     'Servicio',
 );
@@ -26,7 +26,7 @@ $this->breadcrumbs = array(
                                             </div>
                                         </div>
                                     <fieldset>
-                                        <legend>Lista de Servicios Clinicos</legend>
+                                        <legend>LISTA DE SERVICIOS CLINICOS</legend>
                                         <br>
                                         <table class="table table-bordered table-responsive">
                                             <thead>

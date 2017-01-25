@@ -9,7 +9,7 @@
             <?php echo CHtml::beginForm(array(), 'post', array()); ?>
             <div class="box-body">
                 <div class="form-group">
-                    <label>Paciente</label>
+                    <label>PACIENTE</label>
                     <div class="input-group">
                         <input class="form-control" id="appendbutton" type="text" disabled
                                value="<?php echo ($paciente != '') ? $paciente->persona->getNombreCompleto() : '' ?>">
@@ -22,7 +22,7 @@
                     <?php echo CHtml::error($modelCita, 'id_paciente', array('class' => 'label label-danger')); ?>
                 </div>
                 <div class="form-group">
-                    <label>Atencion Medica</label>
+                    <label>ATENCION MEDICA</label>
                     <div class="input-group">
                         <input class="form-control" id="especialidad" type="text" disabled>
                         <div class="input-group-btn">
@@ -37,13 +37,13 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <?php echo CHtml::activelabelEx($modelCita, 'Fecha'); ?>
+                            <label>FECHA</label>
                             <?php echo CHtml::activeTextField($modelCita, 'fecha', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa')); ?>
                             <?php echo CHtml::error($modelCita, 'fecha', array('class' => 'label label-danger')); ?>
                         </div>
                         <div class="col-md-6">
 
-                            <?php echo CHtml::activelabelEx($modelCita, 'hora_cita'); ?>
+                            <label>HORA DE LA CITA</label>
                             <?php echo CHtml::activeDropDownList($modelCita, 'hora_cita', [], array('class' => 'form-control', 'disabled' => 'disabled', 'data-atencion' => CHtml::normalizeUrl(array('Cita/BuscarHora')))); ?>
                             <?php echo CHtml::error($modelCita, 'hora_cita', array('class' => 'label label-danger')); ?>
                         </div>
@@ -56,14 +56,14 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <?php echo CHtml::activelabelEx($modelCita, 'Estado Cita'); ?>
+                            <label>ESTADO DE LA CITA</label>
                             <?php echo CHtml::activedropDownList($modelCita, 'estado_cita', array('0' => 'reservado', '1' => 'confirmado', '2' => 'reconsulta'), array('class' => 'form-control')); ?>
                             <?php echo CHtml::error($modelCita, 'estado_cita', array('class' => 'label label-danger')); ?>
                         </div>
                         <div class="col-md-6">
                             <br>
-                            <input type="submit" value="Guardar Cita" class="btn btn-primary"
-                                   id="btnformcita">
+                            <button type="submit" id="btnformcita" class="btn btn-primary"><i class="fa fa-save">
+                                    Guardar</i></button>
 
                         </div>
                     </div>

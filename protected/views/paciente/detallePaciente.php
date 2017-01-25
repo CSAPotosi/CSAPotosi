@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Paciente <span></span>";
+$this->pageTitle = "PACIENTE <span></span>";
 $this->breadcrumbs = array(
     'Paciente',
 );
@@ -13,7 +13,7 @@ $this->breadcrumbs = array(
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Detalle de Paciente</legend>
+                            <legend>DETALLE DE PACIENTE</legend>
                             <br>
                             <div class="row">
                                 <div class="col-sm-2 profile-pic">
@@ -239,10 +239,7 @@ $this->breadcrumbs = array(
                                 </div>
                             </div>
                         </fieldset>
-                        <div class="form-actions">
-                            <?php echo CHtml::link('<i class="fa fa-book"></i> Seguro de paciente', array('paciente/seguroPaciente', 'id' => $paciente->id_paciente), array('class' => 'btn btn-primary')); ?>
-                            <?php echo CHtml::link('<i class="fa fa-edit"></i> Editar Paciente', array('paciente/update', 'id' => $paciente->id_paciente), array('class' => 'btn btn-primary')); ?>
-                        </div>
+
                     </div>
                 </div>
             </div>

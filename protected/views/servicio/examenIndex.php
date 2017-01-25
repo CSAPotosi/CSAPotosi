@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Examen<span></span>";
+$this->pageTitle = "EXAMEN<span></span>";
 $this->breadcrumbs = array(
     'Reporte',
 );
@@ -24,7 +24,7 @@ $this->breadcrumbs = array(
                             </div>
                         </div>
                         <fieldset>
-                            <legend>Lista Examenes</legend>
+                            <legend>LISTA DE EXAMENES</legend>
                             <div class="row">
                                 <div class="col-md-10 col-lg-offset-1">
                                     <table class="table table-responsive table-bordered">
@@ -84,10 +84,6 @@ $this->breadcrumbs = array(
                                     </table>
                                 </div>
                         </fieldset>
-                        <div class="form-actions">
-                            <?php echo CHtml::link('Agregar Servicio', array('servicio/create', 'grupo' => $dataUrl['grupo'], 'tipo' => $dataUrl['tipo']), array('class' => 'btn btn-info')); ?>
-
-                        </div>
                     </div>
                 </div>
             </div>

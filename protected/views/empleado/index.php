@@ -1,6 +1,6 @@
 <?php
 /* @var $this PacienteController */
-$this->pageTitle = "Empleado <span> > Lista </span>";
+$this->pageTitle = "EMPLEADO";
 $this->breadcrumbs = array(
     'Empleado',
 );
@@ -24,7 +24,7 @@ $this->breadcrumbs = array(
                                 </div>
                             </div>
                             <fieldset>
-                                <legend>Lista de empleados</legend>
+                                <legend>LISTA DE EMPLEADOS</legend>
                                 <div class="row" id="empleado-list">
                                     <!-- Lista de pacientes (_pacientListView)-->
                                 </div>

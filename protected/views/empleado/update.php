@@ -1,6 +1,6 @@
 <?php
 /* $this ServicioController */
-$this->pageTitle = "Empleado <span> > Actualizar Empleado</span>";
+$this->pageTitle = "EMPLEADO";
 $this->breadcrumbs = array(
     'Actualizar Empleado',
 );
@@ -13,7 +13,7 @@ $this->breadcrumbs = array(
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Actualizar Empleado</legend>
+                            <legend>ACTUALIZAR EMPLEADO</legend>
                             <br>
                             <?php echo CHtml::beginForm(array(), 'post', array()); ?>
                             <div class="row">
