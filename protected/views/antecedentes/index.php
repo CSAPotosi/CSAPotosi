@@ -1,5 +1,5 @@
 <?php
-    $this->pageTitle = 'Antecedentes';
+    $this->pageTitle = 'ANTECEDENTES';
 ?>
 <section id="widget-grid">
     <div class="row">
@@ -9,7 +9,7 @@
                 </header>
                 <div>
                     <div class="widget-body no-padding">
-                        <legend style="padding-left: 5px;">Antecedentes registrados</legend>
+                        <legend class="padding-10">ANTECEDENTES REGISTRADOS</legend>
                         <table class="table table-bordered table-hover table-condensed table-striped" id="antecedentes-table">
                             <thead>
                             <tr>
@@ -22,9 +22,9 @@
                                 <th class="hasinput"></th>
                             </tr>
                             <tr>
-                                <th width="20%">Fecha y hora</th>
-                                <th width="60%">Parametro</th>
-                                <th width="60%">Valor</th>
+                                <th width="20%">FECHA Y HORA</th>
+                                <th width="60%">PARAMETRO</th>
+                                <th width="60%">VALOR</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,7 +44,7 @@
                             </tbody>
                         </table>
 
-                        <legend style="padding-left: 5px;">Registrar antecedentes</legend>
+                        <legend class="padding-10">REGISTRAR ANTECEDENTES</legend>
                         <?= CHtml::beginForm(['antecedentes/create','h_id'=>$historial->id_historial],'post');?>
                         <table class="table table-bordered table-hover table-condensed table-striped" id="antecedentes-table-form">
                             <thead>
@@ -59,8 +59,8 @@
                                 </th>
                             </tr>
                             <tr>
-                                <th width="50%">Parametro</th>
-                                <th width="50%">Valor</th>
+                                <th width="50%">PARAMETRO</th>
+                                <th width="50%">VALOR</th>
                             </tr>
                             </thead>
                             <tbody>

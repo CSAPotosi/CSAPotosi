@@ -5,6 +5,8 @@ $this->breadcrumbs=array(
 	'Medicamento',
 );
 
+$this->pageTitle = 'MEDICAMENTOS';
+
 $mediList = Medicamento::model()->findAll([
     'condition'=>'estado_med > 0'
 ]);
@@ -24,6 +26,7 @@ $mediList = Medicamento::model()->findAll([
 				<header></header>
 				<div>
 					<div class="widget-body no-padding">
+                        <legend class="padding-10">LISTADO DE MEDICAMENTOS</legend>
 						<?php $this->renderPartial('_tableMedicamento',['mediList'=>$mediList,'selectable'=>false]);?>
 					</div>
 				</div>

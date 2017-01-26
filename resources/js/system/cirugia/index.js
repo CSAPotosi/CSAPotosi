@@ -41,12 +41,14 @@ $('#calendar-buttons #btn-day').click(function () {
 });
 
 $("#calendar-buttons a").click(function(){
-    var moment = $('#calendar').fullCalendar('getDate');
-    var month = moment.format('M');
-    var year = moment.format('Y');
+    var current = $('#calendar').fullCalendar('getDate');
+    var first = moment(current).startOf('month');
+    var last = moment(current).endOf('month');
     var url = $(this).closest("#calendar-buttons").data("url");
-
-    $.post(url,function(data){
+    $.post(url,{
+        firstDate: first.format('DD/MM/YYYY'),
+        lastDate: last.format('DD/MM/YYYY')
+    },function(data){
         $("#calendar").fullCalendar('removeEvents');
         $("#calendar").fullCalendar( 'addEventSource', data );
     });
@@ -54,7 +56,12 @@ $("#calendar-buttons a").click(function(){
 
 $(document).ready(function(){
     var url = $("#calendar-buttons").data("url");
-    $.post(url,function(data){
+    var first = moment().startOf('month');
+    var last = moment().endOf('month');
+    $.post(url,{
+        firstDate: first.format('DD/MM/YYYY'),
+        lastDate: last.format('DD/MM/YYYY')
+    },function(data){
         $("#calendar").fullCalendar('removeEvents');
         $("#calendar").fullCalendar( 'addEventSource', data );
     });

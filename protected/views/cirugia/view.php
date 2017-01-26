@@ -1,11 +1,15 @@
+<?php
+    $this->pageTitle = 'CIRUGIA';
+?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
                     <div class="widget-body no-padding">
+                        <legend class="padding-10">DETALLE DE CIRUGIA</legend>
                         <table class="table table-hover table-striped">
                             <tbody>
                             <tr>
@@ -26,7 +30,7 @@
                                     <td>PROGRAMADO</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-align-right">FECHA Y HORA PROGRAMACION</th>
+                                    <th class="text-align-right">FECHA Y HORA PROGRAMADA</th>
                                     <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_reserva));?></td>
                                 </tr>
                                 <tr>

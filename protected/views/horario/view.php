@@ -130,5 +130,7 @@
 
 <?php
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/clockpicker/clockpicker.min.js',CClientScript::POS_END);
+Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.css');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.js',CClientScript::POS_END);
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/resources/js/system/horario/view.js',CClientScript::POS_END);
 ?>

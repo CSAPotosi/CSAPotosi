@@ -41,7 +41,7 @@ class MedicamentoController extends Controller
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuEspecialOptions([],['vademecum','index']);
+        $this->menu = OptionsMenu::menuEspecialOptions([],['vademecum','medicamento_Index']);
 		$this->render('index');
 	}
 

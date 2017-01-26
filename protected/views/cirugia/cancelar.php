@@ -1,14 +1,16 @@
-
+<?php
+    $this->pageTitle = 'CIRUGIA';
+?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Cancelar programacion de cirugia</legend>
+                            <legend>CANCELAR CIRUGIA PROGRAMADA</legend>
                             <div class="alert alert-info">
                                 <strong>Atencion!!! </strong>
                                 Esta a punto de cancelar la cirugia, si esta seguro de hacerlo presione el boton <strong>Cancelar cirugia programada</strong>.

@@ -1,4 +1,6 @@
-
+<?php
+    $this->pageTitle = 'PARAMETROS MEDICOS';
+?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -10,7 +12,12 @@
                         <?php echo CHtml::beginForm();?>
                         <fieldset>
                             <legend>
-                                Parametros
+                                <?php
+                                    if($parametro->isNewRecord)
+                                        echo  'NUEVO PARAMETRO';
+                                    else
+                                        echo  'EDICION DE PARAMETRO';
+                                ?>
                             </legend>
                             <?php echo CHtml::errorSummary($parametro,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
                             <div class="row">

@@ -1,17 +1,19 @@
+<?php $this->pageTitle = 'EXAMENES DE LABORATORIO';?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
-                    <div class="widget-body">
+                    <div class="widget-body no-padding">
+                        <legend class="padding-10">RESULTADO DE EXAMEN</legend>
                         <?php if($resultado->detalleResultados):?>
                         <table class="table table-hover table-striped table-bordered margin-bottom-5">
                             <thead>
                             <tr>
-                                <th width="30%">Parametro</th>
-                                <th width="70%">Valor obtenido</th>
+                                <th width="30%">PARAMETRO</th>
+                                <th width="70%">VALOR OBTENIDO</th>
                             </tr>
                             </thead>
                             <tbody>

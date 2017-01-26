@@ -8,11 +8,11 @@
         <div class="row margin-bottom-5">
             <div class="col-md-6">
                 <?php if ($index == 0):?>
-                <label for="">Medico/enfermera</label>
+                <label for="">MEDICO/ENFERMERA</label>
                 <?php endif;?>
                 <div class="input-group">
                     <?php
-                        $text = $personal->id_per?$personal->persona->nombres." ( {$personal->persona->num_doc} ) ":'';
+                        $text = $personal->id_per?$personal->persona->nombreCompleto." ( {$personal->persona->num_doc} ) ":'';
                     ?>
                     <input type="text" class="form-control" placeholder="Buscar medico/enfermera" value="<?php echo $text;?>" disabled>
                     <?php echo CHtml::activeHiddenField($personal,"[{$index}]id_per");?>
@@ -20,17 +20,17 @@
                         <button type="button" class="btn btn-primary btn-select-p" data-toggle="modal" data-target="#modal-personal"><i class="fa fa-search"></i> Buscar</button>
                     </div>
                 </div>
-                <?php echo CHtml::error($personal,"[{$index}]id_per",['class'=>'label label-danger']);?>
+                <?php echo CHtml::error($personal,"[{$index}]id_per",['class'=>'label label-danger error-message']);?>
             </div>
             <div class="col-md-4">
                 <?php if ($index == 0):?>
-                <label for="">Rol en cirugia</label>
+                <label for="">ROL</label>
                 <?php endif;?>
                 <?php echo CHtml::activeDropDownList($personal,"[{$index}]rol_cirugia",PersonalCirugia::getRolPersonal(),['class'=>'form-control']);?>
             </div>
             <div class="col-md-1">
                 <?php if ($index == 0):?>
-                <label for="">Resp.</label>
+                <label for="">RESP.</label>
                 <?php endif;?>
                 <div class="radio">
                     <label class="radio-label">

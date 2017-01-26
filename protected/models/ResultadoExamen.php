@@ -62,8 +62,8 @@ class ResultadoExamen extends CActiveRecord
 	{
 		return array(
 			'id_res' => 'Id Res',
-			'diagnostico_res' => 'Diagnostico Res',
-			'observacion_res' => 'Observacion Res',
+			'diagnostico_res' => 'DIAGNOSTICO DE EXAMEN',
+			'observacion_res' => 'OBSERVACIONES',
 			'fec_res' => 'Fec Res',
 			'id_det_pres' => 'Id Det Pres',
 		);

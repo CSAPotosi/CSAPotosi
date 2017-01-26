@@ -12,6 +12,7 @@
 	<!-- Basic Styles -->
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/fonts/webfont-medical-icons/wfmi-style.css">
 
 	<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo Yii::app()->request->baseUrl;?>/resources/css/smartadmin-production-plugins.min.css">
@@ -246,34 +247,48 @@
 			</li>
             <?php if(Yii::app()->user->checkAccess('Administracion de cirugias')):?>
 			<li>
-				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="fa fa-lg fa-fw fa-heartbeat"></i> <span class="menu-item-parent">Cirugias</span></a>
+				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="icon-i-surgery"></i> <span class="menu-item-parent">Cirugias</span></a>
 			</li>
             <?php endif;?>
             <li>
-                <a href="<?php echo CHtml::normalizeUrl(['medicamento/index'])?>"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Config</span></a>
+                <a href="<?php echo CHtml::normalizeUrl(['medicamento/index'])?>" title="Administracion de datos medicos"><i class="icon-i-administration"></i> <span class="menu-item-parent">Adm. Datos medicos</span></a>
             </li>
             <li>
-                <a href="<?php echo CHtml::normalizeUrl(['examen/index'])?>"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">Examenes</span></a>
+                <a href="<?php echo CHtml::normalizeUrl(['examen/index'])?>" title="Examenes de laboratorio"><i class="icon-i-laboratory"></i> <span class="menu-item-parent">Examenes de laboratorio</span></a>
             </li>
 			<li>
 				<a href="<?php echo CHtml::normalizeUrl(['convenio/indexConvenio']); ?>" title="Seguro Medicos"><i
-						class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent">Seguros Medicos</span></a>
+						class="fa fa-handshake-o"></i> <span class="menu-item-parent">Convenios</span></a>
 			</li>
             <li>
-                <a href="#"><i class="fa fa-lg fa-fw fa-file-text-o"></i> <span class="menu-item-parent">Reportes</span></a>
+                <a href="#">
+                    <i class="fa fa-lg fa-fw fa-bar-chart"></i>
+                    <span class="menu-item-parent">Reportes</span>
+                </a>
                 <ul>
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(['reporteCirugia/index']);?>" title="Cirugias"><span>Cirugias</span></a>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporteCirugia/index']);?>" title="Cirugias">
+                            <i class="fa fa-circle"></i>
+                            <span>Cirugias</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(['reporteInternacion/index']);?>" title="Internaciones"><span>Internaciones</span></a>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporteInternacion/index']);?>" title="Internaciones">
+                            <i class="fa fa-circle"></i>
+                            <span>Internaciones</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(['reporteLaboratorio/index']);?>" title="Laboratorio"><span>Examenes de laboratorio</span></a>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporteLaboratorio/index']);?>" title="Laboratorio">
+                            <i class="fa fa-circle"></i>
+                            <span>Examenes de laboratorio</span>
+                        </a>
                     </li>
 					<li>
-						<a href="<?php echo CHtml::normalizeUrl(['ReporteEstadistico/index']); ?>" title="Estadisticas"><span
-								class="menu-item-parent">Estadisticas</span></a>
+						<a href="<?php echo CHtml::normalizeUrl(['ReporteEstadistico/index']); ?>" title="Estadisticas">
+                            <i class="fa fa-circle"></i>
+                            <span>Estadisticas</span>
+                        </a>
 					</li>
                 </ul>
             </li>

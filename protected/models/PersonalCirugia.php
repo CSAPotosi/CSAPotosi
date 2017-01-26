@@ -61,9 +61,9 @@ class PersonalCirugia extends CActiveRecord
 	{
 		return array(
 			'id_cir' => 'Id Cir',
-			'id_per' => 'Id Per',
-			'responsable' => 'Responsable',
-			'rol_cirugia' => 'Rol Cirugia',
+			'id_per' => 'MEDICO/ENFERMERA',
+			'responsable' => 'RESPONSABLE',
+			'rol_cirugia' => 'ROL',
 		);
 	}
 

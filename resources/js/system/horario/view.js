@@ -2,10 +2,8 @@ var currentP = null;
 
 var ciclo = parseInt($("#ciclo").attr("data-ciclo"));
 
-$(".spinner-both").spinner({
-    color:"#ffffff",
-    min:0,
-    step:5
+$(".spinner-both").TouchSpin({
+    verticalbuttons:true
 });
 
 $(".clockpicker").clockpicker({
@@ -158,3 +156,4 @@ function rename(){
             .attr("id","HorarioPeriodo_"+i+"_dia");
     });
 }
+

@@ -2,11 +2,13 @@
     $modelTSala = ServTipoSala::model()->with([
         'servicio'=>['condition'=>'activo AND tipo_cobro = 1']
     ])->findAll();
+
+    $this->pageTitle = 'CIRUGIAS';
 ?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
@@ -14,14 +16,14 @@
                         <?php echo CHtml::beginForm();?>
                         <fieldset>
                             <legend>
-                                Programacion de cirugia
+                                PROGRAMACION DE CIRUGIA
                             </legend>
-                            <?php echo CHtml::errorSummary($cirugia,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
+                            <?php echo CHtml::errorSummary($cirugia,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <div class="form-group">
                                         <?php
-                                        $text = $cirugia->id_historial? $cirugia->historial->paciente->persona->nombres." ( {$cirugia->historial->paciente->persona->num_doc} )" :'';
+                                        $text = $cirugia->id_historial? $cirugia->historial->paciente->persona->nombreCompleto." ( {$cirugia->historial->paciente->persona->num_doc} )" :'';
                                         ?>
                                         <?php echo CHtml::  activeLabelEx($cirugia,'id_historial');?>
                                         <div class="input-group">
@@ -33,25 +35,25 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <?php echo CHtml::error($cirugia,'id_historial',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($cirugia,'id_historial',['class'=>'label label-danger error-message']);?>
                                     </div>
 
 
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($cirugia,'fec_reserva');?>
                                         <div class="input-group date" id="fecha-reserva">
-                                            <?php echo CHtml::activeTextField($cirugia,'fec_reserva',['class'=>'form-control']);?>
+                                            <?php echo CHtml::activeTextField($cirugia,'fec_reserva',['class'=>'form-control', 'value'=>$cirugia->fec_reserva?date('d/m/Y H:i',strtotime($cirugia->fec_reserva)):'' ]);?>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                         </div>
-                                        <?php echo CHtml::error($cirugia,'fec_reserva',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($cirugia,'fec_reserva',['class'=>'label label-danger error-message']);?>
                                     </div>
 
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($cirugia,'tiempo_estimado');?>
                                         <?php echo CHtml::activeTextField($cirugia,'tiempo_estimado',['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($cirugia,'tiempo_estimado',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($cirugia,'tiempo_estimado',['class'=>'label label-danger error-message']);?>
                                     </div>
 
                                     <div class="form-group">
@@ -68,7 +70,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <?php echo CHtml::error($cirugia,'id_sala',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($cirugia,'id_sala',['class'=>'label label-danger error-message']);?>
                                     </div>
                                 </div>
                             </div>
@@ -145,6 +147,8 @@ Yii::app()->clientScript
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/moment/moment-with-locales.js',CClientScript::POS_END)
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',CClientScript::POS_END)
     ->registerCssFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.js',CClientScript::POS_END)
+    ->registerCssFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.css')
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/system/cirugia/common.js',CClientScript::POS_END)
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/system/cirugia/programar.js',CClientScript::POS_END);
 ?>

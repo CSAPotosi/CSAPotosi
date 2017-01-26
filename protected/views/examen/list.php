@@ -1,18 +1,28 @@
+<?php
+    $this->pageTitle = 'EXAMENES DE LABORATORIO';
+?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
-                    <div class="widget-body">
+                    <div class="widget-body no-padding">
+                        <legend class="padding-10">LISTA DE EXAMENES REALIZADOS</legend>
                         <?php if($examenList):?>
-                            <table class="table table-bordered table-striped table-hover">
+                            <table class="table table-bordered table-striped table-hover" id="examen-table">
                                 <thead>
                                 <tr>
-                                    <th width="15%">Fecha</th>
-                                    <th width="45%">Paciente</th>
-                                    <th width="30%">Examen</th>
+                                    <th class="hasinput"><input type="text" class="form-control" placeholder="FECHA Y HORA"></th>
+                                    <th class="hasinput"><input type="text" class="form-control" placeholder="PACIENTE"></th>
+                                    <th class="hasinput"><input type="text" class="form-control" placeholder="EXAMEN"></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th width="15%">FECHA Y HORA</th>
+                                    <th width="45%">PACIENTE</th>
+                                    <th width="30%">EXAMEN</th>
                                     <th width="10%"></th>
                                 </tr>
                                 </thead>
@@ -21,7 +31,7 @@
                                     <?php if($examen->servicio->servExamen && $examen->servicio->servExamen->categoria->tipo_ex == 1):?>
                                     <tr>
                                         <td><?php echo date('d/m/Y H:i',strtotime($examen->fecha_solicitud))?></td>
-                                        <td><?php echo $examen->prestacion->historial->paciente->persona->nombres;?></td>
+                                        <td><?php echo $examen->prestacion->historial->paciente->persona->nombreCompleto;?></td>
                                         <td><?php echo $examen->servicio->nombre_serv;?></td>
                                         <td>
                                             <?php if($examen->resultadoExamen):?>
@@ -49,3 +59,13 @@
         </article>
     </div>
 </section>
+
+<?php
+Yii::app()->clientScript
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/jquery.dataTables.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.colVis.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.tableTools.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.bootstrap.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatable-responsive/datatables.responsive.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/examen/index.js', CClientScript::POS_END);
+?>

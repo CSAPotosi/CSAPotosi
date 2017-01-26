@@ -1,3 +1,7 @@
+<?php
+    $this->pageTitle = 'PARAMETROS MEDICOS';
+?>
+
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -6,6 +10,7 @@
                 </header>
                 <div>
                     <div class="widget-body no-padding">
+                        <legend class="padding-10">LISTADO DE PARAMETROS MEDICOS</legend>
                         <table class="table-striped table table-hover table-bordered" id="params-table">
                             <thead>
                             <tr>

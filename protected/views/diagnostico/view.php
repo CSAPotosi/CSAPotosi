@@ -3,15 +3,15 @@
 <section id="widget-grid">
     <div class="row">
         <div class="col-md-12">
-            <div class="jarviswidget" id="widget-historial">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget-historial">
                 <header>
                     <ul class="nav nav-tabs pull-right in" id="tab-historial">
                         <li class="active">
-                            <a data-toggle="tab" href="#s1"><i class="fa fa-clock-o"></i> <span
+                            <a data-toggle="tab" href="#s1"><span
                                     class="hidden-mobile hidden-tablet">Detalle</span></a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#s2"><i class="fa fa-stethoscope"></i> <span
+                            <a data-toggle="tab" href="#s2"><span
                                     class="hidden-mobile hidden-tablet">Evolucion</span></a>
                         </li>
                         <li>

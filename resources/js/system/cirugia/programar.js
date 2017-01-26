@@ -45,3 +45,10 @@ function eventHandlersPaciente(){
         $("#modal-paciente").modal('hide');
     });
 }
+
+$("#Cirugia_tiempo_estimado").TouchSpin({
+    min: 0,
+    max: 1000,
+    step: 5,
+    verticalbuttons: true
+});

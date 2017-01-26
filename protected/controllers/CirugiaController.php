@@ -56,12 +56,15 @@ class CirugiaController extends Controller
 
     public function actionGetEventsAjax(){
         header('Content-type: application/json');
-        $cList = Cirugia::model()->findAll();
+        $cList = Cirugia::model()->findAll([
+            'condition'=> "fec_reserva::DATE between :fec_ini and :fec_fin or fec_inicio::DATE between :fec_ini and :fec_fin",
+            'params'=> [ ':fec_ini'=>$_POST['firstDate'], ':fec_fin'=>$_POST['lastDate'] ]
+        ]);
         $cirugias = [];
         foreach ($cList as $cir){
             $item = [
                 'id'=>$cir->id_cir,
-                'title'=>$cir->historial->paciente->persona->nombres." - ".$cir->sala->tSala->servicio->nombre_serv." (".$cir->sala->cod_sala.")",
+                'title'=>$cir->historial->paciente->persona->nombreCompleto." - ".$cir->sala->tSala->servicio->nombre_serv." (".$cir->sala->cod_sala.")",
                 'start'=>$cir->fec_reserva,
                 'url'=>CHtml::normalizeUrl(['cirugia/view','c_id'=>$cir->id_cir])
             ];
@@ -69,7 +72,7 @@ class CirugiaController extends Controller
                 $di = new DateInterval('PT'.$cir->tiempo_estimado.'M');
                 $end = new DateTime($cir->fec_reserva);
                 $end->add($di);
-                $item['title'].= ' - R';
+                $item['title']= 'R: '.$item['title'];
                 $item['end'] = $end->format('Y-m-d H:i');
                 $item['color'] = '#6311C0';
             }else{

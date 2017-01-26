@@ -2,96 +2,98 @@
 $modelTSala = ServTipoSala::model()->with([
     'servicio'=>['condition'=>'activo AND tipo_cobro = 1']
 ])->findAll();
+
+$this->pageTitle = 'CIRUGIA';
 ?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
                     <div class="widget-body">
                         <?php echo CHtml::beginForm();?>
-                        <fieldset>
-                            <legend>
-                                Datos de cirugia
-                            </legend>
-                            <?php echo CHtml::errorSummary(array_merge([$cirugia],$persList),'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-                                    <?php if ($cirugia->isNewRecord):?>
-                                        <div class="form-group">
-                                            <?php
-                                            $text = $cirugia->id_historial? $cirugia->historial->paciente->persona->nombres." ( {$cirugia->historial->paciente->persona->num_doc} )" :'';
-                                            ?>
-                                            <?php echo CHtml::  activeLabelEx($cirugia,'id_historial');?>
-                                            <div class="input-group">
-                                                <input type="text" id="paciente" class="form-control" value="<?php echo $text;?>" placeholder="Seleccione un paciente" disabled>
-                                                <?php echo CHtml::activeHiddenField($cirugia,'id_historial');?>
-                                                <div class="input-group-btn">
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-paciente">
-                                                        <i class="fa fa-search"></i> Buscar
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <?php echo CHtml::error($cirugia,'id_historial',['class'=>'label label-danger']);?>
-                                        </div>
-                                    <?php endif;?>
-
+                        <legend>
+                            REGISTRAR DATOS DE CIRUGIA
+                        </legend>
+                        <?php echo CHtml::errorSummary(array_merge([$cirugia],$persList),'<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES:</h4>',null,['class'=>'alert alert-danger error-message']);?>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <?php if ($cirugia->isNewRecord):?>
                                     <div class="form-group">
                                         <?php
-                                        $text = $cirugia->id_sala? $cirugia->sala->cod_sala." ( {$cirugia->sala->tSala->servicio->nombre_serv} )" :'';
+                                        $text = $cirugia->id_historial? $cirugia->historial->paciente->persona->nombreCompleto." ( {$cirugia->historial->paciente->persona->num_doc} )" :'';
                                         ?>
-                                        <?php echo CHtml::activeLabelEx($cirugia,'id_sala');?>
+                                        <?php echo CHtml::  activeLabelEx($cirugia,'id_historial');?>
                                         <div class="input-group">
-                                            <input type="text" id="quirofano" class="form-control" value="<?php echo $text;?>" placeholder="Seleccione un quirofano" disabled>
-                                            <?php echo CHtml::activeHiddenField($cirugia,'id_sala');?>
+                                            <input type="text" id="paciente" class="form-control" value="<?php echo $text;?>" placeholder="Seleccione un paciente" disabled>
+                                            <?php echo CHtml::activeHiddenField($cirugia,'id_historial');?>
                                             <div class="input-group-btn">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-quirofano">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-paciente">
                                                     <i class="fa fa-search"></i> Buscar
                                                 </button>
                                             </div>
                                         </div>
-                                        <?php echo CHtml::error($cirugia,'id_sala',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($cirugia,'id_historial',['class'=>'label label-danger error-message']);?>
                                     </div>
+                                <?php endif;?>
 
-                                    <div class="form-group">
-                                        <?php echo CHtml::activeLabelEx($cirugia,'fec_inicio');?>
-                                        <div class="input-group date" id="fecha-inicio">
-                                            <?php echo CHtml::activeTextField($cirugia,'fec_inicio',['class'=>'form-control']);?>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
+                                <div class="form-group">
+                                    <?php
+                                    $text = $cirugia->id_sala? $cirugia->sala->cod_sala." ( {$cirugia->sala->tSala->servicio->nombre_serv} )" :'';
+                                    ?>
+                                    <?php echo CHtml::activeLabelEx($cirugia,'id_sala');?>
+                                    <div class="input-group">
+                                        <input type="text" id="quirofano" class="form-control" value="<?php echo $text;?>" placeholder="Seleccione un quirofano" disabled>
+                                        <?php echo CHtml::activeHiddenField($cirugia,'id_sala');?>
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-quirofano">
+                                                <i class="fa fa-search"></i> Buscar
+                                            </button>
                                         </div>
-                                        <?php echo CHtml::error($cirugia,'fec_inicio',['class'=>'label label-danger']);?>
                                     </div>
+                                    <?php echo CHtml::error($cirugia,'id_sala',['class'=>'label label-danger error-message']);?>
+                                </div>
 
-                                    <div class="form-group">
-                                        <?php echo CHtml::activeLabelEx($cirugia,'fec_fin');?>
-                                        <div class="input-group date" id="fecha-fin">
-                                            <?php echo CHtml::activeTextField($cirugia,'fec_fin',['class'=>'form-control']);?>
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                        <?php echo CHtml::error($cirugia,'fec_fin',['class'=>'label label-danger']);?>
+                                <div class="form-group">
+                                    <?php echo CHtml::activeLabelEx($cirugia,'fec_inicio');?>
+                                    <?= $cirugia->fec_inicio?>
+                                    <div class="input-group date" id="fecha-inicio">
+                                        <?php echo CHtml::activeTextField($cirugia,'fec_inicio',['class'=>'form-control','value'=>$cirugia->fec_inicio?date('d/m/Y H:i',strtotime($cirugia->fec_inicio)):'']);?>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
+                                    <?php echo CHtml::error($cirugia,'fec_inicio',['class'=>'label label-danger error-message']);?>
+                                </div>
 
-                                    <div class="form-group">
-                                        <?php echo CHtml::activeLabelEx($cirugia,'naturaleza');?>
-                                        <?php echo CHtml::activeTextArea($cirugia,'naturaleza',['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($cirugia,'naturaleza',['class'=>'label label-danger']);?>
+                                <div class="form-group">
+                                    <?php echo CHtml::activeLabelEx($cirugia,'fec_fin');?>
+                                    <div class="input-group date" id="fecha-fin">
+                                        <?php echo CHtml::activeTextField($cirugia,'fec_fin',['class'=>'form-control','value'=>$cirugia->fec_fin?date('d/m/Y H:i',strtotime($cirugia->fec_fin)):'']);?>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
                                     </div>
+                                    <?php echo CHtml::error($cirugia,'fec_fin',['class'=>'label label-danger error-message']);?>
+                                </div>
 
-                                    <div class="form-group">
-                                        <?php echo CHtml::activeLabelEx($cirugia,'detalle_instrumental');?>
-                                        <?php echo CHtml::activeTextArea($cirugia,'detalle_instrumental',['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($cirugia,'detalle_instrumental',['class'=>'label label-danger']);?>
-                                    </div>
+                                <div class="form-group">
+                                    <?php echo CHtml::activeLabelEx($cirugia,'naturaleza');?>
+                                    <?php echo CHtml::activeTextArea($cirugia,'naturaleza',['class'=>'form-control']);?>
+                                    <?php echo CHtml::error($cirugia,'naturaleza',['class'=>'label label-danger error-message']);?>
+                                </div>
+
+                                <div class="form-group">
+                                    <?php echo CHtml::activeLabelEx($cirugia,'detalle_instrumental');?>
+                                    <?php echo CHtml::activeTextArea($cirugia,'detalle_instrumental',['class'=>'form-control']);?>
+                                    <?php echo CHtml::error($cirugia,'detalle_instrumental',['class'=>'label label-danger error-message']);?>
                                 </div>
                             </div>
-                            <?php $this->renderPartial('_personalForm',['persList'=>$persList]);?>
-                        </fieldset>
+                        </div>
+                        <?php $this->renderPartial('_personalForm',['persList'=>$persList]);?>
+
                         <div class="form-actions">
                             <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Guardar</button>
                         </div>
@@ -112,7 +114,7 @@ $modelTSala = ServTipoSala::model()->with([
                     <button type="button" class="btn btn-primary btn-select-p" data-toggle="modal" data-target="#modal-personal"><i class="fa fa-search"></i> Buscar</button>
                 </div>
             </div>
-            <?php echo CHtml::error(new PersonalCirugia(),"[]id_per",['class'=>'label label-danger']);?>
+            <?php echo CHtml::error(new PersonalCirugia(),"[]id_per",['class'=>'label label-danger error-message']);?>
         </div>
         <div class="col-md-4">
             <?php echo CHtml::activeDropDownList(new PersonalCirugia(),'[]rol_cirugia',PersonalCirugia::getRolPersonal(),['class'=>'form-control']);?>

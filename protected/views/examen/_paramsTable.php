@@ -12,10 +12,10 @@
     <thead>
     <tr>
         <th width="70%">
-            Nombre
+            NOMBRE DE PARAMETRO
         </th>
         <th width="30%">
-            Ext.
+            EXTENSION/UNIDAD
         </th>
     </tr>
     </thead>

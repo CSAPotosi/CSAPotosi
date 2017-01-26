@@ -48,6 +48,7 @@ class DiagnosticoController extends Controller
                     $dcItem->id_diag = $diagnosticoModel->id_diag;
                     $dcItem->save();
                 }
+                return $this->redirect(['view','d_id'=>$diagnosticoModel->id_diag]);
             }
         }
         $this->render('create',['diagnosticoModel'=>$diagnosticoModel, 'historialModel'=>$this->_historial,'dcList'=>$dcList]);

@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle = 'Signos vitales';
+$this->pageTitle = 'SIGNOS VITALES';
 ?>
     <section id="widget-grid">
         <div class="row">
@@ -9,7 +9,7 @@ $this->pageTitle = 'Signos vitales';
                     </header>
                     <div>
                         <div class="widget-body no-padding">
-                            <legend style="margin-left: 5px;">Signos vitales registrados</legend>
+                            <legend class="padding-10">SIGNOS VITALES REGISTRADOS</legend>
                             <table class="table table-bordered table-hover table-condensed table-striped" id="vitales-table">
                                 <thead>
                                 <tr>
@@ -22,9 +22,9 @@ $this->pageTitle = 'Signos vitales';
                                     <th class="hasinput"></th>
                                 </tr>
                                 <tr>
-                                    <th width="20%">Fecha y hora</th>
-                                    <th width="60%">Parametro</th>
-                                    <th width="60%">Valor</th>
+                                    <th width="20%">FECHA Y HORA</th>
+                                    <th width="60%">PARAMETRO</th>
+                                    <th width="60%">VALOR</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -44,13 +44,13 @@ $this->pageTitle = 'Signos vitales';
                                 </tbody>
                             </table>
 
-                            <legend style="margin-left: 5px;">Registrar signos vitales</legend>
+                            <legend class="padding-10">REGISTRAR SIGNOS VITALES</legend>
                             <?= CHtml::beginForm(['vitales/create','h_id'=>$historial->id_historial],'post');?>
                             <table class="table table-bordered table-hover table-condensed table-striped" id="vitales-table-form">
                                 <thead>
                                 <tr>
                                     <th class="hasinput">
-                                        <input type="text" class="form-control input-sm">
+                                        <input type="text" class="form-control input-sm" PLACEHOLDER="Parametro">
                                     </th>
                                     <th>
                                         <button type="submit" class="btn btn-primary pull-right">
@@ -59,8 +59,8 @@ $this->pageTitle = 'Signos vitales';
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th width="50%">Parametro</th>
-                                    <th width="50%">Valor</th>
+                                    <th width="50%">PARAMETRO</th>
+                                    <th width="50%">VALOR</th>
                                 </tr>
                                 </thead>
                                 <tbody>
