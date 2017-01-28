@@ -39,7 +39,7 @@
     <table class="table table-responsive table-bordered table-condensed table-hover table-stripped">
         <thead>
         <tr>
-            <th colspan="3" style="text-align: center">INSTRUCCIONES</th>
+            <th colspan="3" style="text-align: center">PAUTAS</th>
         </tr>
         <tr>
             <th width="5%">#</th>
