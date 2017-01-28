@@ -118,7 +118,7 @@
                         </h4>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="input-sm form-control" placeholder="MEDICAMENTO O CODIGO" id="input-search-medi">
+                        <input type="text" class="input-sm form-control" placeholder="MEDICAMENTO" id="input-search-medi">
                     </div>
                 </div>
             </div>

@@ -13,7 +13,8 @@
                             <thead>
                             <tr>
                                 <th width="30%">PARAMETRO</th>
-                                <th width="70%">VALOR OBTENIDO</th>
+                                <th width="30%">VALOR OBTENIDO</th>
+                                <th width="40%">VALORES DE REFERENCIA</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -25,6 +26,9 @@
                                     <td>
                                         <?php echo $detalle->valor_res;?>
                                         ( <?php echo $detalle->parametro->ext_par;?> )
+                                    </td>
+                                    <td>
+                                        <?= nl2br($detalle->parametro->val_ref) ?>
                                     </td>
                                 </tr>
                             <?php endforeach;?>

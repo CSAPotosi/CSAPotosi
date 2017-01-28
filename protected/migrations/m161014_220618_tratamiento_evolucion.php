@@ -25,7 +25,7 @@ class m161014_220618_tratamiento_evolucion extends CDbMigration
 
         $this->createTable('receta',[
             'id_trat' => "INT NOT NULL",
-            'codigo_med' => "VARCHAR(8) NOT NULL",
+            'codigo_med' => "INT NOT NULL",
             'cant_solicitada' => "INT NOT NULL",
             'via' => "VARCHAR(30) NOT NULL",
             'pauta' => "TEXT",

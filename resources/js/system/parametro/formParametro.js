@@ -2,6 +2,7 @@ var json_def = null;
 $(document).ready(function () {
     json_def = JSON.parse($("#Parametro_def_par").val());
     formBuilder();
+    checkParamType();
 });
 
 $("#param_type").on("change",function(){
@@ -115,4 +116,15 @@ function validate(){
         }
     }
     return flag;
+}
+
+$("#Parametro_tipo_par").on("change",checkParamType);
+
+function checkParamType(){
+    var type = $("#Parametro_tipo_par").val();
+    if(type == 0){
+        $("#Parametro_val_ref").closest(".row").removeClass("hide");
+    }else{
+        $("#Parametro_val_ref").closest(".row").addClass("hide");
+    }
 }

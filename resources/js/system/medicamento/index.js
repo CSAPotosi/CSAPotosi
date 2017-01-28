@@ -58,3 +58,28 @@ $("#medic-table thead th input[type=text],#medic-table thead th select").on( 'ke
         .draw();
 } );
 
+$("#create-medicamento").on("submit",function(e){
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr("action"),
+        method:'post',
+        data:$(this).serialize(),
+        beforeSend:function(){
+            $("span.label.label-danger").text("");
+        },
+        success:function(data){
+            if(data.success){
+                window.location.href = $("#btn-save-med").data('url');
+            }else{
+                $.each(data,function(i,v){
+                    $("#Medicamento_"+i).closest('.form-group').find("span").text(v);
+                })
+            }
+        }
+    });
+});
+
+$("#btn-new-med, #btn-close-med").on("click",function(){
+    $("span.label.label-danger").text("");
+    $("#new-med-area, #form-med-area").toggleClass("hidden");
+});

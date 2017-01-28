@@ -5,7 +5,7 @@ class MedicamentoController extends Controller
     public function filters()
     {
         return array(
-            'accessControl', // perform access control for CRUD operations
+//            'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
         );
     }
@@ -45,6 +45,19 @@ class MedicamentoController extends Controller
 		$this->render('index');
 	}
 
+    public function actionCreate(){
+        header('Content-type: application/json');
+        if(isset($_POST['Medicamento'])){
+            $med = new Medicamento();
+            $med->attributes = $_POST['Medicamento'];
+            if(!$med->save()){
+                echo CJSON::encode($med->errors);
+                Yii::app()->end();
+            }
+        }
+        echo CJSON::encode(['success'=>true]);
+    }
+
 	public function actionUpdate(){
 		$uploadModel = new FileUploadForm('uploadMed');
 		$this->render('update',['uploadModel'=>$uploadModel]);
@@ -55,7 +68,7 @@ class MedicamentoController extends Controller
         if(isset($_POST['param']))
             $param = $_POST['param'];
         $mediList = Medicamento::model()->findAll([
-            'condition' => 'nombre_med like :data OR codigo like :data',
+            'condition' => 'nombre_med like :data',
             'params'=>[':data' => "%{$param}%"],
             'limit'=>10
         ]);

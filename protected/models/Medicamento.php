@@ -8,9 +8,6 @@
  * @property string $nombre_med
  * @property string $forma_farm
  * @property string $concentracion
- * @property string $ATQ
- * @property boolean $restringido
- * @property integer $estado_med
  */
 class Medicamento extends CActiveRecord
 {
@@ -30,15 +27,9 @@ class Medicamento extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('codigo, nombre_med, forma_farm, concentracion, ATQ', 'required'),
-			array('estado_med', 'numerical', 'integerOnly'=>true),
-			array('codigo, ATQ', 'length', 'max'=>8),
+			array('nombre_med, forma_farm, concentracion', 'required'),
 			array('nombre_med, forma_farm', 'length', 'max'=>64),
-			array('concentracion', 'length', 'max'=>32),
-			array('restringido', 'safe'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('codigo, nombre_med, forma_farm, concentracion, ATQ, restringido, estado_med', 'safe', 'on'=>'search'),
+			array('concentracion', 'length', 'max'=>32)
 		);
 	}
 
@@ -60,12 +51,9 @@ class Medicamento extends CActiveRecord
 	{
 		return array(
 			'codigo' => 'Codigo',
-			'nombre_med' => 'Nombre Med',
-			'forma_farm' => 'Forma Farm',
-			'concentracion' => 'Concentracion',
-			'ATQ' => 'Atq',
-			'restringido' => 'Restringido',
-			'estado_med' => 'Estado Med',
+			'nombre_med' => 'NOMBRE',
+			'forma_farm' => 'FORMA FARM.',
+			'concentracion' => 'CONCENTRACION'
 		);
 	}
 

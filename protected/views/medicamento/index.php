@@ -7,9 +7,7 @@ $this->breadcrumbs=array(
 
 $this->pageTitle = 'MEDICAMENTOS';
 
-$mediList = Medicamento::model()->findAll([
-    'condition'=>'estado_med > 0'
-]);
+$mediList = Medicamento::model()->findAll();
 ?>
 
 <style>
@@ -34,7 +32,6 @@ $mediList = Medicamento::model()->findAll([
 		</article>
 	</div>
 </section>
-
 
 <?php
 Yii::app()->clientScript

@@ -42,7 +42,7 @@
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($cirugia,'fec_reserva');?>
                                         <div class="input-group date" id="fecha-reserva">
-                                            <?php echo CHtml::activeTextField($cirugia,'fec_reserva',['class'=>'form-control', 'value'=>$cirugia->fec_reserva?date('d/m/Y H:i',strtotime($cirugia->fec_reserva)):'' ]);?>
+                                            <?php echo CHtml::activeTextField($cirugia,'fec_reserva',['class'=>'form-control', 'value'=>$cirugia->fec_reserva?HelpTools::getDate($cirugia->fec_reserva)->format('d/m/Y H:i'):'' ]);?>
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>

@@ -9,6 +9,7 @@ class m161106_235318_laboratorio extends CDbMigration
             'nombre_par' => "VARCHAR(64) NOT NULL UNIQUE",
             'ext_par' => "VARCHAR(16)",
             'tipo_par' => "INT NOT NULL DEFAULT 0",//0 laboratorio, 1 medico, 2 antecedentes
+            'val_ref' => "TEXT",
             'def_par' => "JSON DEFAULT '{\"type\":\"string\"}'"
         ]);
 

@@ -58,9 +58,8 @@ $this->pageTitle = 'CIRUGIA';
 
                                 <div class="form-group">
                                     <?php echo CHtml::activeLabelEx($cirugia,'fec_inicio');?>
-                                    <?= $cirugia->fec_inicio?>
                                     <div class="input-group date" id="fecha-inicio">
-                                        <?php echo CHtml::activeTextField($cirugia,'fec_inicio',['class'=>'form-control','value'=>$cirugia->fec_inicio?date('d/m/Y H:i',strtotime($cirugia->fec_inicio)):'']);?>
+                                        <?php echo CHtml::activeTextField($cirugia,'fec_inicio',['class'=>'form-control','value'=>$cirugia->fec_inicio?HelpTools::getDate($cirugia->fec_inicio)->format('d/m/Y H:i'):'']);?>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -71,7 +70,7 @@ $this->pageTitle = 'CIRUGIA';
                                 <div class="form-group">
                                     <?php echo CHtml::activeLabelEx($cirugia,'fec_fin');?>
                                     <div class="input-group date" id="fecha-fin">
-                                        <?php echo CHtml::activeTextField($cirugia,'fec_fin',['class'=>'form-control','value'=>$cirugia->fec_fin?date('d/m/Y H:i',strtotime($cirugia->fec_fin)):'']);?>
+                                        <?php echo CHtml::activeTextField($cirugia,'fec_fin',['class'=>'form-control','value'=>$cirugia->fec_fin?HelpTools::getDate($cirugia->fec_fin)->format('d/m/Y H:i'):'']);?>
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>

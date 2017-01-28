@@ -19,7 +19,7 @@
                                         echo  'EDICION DE PARAMETRO';
                                 ?>
                             </legend>
-                            <?php echo CHtml::errorSummary($parametro,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
+                            <?php echo CHtml::errorSummary($parametro,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <div class="row">
@@ -27,14 +27,14 @@
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabelEx($parametro,'nombre_par');?>
                                                 <?php echo CHtml::activeTextField($parametro,'nombre_par',['class'=>'form-control']);?>
-                                                <?php echo CHtml::error($parametro,'nombre_par',['class'=>'label label-danger']);?>
+                                                <?php echo CHtml::error($parametro,'nombre_par',['class'=>'label label-danger error-message']);?>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabelEx($parametro,'ext_par');?>
                                                 <?php echo CHtml::activeTextField($parametro,'ext_par',['class'=>'form-control']);?>
-                                                <?php echo CHtml::error($parametro,'ext_par',['class'=>'label label-danger']);?>
+                                                <?php echo CHtml::error($parametro,'ext_par',['class'=>'label label-danger error-message']);?>
                                             </div>
                                         </div>
                                     </div>
@@ -44,7 +44,7 @@
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabelEx($parametro,'tipo_par');?>
                                                 <?php echo CHtml::activeDropDownList($parametro,'tipo_par',$parametro->getTipo(),['class'=>'form-control']);?>
-                                                <?php echo CHtml::error($parametro,'tipo_par',['class'=>'label label-danger']);?>
+                                                <?php echo CHtml::error($parametro,'tipo_par',['class'=>'label label-danger error-message']);?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -60,14 +60,21 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div id="param_def">
                                         <div class="param_def_type">
-
                                         </div>
                                         <div class="param_def_options">
                                         </div>
                                         <div class="param_def_values">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <?php echo CHtml::activeLabelEx($parametro,'val_ref');?>
+                                                <?php echo CHtml::activeTextArea($parametro,'val_ref',['class'=>'form-control']);?>
+                                                <?php echo CHtml::error($parametro,'val_ref',['class'=>'label label-danger error-message'])?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +101,7 @@
             <div class="col-md-4">
                 <label for="check-range">RESTRINGIR</label>
                 <input type="checkbox" class="has-range" id="check-range">
-                <span class="label label-danger input-error"></span>
+                <span class="label label-danger error-message input-error"></span>
             </div>
             <div class="col-md-4">
                 <input type="text" class="input-range input-range-min form-control" disabled placeholder="Val. Minimo">
@@ -112,7 +119,7 @@
                     <div class="panel-body status item-list">
                     </div>
                 </div>
-                <span class="label label-danger input-error"></span>
+                <span class="label label-danger error-message input-error"></span>
             </div>
             <div class="col-md-6">
                 <label>NUEVO ITEM:</label>

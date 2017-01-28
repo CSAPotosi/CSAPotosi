@@ -92,6 +92,7 @@ class CirugiaController extends Controller
         $cirugia = new Cirugia('reserva');
         if($c_id){
             $cirugia = Cirugia::model()->findByPk($c_id);
+            $cirugia->scenario = 'reserva';
             $this->menu = OptionsMenu::menuCirugia(['c_id'=>$c_id],['itemCirugia','cirugia_Programar']);
         }
         $cirugia->reservado = true;

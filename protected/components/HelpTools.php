@@ -35,4 +35,16 @@ class HelpTools{
         }
         return $res;
     }
+
+    public static function getDate($date = null){
+        $date_formats = ['Y-m-d','Y-m-d H:i','Y-m-d H:i:s','d/m/Y','d/m/Y H:i','d/m/Y H:i:s'];
+        $new_date = new DateTime();
+        foreach($date_formats as $format){
+            $temp_date = DateTime::createFromFormat($format, $date);
+            if($temp_date){
+                return $temp_date;
+            }
+        }
+        return $new_date;
+    }
 }

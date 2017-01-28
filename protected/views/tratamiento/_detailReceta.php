@@ -23,7 +23,6 @@
                 <th><?php echo $index?></th>
                 <td>
                     <?php echo $rItem->medicamento->nombre_med;
-                        echo ($rItem->medicamento->restringido)?' <i class="font-xs text-danger"> (restringido)</i>':'';
                     ?>
                 </td>
                 <td><?php echo $rItem->medicamento->forma_farm;?></td>

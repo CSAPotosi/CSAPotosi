@@ -85,7 +85,43 @@ class Cirugia extends CActiveRecord
     }
 
 	public function checkAvailability($attribute, $params){
-        $this->addError($attribute,'La sala no existe.');
+        $fec_ini = null;
+        $fec_fin = null;
+        if($this->scenario == 'registro'){
+            if($this->fec_inicio  && $this->fec_fin){
+                $fec_ini = HelpTools::getDate($this->fec_inicio);
+                $fec_fin = HelpTools::getDate($this->fec_fin);
+            }else{
+                $this->addError($attribute,'EL QUIROFANO ESTA OCUPADO PARA LA FECHA SELECCIONADA');
+                return;
+            }
+        }else{
+            if($this->fec_reserva){
+                $fec_ini = HelpTools::getDate($this->fec_reserva);
+                $fec_fin = clone $fec_ini;
+                $interval = $this->tiempo_estimado?:0;
+                $fec_fin->add(new DateInterval("PT{$interval}M"));
+            }else{
+                $this->addError($attribute,'EL QUIROFANO ESTA OCUPADO PARA LA FECHA SELECCIONADA');
+                return;
+            }
+        }
+        $list = null;
+        $sala = $this->id_sala?:0;
+        if($this->scenario == 'registro'){
+            $list = Cirugia::model()->findAll([
+                'condition'=>"id_cir <> :id_cir and id_sala = :sala and (:fec_ini between fec_inicio and fec_fin or :fec_fin between fec_inicio and fec_fin)",
+                'params'=>[':fec_ini'=>$fec_ini->format('d/m/Y H:i'), ':fec_fin'=>$fec_fin->format('d/m/Y H:i'),':sala'=>$sala,':id_cir'=>$this->id_cir?:0]
+            ]);
+        }else{
+            $list = Cirugia::model()->findAll([
+                'condition'=>"id_cir <> :id_cir and id_sala = :sala and (:fec_ini between fec_reserva and fec_reserva + (tiempo_estimado * interval '1 minutes') or :fec_fin between fec_reserva and fec_reserva + (tiempo_estimado * interval '1 minutes') )",
+                'params'=>[':fec_ini'=>$fec_ini->format('d/m/Y H:i'), ':fec_fin'=>$fec_fin->format('d/m/Y H:i'),':sala'=>$sala,':id_cir'=>$this->id_cir?:0]
+            ]);
+        }
+        if(count($list)>0)
+            $this->addError($attribute,'EL QUIROFANO ESTA OCUPADO PARA LA FECHA SELECCIONADA');
+
     }
 
     public static function model($className=__CLASS__)

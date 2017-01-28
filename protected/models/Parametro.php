@@ -9,7 +9,7 @@
  * @property string $ext_par
  * @property integer $tipo_par
  * @property string $def_par
- *
+ * @property string $val_ref
  * The followings are the available model relations:
  * @property Servicio[] $servicios
  * @property ResultadoExamen[] $resultadoExamens
@@ -36,7 +36,7 @@ class Parametro extends CActiveRecord
 			array('tipo_par', 'numerical', 'integerOnly'=>true),
 			array('nombre_par', 'length', 'max'=>64),
 			array('ext_par', 'length', 'max'=>16),
-			array('def_par', 'safe'),
+			array('def_par,val_ref', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id_par, nombre_par, ext_par, tipo_par, def_par', 'safe', 'on'=>'search'),
@@ -67,6 +67,7 @@ class Parametro extends CActiveRecord
 			'ext_par' => 'UNIDAD',
 			'tipo_par' => 'TIPO',
 			'def_par' => 'Def Par',
+            'val_ref' => 'VALORES DE REFERENCIA'
 		);
 	}
     
