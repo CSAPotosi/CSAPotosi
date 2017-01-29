@@ -405,6 +405,11 @@
     "description": "Paciente de Emergencia"
   },
   {
+    "name": "Historial Paciente",
+    "type": "1",
+    "description": "Historial de Paciente"
+  },
+  {
     "name": "Detalle Paciente",
     "type": "1",
     "description": "Detalle de datos de Paciente"

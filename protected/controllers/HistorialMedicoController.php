@@ -39,7 +39,7 @@ class HistorialMedicoController extends Controller
     }
     public function actionIndex($id_paciente = 0)
     {
-        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$id_paciente],['historial','indexHistorial']);
+        $this->menu = OptionsMenu::menuHistorial(['h_id' => $id_paciente], ['historial', 'Historial Paciente']);
         
         $historialModel = $this->loadHistorial($id_paciente);
         $this->render('index',['historialModel'=>$historialModel]);

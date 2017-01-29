@@ -66,23 +66,6 @@ class PersonaForm extends CFormModel
         );
     }
 
-    public function rules()
-    {
-        return array(
-            array('nombres, primer_apellido, fecha_nac,fecha_contratacion', 'required'),
-            array('tipo_doc, estado_paciente, cod_maquina,tipo_persona', 'numerical', 'integerOnly' => true),
-            array('num_doc, primer_apellido, segundo_apellido, estado_civil, ocupacion, telefono', 'length', 'max' => 32),
-            array('nombres, email,responsable', 'length', 'max' => 128),
-            array('codigo_paciente, matricula', 'length', 'max' => 16),
-            array('matricula', 'unique'),
-            array('grupo_sanguineo', 'length', 'max' => 8),
-            array('nacionalidad', 'length', 'max' => 4),
-            array('localidad, domicilio', 'length', 'max' => 64),
-            array('foto', 'length', 'max' => 256),
-            array('genero, fecha_nac, fecha_deceso, estado_med, fecha_contratacion, estado_emp', 'safe'),
-
-        );
-    }
 
     public function savePersona()
     {

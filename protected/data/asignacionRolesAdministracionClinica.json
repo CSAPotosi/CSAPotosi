@@ -18,6 +18,10 @@
     "child": "pacienteEmergencia"
   },
   {
+    "parent": "Historial Paciente",
+    "child": "historialIndex"
+  },
+  {
     "parent": "Detalle Paciente",
     "child": "pacienteView"
   },
@@ -325,6 +329,10 @@
   {
     "parent": "Gestion de pacientes",
     "child": "Paciente Emergencia"
+  },
+  {
+    "parent": "Gestion de pacientes",
+    "child": "Historial Paciente"
   },
   {
     "parent": "Seguro de Paciente",

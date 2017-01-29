@@ -17,6 +17,7 @@ class OptionsMenu{
             $menu2 = [
                 'label' => '<i class="fa fa-user"></i>' . $paciente->persona->getNombreCompleto(),
                 'items' => [
+                    'Historial Paciente' => ['url' => ['HistorialMedico/index', 'id_paciente' => $params['id_paciente']], 'label' => 'HISTORIAL'],
                     'Detalle Paciente' => ['url' => ['paciente/detallePaciente', 'id' => $params['id_paciente']], 'label' => 'DETALLE PACIENTE'],
                     'Actualizar Paciente' => ['url' => ['paciente/update', 'id' => $params['id_paciente']], 'label' => 'ACTUALIZAR PACIENTE'],
                     'Prestacion Servicios' => ['url' => ['HistorialMedico/externoCreate', 'id' => $params['id_paciente']], 'label' => 'PRESTACION DE SERVICIOS'],
@@ -142,8 +143,8 @@ class OptionsMenu{
             'asignaciones' => [
                 'label' => '<i class=""></i>ASIGNACIONES</i>',
                 'items' => [
-                    'Lista Asignacion' => ['url' => ['AsignacionEmpleado/index'], 'label' => '<i class="fa fa-th-list"></i> LISTA'],
-                    'Crear Asignacion' => ['url' => ['AsignacionEmpleado/Create'], 'label' => '<i class="fa fa-plus"></i> NUEVA ASIGNACION'],
+                    'Lista Asignacion' => ['url' => ['AsignacionEmpleado/index'], 'label' => 'LISTA'],
+                    'Crear Asignacion' => ['url' => ['AsignacionEmpleado/Create'], 'label' => 'NUEVA ASIGNACION'],
 
                 ]
             ]
@@ -202,6 +203,7 @@ class OptionsMenu{
             'historial'=>[
                 'label'=>'<i class="icon-i-medical-records"></i> HISTORIAL MEDICO',
                 'items'=>[
+                    'Historial Paciente' => ['url' => ['HistorialMedico/index', 'id_paciente' => $params['h_id']], 'label' => 'HISTORIAL'],
                     'antecedentes_Index'=>['url'=>['antecedentes/index','h_id'=>$params['h_id']],'label'=>'ANTECEDENTES'],
                     'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$params['h_id']], 'label'=>'<i class="fa fa-files-o"></i>Historial'],
                     'vitales_Index'=>['url'=>['vitales/index','h_id'=>$params['h_id']],'label'=>'SIGNOS VITALES'],
