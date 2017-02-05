@@ -1,10 +1,6 @@
 <?php
-/* $this ServicioController */
-$this->pageTitle = "PACIENTE <span></span>";
-$this->breadcrumbs = array(
-    'Paciente',
-);
-?><?php $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $paciente->historialMedico]); ?>
+$this->pageTitle = "PACIENTE";
+$this->renderPartial('/layouts/_cardProfile', ['historialModel' => $paciente->historialMedico]); ?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -22,35 +18,38 @@ $this->breadcrumbs = array(
                                         <div class="form-group">
                                             <label>TIPO DE ASEGURADO</label>
                                             <?php echo CHtml::activedropDownList($modelAsegurado, 'tipo_asegurado', $modelAsegurado->getTipoAsegurado(), array('class' => 'form-control')); ?>
-                                            <?php echo CHtml::error($modelAsegurado, 'tipo_asegurado', array('class' => 'label label-danger error-message')); ?>
+                                            <?php echo CHtml::error($modelAsegurado, 'tipo_asegurado', array('class' => 'label label-danger')); ?>
                                         </div>
                                         <div class="form-group">
                                             <label>FECHA INICIO</label>
                                             <?php echo CHtml::activeTextField($modelAsegurado, 'fecha_inicio', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa')); ?>
-                                            <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger error-message']); ?>
-                                            <div class="input-group date">
-                                                <?php echo CHtml::activeTextField($modelAsegurado, 'fecha_inicio', ['class' => 'form-control', 'value' => $modelAsegurado->fecha_inicio ? HelpTools::getDate($modelAsegurado->fecha_inicio)->format('d/m/Y H:i') : '']); ?>
-                                                <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                            </div>
-                                            <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger error-message']); ?>
+                                            <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger']); ?>
                                         </div>
                                         <div class="form-group">
                                             <label>CONVENIO</label>
                                             <?php echo CHtml::activedropDownList($modelAsegurado, 'convenio', $modelAsegurado->getConvenios(), array('class' => 'form-control')); ?>
-                                            <?php echo CHtml::error($modelAsegurado, 'convenio', ['class' => 'label label-danger error-message']); ?>
+                                            <?php echo CHtml::error($modelAsegurado, 'convenio', ['class' => 'label label-danger']); ?>
                                         </div>
                                         <div class="form-group">
                                             <?php echo CHtml::activeHiddenField($modelAsegurado, 'id_paciente_titular', array('class' => 'form-control')); ?>
-
                                             <?php echo CHtml::activeHiddenField($modelAsegurado, 'id_paciente', array('class' => 'form-control', 'value' => $paciente->id_paciente)); ?>
                                         </div>
+                                        <select name="AseguradoConvenio[activo]" class="form-control">
+                                            <option value="1" <?php echo ($modelAsegurado->activo) ? 'selected' : '' ?>>
+                                                ACTIVO
+                                            </option>
+                                            <option
+                                                value="0" <?php echo (!$modelAsegurado->activo) ? 'selected' : '' ?>>
+                                                INACTIVO
+                                            </option>
+                                        </select>
+                                        <?php echo (Yii::app()->user->hasFlash('REPETIDO')) ? '<div class="label label-danger">' . Yii::app()->user->getFlash('REPETIDO') . '</div>' : ''; ?>
                                         <div id="contenedor_paciente" class="hide">
                                             <h1 align="center">Paciente titular</h1>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="paciente_titular">
-                                                <?php echo CHtml::error($modelAsegurado, 'id_paciente_titular', ['class' => 'label label-danger error-message']); ?>
+                                                <input type="text" class="form-control" id="paciente_titular"
+                                                       value="<?php echo $modelAsegurado->pacienteTitular->persona->getNombreCompleto() ?>">
+                                                <?php echo CHtml::error($modelAsegurado, 'id_paciente_titular', ['class' => 'label label-danger']); ?>
                                             </div>
 
                                         </div>
@@ -100,7 +99,7 @@ $this->breadcrumbs = array(
                         </fieldset>
                         <div class="form-actions">
                             <button class="btn btn-primary" type="submit" id="btn-seguro"><i class="fa fa-save"></i>
-                                Asegurar a Paciente
+                                Guardar
                             </button>
                         </div>
                         <?php echo CHtml::endForm(); ?>
@@ -113,7 +112,3 @@ $this->breadcrumbs = array(
 <!--Start Scripts-->
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/paciente/seguroCreate.js', CClientScript::POS_END); ?>
 <!--End plugins-->
-<!-- start plugins-->
-
-<!--end plugins-->
-

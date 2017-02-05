@@ -58,6 +58,10 @@
     "child": "pacienteSeguroCreate"
   },
   {
+    "parent": "Editar Convenio",
+    "child": "pacienteEditConvenio"
+  },
+  {
     "parent": "Lista Empleado",
     "child": "empleadoIndex"
   },
@@ -210,6 +214,10 @@
     "child": "registroCreatePdfDetalleAsistencia"
   },
   {
+    "parent": "Informacion Asistencia",
+    "child": "registroCreatePdfDetalleAsistenciaGeneral"
+  },
+  {
     "parent": "Lista Horario",
     "child": "horarioIndex"
   },
@@ -341,6 +349,10 @@
   {
     "parent": "Seguro de Paciente",
     "child": "Seguro Create"
+  },
+  {
+    "parent": "Seguro de Paciente",
+    "child": "Editar Convenio"
   },
   {
     "parent": "Prestacion Servicio y citas Medicas",

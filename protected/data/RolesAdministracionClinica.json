@@ -39,6 +39,11 @@
     "description": "Lista de Pacientes"
   },
   {
+    "name": "pacienteEditConvenio",
+    "type": "0",
+    "description": "Actualizar Convenio de Paciente"
+  },
+  {
     "name": "pacienteSeguroCreate",
     "type": "0",
     "description": "Crear seguro para paciente"
@@ -294,6 +299,11 @@
     "description": "Creacion de pdf de detalle de asistencia"
   },
   {
+    "name": "registroCreatePdfDetalleAsistenciaGeneral",
+    "type": "0",
+    "description": "Creacion de pdf de detalle de asistencia general"
+  },
+  {
     "name": "horarioCreate",
     "type": "0",
     "description": "Crear Horario"
@@ -428,6 +438,11 @@
     "name": "Seguro Paciente",
     "type": "1",
     "description": "Detalle de datos de Paciente"
+  },
+  {
+    "name": "Editar Convenio",
+    "type": "1",
+    "description": "Editar Convenio de Paciente"
   },
   {
     "name": "Seguro Create",

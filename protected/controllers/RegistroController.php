@@ -65,7 +65,7 @@ class RegistroController extends Controller
                 'actions' => array('CreatePdfDetalleAsistenciaGeneral'),
                 'roles' => array('registroCreatePdfDetalleAsistenciaGeneral'),
             ),
-            array('allow',  // deny all users
+            array('deny',  // deny all users
                 'users' => array('*'),
             ),
         );
@@ -111,7 +111,7 @@ class RegistroController extends Controller
                                         $modelRegistro->id_asignacion = $empleado[0]->asignacionValida[0]->id_asignacion;
                                         $modelRegistro->fecha = $fCompleta[0];
                                         $modelRegistro->hora_asistencia = $fCompleta[1];
-                                        $modelRegistro->observaciones = "MAQUINA";
+                                        $modelRegistro->observaciones = "***MAQUINA***";
                                         $modelRegistro->estado = false;
                                         $list = Registro::model()->findByPk(array('id_asignacion' => $modelRegistro->id_asignacion, 'fecha' => $modelRegistro->fecha, 'hora_asistencia' => $modelRegistro->hora_asistencia));
                                         if (!$list)
@@ -533,7 +533,7 @@ class RegistroController extends Controller
         Yii::app()->end();
     }
 
-    public function actionCreatePdfDetalleAsistenciaGeneral($data)
+    public function actionCreatePdfDetalleAsistenciaGeneral($data = null)
     {
         spl_autoload_register(array('YiiBase', 'autoload'));
         $pdf = new MYPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -561,6 +561,7 @@ class RegistroController extends Controller
         $date2 = date_create($domingo);
         $interval = date_diff($date1, $date2);
         $interval = $interval->format('%a');
+        if ($data != null) {
         foreach ($data as $item) {
             $fecha_ini = $item[6];
             $asignacion = AsignacionEmpleado::model()->findByPk($item[8]);
@@ -630,6 +631,8 @@ EOD;
                 $pdf->Ln();
             }
         }
+        }
+
         $pdf->lastPage();
         //Close and output PDF document
         $pdf->Output('filename.pdf', 'I');

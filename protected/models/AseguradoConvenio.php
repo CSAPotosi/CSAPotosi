@@ -53,7 +53,7 @@ class AseguradoConvenio extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idPaciente' => array(self::BELONGS_TO, 'Paciente', 'id_paciente'),
+            'paciente' => array(self::BELONGS_TO, 'Paciente', 'id_paciente'),
             'pacienteConvenio' => array(self::BELONGS_TO, 'Convenio', 'convenio'),
             'pacienteTitular' => array(self::BELONGS_TO, 'Paciente', 'id_paciente_titular'),
         );
@@ -130,5 +130,13 @@ class AseguradoConvenio extends CActiveRecord
     public function getConvenios()
     {
         return CHtml::listData(Convenio::model()->findAll(), 'id_convenio', 'nombre_convenio');
+    }
+
+    public function getActivo()
+    {
+        return array(
+            't' => 'ACTIVO',
+            'f' => 'INACTIVO'
+        );    
     }
 }

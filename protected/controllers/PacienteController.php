@@ -48,6 +48,10 @@ class PacienteController extends Controller
 				'actions' => array('Emergencia'),
 				'roles' => array('pacienteEmergencia'),
 			),
+			array('allow',
+				'actions' => array('EditConvenio'),
+				'roles' => array('pacienteEditConvenio'),
+			),
 			array('deny',
 				'users' => array('*'),
 			),
@@ -157,5 +161,43 @@ class PacienteController extends Controller
 		$this->render('formEmergencia', [
 			'modelPerson' => $modelPerson
 		]);
+	}
+
+	public function actionEditConvenio($id)
+	{
+		$convenio = AseguradoConvenio::model()->findByPk($id);
+		$paciente = $convenio->paciente->id_paciente;
+		$this->menu = OptionsMenu::menuPaciente(['id_ase_con' => $id, 'id_paciente' => $paciente], ['convenio', 'Editar Convenio']);
+		$modelAsegurado = AseguradoConvenio::model()->findByPk($id);
+		$listaPaciente = Paciente::model()->findAll([
+			'condition' => "id_paciente!=$paciente"
+		]);
+		if (isset($_POST['AseguradoConvenio'])) {
+			$modelAsegurado->attributes = $_POST['AseguradoConvenio'];
+			$valor = false;
+			if ($modelAsegurado->activo == true) {
+				$listaConvenio = AseguradoConvenio::model()->findAll([
+					'condition' => "id_ase_con!=$id",
+				]);
+				foreach ($listaConvenio as $item):
+					if ($item->activo) {
+						$valor = true;
+						break;
+					}
+				endforeach;
+			}
+			if ($valor)
+				Yii::app()->user->setFlash('REPETIDO', 'YA EXITE UN CONVENIO ACTIVO');
+			else {
+				$modelAsegurado->save();
+				$this->redirect(['seguroPaciente', 'id' => $paciente]);
+			}
+		}
+		$this->render("updateConvenio", [
+			'paciente' => $modelAsegurado->paciente,
+			'modelAsegurado' => $modelAsegurado,
+			'listPaciente' => $listaPaciente
+		]);
+
 	}
 }

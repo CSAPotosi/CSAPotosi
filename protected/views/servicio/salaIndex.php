@@ -42,7 +42,7 @@
                                 <th width="30%" style="text-align: center">DESCRIPCION</th>
                                 <th width="10%" style="text-align: center">TIPO</th>
                                 <th width="10%" style="text-align: center">MONTO (Bs.)</th>
-                                <th width="10" style="text-align: center">ACTIVO</th>
+                                <th width="10%" style="text-align: center">ACTIVO</th>
                                 <th width="20%"></th>
                             </tr>
                             </thead>

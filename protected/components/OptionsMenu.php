@@ -28,6 +28,16 @@ class OptionsMenu{
             ];
             $menu['paciente'] = $menu2;
         }
+        if (isset($params['id_ase_con'])) {
+            $convenio = AseguradoConvenio::model()->findByPk($params['id_ase_con']);
+            $menu3 = [
+                'label' => '<i class="fa fa-user"></i>' . $convenio->pacienteConvenio->nombre_convenio,
+                'items' => [
+                    'Editar Convenio' => ['url' => ['Paciente/editConvenio', 'id_paciente' => $params['id_ase_con']], 'label' => 'Editar'],
+                ]
+            ];
+            $menu['convenio'] = $menu3;
+        }
         $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }

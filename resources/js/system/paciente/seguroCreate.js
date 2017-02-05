@@ -3,8 +3,8 @@ $(document).ready(function () {
         $("#searchPacienteTitular").attr('disabled', 'disabled');
         $("#contenedor_paciente").addClass('hide');
         $("#table-paciente").addClass('hide');
-        $("#AseguradoConvenio_id_paciente_titular").reset();
-        $("#paciente_titular").reset();
+        $("#AseguradoConvenio_id_paciente_titular").val('');
+        $("#paciente_titular").val('');
 
     }
     else {

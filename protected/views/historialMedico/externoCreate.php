@@ -100,7 +100,7 @@ $listCategoriaClinico = CategoriaServClinico::model()->findAll();
                                                                            value="true">
                                                                     <input type="hidden"
                                                                            name="DetallePrestacion[<?php echo $var->datosServicio->id_serv ?>][realizado]"
-                                                                           value="false">
+                                                                           value="0">
                                                                 </td>
                                                                 <?php echo "</tr>
                                                              </table>
