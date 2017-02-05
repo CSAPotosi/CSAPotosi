@@ -1,12 +1,13 @@
+<?php $this->pageTitle = 'REPORTES DE CIRUGIA';?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
 
                 <header>
                 </header>
                 <div>
-                    <div class="widget-body">
+                    <div class="widget-body no-padding">
                         <div class="widget-body-toolbar padding-5">
                             <button id="btn-report-all" data-url="<?php echo CHtml::normalizeUrl(['reporteCirugia/estadisticaSalaPDF'])?>" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
                             <?php echo CHtml::beginForm();?>
@@ -19,15 +20,16 @@
                             </div>
                             <?php echo CHtml::endForm();?>
                         </div>
+                        <legend class="padding-10">USO DE QUIROFANOS</legend>
                         <?php if ($cirugiaList):?>
                         <canvas id="pieChart" height="70"></canvas>
                         <?php endif;?>
-                        <table class="table table-hover table-striped table-bordered">
+                        <table class="table table-hover table-striped table-bordered" id="custom-table">
                             <thead>
                             <tr>
-                                <th width="20%">Fecha y hora</th>
-                                <th width="40%">Grupo sala</th>
-                                <th width="40%">Sala</th>
+                                <th width="20%">FECHA Y HORA</th>
+                                <th width="40%">GRUPO</th>
+                                <th width="40%">SALA</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -77,6 +79,12 @@ Yii::app()->clientScript
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-daterangepicker/js/moment.min.js',CClientScript::POS_END)
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-daterangepicker/js/daterangepicker.js',CClientScript::POS_END)
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/chartjs/chart.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/jquery.dataTables.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.colVis.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.tableTools.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.bootstrap.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatable-responsive/datatables.responsive.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/system/reporte/common.js',CClientScript::POS_END)
     ->registerScript('script',"
         $(function() {
             var start = moment('".$fec_ini."','DD/MM/YYYY');

@@ -16,31 +16,31 @@
 
 <fieldset>
     <legend><?php echo ($model->id_usuario == null) ? 'CREAR NUEVO USUARIO' : 'ACTUALIZAR USUARIO' ?></legend>
-    <?php echo CHtml::errorSummary($model, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger')); ?>
+    <?php echo CHtml::errorSummary($model, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger error-message')); ?>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="form-group">
                 <?php echo $form->labelEx($model, 'id_usuario'); ?>
                 <?php echo $form->dropDownList($model, 'id_usuario', $personas, array("class" => 'form-control', 'empty' => 'ESCOJA UNA PERSONA', 'id' => 'selectpersona', 'disabled' => ($model->id_usuario == null) ? '' : 'disabled')); ?>
-                <?php echo $form->error($model, 'id_usuario', array('class' => 'label label-danger')); ?>
+                <?php echo $form->error($model, 'id_usuario', array('class' => 'label label-danger error-message')); ?>
             </div>
 
             <div class="form-group">
                 <?php echo $form->labelEx($model, 'nombre_usuario'); ?>
                 <?php echo $form->textField($model, 'nombre_usuario', array('class' => 'form-control')); ?>
-                <?php echo $form->error($model, 'nombre_usuario', array('class' => 'label label-danger')); ?>
+                <?php echo $form->error($model, 'nombre_usuario', array('class' => 'label label-danger error-message')); ?>
             </div>
 
             <div class="form-group">
                 <?php echo $form->labelEx($model, 'clave'); ?>
                 <?php echo $form->passwordField($model, 'clave', array('class' => 'form-control')); ?>
-                <?php echo $form->error($model, 'clave', array('class' => 'label label-danger')); ?>
+                <?php echo $form->error($model, 'clave', array('class' => 'label label-danger error-message')); ?>
             </div>
 
             <div class="form-group">
                 <?php echo $form->labelEx($model, 'claveCompare'); ?>
                 <?php echo $form->passwordField($model, 'claveCompare', array('class' => 'form-control')); ?>
-                <?php echo $form->error($model, 'claveCompare', array('class' => 'label label-danger')); ?>
+                <?php echo $form->error($model, 'claveCompare', array('class' => 'label label-danger error-message')); ?>
             </div>
 
             <?php if ($model->id_usuario != null): ?>
@@ -50,14 +50,14 @@
 							<?php echo $form->checkBox($model, 'estado_usuario', ['class' => 'onoffswitch-checkbox', 'checked' => ($model->estado_usuario) ? 'checked' : '']); ?>
                             <?php echo $form->labelEx($model, 'estado_usuario', ['class' => 'onoffswitch-label', 'label' => '<span class="onoffswitch-inner" data-swchon-text="SI" data-swchoff-text="NO"></span><span class="onoffswitch-switch"></span>']); ?>
 						</span>
-                    <?php echo $form->error($model, 'estado_usuario', array('class' => 'label label-danger')); ?>
+                    <?php echo $form->error($model, 'estado_usuario', array('class' => 'label label-danger error-message')); ?>
                 </div>
             <?php endif; ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-5 col-md-offset-1">
-            <div class="jarviswidget" id="widget1" data-widget-togglebutton="false" data-widget-deletebutton="false"
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-togglebutton="false" data-widget-deletebutton="false"
                  data-widget-fullscreenbutton="false" data-widget-custombutton="false">
                 <header>
                     <h2><strong>LISTADO DE ROLES</strong></h2>
@@ -105,7 +105,7 @@
         </div>
 
         <div class="col-md-5">
-            <div class="jarviswidget" id="widget2" data-widget-togglebutton="false" data-widget-deletebutton="false"
+            <div class="jarviswidget jarviswidget-color-blue" id="widget2" data-widget-togglebutton="false" data-widget-deletebutton="false"
                  data-widget-fullscreenbutton="false" data-widget-custombutton="false">
                 <header>
                     <h2><strong>ROLES ASIGNADOS</strong></h2>

@@ -1,18 +1,19 @@
 <?php
     $catExList = CategoriaServExamen::model()->findAll(['order'=>'tipo_ex ASC, nombre_cat_ex ASC']);
+    $cliList = ServClinico::model()->findAll();
 ?>
-<div class="jarviswidget" id="widget-list" data-widget-refreshbutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
+<div class="jarviswidget jarviswidget-color-blue" id="widget-list" data-widget-refreshbutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
     <header>
         <h2><strong>LISTA DE SERVICIOS</strong></h2>
         <ul id="widget-tab-1" class="nav nav-tabs pull-right in">
             <li class="active">
                 <a data-toggle="tab" href="#hr1" id="tab-hr1">
-                    <span class="hidden-mobile hidden-tablet"> Examenes </span>
+                    <span class="hidden-mobile hidden-tablet">EXAMENES</span>
                 </a>
             </li>
             <li>
                 <a data-toggle="tab" href="#hr2" id="tab-hr2">
-                    <span class="hidden-mobile hidden-tablet"> Clinicos</span>
+                    <span class="hidden-mobile hidden-tablet">CLINICOS</span>
                 </a>
             </li>
         </ul>
@@ -40,13 +41,17 @@
                         <fieldset class="categoria" data-tipo="<?php echo $itemCEx->tipo_ex;?>">
                             <legend><?php echo $itemCEx->nombre_cat_ex;?></legend>
                             <div class="row">
-                                <?php $this->renderPartial('_servicioItem',['servItemList'=> $itemCEx->examenes]);?>
+                                <?php $this->renderPartial('_servicioItem',['servItemList'=> $itemCEx->examenes,'editable'=>0]);?>
                             </div>
                         </fieldset>
                     <?php endforeach;?>
                 </div>
                 <div class="tab-pane" id="hr2">
-                    contenido
+                    <fieldset>
+                        <div class="row">
+                            <?php $this->renderPartial('_servicioItem',['servItemList'=> $cliList,'editable'=>1]);?>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
         </div>

@@ -83,7 +83,7 @@
                                                         if($personal->responsable)
                                                             echo "<span class='label label-primary'>SI</span>";
                                                         else
-                                                            echo "<span class='label label-danger'>NO</span>";
+                                                            echo "<span class='label label-danger error-message'>NO</span>";
                                                         ?>
                                                     </td>
                                                 </tr>

@@ -14,24 +14,24 @@ $this->pageTitle = 'Creacion de Roles';
                             <?php echo CHtml::beginForm(); ?>
                             <fieldset>
                                 <legend>Crear Tarea</legend>
-                                <?php echo CHtml::errorSummary($role, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger')); ?>
+                                <?php echo CHtml::errorSummary($role, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger error-message')); ?>
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabelEx($role, 'name'); ?>
                                             <?php echo CHtml::activeTextField($role, 'name', array('class' => 'form-control', 'placeholder' => 'Nombre del Rol')); ?>
-                                            <?php echo CHtml::error($role, 'name', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($role, 'name', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabelEx($role, 'description'); ?>
                                             <?php echo CHtml::activeTextArea($role, 'description', array('class' => 'form-control', 'placeholder' => 'Descripcion')); ?>
-                                            <?php echo CHtml::error($role, 'description', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($role, 'description', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5 col-md-offset-1">
-                                        <div class="jarviswidget" id="widget3" data-widget-togglebutton="false"
+                                        <div class="jarviswidget jarviswidget-color-blue" id="widget3" data-widget-togglebutton="false"
                                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                              data-widget-custombutton="false">
                                             <header>
@@ -83,7 +83,7 @@ $this->pageTitle = 'Creacion de Roles';
                                     </div>
 
                                     <div class="col-md-5">
-                                        <div class="jarviswidget" id="widget3" data-widget-togglebutton="false"
+                                        <div class="jarviswidget jarviswidget-color-blue" id="widget3" data-widget-togglebutton="false"
                                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                              data-widget-custombutton="false">
                                             <header>

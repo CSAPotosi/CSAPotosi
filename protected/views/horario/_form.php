@@ -6,17 +6,17 @@
                 <div class="form-group">
                     <?php echo CHtml::activelabelEx($modelHorario, 'nombre_horario'); ?>
                     <?php echo CHtml::activetextField($modelHorario, 'nombre_horario', array('class' => 'form-control', 'placeholder' => 'Escribe un nombre para el horario')); ?>
-                    <?php echo CHtml::error($modelHorario, 'nombre_horario', array('class' => 'label label-danger')); ?>
+                    <?php echo CHtml::error($modelHorario, 'nombre_horario', array('class' => 'label label-danger error-message')); ?>
                 </div>
                 <div class="form-group">
                     <?php echo CHtml::activelabelEx($modelHorario, 'Ciclo de Trabajo'); ?>
                     <?php echo CHtml::activetextField($modelHorario, 'ciclo_total', array('class' => 'form-control', 'placeholder' => 'Ciclo de trabajo en dias')); ?>
-                    <?php echo CHtml::error($modelHorario, 'ciclo_total', array('class' => 'label label-danger')); ?>
+                    <?php echo CHtml::error($modelHorario, 'ciclo_total', array('class' => 'label label-danger error-message')); ?>
                 </div>
                 <div class="form-group">
                     <?php echo CHtml::activelabelEx($modelHorario, 'descripcion'); ?>
                     <?php echo CHtml::activetextArea($modelHorario, 'descripcion', array('class' => 'form-control', 'placeholder' => 'Descripcion del Horario')); ?>
-                    <?php echo CHtml::error($modelHorario, 'descripcion', array('class' => 'label label-danger')); ?>
+                    <?php echo CHtml::error($modelHorario, 'descripcion', array('class' => 'label label-danger error-message')); ?>
                 </div>
             </div>
         </div>

@@ -33,7 +33,7 @@ $this->breadcrumbs = array(
                                             <div class="form-group">
                                                 <?php echo CHtml::activelabelEx($modelPerson, 'Numero de Documento'); ?>
                                                 <?php echo CHtml::activeTextField($modelPerson, 'num_doc', array('class' => 'form-control', 'placeholder' => 'Numero De Documento', 'value' => $persona->num_doc)); ?>
-                                                <?php echo CHtml::error($modelPerson, 'num_doc', ['class' => 'label label-danger']); ?>
+                                                <?php echo CHtml::error($modelPerson, 'num_doc', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -67,7 +67,7 @@ $this->breadcrumbs = array(
                                     <div class="form-group">
                                         <?php echo CHtml::activelabelEx($modelPerson, 'nombres'); ?>
                                         <?php echo CHtml::activeTextField($modelPerson, 'nombres', array('class' => 'form-control', 'placeholder' => 'Nombres', 'value' => $persona->nombres)); ?>
-                                        <?php echo CHtml::error($modelPerson, 'nombres', ['class' => 'label label-danger']); ?>
+                                        <?php echo CHtml::error($modelPerson, 'nombres', ['class' => 'label label-danger error-message']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -76,14 +76,14 @@ $this->breadcrumbs = array(
                                             <div class="form-group">
                                                 <?php echo CHtml::activelabelEx($modelPerson, 'primer_apellido'); ?>
                                                 <?php echo CHtml::activeTextField($modelPerson, 'primer_apellido', array('class' => 'form-control', 'placeholder' => 'Primer Apellido', 'value' => $persona->primer_apellido)); ?>
-                                                <?php echo CHtml::error($modelPerson, 'primer_apellido', ['class' => 'label label-danger']); ?>
+                                                <?php echo CHtml::error($modelPerson, 'primer_apellido', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo CHtml::activelabelEx($modelPerson, 'Segundo Apellido'); ?>
                                                 <?php echo CHtml::activetextField($modelPerson, 'segundo_apellido', array('class' => 'form-control', 'placeholder' => 'Segundo Apellido', 'value' => $persona->segundo_apellido)); ?>
-                                                <?php echo CHtml::error($modelPerson, 'segundo_apellido', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelPerson, 'segundo_apellido', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@ $this->breadcrumbs = array(
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabel($modelPerson, 'Fecha nacimiento'); ?>
                                                 <?php echo CHtml::activeTextField($modelPerson, 'fecha_nac', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa', 'value' => date('d/m/Y', strtotime($persona->fecha_nac)))); ?>
-                                                <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger']); ?>
+                                                <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@ $this->breadcrumbs = array(
                                             <div class="form-group">
                                                 <?php echo CHtml::activelabelEx($modelPerson, 'Ocupacion'); ?>
                                                 <?php echo CHtml::activetextField($modelPerson, 'ocupacion', array('class' => 'form-control', 'placeholder' => 'Ocupacion', 'value' => $persona->ocupacion)); ?>
-                                                <?php echo CHtml::error($modelPerson, 'ocupacion', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelPerson, 'ocupacion', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -164,7 +164,7 @@ $this->breadcrumbs = array(
                                             <div class="form-group">
                                                 <?php echo CHtml::activelabelEx($modelPerson, 'Departamento Localidad'); ?>
                                                 <?php echo CHtml::activetextField($modelPerson, 'localidad', array('class' => 'form-control', 'placeholder' => 'Localidad o Departamento', 'value' => $persona->localidad)); ?>
-                                                <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -173,27 +173,27 @@ $this->breadcrumbs = array(
                                             <div class="form-group">
                                                 <?php echo CHtml::activelabelEx($modelPerson, 'Domicilio'); ?>
                                                 <?php echo CHtml::activetextField($modelPerson, 'domicilio', array('class' => 'form-control', 'placeholder' => 'Direccion', 'value' => $persona->domicilio)); ?>
-                                                <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo CHtml::activelabelEx($modelPerson, 'Telefono'); ?>
                                                 <?php echo CHtml::activetextField($modelPerson, 'telefono', array('class' => 'form-control', 'placeholder' => 'Telefono', 'value' => $persona->telefono)); ?>
-                                                <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <?php echo CHtml::activelabelEx($modelPerson, 'Email'); ?>
                                         <?php echo CHtml::activeTextField($modelPerson, 'email', ['class' => 'form-control', 'placeholder' => 'Email', 'value' => $persona->email]); ?>
-                                        <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger')); ?>
+                                        <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger error-message')); ?>
                                     </div>
                                     <h1 align="center">Informacion de Medico</h1>
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabel($modelPerson, 'matricula'); ?>
                                         <?php echo CHtml::activeTextField($modelPerson, 'matricula', ['class' => 'form-control', 'placeholder' => 'Matricula', 'value' => $persona->medico->matricula]); ?>
-                                        <?php echo CHtml::error($modelPerson, 'matricula', ['class' => 'label label-danger']); ?>
+                                        <?php echo CHtml::error($modelPerson, 'matricula', ['class' => 'label label-danger error-message']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-4">

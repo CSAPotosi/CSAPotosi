@@ -8,7 +8,7 @@ $this->breadcrumbs = array(
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                 <header></header>
                 <div>
                     <div class="widget-body">
@@ -17,7 +17,7 @@ $this->breadcrumbs = array(
                             <div class="row">
                                 <div class="col-md-6">
                                     <?php echo CHtml::beginForm(); ?>
-                                    <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                                    <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-togglebutton="false"
                                          data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                          data-widget-custombutton="false">
                                         <header>
@@ -34,7 +34,7 @@ $this->breadcrumbs = array(
                                                                value="<?php echo $id ?>">
                                                         <?php echo CHtml::activeLabel($modelMedico, 'matricula'); ?>
                                                         <?php echo CHtml::activeTextField($modelMedico, 'matricula', ['class' => 'form-control']); ?>
-                                                        <?php echo CHtml::error($modelMedico, 'matricula', ['class' => 'label label-danger']); ?>
+                                                        <?php echo CHtml::error($modelMedico, 'matricula', ['class' => 'label label-danger error-message']); ?>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -56,7 +56,7 @@ $this->breadcrumbs = array(
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                                    <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-togglebutton="false"
                                          data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                          data-widget-custombutton="false">
                                         <header>

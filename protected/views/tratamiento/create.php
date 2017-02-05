@@ -11,17 +11,17 @@
                     <div class="widget-body">
                         <fieldset>
                             <legend>Tratamiento</legend>
-                            <?php echo CHtml::errorSummary($tModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
+                            <?php echo CHtml::errorSummary($tModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <?php echo CHtml::beginForm();?>
                                 <div class="form-group">
                                     <?php echo CHtml::activeLabelEx($tModel, 'instrucciones');?>
                                     <?php echo CHtml::activeTextArea($tModel, 'instrucciones',['class'=>'form-control']);?>
-                                    <?php echo CHtml::error($tModel, 'instrucciones', ['class'=>'label label-danger']);?>
+                                    <?php echo CHtml::error($tModel, 'instrucciones', ['class'=>'label label-danger error-message']);?>
                                 </div>
                                 <div class="form-group">
                                     <?php echo CHtml::activeLabelEx($tModel, 'observaciones');?>
                                     <?php echo CHtml::activeTextArea($tModel, 'observaciones',['class'=>'form-control']);?>
-                                    <?php echo CHtml::error($tModel, 'observaciones', ['class'=>'label label-danger']);?>
+                                    <?php echo CHtml::error($tModel, 'observaciones', ['class'=>'label label-danger error-message']);?>
                                 </div>
                                 <legend>
                                     Receta
@@ -63,19 +63,19 @@
                                                         </a>
                                                     </i>
                                                     <?php echo CHtml::activeHiddenField($rItem,"[{$index}]codigo_med");?>
-                                                    <?php echo CHtml::error($rItem,"[{$index}]codigo_med",['class'=>'label label-danger']);?>
+                                                    <?php echo CHtml::error($rItem,"[{$index}]codigo_med",['class'=>'label label-danger error-message']);?>
                                                 </td>
                                                 <td>
                                                     <?php echo CHtml::activeTextField($rItem,"[{$index}]cant_solicitada",['class'=>'form-control', 'placeholder'=>'CANTIDAD','id'=>""]);?>
-                                                    <?php echo CHtml::error($rItem,"[{$index}]cant_solicitada",['class'=>'label label-danger']);?>
+                                                    <?php echo CHtml::error($rItem,"[{$index}]cant_solicitada",['class'=>'label label-danger error-message']);?>
                                                 </td>
                                                 <td>
                                                     <?php echo CHtml::activeDropDownList($rItem,"[{$index}]via",Receta::model()->getOptionsVia(),['class'=>'form-control','placeholder'=>'VIA','id'=>'']);?>
-                                                    <?php echo CHtml::error($rItem,"[{$index}]via",['class'=>'label label-danger']);?>
+                                                    <?php echo CHtml::error($rItem,"[{$index}]via",['class'=>'label label-danger error-message']);?>
                                                 </td>
                                                 <td>
                                                     <?php echo CHtml::activeTextArea($rItem,"[{$index}]pauta",['class'=>'form-control', 'placeholder'=>'PAUTA','rows'=>'1','id'=>'']); ?>
-                                                    <?php echo CHtml::error($rItem,"[{$index}]pauta",['class'=>'label label-danger']);?>
+                                                    <?php echo CHtml::error($rItem,"[{$index}]pauta",['class'=>'label label-danger error-message']);?>
                                                 </td>
                                                 <td style="padding: 0;vertical-align: middle">
                                                     <button type="button" class="btn btn-danger btn-xs btn-remove-item">

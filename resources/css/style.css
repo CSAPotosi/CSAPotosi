@@ -1267,3 +1267,7 @@ Estilos para diagnostico
 .error-message{
     text-transform: uppercase;
 }
+legend.padding-10{
+    padding-bottom: 5px !important;
+    margin-bottom: 2px;
+}

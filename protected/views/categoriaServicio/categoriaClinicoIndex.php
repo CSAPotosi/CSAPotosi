@@ -25,11 +25,11 @@
                                 ?>
                                 <div class="col-md-4">
                                     <?php echo $form->textField($catCliModel, 'nombre_cat_cli', ['class' => 'form-control', 'placeholder' => 'NOMBRE']); ?>
-                                    <?php echo $form->error($catCliModel, 'nombre_cat_cli', ['class' => 'label label-danger']) ?>
+                                    <?php echo $form->error($catCliModel, 'nombre_cat_cli', ['class' => 'label label-danger error-message']) ?>
                                 </div>
                                 <div class="col-md-4">
                                     <?php echo $form->textArea($catCliModel, 'descripcion_cat_cli', ['class' => 'form-control', 'placeholder' => 'DESCRIPCION']); ?>
-                                    <?php echo $form->error($catCliModel, 'descripcion_cat_cli', ['class' => 'label label-danger']) ?>
+                                    <?php echo $form->error($catCliModel, 'descripcion_cat_cli', ['class' => 'label label-danger error-message']) ?>
                                 </div>
                                 <div class="col-md-1">
 										<span class="onoffswitch">
@@ -110,7 +110,7 @@
                                             ?>
                                             <div class="col-md-4">
                                                 <?php echo $form->textField($catCliItem, 'nombre_cat_cli', ['class' => 'form-control']); ?>
-                                                <?php echo $form->error($catCliItem, 'nombre_cat_cli', ['class' => 'label label-danger']); ?>
+                                                <?php echo $form->error($catCliItem, 'nombre_cat_cli', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                             <div class="col-md-4">
                                                 <?php echo $form->textField($catCliItem, 'descripcion_cat_cli', ['class' => 'form-control']); ?>

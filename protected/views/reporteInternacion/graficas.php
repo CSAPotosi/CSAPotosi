@@ -1,7 +1,8 @@
+<?php $this->pageTitle = 'REPORTES DE INTERNACION';?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
 
                 <header>
                 </header>
@@ -19,6 +20,7 @@
                             </div>
                             <?php echo CHtml::endForm();?>
                         </div>
+                        <legend>MOTIVO/PROCEDENCIA</legend>
                         <div class="row">
                             <div class="col-md-6">
                                 <h6>MOTIVO</h6>

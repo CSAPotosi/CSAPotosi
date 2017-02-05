@@ -2,13 +2,13 @@
 <table class="table table-bordered table-hover table-condensed">
     <thead>
     <tr>
-        <th width="15%">Fecha y hora</th>
-        <th width="10%">Estado salud</th>
-        <th width="20%">Dieta (indicada)</th>
-        <th width="20%">Dieta (aceptada)</th>
-        <th width="15%">Evacuaciones</th>
-        <th width="10%">Uresis</th>
-        <th width="10%">Vomito</th>
+        <th width="15%">FECHA Y HORA</th>
+        <th width="10%">ESTADO DE SALUD</th>
+        <th width="20%">DIETA (INDICADA)</th>
+        <th width="20%">DIETA (ACEPTADA)</th>
+        <th width="15%">EVACUACIONES</th>
+        <th width="10%">URESIS</th>
+        <th width="10%">VOMITO</th>
     </tr>
     </thead>
     <tbody>

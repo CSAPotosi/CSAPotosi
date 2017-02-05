@@ -1,12 +1,13 @@
+<?php $this->pageTitle = 'REPORTES DE CIRUGIA';?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
 
                 <header>
                 </header>
                 <div>
-                    <div class="widget-body">
+                    <div class="widget-body no-padding">
                         <div class="widget-body-toolbar padding-5">
                             <button id="btn-report-all" data-url="<?php echo CHtml::normalizeUrl(['reporteCirugia/index2PDF'])?>" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
                             <?php echo CHtml::beginForm();?>
@@ -19,13 +20,14 @@
                             </div>
                             <?php echo CHtml::endForm();?>
                         </div>
-                        <table class="table table-bordered table-hover table-striped">
+                        <legend class="padding-10">CIRUGIAS RESERVADAS</legend>
+                        <table class="table table-bordered table-hover table-striped" id="custom-table">
                             <thead>
                             <tr>
-                                <th width="20%">Fecha y hora reserva</th>
-                                <th width="20%">Sala</th>
-                                <th width="40%">Paciente</th>
-                                <th width="10%">Tiempo est.(min)</th>
+                                <th width="20%">FECHA Y HORA DE RESERVA</th>
+                                <th width="20%">SALA</th>
+                                <th width="40%">PACIENTE</th>
+                                <th width="10%">TIEMPO EST. (MIN)</th>
                                 <th width="5%"></th>
                             </tr>
                             </thead>
@@ -56,6 +58,12 @@
 Yii::app()->clientScript
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-daterangepicker/js/moment.min.js',CClientScript::POS_END)
     ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/bootstrap-daterangepicker/js/daterangepicker.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/jquery.dataTables.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.colVis.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.tableTools.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatables/dataTables.bootstrap.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/plugin/datatable-responsive/datatables.responsive.min.js',CClientScript::POS_END)
+    ->registerScriptFile(Yii::app()->baseUrl.'/resources/js/system/reporte/common.js',CClientScript::POS_END)
     ->registerScript('script',"
         $(function() {
             var start = moment('".$fec_ini."','DD/MM/YYYY');

@@ -2,7 +2,7 @@
 <div class="form-group">
     <?php echo CHtml::activeLabelEx($neModel,'estado_salud');?>
     <?php echo CHtml::activeTextField($neModel,'estado_salud',['class'=>'form-control']);?>
-    <?php echo CHtml::error($neModel,'estado_salud',['class'=>'label label-danger']);?>
+    <?php echo CHtml::error($neModel,'estado_salud',['class'=>'label label-danger error-message']);?>
 </div>
 <div class="row">
     <div class="col-md-4">
@@ -47,8 +47,11 @@
 </div>
 <div class="form-group text-align-right">
     <button class="btn btn-primary">
-        Registrar
+        <i class="fa fa-save"></i> Registrar
     </button>
-    <button type="reset" class="btn btn-danger" id="hide-form">Cancelar</button>
+    <button type="reset" class="btn btn-danger" id="hide-form">
+        <i class="fa fa-close"></i>
+        Cancelar
+    </button>
 </div>
 <?php echo CHtml::endForm();?>

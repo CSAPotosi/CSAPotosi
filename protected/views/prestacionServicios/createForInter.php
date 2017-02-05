@@ -1,14 +1,15 @@
+<?php $this->pageTitle = 'INTERNACION - <small>OTORGAR SERVICIO</small>'?>
 <?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$iModel->historial]);?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Prestacion de servicios (internacion)</legend>
+                            <legend>PRESTACION DE SERVICIOS (INTERNACION)</legend>
                             <div class="row">
                                 <div class="col-md-7">
                                     <?php $this->renderPartial('_servicioList');?>

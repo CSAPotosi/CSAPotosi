@@ -203,9 +203,8 @@ class OptionsMenu{
             'historial'=>[
                 'label'=>'<i class="icon-i-medical-records"></i> HISTORIAL MEDICO',
                 'items'=>[
-                    'Historial Paciente' => ['url' => ['HistorialMedico/index', 'id_paciente' => $params['h_id']], 'label' => 'HISTORIAL'],
+                    'Historial Paciente' => ['url' => ['HistorialMedico/index', 'id_paciente' => $params['h_id']], 'label' => 'DETALLE DE HISTORIAL'],
                     'antecedentes_Index'=>['url'=>['antecedentes/index','h_id'=>$params['h_id']],'label'=>'ANTECEDENTES'],
-                    'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$params['h_id']], 'label'=>'<i class="fa fa-files-o"></i>Historial'],
                     'vitales_Index'=>['url'=>['vitales/index','h_id'=>$params['h_id']],'label'=>'SIGNOS VITALES'],
                     'diagnostico_Crear'=>['url'=>['diagnostico/create','h_id'=>$params['h_id']],'label'=>'NUEVO DIAGNOSTICO']
                 ]   
@@ -323,7 +322,9 @@ class OptionsMenu{
             'historial'=>[
                 'label'=>'<i class="icon-i-medical-records"></i> HISTORIAL MEDICO',
                 'items'=>[
-                    'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$h_id], 'label'=>'DETALLE DE HISTORIAL'],
+                    'Historial Paciente'=>['url'=>['historialMedico/index','id_paciente'=>$h_id], 'label'=>'DETALLE DE HISTORIAL'],
+                    'antecedentes_Index'=>['url'=>['antecedentes/index','h_id'=>$h_id],'label'=>'ANTECEDENTES'],
+                    'vitales_Index'=>['url'=>['vitales/index','h_id'=>$h_id],'label'=>'SIGNOS VITALES'],
                     'diagnostico_Crear'=>['url'=>['diagnostico/create','h_id'=>$h_id],'label'=>'NUEVO DIAGNOSTICO']
                 ]
             ],
@@ -333,9 +334,9 @@ class OptionsMenu{
                     'internacion_Index'=>['url'=>['internacion/index','i_id'=>$i_id], 'label'=>'DETALLE'],
                     'prestacionServicios_IndexForInter'=>['url'=>['prestacionServicios/indexForInter','i_id'=>$i_id],'label'=>'SERVICIOS OTORGADOS'],
                     'prestacionServicios_CreateForInter'=>['url'=>['prestacionServicios/createForInter','i_id'=>$i_id], 'label'=>'OTORGAR SERVICIO'],
-                    'internacion_Alta'=>['url'=>['internacion/alta','i_id'=>$i_id],'label'=>'ALTA'],
                     'notaEnfermeria_Index'=>['url'=>['notaEnfermeria/index','i_id'=>$i_id],'label'=>'NOTAS DE ENFERMERIA'],
                     'internacion_ChangeSala'=>['url'=>['internacion/changeSala','i_id'=>$i_id], 'label'=>'CAMBIAR SALAS'],
+                    'internacion_Alta'=>['url'=>['internacion/alta','i_id'=>$i_id],'label'=>'ALTA'],
                 ]
             ]
         ];
@@ -399,7 +400,9 @@ class OptionsMenu{
             'historial'=>[
                 'label'=>'<i class="icon-i-medical-records"></i> HISTORIAL MEDICO',
                 'items'=>[
-                    'indexHistorial'=>['url'=>['historialMedico/index','id_paciente'=>$dModel->id_historial],'label'=>'HISTORIAL'],
+                    'Historial Paciente'=>['url'=>['historialMedico/index','id_paciente'=>$dModel->id_historial],'label'=>'DETALLE DE HISTORIAL'],
+                    'antecedentes_Index'=>['url'=>['antecedentes/index','h_id'=>$dModel->id_historial],'label'=>'ANTECEDENTES'],
+                    'vitales_Index'=>['url'=>['vitales/index','h_id'=>$dModel->id_historial],'label'=>'SIGNOS VITALES'],
                     'diagnostico_Crear'=>['url'=>['diagnostico/create','h_id'=>$dModel->id_historial],'label'=>'NUEVO DIAGNOSTICO'],
                 ]
             ],
@@ -468,7 +471,7 @@ class OptionsMenu{
     public static function menuReporteCirugia($params = [],$selected = ['','']){
         $menu = [
             'cirugia'=>[
-                'label'=>'REPORTES DE CIRUGIA',
+                'label'=>'<i class="fa fa-bar-chart"></i>REPORTES CIRUGIA',
                 'items'=>[
                     'reporteCirugia_Index'=>['url'=>['reporteCirugia/index'], 'label'=>'REALIZADOS'],
                     'reporteCirugia_Index2'=>['url'=>['reporteCirugia/index2'], 'label'=>'RESERVADOS'],
@@ -484,10 +487,10 @@ class OptionsMenu{
     public static function menuReporteInternacion($params = [],$selected = ['','']){
         $menu = [
           'internacion'=>[
-              'label'=>'REPORTES DE INTERNACION',
+              'label'=>'<i class="fa fa-bar-chart"></i>REPORTES DE INTERNACION',
               'items'=>[
-                  'reporteInternacion_Index'=>['url'=>['reporteInternacion/index'],'label'=>'INTERNACION'],
-                  'reporteInternacion_Graficas'=>['url'=>['reporteInternacion/graficas'],'label'=>'GRAFICAS']
+                  'reporteInternacion_Index'=>['url'=>['reporteInternacion/index'],'label'=>'INTERNACIONES'],
+                  'reporteInternacion_Graficas'=>['url'=>['reporteInternacion/graficas'],'label'=>'MOTIVO/PROCEDENCIA']
               ]
           ]
         ];
@@ -498,7 +501,7 @@ class OptionsMenu{
     public static function menuReporteLaboratorio($params = [],$selected = ['','']){
         $menu = [
             'lab'=>[
-                'label'=>'REPORTES DE LABORATORIO',
+                'label'=>'<i class="fa fa-bar-chart"></i>REPORTES DE LABORATORIO',
                 'items'=>[
                     'reporteLaboratorio_Index'=>['url'=>['reporteLaboratorio/index'],'label'=>'EXAMENES DE LABORATORIO'],
                     'reporteLaboratorio_Examenes'=>['url'=>['reporteLaboratorio/examenes'],'label'=>'EXAMENES MAS REALIZADOS']

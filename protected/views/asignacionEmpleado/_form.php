@@ -5,7 +5,7 @@
         <div class="col-md-10">
             <input type="text" class="form-control" id="AsignacionEmpleadoNombre" disabled>
             <input type="hidden" name="AsignacionEmpleado[id_empleado]" id="AsignacionEmpleadoId" value="">
-            <?php echo CHtml::error($modelAsignacionEmpleado, 'id_empleado', array('class' => 'label label-danger')); ?>
+            <?php echo CHtml::error($modelAsignacionEmpleado, 'id_empleado', array('class' => 'label label-danger error-message')); ?>
 
         </div>
         <div class="col-md-2">
@@ -19,12 +19,12 @@
         <div class="col-md-6">
             <?php echo CHtml::activelabelEx($modelAsignacionEmpleado, 'Fecha Inicio'); ?>
             <?php echo CHtml::activedateField($modelAsignacionEmpleado, 'fecha_inicio', array('class' => 'form-control', 'placeholder' => 'Nombre de la Unidad')); ?>
-            <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_inicio', array('class' => 'label label-danger')); ?>
+            <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_inicio', array('class' => 'label label-danger error-message')); ?>
         </div>
         <div class="col-md-6">
             <?php echo CHtml::activelabelEx($modelAsignacionEmpleado, 'Fecha Fin'); ?>
             <?php echo CHtml::activedateField($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'form-control', 'placeholder' => 'Nombre de la Unidad', 'disabled' => 'disabled')); ?>
-            <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'label label-danger')); ?>
+            <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'label label-danger error-message')); ?>
         </div>
     </div>
 </div>
@@ -33,7 +33,7 @@
         <div class="col-md-6">
             <?php echo CHtml::activelabelEx($modelAsignacionEmpleado, 'Cargo'); ?>
             <?php echo CHtml::activedropDownList($modelAsignacionEmpleado, 'id_cargo', $modelAsignacionEmpleado->getCargo(), array('class' => 'form-control', 'placeholder' => 'Nombre de la Unidad')); ?>
-            <?php echo CHtml::error($modelAsignacionEmpleado, 'id_cargo', array('class' => 'label label-danger')); ?>
+            <?php echo CHtml::error($modelAsignacionEmpleado, 'id_cargo', array('class' => 'label label-danger error-message')); ?>
         </div>
         <div class="col-md-6">
 

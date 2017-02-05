@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
 <section id="widget-grid">
 	<div class="row">
 		<article class="col-md-12">
-			<div class="jarviswidget">
+			<div class="jarviswidget jarviswidget-color-blue">
 				<header>Entidad </header>
 				<div>
 					<div class="widget-body">

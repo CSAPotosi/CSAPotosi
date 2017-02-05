@@ -37,7 +37,7 @@
                     </td>
                     <td><?php echo $dataS->precio->monto;?></td>
                     <td>
-                        <?php echo CHtml::activeTextField(new DetallePrestacion,"[{$dataS->id_serv}]cantidad",['class'=>'form-control input-xs','value'=>1]);?>
+                        <?php echo CHtml::activeTextField(new DetallePrestacion,"[{$dataS->id_serv}]cantidad",['class'=>'form-control input-xs','value'=>1,'readonly'=>!$editable]);?>
                         <?php echo CHtml::activeHiddenField(new DetallePrestacion,"[{$dataS->id_serv}]subtotal",['value'=>$dataS->precio->monto]);?>
                     </td>
                     <td class="text-align-right"><?php echo $dataS->precio->monto;?></td>

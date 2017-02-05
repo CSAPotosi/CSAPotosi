@@ -1,11 +1,6 @@
 <?php
-/* @var $this InternacionController */
-
-$this->breadcrumbs=array(
-	'Internacion',
-);
+    $this->pageTitle = 'INTERNACION - <small>DETALLE</small>';
 ?>
-
 <?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$internacionModel->historial]);?>
 
 <section id="widget-grid">

@@ -53,7 +53,7 @@ class ReporteCirugiaController extends Controller
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','index']);
+        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','reporteCirugia_Index']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){
@@ -126,7 +126,7 @@ class ReporteCirugiaController extends Controller
     }
 
     public function actionIndex2(){
-        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','index2']);
+        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','reporteCirugia_Index2']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){
@@ -196,7 +196,7 @@ class ReporteCirugiaController extends Controller
     }
 
     public function actionEstadisticaSala(){
-        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','estadisticaSala']);
+        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','reporteCirugia_EstadisticaSala']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){
@@ -292,7 +292,7 @@ class ReporteCirugiaController extends Controller
     }
 
     public function actionEstadisticaPersonal(){
-        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','estadisticaPersonal']);
+        $this->menu = OptionsMenu::menuReporteCirugia([],['cirugia','reporteCirugia_EstadisticaPersonal']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){

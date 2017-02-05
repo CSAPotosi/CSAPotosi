@@ -8,10 +8,11 @@
         }
     }
 ?>
+<?php $this->pageTitle = 'REPORTES DE CIRUGIA';?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
 
                 <header>
                 </header>
@@ -29,16 +30,17 @@
                             </div>
                             <?php echo CHtml::endForm();?>
                         </div>
+                        <legend>PERSONAL</legend>
                         <?php if ($cirugiaList):?>
                             <canvas id="pieChart" height="70"></canvas>
                         <?php endif;?>
                         <table class="table table-hover table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th width="30%">Medico/Enfermera</th>
-                                <th width="30%">Rol</th>
-                                <th width="20%">Participacion</th>
-                                <th width="20%">Total part.</th>
+                                <th width="30%">MEDICO/ENFERMERA</th>
+                                <th width="30%">ROL</th>
+                                <th width="20%">PARTICIPACION</th>
+                                <th width="20%">TOTAL PART.</th>
                             </tr>
                             </thead>
                             <tbody>

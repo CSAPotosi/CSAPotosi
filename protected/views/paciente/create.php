@@ -76,7 +76,7 @@ $this->breadcrumbs = array(
                                                                class="form-control"
                                                                placeholder="Nombres"
                                                                value="<?php echo $modelPerson->nombres ?>">
-                                                        <?php echo CHtml::error($modelPerson, 'nombres', ['class' => 'label label-danger']); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'nombres', ['class' => 'label label-danger error-message']); ?>
                                                     </div>
                                                     <div class="form-group">
                                                         <<label>PRIMER APELLIDO</label>
@@ -84,24 +84,24 @@ $this->breadcrumbs = array(
                                                         <input type="text" name="primer_apellido" id="primer_apellido"
                                                                class="form-control" placeholder="Primer Apellido"
                                                                value="<?php echo $modelPerson->primer_apellido ?>">
-                                                        <?php echo CHtml::error($modelPerson, 'primer_apellido', ['class' => 'label label-danger']); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'primer_apellido', ['class' => 'label label-danger error-message']); ?>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>SEGUNDO APELLIDO</label>
                                                         <?php echo CHtml::activetextField($modelPerson, 'segundo_apellido', array('class' => 'form-control', 'placeholder' => 'Segundo Apellido')); ?>
-                                                        <?php echo CHtml::error($modelPerson, 'segundo_apellido', array('class' => 'label label-danger')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'segundo_apellido', array('class' => 'label label-danger error-message')); ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>GRUPO SANGUINEO</label>
                                                         <?php echo CHtml::activedropDownList($modelPerson, 'grupo_sanguineo', $modelPerson->getGrupoSanguineo(), array('class' => 'form-control')); ?>
-                                                        <?php echo CHtml::error($modelPerson, 'grupo_sanguineo', array('class' => 'label label-danger')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'grupo_sanguineo', array('class' => 'label label-danger error-message')); ?>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>GENERO</label>
                                                         <?php echo CHtml::activedropDownList($modelPerson, 'genero', $modelPerson->getGenero(), array('class' => 'form-control')); ?>
-                                                        <?php echo CHtml::error($modelPerson, 'genero', array('class' => 'label label-danger')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'genero', array('class' => 'label label-danger error-message')); ?>
                                                     </div>
                                                     <div class="form-group">
                                                         <?php echo CHtml::activeHiddenField($modelPerson, 'fecha_nac'); ?>
@@ -111,17 +111,17 @@ $this->breadcrumbs = array(
                                                                id="fecha_nac"
                                                                placeholder="dd/mm/aaaa" maxDate='02/11/2016'
                                                                value="<?php echo $modelPerson->fecha_nac ?>">
-                                                        <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger']); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger error-message']); ?>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>ESTADO CIVIL</label>
                                                         <?php echo CHtml::activedropDownList($modelPerson, 'estado_civil', $modelPerson->getEstadoCivil(), array('class' => 'form-control')); ?>
-                                                        <?php echo CHtml::error($modelPerson, 'estado_civil', array('class' => 'label label-danger')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'estado_civil', array('class' => 'label label-danger error-message')); ?>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>OCUPACION</label>
                                                         <?php echo CHtml::activetextField($modelPerson, 'ocupacion', array('class' => 'form-control', 'placeholder' => 'Ocupacion')); ?>
-                                                        <?php echo CHtml::error($modelPerson, 'ocupacion', array('class' => 'label label-danger')); ?>
+                                                        <?php echo CHtml::error($modelPerson, 'ocupacion', array('class' => 'label label-danger error-message')); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,26 +137,26 @@ $this->breadcrumbs = array(
                                                                     <div class="form-group">
                                                                         <label>NACIONALIDAD</label>
                                                                         <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('options' => array('BOL' => array('SELECTED' => true)), 'class' => 'form-control')); ?>
-                                                                        <?php echo CHtml::error($modelPerson, 'nacionalidad', array('class' => 'label label-danger')); ?>
+                                                                        <?php echo CHtml::error($modelPerson, 'nacionalidad', array('class' => 'label label-danger error-message')); ?>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label>LOCALIDAD</label>
                                                                         <?php echo CHtml::activetextField($modelPerson, 'localidad', array('class' => 'form-control', 'placeholder' => 'Localidad o Departamento')); ?>
-                                                                        <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger')); ?>
+                                                                        <?php echo CHtml::error($modelPerson, 'localidad', array('class' => 'label label-danger error-message')); ?>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>DOMICILIO</label>
                                                                 <?php echo CHtml::activetextField($modelPerson, 'domicilio', array('class' => 'form-control', 'placeholder' => 'Direccion')); ?>
-                                                                <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger')); ?>
+                                                                <?php echo CHtml::error($modelPerson, 'domicilio', array('class' => 'label label-danger error-message')); ?>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>TELEFONO</label>
                                                                 <?php echo CHtml::activetextField($modelPerson, 'telefono', array('class' => 'form-control', 'placeholder' => 'Telefono')); ?>
-                                                                <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger')); ?>
+                                                                <?php echo CHtml::error($modelPerson, 'telefono', array('class' => 'label label-danger error-message')); ?>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>EMAIL</label>
@@ -165,7 +165,7 @@ $this->breadcrumbs = array(
                                                                        placeholder="ejemplo@email.com" id="email"
                                                                        name="email"
                                                                        value="<?php echo $modelPerson->email ?>">
-                                                                <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger')); ?>
+                                                                <?php echo CHtml::error($modelPerson, 'email', array('class' => 'label label-danger error-message')); ?>
                                                             </div>
                                                         </div>
                                                     </div>

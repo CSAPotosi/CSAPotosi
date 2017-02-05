@@ -122,7 +122,7 @@
 		<!-- #SEARCH -->
 		<!-- input: search field -->
 		<form action="#" class="header-search pull-right">
-			<input id="search-fld" type="text" name="param" placeholder="Buscar">
+			<input id="search-fld" type="text" name="param" placeholder="Paciente">
 			<button type="button">
 				<i class="fa fa-search"></i>
 			</button>
@@ -245,7 +245,7 @@
 					</li>
 				</ul>
 			</li>
-            <?php if(Yii::app()->user->checkAccess('Administracion de cirugias')):?>
+            <?php if(HelpTools::checkAccess(['Administracion de cirugias'])):?>
 			<li>
 				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="icon-i-surgery"></i> <span class="menu-item-parent">Cirugias</span></a>
 			</li>
@@ -296,10 +296,45 @@
                 <a href="#"><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">Adm. Seguridad</span></a>
                 <ul>
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(['Seguridad/indexBackup']);?>" title="Backup"><span>Copias de seguridad</span></a>
+                        <a href="<?php echo CHtml::normalizeUrl(['Seguridad/indexBackup']);?>" title="Copias de seguridad">
+                            <i class="fa fa-circle"></i>
+                            <span>Copias de seguridad</span>
+                        </a>
                     </li>
                     <li>
-                        <a href="<?php echo CHtml::normalizeUrl(['Seguridad/audit']);?>" title="Auditoria"><span>Auditoria</span></a>
+                        <a href="<?php echo CHtml::normalizeUrl(['Seguridad/audit']);?>" title="Auditoria">
+                            <i class="fa fa-circle"></i>
+                            <span>Auditoria</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['authentication/']);?>" title="Administracion de roles">
+                            <i class="fa fa-circle"></i>
+                            <span>Administracion de roles</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-info-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
+                <ul>
+                    <li>
+                        <a href="#" title="Manual de instalacion">
+                            <i class="fa fa-circle"></i>
+                            <span>Manual de instalacion</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Manual de usuario">
+                            <i class="fa fa-circle"></i>
+                            <span>Manual de usuario</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Contactos">
+                            <i class="fa fa-circle"></i>
+                            <span>Contactos</span>
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -341,12 +376,10 @@
 			<div class="col-md-10">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4 no-padding">
-                            <h1 class="txt-color-blueDark">
-                                <i class="fa-fw fa fa-chevron-right"></i>
-                                <?php echo $this->pageTitle; ?>
-                            </h1>
-                        </div>
+                        <h1 class="txt-color-blueDark">
+                            <i class="fa-fw fa fa-chevron-right"></i>
+                            <?php echo $this->pageTitle; ?>
+                        </h1>
                     </div>
                 </div>
                 <div class="row">
@@ -373,7 +406,7 @@
 <div class="page-footer">
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 text-align-center">
-			<span class="txt-color-white">SSANA <span class="hidden-xs"> - Sistema</span> © 2016</span>
+			<span class="txt-color-white">SSANA <span class="hidden-xs"> - Sistema</span> © 2017</span>
 		</div>
 	</div>
 </div>

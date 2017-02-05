@@ -33,7 +33,7 @@ class ReporteInternacionController extends Controller
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuReporteInternacion([],['internacion','index']);
+        $this->menu = OptionsMenu::menuReporteInternacion([],['internacion','reporteInternacion_Index']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){
@@ -103,7 +103,7 @@ class ReporteInternacionController extends Controller
     }
 
     public function actionGraficas(){
-        $this->menu = OptionsMenu::menuReporteInternacion([],['internacion','grafica']);
+        $this->menu = OptionsMenu::menuReporteInternacion([],['internacion','reporteInternacion_Graficas']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){

@@ -41,13 +41,13 @@ class InternacionController extends Controller{
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','index']);
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','internacion_Index']);
 
 		$this->render('index',['internacionModel'=>$this->_internacion]);
 	}
 
 	public function actionCreateIngreso(){
-        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$this->_historial->id_historial],['historial','internacion']);
+        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$this->_historial->id_historial],['historial','internacion_CreateIngreso']);
 
 		$internacionModel = new Internacion('ingreso');
 		$internacionModel->motivo_ingreso = 0;$internacionModel->procedencia_ingreso = 0;
@@ -67,7 +67,7 @@ class InternacionController extends Controller{
 	}
 
     public function actionAlta(){
-        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','alta']);
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','internacion_Alta']);
         $iModel =$this->_internacion;
         $iModel->scenario = 'alta';
         $iModel->estado = 0;
@@ -90,7 +90,7 @@ class InternacionController extends Controller{
     }
 
     public function actionChangeSala(){
-        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','changeSala']);
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','internacion_ChangeSala']);
         if(isset($_POST['InternacionSala'])){
             $temp = new InternacionSala();
             $temp->attributes = $_POST['InternacionSala'];

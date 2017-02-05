@@ -19,7 +19,7 @@
                             </button>
                         </div>
                     </div>
-                    <?php echo CHtml::error($modelCita, 'id_paciente', array('class' => 'label label-danger')); ?>
+                    <?php echo CHtml::error($modelCita, 'id_paciente', array('class' => 'label label-danger error-message')); ?>
                 </div>
                 <div class="form-group">
                     <label>ATENCION MEDICA</label>
@@ -32,20 +32,20 @@
                             </button>
                         </div>
                     </div>
-                    <?php echo CHtml::error($modelCita, 'medico_consulta_servicio', array('class' => 'label label-danger')); ?>
+                    <?php echo CHtml::error($modelCita, 'medico_consulta_servicio', array('class' => 'label label-danger error-message')); ?>
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
                             <label>FECHA</label>
                             <?php echo CHtml::activeTextField($modelCita, 'fecha', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa')); ?>
-                            <?php echo CHtml::error($modelCita, 'fecha', array('class' => 'label label-danger')); ?>
+                            <?php echo CHtml::error($modelCita, 'fecha', array('class' => 'label label-danger error-message')); ?>
                         </div>
                         <div class="col-md-6">
 
                             <label>HORA DE LA CITA</label>
                             <?php echo CHtml::activeDropDownList($modelCita, 'hora_cita', [], array('class' => 'form-control', 'disabled' => 'disabled', 'data-atencion' => CHtml::normalizeUrl(array('Cita/BuscarHora')))); ?>
-                            <?php echo CHtml::error($modelCita, 'hora_cita', array('class' => 'label label-danger')); ?>
+                            <?php echo CHtml::error($modelCita, 'hora_cita', array('class' => 'label label-danger error-message')); ?>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                         <div class="col-md-6">
                             <label>ESTADO DE LA CITA</label>
                             <?php echo CHtml::activedropDownList($modelCita, 'estado_cita', array('0' => 'reservado', '1' => 'confirmado', '2' => 'reconsulta'), array('class' => 'form-control')); ?>
-                            <?php echo CHtml::error($modelCita, 'estado_cita', array('class' => 'label label-danger')); ?>
+                            <?php echo CHtml::error($modelCita, 'estado_cita', array('class' => 'label label-danger error-message')); ?>
                         </div>
                         <div class="col-md-6">
                             <br>

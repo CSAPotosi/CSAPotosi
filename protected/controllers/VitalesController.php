@@ -31,7 +31,7 @@ class VitalesController extends Controller
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$this->_historial->id_historial],['historial','vitales']);
+        $this->menu = OptionsMenu::menuHistorial(['h_id'=>$this->_historial->id_historial],['historial','vitales_Index']);
         $vital_list = $this->loadForm();
         $this->render('index',['historial'=>$this->_historial,'vital_list'=>$vital_list]);
 	}

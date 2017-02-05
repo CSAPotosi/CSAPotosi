@@ -33,7 +33,7 @@
                             <?php echo CHtml::activeTextField($list, "[" . $list->servicio->id_serv . "]descuento_servicio", array('class' => 'form-control')) ?>
                             <span class="input-group-addon">%</span>
                         </div>
-                        <?php echo CHtml::error($list, "[" . $list->servicio->id_serv . "]descuento_servicio", array('class' => 'label label-danger')); ?>
+                        <?php echo CHtml::error($list, "[" . $list->servicio->id_serv . "]descuento_servicio", array('class' => 'label label-danger error-message')); ?>
 
                     </td>
                     <td class="hidden" name="info">

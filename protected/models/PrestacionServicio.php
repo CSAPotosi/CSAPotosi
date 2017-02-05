@@ -51,7 +51,7 @@ class PrestacionServicio extends CActiveRecord
         // class name for the relations automatically generated below.
         return array(
             'historial' => array(self::BELONGS_TO, 'HistorialMedico', 'id_historial'),
-            'detallePrestacions' => array(self::HAS_MANY, 'DetallePrestacion', 'id_prestacion'),
+            'detallePrestacions' => array(self::HAS_MANY, 'DetallePrestacion', 'id_prestacion','order'=>'fecha_solicitud desc'),
         );
     }
 

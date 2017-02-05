@@ -1,5 +1,5 @@
 <?php
-    $this->pageTitle = 'Nuevo Diagnostico'
+    $this->pageTitle = 'DIAGNOSTICO'
 ?>
 <?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$historialModel]);?>
 <section id="widget-grid">
@@ -12,20 +12,20 @@
 
                         <?php echo CHtml::beginForm();?>
                         <fieldset>
-                            <legend>Formulario de diagnostico</legend>
-                            <?php echo CHtml::errorSummary($diagnosticoModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
+                            <legend>NUEVO DIAGNOSTICO</legend>
+                            <?php echo CHtml::errorSummary($diagnosticoModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($diagnosticoModel,'anamnesis');?>
                                         <?php echo CHtml::activeTextArea($diagnosticoModel,'anamnesis',['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($diagnosticoModel,'anamnesis',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($diagnosticoModel,'anamnesis',['class'=>'label label-danger error-message']);?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <?php echo CHtml::activeLabelEx($diagnosticoModel,'exploracion');?>
                                     <?php echo CHtml::activeTextArea($diagnosticoModel,'exploracion',['class'=>'form-control']);?>
-                                    <?php echo CHtml::error($diagnosticoModel,'exploracion',['class'=>'label label-danger']);?>
+                                    <?php echo CHtml::error($diagnosticoModel,'exploracion',['class'=>'label label-danger error-message']);?>
                                 </div>
                             </div>
                             <div class="row">
@@ -33,14 +33,14 @@
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($diagnosticoModel,'conclusion');?>
                                         <?php echo CHtml::activeTextArea($diagnosticoModel,'conclusion',['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($diagnosticoModel,'conclusion',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($diagnosticoModel,'conclusion',['class'=>'label label-danger error-message']);?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($diagnosticoModel,'observaciones');?>
                                         <?php echo CHtml::activeTextArea($diagnosticoModel,'observaciones',['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($diagnosticoModel,'observaciones',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($diagnosticoModel,'observaciones',['class'=>'label label-danger error-message']);?>
                                     </div>
                                 </div>
                             </div>

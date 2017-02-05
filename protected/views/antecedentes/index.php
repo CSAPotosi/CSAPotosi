@@ -1,6 +1,8 @@
 <?php
-    $this->pageTitle = 'ANTECEDENTES';
+    $this->pageTitle = 'HISTORIAL MEDICO - <small>ANTECEDENTS</small>';
 ?>
+
+<?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$historial]);?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -91,7 +93,7 @@
                                                 break;
                                         }
                                         echo CHtml::activeHiddenField($antecedente,"[$index]id_par");
-                                        echo CHtml::error($antecedente,"[$index]valor_ant",['class'=>'label label-danger']);
+                                        echo CHtml::error($antecedente,"[$index]valor_ant",['class'=>'label label-danger error-message']);
                                         $index++;
                                         ?>
                                     </div>

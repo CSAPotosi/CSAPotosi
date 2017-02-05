@@ -29,7 +29,7 @@ $this->pageTitle = ($rol->type == 2) ? 'DATOS DEL ROL' : 'DATOS DE LA TAREA';
                             </div>
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-1">
-                                    <div class="jarviswidget" id="widget1" data-widget-togglebutton="false"
+                                    <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-togglebutton="false"
                                          data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                          data-widget-custombutton="false">
                                         <header>

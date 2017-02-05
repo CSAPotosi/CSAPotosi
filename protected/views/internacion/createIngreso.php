@@ -1,5 +1,5 @@
 <?php
-    $this->pageTitle = 'Nueva internacion';
+    $this->pageTitle = 'HISTORIAL MEDICO - <small>INTERNAR PACIENTE</small>';
     $modelTSala = ServTipoSala::model()->with([
         'servicio'=>['condition'=>'activo AND tipo_cobro = 2']
     ])->findAll();
@@ -9,15 +9,15 @@
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget jarviswidget-color-teal" id="widget1" data-widget-refreshbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1" data-widget-refreshbutton="false">
                 <header>
                 </header>
                 <div>
                     <div class="widget-body">
                         <?php echo CHtml::beginForm();?>
                         <fieldset>
-                            <legend>Formulario de internacion de paciente</legend>
-                            <?php echo CHtml::errorSummary($internacionModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
+                            <legend>INTERNACION DE PACIENTE</legend>
+                            <?php echo CHtml::errorSummary($internacionModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <div class="row">
@@ -39,17 +39,17 @@
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabelEx($internacionModel,'fecha_ingreso');?>
                                                 <?php echo CHtml::activeTextField($internacionModel,'fecha_ingreso',['class'=>'form-control']);?>
-                                                <?php echo CHtml::error($internacionModel,'fecha_ingreso',['class'=>'label label-danger']);?>
+                                                <?php echo CHtml::error($internacionModel,'fecha_ingreso',['class'=>'label label-danger error-message']);?>
                                             </div>
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabelEx($internacionModel,'motivo_ingreso');?><br>
                                                 <?php echo CHtml::activeRadioButtonList($internacionModel,'motivo_ingreso',Internacion::getMotivo(),['class'=>'icheck-radio','separator'=>'&nbsp;&nbsp;&nbsp;&nbsp;']);?>
-                                                <?php echo CHtml::error($internacionModel,'motivo_ingreso',['class'=>'label label-danger']);?>
+                                                <?php echo CHtml::error($internacionModel,'motivo_ingreso',['class'=>'label label-danger error-message']);?>
                                             </div>
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabelEx($internacionModel,'procedencia_ingreso');?><br>
                                                 <?php echo CHtml::activeRadioButtonList($internacionModel,'procedencia_ingreso',Internacion::getProcedencia(),['class'=>'icheck-radio','separator'=>'&nbsp;&nbsp;&nbsp;&nbsp;']);?>
-                                                <?php echo CHtml::error($internacionModel,'procedencia_ingreso',['class'=>'label label-danger']);?>
+                                                <?php echo CHtml::error($internacionModel,'procedencia_ingreso',['class'=>'label label-danger error-message']);?>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($internacionModel,'observacion_ingreso');?>
                                         <?php echo CHtml::activeTextArea($internacionModel,'observacion_ingreso',['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($internacionModel,'observacion_ingreso',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($internacionModel,'observacion_ingreso',['class'=>'label label-danger error-message']);?>
                                     </div>
                                 </div>
                             </div>

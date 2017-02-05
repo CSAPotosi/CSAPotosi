@@ -3,21 +3,21 @@
     <div class="form-group">
         <?php echo CHtml::activeLabelEx($periodoModel,'hora_entrada')?>
         <?php echo CHtml::activeTextField($periodoModel,'hora_entrada',['class'=>'form-control clockpicker','data-autoclose'=>'true']);?>
-        <?php echo CHtml::error($periodoModel,'hora_entrada',['class'=>'label label-danger']);?>
+        <?php echo CHtml::error($periodoModel,'hora_entrada',['class'=>'label label-danger error-message']);?>
     </div>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <?php echo CHtml::activeLabelEx($periodoModel,'inicio_entrada')?>
                 <?php echo CHtml::activeTextField($periodoModel,'inicio_entrada',['class'=>'form-control spinner-both']);?>
-                <?php echo CHtml::error($periodoModel,'inicio_entrada',['class'=>'label label-danger']);?>
+                <?php echo CHtml::error($periodoModel,'inicio_entrada',['class'=>'label label-danger error-message']);?>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <?php echo CHtml::activeLabelEx($periodoModel,'fin_entrada')?>
                 <?php echo CHtml::activeTextField($periodoModel,'fin_entrada',['class'=>'form-control spinner-both']);?>
-                <?php echo CHtml::error($periodoModel,'fin_entrada',['class'=>'label label-danger']);?>
+                <?php echo CHtml::error($periodoModel,'fin_entrada',['class'=>'label label-danger error-message']);?>
             </div>
         </div>
     </div>
@@ -26,21 +26,21 @@
     <div class="form-group">
         <?php echo CHtml::activeLabelEx($periodoModel,'hora_salida')?>
         <?php echo CHtml::activeTextField($periodoModel,'hora_salida',['class'=>'form-control clockpicker','data-autoclose'=>'true']);?>
-        <?php echo CHtml::error($periodoModel,'hora_salida',['class'=>'label label-danger']);?>
+        <?php echo CHtml::error($periodoModel,'hora_salida',['class'=>'label label-danger error-message']);?>
     </div>
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
                 <?php echo CHtml::activeLabelEx($periodoModel,'inicio_salida')?>
                 <?php echo CHtml::activeTextField($periodoModel,'inicio_salida',['class'=>'form-control spinner-both']);?>
-                <?php echo CHtml::error($periodoModel,'inicio_salida',['class'=>'label label-danger']);?>
+                <?php echo CHtml::error($periodoModel,'inicio_salida',['class'=>'label label-danger error-message']);?>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <?php echo CHtml::activeLabelEx($periodoModel,'fin_salida')?>
                 <?php echo CHtml::activeTextField($periodoModel,'fin_salida',['class'=>'form-control spinner-both']);?>
-                <?php echo CHtml::error($periodoModel,'fin_salida',['class'=>'label label-danger']);?>
+                <?php echo CHtml::error($periodoModel,'fin_salida',['class'=>'label label-danger error-message']);?>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
             <div class="form-group">
                 <?php echo CHtml::activeLabelEx($periodoModel,'tolerancia')?>
                 <?php echo CHtml::activeTextField($periodoModel,'tolerancia',['class'=>'form-control spinner-both']);?>
-                <?php echo CHtml::error($periodoModel,'tolerancia',['class'=>'label label-danger']);?>
+                <?php echo CHtml::error($periodoModel,'tolerancia',['class'=>'label label-danger error-message']);?>
             </div>
         </div>
         <div class="col-md-7">
@@ -61,7 +61,7 @@
                     <option value="0">Medio Tiempo</option>
                     <option value="1">Dia Completo</option>
                 </select>
-                <?php echo CHtml::error($periodoModel,'tipo_periodo',['class'=>'label label-danger']);?>
+                <?php echo CHtml::error($periodoModel,'tipo_periodo',['class'=>'label label-danger error-message']);?>
             </div>
         </div>
     </div>

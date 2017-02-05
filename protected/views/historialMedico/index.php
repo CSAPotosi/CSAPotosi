@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle = "Historial Medico";
+$this->pageTitle = "HISTORIAL MEDICO - <small>DETALLE</small>";
 ?>
 
 <?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$historialModel]);?>
@@ -10,19 +10,19 @@ $this->pageTitle = "Historial Medico";
                 <header>
                     <ul class="nav nav-tabs pull-right in" id="tab-historial">
                         <li class="active">
-                            <a data-toggle="tab" href="#s2"><span class="hidden-mobile hidden-tablet">Diagnosticos</span></a>
+                            <a data-toggle="tab" href="#s2"><span class="hidden-mobile hidden-tablet">DIAGNOSTICOS</span></a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#s3"><span
-                                    class="hidden-mobile hidden-tablet">Internaciones</span></a>
+                                    class="hidden-mobile hidden-tablet">INTERNACIONES</span></a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#s4"><span
-                                    class="hidden-mobile hidden-tablet">Examenes</span></a>
+                                    class="hidden-mobile hidden-tablet">EXAMENES</span></a>
                         </li>
                         <li>
                             <a data-toggle="tab" href="#s5"><span
-                                    class="hidden-mobile hidden-tablet">Cirugias</span></a>
+                                    class="hidden-mobile hidden-tablet">CIRUGIAS</span></a>
                         </li>
                     </ul>
                 </header>

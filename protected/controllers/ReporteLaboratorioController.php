@@ -33,7 +33,7 @@ class ReporteLaboratorioController extends Controller
 
 	public function actionIndex()
 	{
-        $this->menu = OptionsMenu::menuReporteLaboratorio([],['lab','index']);
+        $this->menu = OptionsMenu::menuReporteLaboratorio([],['lab','reporteLaboratorio_Index']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){
@@ -132,7 +132,7 @@ class ReporteLaboratorioController extends Controller
     }
 
     public function actionExamenes(){
-        $this->menu = OptionsMenu::menuReporteLaboratorio([],['lab','examenes']);
+        $this->menu = OptionsMenu::menuReporteLaboratorio([],['lab','reporteLaboratorio_Examenes']);
         $fec_ini = date('d/m/Y');
         $fec_fin = date('d/m/Y');
         if(isset($_POST['fec_ini'],$_POST['fec_fin'])){

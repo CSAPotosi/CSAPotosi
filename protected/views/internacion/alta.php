@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle = 'Alta de paciente';
+$this->pageTitle = 'INTERNACION - <small>ALTA</small>';
 ?>
 
 <?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$internacionModel->historial]);?>
@@ -14,8 +14,8 @@ $this->pageTitle = 'Alta de paciente';
                     <div class="widget-body">
                         <?php echo CHtml::beginForm();?>
                         <fieldset>
-                            <legend>Alta paciente</legend>
-                            <?php echo CHtml::errorSummary($internacionModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
+                            <legend>ALTA DE PACIENTE</legend>
+                            <?php echo CHtml::errorSummary($internacionModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <div class="row">
                                 <div class="col-md-8 col-md-offset-2">
                                     <div class="form-group">
@@ -26,19 +26,19 @@ $this->pageTitle = 'Alta de paciente';
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
                                         </div>
-                                        <?php echo CHtml::error($internacionModel,'fecha_alta',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($internacionModel,'fecha_alta',['class'=>'label label-danger error-message']);?>
                                     </div>
 
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($internacionModel, 'tipo_alta');?>
                                         <?php echo CHtml::activeTextField($internacionModel, 'tipo_alta', ['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($internacionModel,'tipo_alta',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($internacionModel,'tipo_alta',['class'=>'label label-danger error-message']);?>
                                     </div>
 
                                     <div class="form-group">
                                         <?php echo CHtml::activeLabelEx($internacionModel, 'observacion_alta');?>
                                         <?php echo CHtml::activeTextArea($internacionModel, 'observacion_alta', ['class'=>'form-control']);?>
-                                        <?php echo CHtml::error($internacionModel,'observacion_alta',['class'=>'label label-danger']);?>
+                                        <?php echo CHtml::error($internacionModel,'observacion_alta',['class'=>'label label-danger error-message']);?>
                                     </div>
                                 </div>
                             </div>

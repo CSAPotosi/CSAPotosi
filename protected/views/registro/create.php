@@ -51,7 +51,7 @@ $this->breadcrumbs = array(
                                             <div class="form-group">
                                                 <label>Empleado</label>
                                                 <?php echo CHtml::activedropDownList($modelRegistro, 'id_asignacion', [], ['class' => 'form-control', 'prompt' => 'SELECCIONE']); ?>
-                                                <?php echo CHtml::error($modelRegistro, 'id_asignacion', ['class' => 'label label-danger']); ?>
+                                                <?php echo CHtml::error($modelRegistro, 'id_asignacion', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -62,14 +62,14 @@ $this->breadcrumbs = array(
                                                 <input type="datepicker" class="form-control datepicker"
                                                        data-dateformat="dd/mm/yy" name="Registro[fecha]"
                                                        id="Registro_fecha">
-                                                <?php echo CHtml::error($modelRegistro, 'fecha', ['class' => 'label label-danger']); ?>
+                                                <?php echo CHtml::error($modelRegistro, 'fecha', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <?php echo CHtml::activeLabel($modelRegistro, 'Hora'); ?>
                                                 <?php echo CHtml::activeTextField($modelRegistro, 'hora_asistencia', ['class' => 'form-control clockpicker', 'data-autoclose' => 'true']); ?>
-                                                <?php echo CHtml::error($modelRegistro, 'hora_asistencia', ['class' => 'label label-danger']); ?>
+                                                <?php echo CHtml::error($modelRegistro, 'hora_asistencia', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                         </div>
                                     </div>

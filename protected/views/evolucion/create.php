@@ -3,27 +3,27 @@
 <section id="widget-grid">
     <div class="row">
         <div class="col-md-12">
-            <div class="jarviswidget" id="widget-historial">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget-historial">
                 <header>
                 </header>
                 <div>
                     <div class="widget-body">
                         <fieldset>
                             <legend>Formulario de evolucion</legend>
-                            <?php echo CHtml::errorSummary($eModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger']);?>
+                            <?php echo CHtml::errorSummary($eModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <?php echo CHtml::beginForm();?>
                             <div class="row">
                                 <div class="col-md-4">
                                     <?php echo CHtml::activeTextArea($eModel, 'exploracion_evo', ['class'=>'form-control','placeholder'=> 'EXPLORACION']);?>
-                                    <?php echo CHtml::error($eModel,'exploracion_evo',['class'=>'label label-danger']);?>
+                                    <?php echo CHtml::error($eModel,'exploracion_evo',['class'=>'label label-danger error-message']);?>
                                 </div>
                                 <div class="col-md-3">
                                     <?php echo CHtml::activeTextArea($eModel, 'estado_paciente', ['class'=>'form-control','placeholder'=>'ESTADO DE PACIENTE']);?>
-                                    <?php echo CHtml::error($eModel,'estado_paciente',['class'=>'label label-danger']);?>
+                                    <?php echo CHtml::error($eModel,'estado_paciente',['class'=>'label label-danger error-message']);?>
                                 </div>
                                 <div class="col-md-3">
                                     <?php echo CHtml::activeTextArea($eModel, 'recomendaciones', ['class'=>'form-control','placeholder'=>'RECOMENDACIONES']);?>
-                                    <?php echo CHtml::error($eModel,'recomendaciones',['class'=>'label label-danger']);?>
+                                    <?php echo CHtml::error($eModel,'recomendaciones',['class'=>'label label-danger error-message']);?>
                                 </div>
                                 <div class="col-md-2 text-align-center">
                                     <button type="submit" class="btn btn-primary btn-block">

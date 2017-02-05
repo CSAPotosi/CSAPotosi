@@ -30,7 +30,7 @@ $this->pageTitle = 'ACTUALIZACION DE ROLES ASIGNADOS';
                                 </div>
                                 <div class="row">
                                     <div class="col-md-5 col-md-offset-1">
-                                        <div class="jarviswidget" id="widget3" data-widget-togglebutton="false"
+                                        <div class="jarviswidget jarviswidget-color-blue" id="widget3" data-widget-togglebutton="false"
                                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                              data-widget-custombutton="false">
                                             <header>
@@ -82,7 +82,7 @@ $this->pageTitle = 'ACTUALIZACION DE ROLES ASIGNADOS';
                                     </div>
 
                                     <div class="col-md-5">
-                                        <div class="jarviswidget" id="widget3" data-widget-togglebutton="false"
+                                        <div class="jarviswidget jarviswidget-color-blue" id="widget3" data-widget-togglebutton="false"
                                              data-widget-deletebutton="false" data-widget-fullscreenbutton="false"
                                              data-widget-custombutton="false">
                                             <header>

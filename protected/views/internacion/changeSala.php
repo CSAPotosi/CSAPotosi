@@ -1,4 +1,6 @@
 <?php
+    $this->pageTitle = 'INTERNACION - <small>CAMBIO DE SALA</small>';
+
     $modelTSala = ServTipoSala::model()->with([
         'servicio'=>['condition'=>'activo']
     ])->findAll();
@@ -22,7 +24,7 @@
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Cambio de sala</legend>
+                            <legend>CAMBIAR SALA</legend>
                             <div class="row">
                                 <div class="col-md-2">
                                     <div class="small-box bg-primary margin-bottom-5" id="selected-sala">

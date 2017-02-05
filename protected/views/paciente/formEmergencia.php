@@ -40,7 +40,7 @@ $this->breadcrumbs = array(
                                     <div class="form-group">
                                         <label>GENERO</label>
                                         <?php echo CHtml::activedropDownList($modelPerson, 'genero', $modelPerson->getGenero(), array('class' => 'form-control')); ?>
-                                        <?php echo CHtml::error($modelPerson, 'genero', array('class' => 'label label-danger')); ?>
+                                        <?php echo CHtml::error($modelPerson, 'genero', array('class' => 'label label-danger error-message')); ?>
                                     </div>
                                     <div class="form-group">
                                         <label>FECHA DE NACIMIENTO</label>

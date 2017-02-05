@@ -8,7 +8,7 @@ $this->pageTitle = ($tipo == 1) ? 'LISTADO DE TAREAS DEL SISTEMA' : 'LISTADO DE 
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+            <div class="jarviswidget jarviswidget-color-blue" id="wid-id-0" data-widget-editbutton="false">
                 <header>
                     <span class="widget-icon"> <i class="fa fa-table"></i> </span>
                     <h2><?php echo ($tipo == 1) ? 'TAREAS DEL SISTEMA' : 'ROLES DEL SISTEMA'; ?></h2>

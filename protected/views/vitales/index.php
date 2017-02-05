@@ -1,6 +1,8 @@
 <?php
-$this->pageTitle = 'SIGNOS VITALES';
+$this->pageTitle = 'HISTORIAL MEDICO - <small>SIGNOS VITALES</small>';
 ?>
+
+<?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$historial]);?>
     <section id="widget-grid">
         <div class="row">
             <article class="col-md-12">
@@ -91,7 +93,7 @@ $this->pageTitle = 'SIGNOS VITALES';
                                                             break;
                                                     }
                                                     echo CHtml::activeHiddenField($vital,"[$index]id_par");
-                                                    echo CHtml::error($vital,"[$index]valor_sv",['class'=>'label label-danger']);
+                                                    echo CHtml::error($vital,"[$index]valor_sv",['class'=>'label label-danger error-message']);
                                                     $index++;
                                                     ?>
                                                 </div>

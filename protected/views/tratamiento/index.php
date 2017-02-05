@@ -3,7 +3,7 @@
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                 <header></header>
                 <div>
                     <div class="widget-body">

@@ -31,13 +31,13 @@ class PrestacionServiciosController extends Controller
 
 
     public function actionIndexForInter(){
-        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','listServicio']);
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','prestacionServicios_IndexForInter']);
 
         $this->render('indexForInter',['iModel'=>$this->_internacion]);
     }
 
     public function actionCreateForInter(){
-        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','addServicio']);
+        $this->menu = OptionsMenu::menuInternacion(['i_id'=>$this->_internacion->id_inter],['internacion','prestacionServicios_CreateForInter']);
 
         if(isset($_POST['DetallePrestacion'])){
             foreach ($_POST['DetallePrestacion'] as $itemPres){

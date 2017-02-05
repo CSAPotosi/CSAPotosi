@@ -5,7 +5,7 @@ class MedicamentoController extends Controller
     public function filters()
     {
         return array(
-//            'accessControl', // perform access control for CRUD operations
+            'accessControl', // perform access control for CRUD operations
             'postOnly + delete', // we only allow deletion via POST request
         );
     }
@@ -16,6 +16,10 @@ class MedicamentoController extends Controller
             array('allow',
                 'actions' => array('index'),
                 'roles' => array('medicamentoIndex'),
+            ),
+            array('allow',
+                'actions' => array('create'),
+                'roles' => array('medicamentoCreate'),
             ),
             array('allow',
                 'actions' => array('update'),

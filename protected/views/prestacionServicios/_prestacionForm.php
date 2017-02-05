@@ -1,21 +1,21 @@
 
-<div class="jarviswidget" id="widget-form" data-widget-refreshbutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
+<div class="jarviswidget jarviswidget-color-blue" id="widget-form" data-widget-refreshbutton="false" data-widget-fullscreenbutton="false" data-widget-togglebutton="false">
     <header>
         <h2><strong>SERVICIOS SELECCIONADOS</strong></h2>
     </header>
     <div>
         <div class="widget-body no-padding">
             <fieldset>
-                <legend class="padding-10">Agregar servicios</legend>
+                <legend class="padding-10">AGREGAR SERVICIOS</legend>
                 <?php echo CHtml::beginForm([],'post',['id'=>'form-add-services']);?>
                     <table class="table table-bordered table-hover table-condensed">
                         <thead>
                         <tr>
                             <th width="10%"></th>
-                            <th width="30%">Servicio</th>
+                            <th width="30%">SERVICIO</th>
                             <th width="20%">P.U. (Bs.)</th>
-                            <th width="20%">Cant.</th>
-                            <th width="20%">Subtotal (Bs.)</th>
+                            <th width="20%">CANT.</th>
+                            <th width="20%">SUBTOTAL (Bs.)</th>
                         </tr>
                         </thead>
                         <tbody>

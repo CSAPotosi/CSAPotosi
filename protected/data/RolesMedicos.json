@@ -162,6 +162,11 @@
     "description": "Indice de medicamentos"
   },
   {
+    "name": "medicamentoCreate",
+    "type": "0",
+    "description": "Creacion medicamentos"
+  },
+  {
     "name": "medicamentoUpdate",
     "type": "0",
     "description": "Edicion de medicamentos"

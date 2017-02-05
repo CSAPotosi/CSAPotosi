@@ -72,36 +72,6 @@ class CategoriaServExamen extends CActiveRecord
 	}
 
 	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id_cat_ex',$this->id_cat_ex);
-		$criteria->compare('cod_cat_ex',$this->cod_cat_ex,true);
-		$criteria->compare('nombre_cat_ex',$this->nombre_cat_ex,true);
-		$criteria->compare('descripcion_cat_ex',$this->descripcion_cat_ex,true);
-		$criteria->compare('activo',$this->activo);
-		$criteria->compare('tipo_ex',$this->tipo_ex);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
-
-	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.

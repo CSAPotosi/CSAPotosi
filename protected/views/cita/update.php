@@ -8,7 +8,7 @@ $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $modelCita->p
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
-            <div class="jarviswidget" id="widget1">
+            <div class="jarviswidget jarviswidget-color-blue" id="widget1">
                 <header></header>
                 <div>
                     <div class="widget-body">
@@ -31,13 +31,13 @@ $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $modelCita->p
                                         <div class="col-md-6">
                                             <?php echo CHtml::activelabelEx($modelCita, 'Fecha'); ?>
                                             <?php echo CHtml::activeTextField($modelCita, 'fecha', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa')); ?>
-                                            <?php echo CHtml::error($modelCita, 'fecha', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($modelCita, 'fecha', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                         <div class="col-md-6">
 
                                             <?php echo CHtml::activelabelEx($modelCita, 'hora_cita'); ?>
                                             <?php echo CHtml::activetimeField($modelCita, 'hora_cita', array('class' => 'form-control')); ?>
-                                            <?php echo CHtml::error($modelCita, 'hora_cita', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($modelCita, 'hora_cita', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@ $this->renderPartial('/layouts/_cardProfile', ['historialModel' => $modelCita->p
                                         <div class="col-md-6">
                                             <?php echo CHtml::activelabelEx($modelCita, 'Estado Cita'); ?>
                                             <?php echo CHtml::activedropDownList($modelCita, 'estado_cita', array('0' => 'reservado', '1' => 'confirmado', '2' => 'reconsulta'), array('class' => 'form-control', 'disabled' => ($modelCita->estado_cita == 1) ? 'disabled' : '')); ?>
-                                            <?php echo CHtml::error($modelCita, 'estado_cita', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($modelCita, 'estado_cita', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                         <div class="col-md-6">
                                             <?php if ($modelCita->estado_cita == 1) { ?>

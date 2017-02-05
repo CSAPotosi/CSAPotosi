@@ -24,7 +24,7 @@ $this->breadcrumbs = array(
                                             <div class="col-md-10">
                                                 <div class="form-group">
                                                     <?php echo CHtml::activeFileField($modelSubir, 'uploadedfile', array('class' => 'form-control')); ?>
-                                                    <?php echo CHtml::error($modelSubir, 'uploadedfile', array('class' => 'label label-danger')); ?>
+                                                    <?php echo CHtml::error($modelSubir, 'uploadedfile', array('class' => 'label label-danger error-message')); ?>
                                                     <?php echo (Yii::app()->user->hasFlash('extencion')) ? '<div class="label label-danger">' . Yii::app()->user->getFlash('extencion') . '</div>' : ''; ?>
                                                     <?php echo (Yii::app()->user->hasFlash('vacio')) ? '<div class="label label-danger">' . Yii::app()->user->getFlash('vacio') . '</div>' : ''; ?>
                                                 </div>

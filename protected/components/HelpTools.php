@@ -47,4 +47,12 @@ class HelpTools{
         }
         return $new_date;
     }
+
+    public static function checkAccess($operatios = []){
+        foreach ($operatios as $oper){
+            if(Yii::app()->user->checkAccess($oper))
+                return true;
+        }
+        return false;
+    }
 }

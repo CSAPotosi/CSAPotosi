@@ -25,11 +25,11 @@
                                 ?>
                                 <div class="col-md-4">
                                     <?php echo $form->textField($modelConvenio, 'nombre_convenio', ['class' => 'form-control', 'placeholder' => 'NOMBRE CONVENIO QUE SE HIZO CON LA INSTITUCION']); ?>
-                                    <?php echo $form->error($modelConvenio, 'nombre_convenio', ['class' => 'label label-danger']); ?>
+                                    <?php echo $form->error($modelConvenio, 'nombre_convenio', ['class' => 'label label-danger error-message']); ?>
                                 </div>
                                 <div class="col-md-3">
                                     <?php echo $form->dropDownList($modelConvenio, 'id_entidad', $modelConvenio->getEntidad(), ['class' => 'form-control']); ?>
-                                    <?php echo $form->error($modelConvenio, 'nombre_cat_ex', ['class' => 'label label-danger']) ?>
+                                    <?php echo $form->error($modelConvenio, 'nombre_cat_ex', ['class' => 'label label-danger error-message']) ?>
                                 </div>
                                 <div class="col-md-2">
 										<span class="onoffswitch">
@@ -122,11 +122,11 @@
                                             ?>
                                             <div class="col-md-3">
                                                 <?php echo $form->textField($item, 'nombre_convenio', ['class' => 'form-control']); ?>
-                                                <?php echo $form->error($item, 'nombre_convenio', ['class' => 'label label-danger']); ?>
+                                                <?php echo $form->error($item, 'nombre_convenio', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                             <div class="col-md-2">
                                                 <?php echo $form->dropDownList($item, 'id_entidad', $item->getEntidad(), ['class' => 'form-control']); ?>
-                                                <?php echo $form->error($item, 'id_entidad', ['class' => 'label label-danger']); ?>
+                                                <?php echo $form->error($item, 'id_entidad', ['class' => 'label label-danger error-message']); ?>
                                             </div>
                                             <div class="col-md-2">
                                                 <?php echo $item->fecha_creacion; ?>

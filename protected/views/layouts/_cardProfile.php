@@ -36,15 +36,15 @@
                                 </li>
                                 <li>
                                     <p class="text-muted">
-                                        <i class="fa fa-birthday-cake"></i> <span class="txt-color-darken"><?php echo $infoPersona->fecha_nac;?></span> <span class="txt-color-teal">(12)</span>
+                                        <i class="fa fa-birthday-cake"></i> <span class="txt-color-darken"><?php echo HelpTools::getDate($infoPersona->fecha_nac)->format('d/m/Y');?></span> <span class="txt-color-teal">(<?=  HelpTools::getDate($infoPersona->fecha_nac)->diff(new DateTime())->format('%y') ?>)</span>
                                     </p>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md-1">
                             <div class="btn-group-vertical pull-right">
-                                <button class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Mas info.</button>
-                                <button class="btn btn-primary btn-xs"><i class="fa fa-files-o"></i> Historial</button>
+                                <a href="<?= CHtml::normalizeUrl(['Paciente/DetallePaciente','id'=>$infoPersona->paciente->id_paciente])?>" class="btn btn-primary btn-xs">Detalle</a>
+                                <a href="<?= CHtml::normalizeUrl(['historialMedico/index','id_paciente'=>$infoPersona->paciente->id_paciente])?>" class="btn btn-primary btn-xs">Historial medico</a>
                             </div>
                         </div>
                     </div>

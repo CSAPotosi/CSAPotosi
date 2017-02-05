@@ -22,17 +22,17 @@ $this->breadcrumbs = array(
                                         <div class="form-group">
                                             <label>TIPO DE ASEGURADO</label>
                                             <?php echo CHtml::activedropDownList($modelAsegurado, 'tipo_asegurado', $modelAsegurado->getTipoAsegurado(), array('class' => 'form-control')); ?>
-                                            <?php echo CHtml::error($modelAsegurado, 'tipo_asegurado', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($modelAsegurado, 'tipo_asegurado', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                         <div class="form-group">
                                             <label>FECHA INICIO</label>
                                             <?php echo CHtml::activeTextField($modelAsegurado, 'fecha_inicio', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa')); ?>
-                                            <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger']); ?>
+                                            <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger error-message']); ?>
                                         </div>
                                         <div class="form-group">
                                             <label>CONVENIO</label>
                                             <?php echo CHtml::activedropDownList($modelAsegurado, 'convenio', $modelAsegurado->getConvenios(), array('class' => 'form-control')); ?>
-                                            <?php echo CHtml::error($modelAsegurado, 'convenio', ['class' => 'label label-danger']); ?>
+                                            <?php echo CHtml::error($modelAsegurado, 'convenio', ['class' => 'label label-danger error-message']); ?>
                                         </div>
                                         <div class="form-group">
                                             <?php echo CHtml::activeHiddenField($modelAsegurado, 'id_paciente_titular', array('class' => 'form-control')); ?>
@@ -43,7 +43,7 @@ $this->breadcrumbs = array(
                                             <h1 align="center">Paciente titular</h1>
                                             <div class="form-group">
                                                 <input type="text" class="form-control" id="paciente_titular">
-                                                <?php echo CHtml::error($modelAsegurado, 'id_paciente_titular', ['class' => 'label label-danger']); ?>
+                                                <?php echo CHtml::error($modelAsegurado, 'id_paciente_titular', ['class' => 'label label-danger error-message']); ?>
                                             </div>
 
                                         </div>

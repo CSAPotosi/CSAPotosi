@@ -16,19 +16,19 @@ $this->breadcrumbs = array(
                             <?php echo CHtml::beginForm(); ?>
                             <fieldset>
                                 <legend>CREAR EXAMEN</legend>
-                                <?php echo CHtml::errorSummary($servicio, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger')); ?>
+                                <?php echo CHtml::errorSummary($servicio, '<h4 class="alert-heading"><i class="fa fa-warning"></i> DEBE CORREGIR LOS SIGUIENTES ERRORES </h4>', null, array('class' => 'alert alert-danger error-message')); ?>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabel($servicio, 'nombre_serv'); ?>
                                             <?php echo CHtml::activeTextField($servicio, 'nombre_serv', array('class' => 'form-control', 'placeholder' => 'Nombre Servicio')); ?>
-                                            <?php echo CHtml::error($servicio, 'nombre_serv', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($servicio, 'nombre_serv', array('class' => 'label label-danger error-message')); ?>
                                         </div>
 
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabel($servicio, 'monto'); ?>
                                             <?php echo CHtml::activeTextField($servicio, 'monto', array('class' => 'form-control', 'placeholder' => 'Precio')); ?>
-                                            <?php echo CHtml::error($servicio, 'monto', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($servicio, 'monto', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                         <div class="form-group">
                                             <label>EL SERVICIO PERTENECE A:</label><br>
@@ -59,7 +59,7 @@ $this->breadcrumbs = array(
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div><?php CHtml::radioButtonList("ss", '1', array(), array()) ?>
-                                            <?php echo CHtml::error($servicio, 'id_entidad', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($servicio, 'id_entidad', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -78,12 +78,12 @@ $this->breadcrumbs = array(
                                                     </option>
                                                 <?php endforeach; ?>
                                             </select>
-                                            <?php echo CHtml::error($servicio, 'id_cat_ex', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($servicio, 'id_cat_ex', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                         <div class="form-group">
                                             <?php echo CHtml::activeLabel($servicio, 'condiciones_ex'); ?>
                                             <?php echo CHtml::activeTextArea($servicio, 'condiciones_ex', array('class' => 'form-control', 'rows' => '1', 'placeholder' => 'Condiciones', 'id' => 'condiciones')); ?>
-                                            <?php echo CHtml::error($servicio, 'condiciones', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($servicio, 'condiciones', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                         <div class="form-group">
                                             <br><br>
@@ -92,7 +92,7 @@ $this->breadcrumbs = array(
                                         <?php echo CHtml::activeCheckBox($servicio, 'activo', ['class' => 'onoffswitch-checkbox', 'checked' => ($servicio->activo) ? 'checked' : '']); ?>
                                         <?php echo CHtml::activeLabel($servicio, 'activo', ['class' => 'onoffswitch-label', 'label' => '<span class="onoffswitch-inner" data-swchon-text="SI" data-swchoff-text="NO"></span><span class="onoffswitch-switch"></span>']); ?>
                                         </span>
-                                            <?php echo CHtml::error($servicio, 'activo', array('class' => 'label label-danger')); ?>
+                                            <?php echo CHtml::error($servicio, 'activo', array('class' => 'label label-danger error-message')); ?>
                                         </div>
                                     </div>
                                 </div>

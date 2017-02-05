@@ -1,3 +1,4 @@
+$(document).ready(calcular);
 $("table tbody tr td input:text").keyup(calcular);
 
 $('.select-item').on('click',function(){
@@ -33,4 +34,8 @@ function calcular(){
         total +=subtotal;
     });
     $("#form-add-services table tfoot tr td").last().text(total);
+    if($("#form-add-services table tbody tr").length>0&&total>0)
+        $("#send-form-prestacion").prop("disabled",false);
+    else
+        $("#send-form-prestacion").prop("disabled",true);
 }

@@ -34,7 +34,7 @@ $this->breadcrumbs = array(
                                             <div class="col-md-6">
                                                 <?php echo CHtml::activelabelEx($modelAsignacionEmpleado, 'Fecha Inicio'); ?>
                                                 <?php echo CHtml::activedateField($modelAsignacionEmpleado, 'fecha_inicio', array('class' => 'form-control')); ?>
-                                                <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_inicio', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_inicio', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                             <div class="col-md-6">
                                                 <?php echo CHtml::activelabelEx($modelAsignacionEmpleado, 'Fecha Fin'); ?>
@@ -55,7 +55,7 @@ $this->breadcrumbs = array(
                                                         </div>
                                                     </div>
                                                 <?php } ?>
-                                                <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelAsignacionEmpleado, 'fecha_fin', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@ $this->breadcrumbs = array(
                                             <div class="col-md-6">
                                                 <?php echo CHtml::activelabelEx($modelAsignacionEmpleado, 'Cargo'); ?>
                                                 <?php echo CHtml::activedropDownList($modelAsignacionEmpleado, 'id_cargo', $modelAsignacionEmpleado->getCargo(), array('class' => 'form-control', 'placeholder' => 'Nombre de la Unidad')); ?>
-                                                <?php echo CHtml::error($modelAsignacionEmpleado, 'id_cargo', array('class' => 'label label-danger')); ?>
+                                                <?php echo CHtml::error($modelAsignacionEmpleado, 'id_cargo', array('class' => 'label label-danger error-message')); ?>
                                             </div>
                                             <div class="col-md-6">
                                                 <br>

@@ -141,6 +141,10 @@
     "child": "medicamentoIndex"
   },
   {
+    "parent": "medicamento_Index",
+    "child": "medicamentoCreate"
+  },
+  {
     "parent": "notaEnfermeria_Index",
     "child": "notaEnfermeriaIndex"
   },
@@ -235,6 +239,10 @@
   {
     "parent": "tratamiento_Create",
     "child": "tratamientoCreate"
+  },
+  {
+    "parent": "tratamiento_Create",
+    "child": "medicamentoCreate"
   },
   {
     "parent": "tratamiento_Create",
