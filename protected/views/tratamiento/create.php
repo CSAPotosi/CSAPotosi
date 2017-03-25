@@ -11,7 +11,7 @@
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Tratamiento</legend>
+                            <legend>TRATAMIENTO</legend>
                             <?php echo CHtml::errorSummary($tModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <?php echo CHtml::beginForm();?>
                                 <div class="form-group">
@@ -25,7 +25,7 @@
                                     <?php echo CHtml::error($tModel, 'observaciones', ['class'=>'label label-danger error-message']);?>
                                 </div>
                                 <legend>
-                                    Receta
+                                    RECETA
                                 </legend>
                                 <table class="table-receta table table-bordered table-stripped table-responsive table-condensed">
                                     <thead>

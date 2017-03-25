@@ -10,7 +10,7 @@
                 <div>
                     <div class="widget-body">
                         <fieldset>
-                            <legend>Formulario de evolucion</legend>
+                            <legend>FORMULARIO DE EVOLUCION</legend>
                             <?php echo CHtml::errorSummary($eModel,'<h4 class="alert-heading"><i class="fa fa-warning"></i> Debe corregir los siguientes errores:</h4>',null,['class'=>'alert alert-danger error-message']);?>
                             <?php echo CHtml::beginForm();?>
                             <div class="row">

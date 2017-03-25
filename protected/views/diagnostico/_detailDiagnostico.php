@@ -1,5 +1,5 @@
 
-<legend>Detalle de diagnostico</legend>
+<legend>DETALLE DE DIAGNOSTICO</legend>
 <table class="table table-responsive table-hover table-bordered table-condensed">
     <tbody>
         <tr>
@@ -30,7 +30,7 @@
 </table>
 
 <?php if($dModel->itemCies):?>
-<legend>Clasificacion Internacional de Enfermedades (CIE10)</legend>
+<legend>CLASIFICACION INTERNACIONAL DE ENFERMEDADES (CIE10)</legend>
 <table class="table table-bordered table-hover table-responsive table-condensed">
     <thead>
         <tr>
@@ -39,14 +39,12 @@
         </tr>
     </thead>
     <tbody>
+        <?php foreach ($dModel->itemCies as $itemC):?>
         <tr>
-            <td>CIE</td>
-            <td>ELEMENTO</td>
+            <td><?= $itemC->codigo?></td>
+            <td><?= $itemC->titulo?></td>
         </tr>
-        <tr>
-            <td>CIE</td>
-            <td>ELEMENTO</td>
-        </tr>
+        <?php endforeach;?>
     </tbody>
 </table>
 <?php endif;?>

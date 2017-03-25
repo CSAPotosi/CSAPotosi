@@ -34,13 +34,13 @@ class TratamientoController extends Controller
     }
 
     public function actionIndex(){
-        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','indexTratamiento']);
+        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','tratamiento_Index']);
 
         $this->render('index', ['dModel'=>$this->_diagnostico]);
     }
 	public function actionCreate()
 	{
-        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','addTratamiento']);
+        $this->menu = OptionsMenu::menuDiagnostico(['d_id'=>$this->_diagnostico->id_diag],['diagnostico','tratamiento_Create']);
 
         $tModel = new Tratamiento();
         $tModel->id_diag = $this->_diagnostico->id_diag;
