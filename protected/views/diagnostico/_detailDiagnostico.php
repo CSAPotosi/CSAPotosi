@@ -3,6 +3,10 @@
 <table class="table table-responsive table-hover table-bordered table-condensed">
     <tbody>
         <tr>
+            <th width="15%" style="text-align: right">USUARIO</th>
+            <td><?php echo $dModel->usuario->nombre_usuario;?></td>
+        </tr>
+        <tr>
             <th width="15%" style="text-align: right">FECHA Y HORA</th>
             <td><?php echo date('d/m/Y H:i',strtotime($dModel->fecha_diag));?></td>
         </tr>

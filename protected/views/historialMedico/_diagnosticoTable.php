@@ -15,8 +15,9 @@
     <table class="table table-bordered table-hover table-condensed">
         <thead>
         <tr>
+            <th width="10%">USUARIO</th>
             <th width="15%">FECHA Y HORA</th>
-            <th width="40%">CONCLUSION</th>
+            <th width="30%">CONCLUSION</th>
             <th width="10%">TIPO</th>
             <th width="10%"></th>
         </tr>
@@ -24,6 +25,7 @@
         <tbody>
         <?php foreach ($dList as $dItem):?>
             <tr>
+                <td><?php echo $dItem->usuario->nombre_usuario;?></td>
                 <td><?php echo date('d/m/Y H:i',strtotime($dItem->fecha_diag));?></td>
                 <td>
                     <span class="sh-item text-primary alt-text"><i> <i class="fa fa-eye"></i> </i></span>

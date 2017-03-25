@@ -37,6 +37,7 @@ class m161011_022521_diagnostico_cie extends CDbMigration
 			'observaciones' => "TEXT",
 			'tipo' => "SMALLINT NOT NULL DEFAULT 0",
 			'id_historial' => "INT NOT NULL",
+            'id_usuario'=>"INT",
 			"FOREIGN KEY (id_historial) REFERENCES historial_medico(id_historial)"
 		]);
 
