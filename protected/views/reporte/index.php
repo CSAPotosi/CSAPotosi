@@ -1,5 +1,3 @@
-<?php $this->pageTitle = 'REPORTES DE CIRUGIA';?>
-
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -10,49 +8,50 @@
                 <div>
                     <div class="widget-body no-padding">
                         <div class="widget-body-toolbar padding-5">
-                            <?= CHtml::beginForm(['reporteCirugia/indexPDF'],'post',['id'=>'form-pdf','target'=>'_blank'])?>
-                            <button type="button" id="btn-report-all" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
-                            <?= CHtml::endForm()?>
                             <?php echo CHtml::beginForm();?>
-                                <button type="submit" class="btn btn-primary btn-sm pull-right">Consultar</button>
-                                <div id="reportrange" class="pull-right margin-right-5" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
-                                    <input type="hidden" name="fec_ini" id="fec_ini">
-                                    <input type="hidden" name="fec_fin" id="fec_fin">
-                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                                    <span></span> <b class="caret"></b>
-                                </div>
+                            <button type="submit" class="btn btn-primary btn-sm pull-right">Consultar</button>
+                            <div id="reportrange" class="pull-right margin-right-5" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
+                                <input type="hidden" name="fec_ini" id="fec_ini">
+                                <input type="hidden" name="fec_fin" id="fec_fin">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                <span></span> <b class="caret"></b>
+                            </div>
                             <?php echo CHtml::endForm();?>
                         </div>
-                        <legend class="padding-10">CIRUGIAS REALIZADAS</legend>
-                        <table class="table table-bordered table-hover table-striped" id="custom-table">
+                        <legend class="padding-10">REPORTES GENERADOS</legend>
+                        <table class="table table-hover table-bordered table-striped" id="custom-table">
                             <thead>
                             <tr>
-                                <th width="10%">FECHA Y HORA INICIO</th>
-                                <th width="10%">FECHA Y HORA FIN</th>
-                                <th width="20%">QUIROFANO</th>
-                                <th width="15%">PACIENTE</th>
-                                <th width="5%">TIEMPO (MIN)</th>
-                                <th width="20%">NATURALEZA</th>
-                                <th width="15%">INSTRUMENTAL</th>
-                                <th width="5%"></th>
+                                <th class="hasinput">
+                                    <input type="text" placeholder="FECHA Y HORA" class="form-control">
+                                </th>
+                                <th class="hasinput">
+                                    <input type="text" placeholder="NOMBRE" class="form-control">
+                                </th>
+                                <th class="hasinput">
+                                    <input type="text" placeholder="USUARIO" class="form-control">
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>FECHA Y HORA</th>
+                                <th>NOMBRE</th>
+                                <th>USUARIO</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($cirugiaList as $cirugia):?>
-                            <tr>
-                                <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_inicio));?></td>
-                                <td><?php echo date('d/m/Y H:i',strtotime($cirugia->fec_fin));?></td>
-                                <td><?php echo "{$cirugia->sala->cod_sala} ({$cirugia->sala->tSala->servicio->nombre_serv})";?></td>
-                                <td><?php echo $cirugia->historial->paciente->persona->nombreCompleto;?></td>
-                                <td><?php echo $cirugia->tiempo_real;?></td>
-                                <td><?php echo $cirugia->naturaleza?></td>
-                                <td><?php echo $cirugia->detalle_instrumental;?></td>
-                                <td>
-                                    <button type="button" class="btn btn-default btn-report">
-                                        <i class="fa fa-file-pdf-o"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php foreach($reportes as $reporte):?>
+                                <tr>
+                                    <td><?= HelpTools::getDate($reporte->fecha_report)->format('d/m/Y H:i:s')?></td>
+                                    <td><?= $reporte->name_report?></td>
+                                    <td><?= $reporte->usuario->nombre_usuario?></td>
+                                    <td class="text-align-center">
+                                        <a href="<?= CHtml::normalizeUrl(['reporte/view','id'=>$reporte->id_au_report])?>" class="btn btn-primary btn-xs" target="_blank">
+                                            <i class="fa fa-file-pdf-o"></i> Descargar
+                                        </a>
+                                    </td>
+                                </tr>
                             <?php endforeach;?>
                             </tbody>
                         </table>
@@ -98,9 +97,14 @@ Yii::app()->clientScript
         });
         
         $('#btn-report-all').on('click',function(){
-            $('#form-pdf').find('input').remove();
-            $('#form-pdf').append($('#reportrange').find('input').clone());
-            $('#form-pdf').submit();
+            var form = $('<form>',{
+                action:$(this).data('url'),
+                target:'_blank',
+                method:'post'
+            });
+            
+            form.append($('#reportrange').find('input').clone());
+            form.submit();
             return false;
         });
     ");

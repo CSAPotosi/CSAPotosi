@@ -16,6 +16,9 @@ $this->pageTitle = 'HISTORIAL MEDICO - <small>SIGNOS VITALES</small>';
                                 <thead>
                                 <tr>
                                     <th class="hasinput">
+                                        <input type="text" class="form-control" placeholder="Usuario">
+                                    </th>
+                                    <th class="hasinput">
                                         <input type="text" class="form-control" placeholder="Fecha y hora">
                                     </th>
                                     <th class="hasinput">
@@ -24,14 +27,16 @@ $this->pageTitle = 'HISTORIAL MEDICO - <small>SIGNOS VITALES</small>';
                                     <th class="hasinput"></th>
                                 </tr>
                                 <tr>
+                                    <th width="10%">USUARIO</th>
                                     <th width="20%">FECHA Y HORA</th>
-                                    <th width="60%">PARAMETRO</th>
+                                    <th width="50%">PARAMETRO</th>
                                     <th width="60%">VALOR</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php foreach ($historial->signosVitales as $vital):?>
                                     <tr>
+                                        <td><?= $vital->usuario->nombre_usuario ?></td>
                                         <td><?= date('d/m/Y H:i:s',strtotime($vital->fecha_sv));?></td>
                                         <td><?= $vital->parametro->nombre_par;?> <?= ($vital->parametro->ext_par=="")?"":" ( {$vital->parametro->ext_par} ) " ?> </td>
                                         <td><?php

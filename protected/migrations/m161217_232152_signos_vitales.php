@@ -10,6 +10,7 @@ class m161217_232152_signos_vitales extends CDbMigration
             'valor_sv' => "VARCHAR(128) NOT NULL",
             'id_par' => "INT NOT NULL",
             'id_historial' => "INT NOT NULL",
+            'id_usuario'=>"INT",
             "FOREIGN KEY(id_par) REFERENCES parametro(id_par)",
             "FOREIGN KEY (id_historial) REFERENCES historial_medico(id_historial)",
         ]);

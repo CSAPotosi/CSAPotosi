@@ -1,23 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "audit_report".
+ * This is the model class for table "setup".
  *
- * The followings are the available columns in table 'audit_report':
- * @property integer $id_au_report
- * @property integer $user_id
- * @property string $fecha_report
- * @property string $name_report
- * @property string $content_report
+ * The followings are the available columns in table 'setup':
+ * @property string $clave_se
+ * @property string $valor_se
+ * @property string $descripcion_se
  */
-class AuditReport extends CActiveRecord
+class Setup extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'audit_report';
+		return 'setup';
 	}
 
 	/**
@@ -28,11 +26,12 @@ class AuditReport extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, name_report, content_report', 'required'),
-			array('user_id', 'numerical', 'integerOnly'=>true),
+			array('clave_se', 'required'),
+			array('clave_se', 'length', 'max'=>128),
+			array('valor_se, descripcion_se', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_au_report, user_id, fecha_report, name_report, content_report', 'safe', 'on'=>'search'),
+			array('clave_se, valor_se, descripcion_se', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,7 +43,6 @@ class AuditReport extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'usuario' => array(self::BELONGS_TO, 'Usuario', 'user_id'),
 		);
 	}
 
@@ -54,29 +52,20 @@ class AuditReport extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_au_report' => 'Id Au Report',
-			'user_id' => 'User',
-			'fecha_report' => 'Fecha Report',
-			'name_report' => 'Name Report',
-			'content_report' => 'Content Report',
+			'clave_se' => 'Clave Se',
+			'valor_se' => 'Valor Se',
+			'descripcion_se' => 'Descripcion Se',
 		);
 	}
-
 
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return AuditReport the static model class
+	 * @return Setup the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-
-    public function beforeSave(){
-        $this->fecha_report = date('d/m/Y H:i:s');
-        $this->user_id = 1;
-        return parent::beforeSave();
-    }
 }

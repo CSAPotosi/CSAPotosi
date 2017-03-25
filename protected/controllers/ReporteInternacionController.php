@@ -98,8 +98,7 @@ class ReporteInternacionController extends Controller
         }
         $pdf->Ln();
         $pdf->lastPage();
-        //Close and output PDF document
-        $pdf->Output('filename.pdf', 'I');
+        $pdf->customOutput('INTERNACIONES REALIZADAS');
     }
 
     public function actionGraficas(){

@@ -54,7 +54,8 @@ class NotaEnfermeria extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idInter' => array(self::BELONGS_TO, 'Internacion', 'id_inter'),
+			'internacion' => array(self::BELONGS_TO, 'Internacion', 'id_inter'),
+            'usuario'=> array(self::BELONGS_TO,'Usuario','id_usuario')
 		);
 	}
 
@@ -77,39 +78,6 @@ class NotaEnfermeria extends CActiveRecord
 		);
 	}
 
-	/**
-	 * Retrieves a list of models based on the current search/filter conditions.
-	 *
-	 * Typical usecase:
-	 * - Initialize the model fields with values from filter form.
-	 * - Execute this method to get CActiveDataProvider instance which will filter
-	 * models according to data in model fields.
-	 * - Pass data provider to CGridView, CListView or any similar widget.
-	 *
-	 * @return CActiveDataProvider the data provider that can return the models
-	 * based on the search/filter conditions.
-	 */
-	public function search()
-	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
-		$criteria=new CDbCriteria;
-
-		$criteria->compare('id_n_enf',$this->id_n_enf);
-		$criteria->compare('fecha_n_enf',$this->fecha_n_enf,true);
-		$criteria->compare('estado_salud',$this->estado_salud,true);
-		$criteria->compare('dieta_indicada',$this->dieta_indicada,true);
-		$criteria->compare('dieta_aceptada',$this->dieta_aceptada,true);
-		$criteria->compare('evacuaciones',$this->evacuaciones,true);
-		$criteria->compare('uresis',$this->uresis,true);
-		$criteria->compare('vomito',$this->vomito,true);
-		$criteria->compare('ind_medico',$this->ind_medico,true);
-		$criteria->compare('id_inter',$this->id_inter);
-
-		return new CActiveDataProvider($this, array(
-			'criteria'=>$criteria,
-		));
-	}
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -124,6 +92,7 @@ class NotaEnfermeria extends CActiveRecord
 
     public function beforeSave(){
         $this->fecha_n_enf = date('d/m/Y H:i');
+        $this->id_usuario = Yii::app()->user->isGuest?0:Yii::app()->user->id;
         return parent::beforeSave();
     }
 }

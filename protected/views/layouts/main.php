@@ -83,7 +83,7 @@
 				<a href="javascript:void(0);">Password</a>
 			</li>
 			<li>
-				<a href="javascript:void(0);">Reimprimir reportes</a>
+				<a href="<?= CHtml::normalizeUrl(['reporte/myIndex'])?>">Reimpresion de reportes</a>
 			</li>
 			<li class="divider"></li>
 			<li>
@@ -168,14 +168,17 @@
 		-->
 
 		<ul>
-			<?php if (!(Yii::app()->authManager->checkAccess('', Yii::app()->user->id))) { ?>
+			<?php if(HelpTools::checkAccess(['Gestion de pacientes'])): ?>
             <li>
                 <a href="<?php echo CHtml::normalizeUrl(['paciente/index']);?>" title="Pacientes"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent">Pacientes</span></a>
             </li>
-			<?php } ?>
+			<?php endif; ?>
+
+            <?php if(HelpTools::checkAccess(['Control de salas de internacion'])):?>
             <li>
                 <a href="<?php echo CHtml::normalizeUrl(['servicio/sala']);?>" title="Control de salas"><i class="fa fa-lg fa-fw fa-bed"></i> <span class="menu-item-parent">Control de salas</span></a>
             </li>
+            <?php endif;?>
 
 			<?php if (!(Yii::app()->authManager->checkAccess('', Yii::app()->user->id))) { ?>
 			<li>
@@ -250,40 +253,57 @@
 				<a href="<?php echo CHtml::normalizeUrl(['cirugia/index'])?>"><i class="icon-i-surgery"></i> <span class="menu-item-parent">Cirugias</span></a>
 			</li>
             <?php endif;?>
+
+            <?php if(HelpTools::checkAccess(['Administracion varios'])):?>
             <li>
                 <a href="<?php echo CHtml::normalizeUrl(['medicamento/index'])?>" title="Administracion de datos medicos"><i class="icon-i-administration"></i> <span class="menu-item-parent">Adm. Datos medicos</span></a>
             </li>
+            <?php endif;?>
+
+            <?php if(HelpTools::checkAccess(['Administracion de examenes de laboratorio'])):?>
             <li>
                 <a href="<?php echo CHtml::normalizeUrl(['examen/index'])?>" title="Examenes de laboratorio"><i class="icon-i-laboratory"></i> <span class="menu-item-parent">Examenes de laboratorio</span></a>
             </li>
+            <?php endif;?>
+
 			<li>
 				<a href="<?php echo CHtml::normalizeUrl(['convenio/indexConvenio']); ?>" title="Seguro Medicos"><i
 						class="fa fa-handshake-o"></i> <span class="menu-item-parent">Convenios</span></a>
 			</li>
+
+            <?php if(HelpTools::checkAccess(['Reportes cirugias','Reportes internacion','Reportes laboratorio'])):?>
             <li>
                 <a href="#">
                     <i class="fa fa-lg fa-fw fa-bar-chart"></i>
                     <span class="menu-item-parent">Reportes</span>
                 </a>
                 <ul>
+                    <?php if(HelpTools::checkAccess(['Reportes cirugias'])):?>
                     <li>
                         <a href="<?php echo CHtml::normalizeUrl(['reporteCirugia/index']);?>" title="Cirugias">
                             <i class="fa fa-circle"></i>
                             <span>Cirugias</span>
                         </a>
                     </li>
+                    <?php endif;?>
+
+                    <?php if(HelpTools::checkAccess(['Reportes internacion'])):?>
                     <li>
                         <a href="<?php echo CHtml::normalizeUrl(['reporteInternacion/index']);?>" title="Internaciones">
                             <i class="fa fa-circle"></i>
                             <span>Internaciones</span>
                         </a>
                     </li>
+                    <?php endif;?>
+
+                    <?php if(HelpTools::checkAccess(['Reportes laboratorio'])):?>
                     <li>
                         <a href="<?php echo CHtml::normalizeUrl(['reporteLaboratorio/index']);?>" title="Laboratorio">
                             <i class="fa fa-circle"></i>
                             <span>Examenes de laboratorio</span>
                         </a>
                     </li>
+                    <?php endif;?>
 					<li>
 						<a href="<?php echo CHtml::normalizeUrl(['ReporteEstadistico/index']); ?>" title="Estadisticas">
                             <i class="fa fa-circle"></i>
@@ -292,6 +312,9 @@
 					</li>
                 </ul>
             </li>
+            <?php endif;?>
+
+            <?php if(HelpTools::checkAccess(['Administracion de seguridad'])):?>
             <li>
                 <a href="#"><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">Adm. Seguridad</span></a>
                 <ul>
@@ -313,8 +336,21 @@
                             <span>Administracion de roles</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['usuario/']);?>" title="Administracion de usuarios">
+                            <i class="fa fa-circle"></i>
+                            <span>Administracion de usuarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['reporte/index']);?>" title="Reportes generados">
+                            <i class="fa fa-circle"></i>
+                            <span>Reportes generados</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
+            <?php endif;?>
             <li>
                 <a href="#"><i class="fa fa-lg fa-fw fa-info-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
                 <ul>

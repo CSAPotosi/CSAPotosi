@@ -32,7 +32,7 @@ class SeguridadController extends Controller
                 'actions' => array('cargarBackup'),
                 'roles' => array('seguridadCargarBackup'),
             ),
-            array('allow',  // deny all users
+            array('deny',  // deny all users
                 'users' => array('*'),
             ),
         );
@@ -83,18 +83,31 @@ class SeguridadController extends Controller
     }
     public function actionindexBackup()
     {
-        $backups = opendir('Backups/');
-        $this->render('indexBackup', ['backups' => $backups]);
+        $setup = Setup::model()->findByPk('se_postgres_dir');
+        if(file_exists($setup->valor_se)){
+            $backups = opendir('Backups/');
+            $this->render('indexBackup', ['backups' => $backups]);
+        }
+        else
+            $this->render('errorBackup');
     }
 
     public function actionCreateBackup()
     {
-        $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup";
-        putenv("PGPASSWORD=root");
-        $dumpcmd = array("pg_dump", "-U", "postgres", "-F", "t", "-f", $ruta, "csapotosi_db");
-        exec(join(' ', $dumpcmd), $cmdout, $cmdresult);
-        putenv("PGPASSWORD=root");
-        $this->redirect(['indexBackup']);
+        $setup = Setup::model()->findByPk('se_postgres_dir');
+        if(file_exists($setup->valor_se)){
+            $user = Yii::app()->getComponents(false)['db']->username;
+            $pass = Yii::app()->getComponents(false)['db']->password;
+
+            $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup";
+            putenv("PGPASSWORD={$pass}");
+            $dumpcmd = array($setup->valor_se, "-U", $user, "-F", "t", "-f", $ruta, "csapotosi_db");
+            exec(join(' ', $dumpcmd), $cmdout, $cmdresult);
+            putenv("PGPASSWORD");
+            $this->redirect(['indexBackup']);
+        }
+        else
+            $this->render('errorBackup');
     }
     public function actionCargarBackup($id)
     {

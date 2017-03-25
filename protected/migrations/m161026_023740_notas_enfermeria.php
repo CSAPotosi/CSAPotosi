@@ -15,6 +15,7 @@ class m161026_023740_notas_enfermeria extends CDbMigration
             'vomito' => "TEXT",
             'ind_medico' => "TEXT",
             'id_inter' => "INT NOT NULL",
+            'id_usuario'=>"INT",
             "FOREIGN KEY (id_inter) REFERENCES internacion(id_inter)"
         ]);
 	}

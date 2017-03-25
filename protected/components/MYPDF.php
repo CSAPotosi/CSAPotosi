@@ -66,8 +66,8 @@ class MYPDF extends TCPDF
 
     public function usuario()
     {
-        $admin = Yii::app()->user->name;
-        $html = "<span class='txt-color-darken'>Usuario: </span>&nbsp;&nbsp;&nbsp;" . $admin . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span align='left'>Fecha Emision:</span>" . date('d-m-Y') . ".";
+        $username = Yii::app()->user->name;
+        $html = "<span class='txt-color-darken'>Usuario: </span>&nbsp;&nbsp;&nbsp;" . $username . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span align='left'>Fecha Emision: </span>" . date('d/m/Y H:i:s') . ".";
         $this->writeHTML($html);
         $this->Ln(2);
     }
@@ -409,6 +409,18 @@ EOD;
 EOD;
         $this->writeHTML($tbl, true, false, false, false, '');
         $this->Ln();
+    }
+
+    public function customOutput($report_name = 'REPORTE'){
+        $content = ltrim(substr($this->Output('', 'E'),124));
+        Yii::app()->db->createCommand()->insert('audit_report', [
+            'user_id'=>Yii::app()->user->id,
+            'fecha_report'=>date('d/m/Y H:i:s'),
+            'name_report'=>$report_name,
+            'content_report'=>$content
+        ]);
+        header("Content-type: application/pdf");
+        echo base64_decode($content);
     }
 }
 ?>

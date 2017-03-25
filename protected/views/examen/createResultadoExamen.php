@@ -1,6 +1,8 @@
 <?php
     $this->pageTitle = 'EXAMENES DE LABORATORIO';
 ?>
+
+<?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$detallePrestacion->prestacion->historial]);?>
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">

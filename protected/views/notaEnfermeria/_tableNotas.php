@@ -2,6 +2,7 @@
 <table class="table table-bordered table-hover table-condensed">
     <thead>
     <tr>
+        <th>USUARIO</th>
         <th width="15%">FECHA Y HORA</th>
         <th width="10%">ESTADO DE SALUD</th>
         <th width="20%">DIETA (INDICADA)</th>
@@ -14,6 +15,7 @@
     <tbody>
         <?php foreach ($notasList as $nota):?>
         <tr>
+            <td><?php echo $nota->usuario->nombre_usuario;?></td>
             <td><?php echo date('d/m/Y H:i',strtotime($nota->fecha_n_enf));?></td>
             <td><?php echo $nota->estado_salud;?></td>
             <td><?php echo $nota->dieta_indicada;?></td>

@@ -121,6 +121,10 @@
     "child": "examenViewResultadoExamen"
   },
   {
+    "parent": "examen_ViewResultadoExamen",
+    "child": "examenViewResultadoExamenPDF"
+  },
+  {
     "parent": "internacion_Index",
     "child": "internacionIndex"
   },
@@ -227,6 +231,34 @@
   {
     "parent": "reporteLaboratorio_Examenes",
     "child": "reporteLaboratorioExamenes"
+  },
+  {
+    "parent": "seguridad_Audit",
+    "child": "seguridadAudit"
+  },
+  {
+    "parent": "seguridad_Audit",
+    "child": "seguridadAuditTxt"
+  },
+  {
+    "parent": "seguridad_IndexBackup",
+    "child": "seguridadIndexBackup"
+  },
+  {
+    "parent": "seguridad_IndexBackup",
+    "child": "seguridadCreateBackup"
+  },
+  {
+    "parent": "seguridad_IndexBackup",
+    "child": "seguridadCargarBackup"
+  },
+  {
+    "parent": "reporte_Index",
+    "child": "reporteIndex"
+  },
+  {
+    "parent": "reporte_Index",
+    "child": "reporteView"
   },
   {
     "parent": "tratamiento_Index",
@@ -412,5 +444,17 @@
   {
     "parent": "Gestion de signos vitales",
     "child": "vitales_Index"
+  },
+  {
+    "parent": "Administracion de seguridad",
+    "child": "seguridad_Audit"
+  },
+  {
+    "parent": "Administracion de seguridad",
+    "child": "seguridad_IndexBackup"
+  },
+  {
+    "parent": "Administracion de seguridad",
+    "child": "reporte_Index"
   }
 ]

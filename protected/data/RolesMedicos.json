@@ -134,6 +134,11 @@
     "type": "0",
     "description": "Vista resultado de lab"
   },
+  {
+    "name": "examenViewResultadoExamenPDF",
+    "type": "0",
+    "description": "Vista resultado de lab PDF"
+  },
 
   {
     "name": "internacionIndex",
@@ -350,6 +355,16 @@
     "type": "0",
     "description": "Cargar backup"
   },
+  {
+    "name": "reporteIndex",
+    "type": "0",
+    "description": "Lista de reportes generados en el sistema"
+  },
+  {
+    "name": "reporteView",
+    "type": "0",
+    "description": "Generar reporte nuevamente"
+  },
 
   {
     "name": "antecedentes_Index",
@@ -532,6 +547,21 @@
     "description": "Reporte de laboratorio (examenes mas realizados)"
   },
   {
+    "name": "seguridad_Audit",
+    "type": "1",
+    "description": "Auditoria de base de datos"
+  },
+  {
+    "name": "seguridad_IndexBackup",
+    "type": "1",
+    "description": "Backups del sistema"
+  },
+  {
+    "name": "reporte_Index",
+    "type": "1",
+    "description": "Reportes generados"
+  },
+  {
     "name": "tratamiento_Index",
     "type": "1",
     "description": "Lista de tratamientos por diagnostico"
@@ -616,5 +646,10 @@
     "name": "Gestion de signos vitales",
     "type": "2",
     "description": "Lista y creacion de signos vitales"
+  },
+  {
+    "name": "Administracion de seguridad",
+    "type": "2",
+    "description": "Administracion de seguridad del sistema"
   }
 ]

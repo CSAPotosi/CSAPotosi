@@ -41,6 +41,10 @@ class ExamenController extends Controller
                 'actions' => array('viewResultadoExamen'),
                 'roles' => array('examenViewResultadoExamen'),
             ),
+            array('allow',
+                'actions' => array('viewResultadoExamenPDF'),
+                'roles' => array('examenViewResultadoExamenPDF'),
+            ),
             array('deny',  // deny all users
                 'users' => array('*'),
             ),
@@ -131,6 +135,56 @@ class ExamenController extends Controller
 
         $resultado = ResultadoExamen::model()->findByPk($id_res);
         $this->render('viewResultadoExamen',['resultado'=>$resultado]);
+    }
+
+    public function actionViewResultadoExamenPDF($id_res = 0){
+        $resultado = ResultadoExamen::model()->findByPk($id_res);
+        if($resultado){
+            spl_autoload_register(array('YiiBase', 'autoload'));
+            $pdf = new MYPDF('I', PDF_UNIT, 'LETTER', true, 'UTF-8', false);
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetTitle("Reporte Asistencia");
+            //cabecera 1 logo santa ana
+            $pdf->cabecera1();
+            $pdf->SetFont('helvetica', '', 8);
+            $pdf->SetTextColor(80, 80, 80);
+            $pdf->AddPage();
+            $pdf->usuario();
+            $pdf->cabeceraPaciente($resultado->detallePrestacion->prestacion->historial->paciente);
+            $pdf->titulo('EXAMEN DE '.strtoupper($resultado->detallePrestacion->servicio->nombre_serv));
+            $pdf->SetFillColor(230);
+            $pdf->setTextColor(50);
+
+            if($resultado->detalleResultados){
+                $pdf->SetFont(null,'B',9);
+                $pdf->Cell(62,7,'PARAMETRO',0,0,'C',false,'',1);
+                $pdf->Cell(62,7,'VALOR OBTENIDO',0,0,'C',false,'',1);
+                $pdf->Cell(62,7,'VALORES DE REFERENCIA',0,0,'C',false,'',1);
+                $pdf->Ln();
+                $pdf->SetFont('','',8);
+                $fill = false;
+                foreach ($resultado->detalleResultados as $detalle){
+                    $pdf->Cell(62,7,$detalle->parametro->nombre_par,0,0,'R',$fill,'',1);
+                    $pdf->Cell(62,7,$detalle->valor_res." ({$detalle->parametro->ext_par})",0,0,'C',$fill,'',1);
+                    $pdf->Cell(62,7,$detalle->parametro->val_ref,0,0,'L',$fill,'',1);
+                    $pdf->Ln();
+                    $fill = !$fill;
+                }
+            }
+            $pdf->SetFont(null,'B',9);
+            $pdf->Cell(50,7,'DIAGNOSTICO:',0,0,'R',false,'',1);
+            $pdf->SetFont(null,'',8);
+            $pdf->Cell(136,7,$resultado->diagnostico_res,0,0,'L',false,'',1);
+            $pdf->Ln();
+            $pdf->SetFont(null,'B',9);
+            $pdf->Cell(50,7,'OBSERVACIONES:',0,0,'R',false,'',1);
+            $pdf->SetFont(null,'',8);
+            $pdf->Cell(136,7,$resultado->diagnostico_res,0,0,'L',false,'',1);
+            $pdf->lastPage();
+            $pdf->customOutput('RESULTADO - EXAMEN DE '.strtoupper($resultado->detallePrestacion->servicio->nombre_serv));
+            //Close and output PDF document
+            //$pdf->Output('filename.pdf', 'I');
+        }
     }
 
     private function loadData(){

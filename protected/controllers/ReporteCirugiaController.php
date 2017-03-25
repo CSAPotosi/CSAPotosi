@@ -121,8 +121,7 @@ class ReporteCirugiaController extends Controller
         }
         $pdf->Ln();
         $pdf->lastPage();
-        //Close and output PDF document
-        $pdf->Output('filename.pdf', 'I');
+        $pdf->customOutput('CIRUGIAS REALIZADAS');
     }
 
     public function actionIndex2(){
@@ -191,8 +190,7 @@ class ReporteCirugiaController extends Controller
         }
         $pdf->Ln();
         $pdf->lastPage();
-        //Close and output PDF document
-        $pdf->Output('filename.pdf', 'I');
+        $pdf->customOutput('CIRUGIAS RESERVADAS');
     }
 
     public function actionEstadisticaSala(){
@@ -287,8 +285,7 @@ class ReporteCirugiaController extends Controller
         }
         $pdf->Ln();
         $pdf->lastPage();
-        //Close and output PDF document
-        $pdf->Output('filename.pdf', 'I');
+        $pdf->customOutput('REPORTE ESTADISTICO DE USO DE QUIROFANOS');
     }
 
     public function actionEstadisticaPersonal(){
@@ -388,26 +385,7 @@ class ReporteCirugiaController extends Controller
         }
         $pdf->Ln();
         $pdf->lastPage();
-        $content = ltrim(substr($pdf->Output('', 'E'),124));
-        Yii::app()->db->createCommand()->insert('audit_report', [
-            'user_id'=>1,
-            'fecha_report'=>date('d/m/Y H:i:s'),
-            'name_report'=>'REPORTE ',
-            'content_report'=>$content
-        ]);
-        header("Content-type: application/pdf");
-        echo base64_decode($content);
-    }
-
-    public function actionGetReport(){
-
-        $audit = Yii::app()->db->createCommand()
-            ->from('audit_report')
-            ->select('content_report')
-            ->where('id_au_report = :id',[':id'=>5])
-            ->queryRow();
-        header("Content-type: application/pdf");
-        echo base64_decode($audit['content_report']);
+        $pdf->customOutput('REPORTE ESTADISTICO DE PERSONAL');
     }
     
 }

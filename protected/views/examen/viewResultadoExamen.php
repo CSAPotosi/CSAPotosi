@@ -1,4 +1,7 @@
 <?php $this->pageTitle = 'EXAMENES DE LABORATORIO';?>
+
+<?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$resultado->detallePrestacion->prestacion->historial]);?>
+
 <section id="widget-grid">
     <div class="row">
         <article class="col-md-12">
@@ -7,6 +10,9 @@
                 </header>
                 <div>
                     <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar padding-5">
+                            <a href="<?= CHtml::normalizeUrl(['examen/viewResultadoExamenPDF','id_res'=>$resultado->id_res])?>" class="btn btn-default" target="_blank"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                        </div>
                         <legend class="padding-10">RESULTADO DE EXAMEN</legend>
                         <?php if($resultado->detalleResultados):?>
                         <table class="table table-hover table-striped table-bordered margin-bottom-5">

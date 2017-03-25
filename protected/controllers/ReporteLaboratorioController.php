@@ -40,8 +40,12 @@ class ReporteLaboratorioController extends Controller
             $fec_ini = $_POST['fec_ini'];
             $fec_fin = $_POST['fec_fin'];
         }
-        $labList = DetallePrestacion::model()->findAll([
-            'condition'=>'fecha_solicitud between :fec_ini and :fec_fin',
+        $labList = DetallePrestacion::model()->with([
+            'servicio.servExamen.categoria'=>[
+                'condition'=>'tipo_ex = 1'
+            ]
+        ])->findAll([
+            'condition'=>'fecha_solicitud::DATE between :fec_ini and :fec_fin',
             'order'=>'fecha_solicitud ASC',
             'params'=>[':fec_ini'=>$fec_ini,':fec_fin'=>$fec_fin]
         ]);
@@ -56,8 +60,12 @@ class ReporteLaboratorioController extends Controller
             $fec_ini = $_POST['fec_ini'];
             $fec_fin = $_POST['fec_fin'];
         }
-        $labList = DetallePrestacion::model()->findAll([
-            'condition'=>'fecha_solicitud between :fec_ini and :fec_fin',
+        $labList = DetallePrestacion::model()->with([
+            'servicio.servExamen.categoria'=>[
+                'condition'=>'tipo_ex = 1'
+            ]
+        ])->findAll([
+            'condition'=>'fecha_solicitud::DATE between :fec_ini and :fec_fin',
             'order'=>'fecha_solicitud ASC',
             'params'=>[':fec_ini'=>$fec_ini,':fec_fin'=>$fec_fin]
         ]);
@@ -127,8 +135,7 @@ class ReporteLaboratorioController extends Controller
             $init = $end;
         }
         $pdf->lastPage();
-        //Close and output PDF document
-        $pdf->Output('filename.pdf', 'I');
+        $pdf->customOutput('EXAMENES DE LABORATORIO SOLICITADOS');
     }
 
     public function actionExamenes(){
@@ -140,7 +147,7 @@ class ReporteLaboratorioController extends Controller
             $fec_fin = $_POST['fec_fin'];
         }
         $labList = DetallePrestacion::model()->findAll([
-            'condition'=>'fecha_solicitud between :fec_ini and :fec_fin and realizado',
+            'condition'=>'fecha_solicitud::DATE between :fec_ini and :fec_fin and realizado',
             'order'=>'fecha_solicitud ASC',
             'params'=>[':fec_ini'=>$fec_ini,':fec_fin'=>$fec_fin]
         ]);

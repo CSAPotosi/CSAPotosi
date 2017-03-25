@@ -51,6 +51,7 @@ class Tratamiento extends CActiveRecord
 		return array(
 			'diagnostico' => array(self::BELONGS_TO, 'Diagnostico', 'id_diag'),
 			'recetas' => array(self::HAS_MANY, 'Receta', 'id_trat'),
+            'usuario'=>array(self::BELONGS_TO,'Usuario','id_usuario')
 		);
 	}
 
@@ -62,8 +63,8 @@ class Tratamiento extends CActiveRecord
 		return array(
 			'id_trat' => 'Id Trat',
 			'fecha_trat' => 'Fecha Trat',
-			'instrucciones' => 'Instrucciones',
-			'observaciones' => 'Observaciones',
+			'instrucciones' => 'INSTRUCCIONES',
+			'observaciones' => 'OBSERVACIONES',
 			'id_diag' => 'Id Diag',
 		);
 	}
@@ -112,6 +113,7 @@ class Tratamiento extends CActiveRecord
         if($this->isNewRecord){
             $this->fecha_trat = date('d/m/Y H:i');
         }
+        $this->id_usuario = Yii::app()->user->isGuest?0:Yii::app()->user->id;
         return parent::beforeSave();
     }
 }

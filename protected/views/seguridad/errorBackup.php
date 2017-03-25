@@ -1,0 +1,1 @@
+Error, la ubicacion de los archivos binarios de postgres no han sido configurados correctamente

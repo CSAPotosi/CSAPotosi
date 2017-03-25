@@ -1,3 +1,4 @@
+<?php $this->pageTitle = 'DIAGNOSTICO - <small>TRATAMIENTO</small>';?>
 <?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$dModel->historial]);?>
 
 <section id="widget-grid">

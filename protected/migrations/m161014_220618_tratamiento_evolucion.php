@@ -11,6 +11,7 @@ class m161014_220618_tratamiento_evolucion extends CDbMigration
             'estado_paciente' => "TEXT NOT NULL",
             'recomendaciones' => "TEXT",
             'id_diag' => "INT NOT NULL",
+            'id_usuario'=>"INT",
             "FOREIGN KEY (id_diag) REFERENCES diagnostico(id_diag)"
         ]);
 
@@ -20,6 +21,7 @@ class m161014_220618_tratamiento_evolucion extends CDbMigration
             'instrucciones' => "TEXT NOT NULL",
             'observaciones' => "TEXT",
             'id_diag' => "INT NOT NULL",
+            'id_usuario'=>"INT",
             "FOREIGN KEY (id_diag) REFERENCES diagnostico(id_diag)"
         ]);
 

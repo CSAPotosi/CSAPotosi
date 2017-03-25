@@ -30,7 +30,11 @@
                     <span class="sh-item main-text hide"><?php echo $dItem->conclusion;?></span>
                 </td>
                 <td><span class="label label-primary"><?php echo $tipo[$dItem->tipo];?></span></td>
-                <td><?php echo CHtml::link('Ver',['diagnostico/view','d_id'=>$dItem->id_diag],['class'=>'btn btn-primary btn-xs']);?></td>
+                <td><?php
+                    if(HelpTools::checkAccess(['Crear y ver diagnosticos']))
+                        echo CHtml::link('Ver detalle',['diagnostico/view','d_id'=>$dItem->id_diag],['class'=>'btn btn-primary btn-xs']);
+                    ?>
+                </td>
             </tr>
         <?php endforeach;?>
         </tbody>

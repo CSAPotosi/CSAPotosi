@@ -37,7 +37,7 @@
                                             <?php if($examen->resultadoExamen):?>
                                                 <a href="<?php echo CHtml::normalizeUrl(['examen/viewResultadoExamen','id_res'=>$examen->resultadoExamen->id_res])?>" class="btn btn-primary btn-xs">
                                                     <i class="fa fa-list"></i>
-                                                    Resultados
+                                                    Ver Resultados
                                                 </a>
                                             <?php endif;?>
                                         </td>

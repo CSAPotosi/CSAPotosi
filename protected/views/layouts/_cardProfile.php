@@ -42,10 +42,12 @@
                             </ul>
                         </div>
                         <div class="col-md-1">
+                            <?php if(HelpTools::checkAccess(['Gestion de pacientes'])):?>
                             <div class="btn-group-vertical pull-right">
                                 <a href="<?= CHtml::normalizeUrl(['Paciente/DetallePaciente','id'=>$infoPersona->paciente->id_paciente])?>" class="btn btn-primary btn-xs">Detalle</a>
                                 <a href="<?= CHtml::normalizeUrl(['historialMedico/index','id_paciente'=>$infoPersona->paciente->id_paciente])?>" class="btn btn-primary btn-xs">Historial medico</a>
                             </div>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>

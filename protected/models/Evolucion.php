@@ -49,7 +49,8 @@ class Evolucion extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idDiag' => array(self::BELONGS_TO, 'Diagnostico', 'id_diag'),
+			'diagnostico' => array(self::BELONGS_TO, 'Diagnostico', 'id_diag'),
+            'usuario'=> array(self::BELONGS_TO,'Usuario','id_usuario')
 		);
 	}
 
@@ -111,6 +112,7 @@ class Evolucion extends CActiveRecord
         if($this->isNewRecord){
             $this->fecha_evo = date('d/m/Y H:i');
         }
+        $this->id_usuario = Yii::app()->user->isGuest?0:Yii::app()->user->id;
         return parent::beforeSave();
     }
 }

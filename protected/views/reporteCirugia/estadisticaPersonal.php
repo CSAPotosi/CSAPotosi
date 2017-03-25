@@ -19,7 +19,9 @@
                 <div>
                     <div class="widget-body">
                         <div class="widget-body-toolbar padding-5">
-                            <button id="btn-report-all" data-url="<?php echo CHtml::normalizeUrl(['reporteCirugia/estadisticaPersonalPDF'])?>" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
+                            <?= CHtml::beginForm(['reporteCirugia/estadisticaPersonalPDF'],'post',['id'=>'form-pdf','target'=>'_blank'])?>
+                            <button type="button" id="btn-report-all" class="btn btn-default btn-sm pull-left"><i class="fa fa-file-pdf-o"></i> PDF</button>
+                            <?= CHtml::endForm()?>
                             <?php echo CHtml::beginForm();?>
                             <button type="submit" class="btn btn-primary btn-sm pull-right">Consultar</button>
                             <div id="reportrange" class="pull-right margin-right-5" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
@@ -111,13 +113,9 @@ Yii::app()->clientScript
         });
         
         $('#btn-report-all').on('click',function(){
-            var form = $('<form>',{
-                action:$(this).data('url'),
-                target:'_blank',
-                method:'post'
-            });
-            form.append($('#reportrange').find('input').clone());
-            form.submit();
+            $('#form-pdf').find('input').remove();
+            $('#form-pdf').append($('#reportrange').find('input').clone());
+            $('#form-pdf').submit();
             return false;
         });
         

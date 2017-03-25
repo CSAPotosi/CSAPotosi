@@ -1,5 +1,5 @@
+<?php $this->pageTitle = 'DIAGNOSTICO - <small>DETALLE</small>'?>
 <?php $this->renderPartial('/layouts/_cardProfile',['historialModel'=>$dModel->historial]);?>
-
 <section id="widget-grid">
     <div class="row">
         <div class="col-md-12">

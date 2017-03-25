@@ -52,6 +52,7 @@ class Antecedente extends CActiveRecord
 		return array(
 			'historial' => array(self::BELONGS_TO, 'HistorialMedico', 'id_historial'),
 			'parametro' => array(self::BELONGS_TO, 'Parametro', 'id_par'),
+            'usuario'=>array(self::BELONGS_TO,'Usuario','id_usuario')
 		);
 	}
 
@@ -111,6 +112,7 @@ class Antecedente extends CActiveRecord
 
     public function beforeSave(){
         $this->fecha_ant = date('d/m/Y H:i:s');
+        $this->id_usuario = Yii::app()->user->isGuest?0:Yii::app()->user->id;
         return parent::beforeSave();
     }
 

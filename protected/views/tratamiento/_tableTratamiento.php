@@ -2,15 +2,17 @@
     <table class="table table-responsive table-condensed table-hover table-bordered">
         <thead>
         <tr>
-            <th>Fecha y hora</th>
-            <th>Instrucciones</th>
-            <th>Observaciones</th>
+            <th>USUARIO</th>
+            <th>FECHA Y HORA</th>
+            <th>INSTRUCCIONES</th>
+            <th>OBSERVACIONES</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
             <?php foreach ($tList as $tItem):?>
                 <tr>
+                    <td><?= $tItem->usuario->nombre_usuario?></td>
                     <td><?php echo date('d/m/Y H:i',strtotime($tItem->fecha_trat));?></td>
                     <td><?php echo $tItem->instrucciones;?></td>
                     <td><?php echo $tItem->observaciones;?></td>
