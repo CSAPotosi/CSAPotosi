@@ -102,6 +102,8 @@ class SeguridadController extends Controller
             $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup";
             putenv("PGPASSWORD={$pass}");
             $dumpcmd = array($setup->valor_se, "-U", $user, "-F", "t", "-f", $ruta, "csapotosi_db");
+            var_dump(join(' ', $dumpcmd));
+            Yii::app()->end();
             exec(join(' ', $dumpcmd), $cmdout, $cmdresult);
             putenv("PGPASSWORD");
             $this->redirect(['indexBackup']);
