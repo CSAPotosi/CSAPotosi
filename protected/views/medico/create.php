@@ -122,7 +122,7 @@ $this->breadcrumbs = array(
                                                     <div class="col-md-6 col-lg-offset-3">
                                                         <div class="form-group">
                                                             <?php echo CHtml::activelabelEx($modelPerson, 'Nacionalidad'); ?>
-                                                            <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('class' => 'form-control')); ?>
+                                                            <?php echo CHtml::activedropDownList($modelPerson, 'nacionalidad', $modelPerson->getPais(), array('options' => array('BOL' => array('SELECTED' => true)), 'class' => 'form-control')); ?>
                                                             <?php echo CHtml::error($modelPerson, 'nacionalidad', array('class' => 'label label-danger error-message')); ?>
                                                         </div>
                                                         <div class="form-group">

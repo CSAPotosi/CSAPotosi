@@ -21,7 +21,8 @@
                 &times;
             </button>
             <?php echo CHtml::encode($itemP->hora_entrada);?> -
-            <?php echo CHtml::encode($itemP->hora_salida);?>
+            <?php echo CHtml::encode($itemP->hora_salida); ?> |
+            <?php echo ($itemP->tipo_periodo) ? "DIA COMPLETO" : "MEDIO TIEMPO" ?>
         </div>
     <?php endforeach;?>
 </div>

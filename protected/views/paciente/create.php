@@ -47,7 +47,7 @@ $this->breadcrumbs = array(
                                             <div class="row">
                                                 <div class="col-md-4 col-sm-6">
                                                     <div align="center">
-                                                        <?php $this->widget('application.extensions.xphoto.Xphoto', array(
+                                                        <?php $this->widget('application.extensions.xphoto.XPhoto', array(
                                                             'model' => $modelPerson,
                                                             'attribute' => 'foto',
                                                             'width' => '270',

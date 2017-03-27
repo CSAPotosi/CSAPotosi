@@ -142,6 +142,62 @@ EOD;
         }
     }
 
+    public function createTableDetalleTikeos($fecha_ini, $interval, $fecha_ini_real, $empleado)
+    {
+        $asignacion = AsignacionEmpleado::model()->findByPk($empleado);
+        $this->SetFont('helvetica', '', 20);
+        $this->Write(0, $asignacion->empleado->empleadoPersona->getNombreCompleto(), '', 0, 'L', true, 0, false, false, 0);
+        $this->SetFont('helvetica', '', 8);
+        $header = array('Lunes', 'Martes', 'Miercoles', 'Juevez', 'Viernes', 'Sabado', 'Domingo');
+        $i = 0;
+        while ($i <= $interval) {
+            $lunes = date('d/m/Y', strtotime($fecha_ini));
+            $martes = date('d/m/Y', strtotime('+1 day', strtotime($fecha_ini)));
+            $miercoles = date('d/m/Y', strtotime('+2 day', strtotime($fecha_ini)));
+            $juevez = date('d/m/Y', strtotime('+3 day', strtotime($fecha_ini)));
+            $viernes = date('d/m/Y', strtotime('+4 day', strtotime($fecha_ini)));
+            $sabado = date('d/m/Y', strtotime('+5 day', strtotime($fecha_ini)));
+            $domingo = date('d/m/Y', strtotime('+6 day', strtotime($fecha_ini)));
+            $this->SetTextColor(0, 0, 0);
+            $textoHtml = '';
+            for ($j = 1; $j <= 7; $j++) {
+                $var = '';
+                if (strtotime($fecha_ini) >= strtotime($fecha_ini_real)) {
+                    $registro = Registro::model()->findAll(array(
+                        'condition' => "id_asignacion={$asignacion->id_asignacion} and fecha='{$fecha_ini}' order by hora_asistencia",
+                    ));
+                    if ($registro != []) {
+                        foreach ($registro as $item) {
+                            $var = "" . $var . "<b>" . $item->hora_asistencia . "</b><br>";
+                        }
+                    }
+                }
+                $textoHtml = "" . $textoHtml . "<td style=\"font-size:12px\" width=\"105px\">" . $var . "</td>";
+                $fecha_ini = strtotime('+1 day', strtotime($fecha_ini));
+                $fecha_ini = date('Y-m-d', $fecha_ini);
+                $i++;
+            }
+
+            $tbl = <<<EOD
+            <table cellspacing="0" cellpadding="1" border="1">
+                <tr>
+                    <th style="font-size:12px" width="105px">$lunes(Lun)</th>
+                    <th style="font-size:12px" width="105px">$martes(Mar)</th>
+                    <th style="font-size:12px" width="105px">$miercoles(Mie)</th>
+                    <th style="font-size:12px" width="105px">$juevez(Jue)</th>
+                    <th style="font-size:12px" width="105px">$viernes(Vie)</th>
+                    <th style="font-size:12px" width="105px">$sabado(Sab)</th>
+                    <th style="font-size:12px" width="105px">$domingo(Dom)</th>
+                </tr>
+                <tr>
+                    $textoHtml
+                </tr>
+            </table>
+EOD;
+            $this->writeHTML($tbl, true, false, false, false, '');
+            $this->Ln();
+        }
+    }
     public function cabeceraPaciente($paciente)
     {
         $nombre = $paciente->persona->getNombreCompleto();

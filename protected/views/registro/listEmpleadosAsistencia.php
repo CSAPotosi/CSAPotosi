@@ -24,6 +24,10 @@
                 <td><?php echo CHtml::link("<i class=\"fa fa-list\"></i> Ver Detalle",
                         array('Registro/detalleAsistencia',
                             'fecha_ini' => "$item[6]", 'fecha_fin' => "$item[7]", 'empleado' => "$item[8]"),
+                        array('target' => '_blank', 'class' => 'btn btn-primary btn-xs')); ?>&nbsp;&nbsp;&nbsp;
+                    <?php echo CHtml::link("<i class=\"fa fa-list\"></i> Ver Marcaciones",
+                        array('Registro/detallePdfTikeos',
+                            'fecha_ini' => "$item[6]", 'fecha_fin' => "$item[7]", 'empleado' => "$item[8]"),
                         array('target' => '_blank', 'class' => 'btn btn-primary btn-xs')); ?></td>
             </tr>
         <?php } ?>

@@ -201,7 +201,7 @@ $this->breadcrumbs = array(
                         <div class="form-actions">
                             <button class="btn btn-primary" type="submit"
                                     id="btnEnviarUpdate"><i class='fa fa-save'></i>
-                                Actualizar informacion de Empleado
+                                Actualizar
                             </button>
                         </div>
                         <?php echo CHtml::endForm(); ?>

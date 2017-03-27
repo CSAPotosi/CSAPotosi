@@ -75,8 +75,8 @@ class OptionsMenu{
             'medicos' => [
                 'label' => '<i class="fa fa-medkit"></i></i> MEDICOS',
                 'items' => [
-                    'Lista Medicos' => ['url' => ['medico/index'], 'label' => '<i class="fa fa-th-list"></i> LISTA'],
-                    'Crear Medicos' => ['url' => ['medico/Create'], 'label' => '<i class="fa fa-plus"></i> NUEVO MEDICO']
+                    'Lista Medicos' => ['url' => ['medico/index'], 'label' => ' LISTA'],
+                    'Crear Medicos' => ['url' => ['medico/Create'], 'label' => 'NUEVO MEDICO']
 
                 ]
             ]
@@ -189,8 +189,8 @@ class OptionsMenu{
             'horarios' => [
                 'label' => '<i class="fa fa-clock-o"></i></i> HORARIOS',
                 'items' => [
-                    'Lista Horario' => ['url' => ['horario/index'], 'label' => '<i class="fa fa-th-list"></i> LISTA'],
-                    'Crear Horario' => ['url' => ['horario/Create'], 'label' => '<i class="fa fa-plus"></i> NUEVO HORARIO']
+                    'Lista Horario' => ['url' => ['horario/index'], 'label' => ' LISTA'],
+                    'Crear Horario' => ['url' => ['horario/Create'], 'label' => ' NUEVO HORARIO']
                 ]
             ]
         ];

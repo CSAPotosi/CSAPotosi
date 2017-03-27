@@ -299,6 +299,21 @@
     "description": "Creacion de pdf de detalle de asistencia"
   },
   {
+    "name": "registroCreatePdfTikeos",
+    "type": "0",
+    "description": "Creacion de pdf de detalle de asistencia"
+  },
+  {
+    "name": "registrodetallePdfTikeos",
+    "type": "0",
+    "description": "Creacion de pdf de detalle de asistencia"
+  },
+  {
+    "name": "registroCreatePdfDetalleTikeos",
+    "type": "0",
+    "description": "Creacion de pdf de detalle de asistencia"
+  },
+  {
     "name": "registroCreatePdfDetalleAsistenciaGeneral",
     "type": "0",
     "description": "Creacion de pdf de detalle de asistencia general"

@@ -28,12 +28,6 @@ $this->breadcrumbs = array(
                                             <label>FECHA INICIO</label>
                                             <?php echo CHtml::activeTextField($modelAsegurado, 'fecha_inicio', array('class' => 'form-control datepicker', 'data-dateformat' => 'dd/mm/yy', 'placeholder' => 'dd/mm/aaaa')); ?>
                                             <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger error-message']); ?>
-                                            <div class="input-group date">
-                                                <?php echo CHtml::activeTextField($modelAsegurado, 'fecha_inicio', ['class' => 'form-control', 'value' => $modelAsegurado->fecha_inicio ? HelpTools::getDate($modelAsegurado->fecha_inicio)->format('d/m/Y H:i') : '']); ?>
-                                                <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                            </div>
                                             <?php echo CHtml::error($modelAsegurado, 'fecha_inicio', ['class' => 'label label-danger error-message']); ?>
                                         </div>
                                         <div class="form-group">

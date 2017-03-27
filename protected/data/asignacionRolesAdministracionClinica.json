@@ -94,6 +94,10 @@
     "child": "medicoCreateSpecialyAjax"
   },
   {
+    "parent": "Lista Medicos",
+    "child": "medicoGetMedicoListAjax"
+  },
+  {
     "parent": "Crear Medicos",
     "child": "medicoCreate"
   },
@@ -217,6 +221,19 @@
     "parent": "Informacion Asistencia",
     "child": "registroCreatePdfDetalleAsistenciaGeneral"
   },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroCreatePdfTikeos"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registrodetallePdfTikeos"
+  },
+  {
+    "parent": "Informacion Asistencia",
+    "child": "registroCreatePdfDetalleTikeos"
+  },
+
   {
     "parent": "Lista Horario",
     "child": "horarioIndex"
