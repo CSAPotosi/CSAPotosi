@@ -351,6 +351,11 @@
                 </ul>
             </li>
             <?php endif;?>
+            <?php if(HelpTools::checkAccess(['Configuracion del sistema'])):?>
+                <li>
+                    <a href="<?php echo CHtml::normalizeUrl(['setup/index'])?>" title="Configuracion del sistema"><i class="fa fa-gears"></i> <span class="menu-item-parent">Configuracion del sistema</span></a>
+                </li>
+            <?php endif;?>
             <li>
                 <a href="#"><i class="fa fa-lg fa-fw fa-info-circle"></i> <span class="menu-item-parent">Ayuda</span></a>
                 <ul>

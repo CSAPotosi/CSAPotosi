@@ -413,6 +413,16 @@
     "type": "0",
     "description": "Actualizar Categoria"
   },
+  {
+    "name": "setupIndex",
+    "type": "0",
+    "description": "Index de setup"
+  },
+  {
+    "name": "setupEdit",
+    "type": "0",
+    "description": "Edicion de setup"
+  },
   //link del menu
   {
     "name": "Lista Paciente",
@@ -644,7 +654,17 @@
     "type": "1",
     "description": "Control de salas"
   },
+  {
+    "name": "setup",
+    "type": "1",
+    "description": "setup"
+  },
   //roles sistema
+  {
+    "name": "Configuracion del sistema",
+    "type": "2",
+    "description": "Configuracion del sistema"
+  },
   {
     "name": "Gestion de pacientes",
     "type": "2",

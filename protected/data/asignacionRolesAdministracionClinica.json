@@ -518,5 +518,18 @@
   {
     "parent": "Control de salas de internacion",
     "child": "salaControl"
+  },
+
+  {
+    "parent": "setup",
+    "child": "setupIndex"
+  },
+  {
+    "parent": "setup",
+    "child": "setupEdit"
+  },
+  {
+    "parent": "Configuracion del sistema",
+    "child": "setup"
   }
 ]
