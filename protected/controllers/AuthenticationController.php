@@ -16,10 +16,6 @@ class AuthenticationController extends Controller
         //USER: paso 1 = agregar regla de acceso por cada action  controllerNameActionName.
         return array(
             array('allow',
-                'actions' => array('viewOperations'),
-                'roles' => array('authenticationViewOperations'),
-            ),
-            array('allow',
                 'actions' => array('adminRoles'),
                 'roles' => array('authenticationAdminRoles'),
             ),
@@ -57,14 +53,15 @@ class AuthenticationController extends Controller
 
     public function actionCreateRole()
     {
-        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_AdminRoles']);
+        $this->menu = OptionsMenu::menuAuthenticacion([], ['Roles', 'authentication_CreateRole']);
         $role = new RoleForm;
         if (isset($_POST["RoleForm"])) {
             $role->attributes = $_POST["RoleForm"];
             if ($role->validate()) {
                 $trans = Yii::app()->db->beginTransaction();
                 try {
-                    $rol = Yii::app()->authManager->createRole(trim($role->name), $role->description, null, 1);
+                    $rol = Yii::app()->authManager->createRole(trim($role->name), $role->description);
+                    $rol->setData("usuario");
                     if (isset($_POST["tarea_rol"])) {
                         foreach ($_POST["tarea_rol"] as $tarea_rol) {
                             $rol->addChild($tarea_rol);

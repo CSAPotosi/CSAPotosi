@@ -7,6 +7,6 @@ return array(
 	'connectionString' => 'pgsql:host=localhost;port=5432;dbname=csapotosi_db',
 	'emulatePrepare' => true,
 	'username' => 'postgres',
-	'password' => 'root',
+	'password' => '123456',
 	'charset' => 'utf8',
 );

@@ -58,21 +58,77 @@
     "parent": "Pagina de Inicio de Usuario",
     "child": "usuarioUpdate"
   },
+  {
+    "parent": "cuenta_Index",
+    "child": "cuentaIndex"
+  },
+  {
+    "parent": "cuenta_Index",
+    "child": "cuentaView"
+  },
+  {
+    "parent": "cuenta_Admin",
+    "child": "cuentaAdmin"
+  },
+  {
+    "parent": "cuenta_Admin",
+    "child": "cuentaDisabled"
+  },
+  {
+    "parent": "cuenta_Admin",
+    "child": "cuentaView"
+  },
+  {
+    "parent": "cuenta_Admin",
+    "child": "cuentaUpdate"
+  },
+  {
+    "parent": "cuenta_Admin",
+    "child": "cuentaCreate"
+  },
+  {
+    "parent": "cuenta_Admin",
+    "child": "cuentaCreateAjax"
+  },
+  {
+    "parent": "cuenta_Create",
+    "child": "cuentaCreate"
+  },
+  {
+    "parent": "cuenta_ImportarCsv",
+    "child": "cuentaImportarCsv"
+  },
   //asignacion de tareas a roles
   {
-    "parent": "administrador de roles",
+    "parent": "Administrador de Roles",
     "child": "authentication_AdminRoles"
   },
   {
-    "parent": "administrador de roles",
+    "parent": "Administrador de Roles",
     "child": "authentication_CreateRole"
   },
   {
-    "parent": "administrador de usuarios",
+    "parent": "Administrador de Usuarios",
     "child": "usuario_Create"
   },
   {
-    "parent": "administrador de usuarios",
+    "parent": "Administrador de Usuarios",
     "child": "Pagina de Inicio de Usuario"
+  },
+  {
+    "parent": "Administrador de Cuentas",
+    "child": "cuenta_Index"
+  },
+  {
+    "parent": "Administrador de Cuentas",
+    "child": "cuenta_Admin"
+  },
+  {
+    "parent": "Administrador de Cuentas",
+    "child": "cuenta_Create"
+  },
+  {
+    "parent": "Administrador de Cuentas",
+    "child": "cuenta_ImportarCsv"
   }
 ]

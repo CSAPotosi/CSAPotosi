@@ -55,6 +55,46 @@
     "type": "0",
     "description": "Ajax para la vista index"
   },
+  {
+    "name": "cuentaView",
+    "type": "0",
+    "description": "Vista de una Cuenta por su Id"
+  },
+  {
+    "name": "cuentaCreate",
+    "type": "0",
+    "description": "Creacion de una Cuenta nueva"
+  },
+  {
+    "name": "cuentaCreateAjax",
+    "type": "0",
+    "description": "Creacion de una cuenta nueva mediante Ajax"
+  },
+  {
+    "name": "cuentaUpdate",
+    "type": "0",
+    "description": "Actualizacion de una cuenta"
+  },
+  {
+    "name": "cuentaDisabled",
+    "type": "0",
+    "description": "Desabilitar una cuenta"
+  },
+  {
+    "name": "cuentaIndex",
+    "type": "0",
+    "description": "Vista de todas las cuentas"
+  },
+  {
+    "name": "cuentaAdmin",
+    "type": "0",
+    "description": "Administracion de las Cuentas"
+  },
+  {
+    "name": "cuentaImportarCsv",
+    "type": "0",
+    "description": "importar el plan de cuentas"
+  },
   //USER: paso 4 - crear tarea por cada item del menu del paso 3, type =1, descripcion algo detallada
   {
     "name": "authentication_AdminRoles",
@@ -76,15 +116,40 @@
     "type": "1",
     "description": "Index de Usuario"
   },
+  {
+    "name": "cuenta_Index",
+    "type": "1",
+    "description": "Vizualizacion de Plan de Cuentas"
+  },
+  {
+    "name": "cuenta_Admin",
+    "type": "1",
+    "description": "Administracion del Plan de Cuentas"
+  },
+  {
+    "name": "cuenta_Create",
+    "type": "1",
+    "description": "Creacion de una Cuenta Nueva"
+  },
+  {
+    "name": "cuenta_ImportarCsv",
+    "type": "1",
+    "description": "Importar Plan de Cuentas"
+  },
   //mis roles
   {
-    "name": "administrador de roles",
+    "name": "Administrador de Roles",
     "type": "2",
     "description": "El administrador de roles"
   },
   {
-    "name": "administrador de usuarios",
+    "name": "Administrador de Usuarios",
     "type": "2",
     "description": "El administrador de Usuarios"
+  },
+  {
+    "name": "Administrador de Cuentas",
+    "type": "2",
+    "description": "El administrador del Plan de Cuentas"
   }
 ]

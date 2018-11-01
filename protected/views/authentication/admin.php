@@ -60,4 +60,3 @@ $this->pageTitle = ($tipo == 1) ? 'LISTADO DE TAREAS DEL SISTEMA' : 'LISTADO DE 
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/resources/js/plugin/datatable/datatable.propio.css'); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/datatable/jquery.dataTables.js', CClientScript::POS_END); ?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/plugin/datatable/dataTables.bootstrap.js', CClientScript::POS_END); ?>
-<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/authentication/viewOperations.js', CClientScript::POS_END); ?>

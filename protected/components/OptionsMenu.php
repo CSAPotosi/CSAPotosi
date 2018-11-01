@@ -453,15 +453,32 @@ class OptionsMenu{
                 'items' => [
                     'authentication_AdminRoles' => ['url' => ['authentication/adminRoles'], 'label' => 'Administrar Roles'],
                     'authentication_CreateRole' => ['url' => ['authentication/CreateRole'], 'label' => 'Crear Rol'],
-                    'authentication_AdminTasks' => ['url' => ['authentication/adminTasks'], 'label' => 'Administrar Tareas'],
-                    'authentication_CreateTask' => ['url' => ['authentication/createTask'], 'label' => 'Crear Tarea'],
-                    'authentication_ViewOperations' => ['url' => ['examen/parametros'], 'label' => 'Ver Operaciones']
+                    //'authentication_AdminTasks' => ['url' => ['authentication/adminTasks'], 'label' => 'Administrar Tareas'],
+                    //'authentication_CreateTask' => ['url' => ['authentication/createTask'], 'label' => 'Crear Tarea'],
                 ]
             ]
         ];
         $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
+    
+    public static function menuCuenta($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'Cuentas' => [
+                'label' => 'Plan de Cuentas',
+                'items' => [
+                    'cuenta_Index' => ['url' => ['cuenta/index'], 'label' => 'Listado de Cuentas'],
+                    'cuenta_Admin' => ['url' => ['cuenta/Admin'], 'label' => 'Administracion de Cuentas'],
+                    'cuenta_Create' => ['url' => ['cuenta/Create'], 'label' => 'Creacion de Cuenta'],
+                    'cuenta_ImportarCsv' => ['url' => ['cuenta/importarCsv'], 'label' => 'Importar Plan de Cuentas'],
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu, $selected);
+    }
+
 
     public static function menuUsuario($params = [], $selected = ['', ''])
     {
@@ -570,5 +587,5 @@ class OptionsMenu{
         }
         return $menu;
     }
-
+    
 }
