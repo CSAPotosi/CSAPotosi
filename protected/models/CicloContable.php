@@ -106,4 +106,10 @@ class CicloContable extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public static function cicloActual()
+	{
+		$ciclo = CicloContable::model()->find("activo=true");
+		return $ciclo;
+	}
 }

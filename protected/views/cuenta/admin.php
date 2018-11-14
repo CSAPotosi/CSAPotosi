@@ -14,8 +14,8 @@ $this->pageTitle = 'Administrar Plan de Cuentas';
 
 							<table id="plan-contable" class="table table-bordered table-condensed">
 								<caption>
-									<a href="#" onclick="jQuery('#plan-contable').treetable('expandAll'); return false;">Expand all</a>
-									<a href="#" onclick="jQuery('#plan-contable').treetable('collapseAll'); return false;">Collapse all</a>
+									<a href="#" onclick="jQuery('#plan-contable').treetable('expandAll'); return false;">Expandir</a>|
+									<a href="#" onclick="jQuery('#plan-contable').treetable('collapseAll'); return false;">Contraer</a>
 								</caption>
 								<thead>
 								<tr>
@@ -26,7 +26,7 @@ $this->pageTitle = 'Administrar Plan de Cuentas';
 								</thead>
 								<tbody>
 								<?php foreach ($arrayCuentas as $item):	?>
-									<tr data-tt-id='<?php echo $item->id_cuenta;?>' data-tt-parent-id='<?php echo $item->cuenta_superior;?>' class="<?php if(isset($_GET["cuenta"])) echo ($_GET["cuenta"]==$item->id_cuenta)?"selected":"" ?>">
+									<tr data-tt-id='<?php echo $item->id_cuenta;?>' data-tt-parent-id='<?php echo $item->cuenta_superior;?>' class="<?php echo "nivel-".$item->nivel;?> <?php if(isset($_GET["cuenta"])) echo ($_GET["cuenta"]==$item->id_cuenta)?"selected":"" ?>">
 										<td>
 											<?php if (isset($_GET["superior"])) echo ($_GET["superior"]==$item->id_cuenta)?"<a name='ancla'> </a>":""; ?>
 											<?php echo $item->codigo;?>
@@ -44,7 +44,7 @@ $this->pageTitle = 'Administrar Plan de Cuentas';
 								<?php endforeach;?>
 								</tbody>
 							</table>
-						</div>
+						</div>	
 					</div>
 				</div>
 			</article>

@@ -95,6 +95,16 @@
     "type": "0",
     "description": "importar el plan de cuentas"
   },
+  {
+    "name": "cuentaDownloadCsv",
+    "type": "0",
+    "description": "Descargar un plan de cuentas de ejemplo"
+  },
+  {
+    "name": "asientoCreate",
+    "type": "0",
+    "description": "Crear un asiento contable"
+  },
   //USER: paso 4 - crear tarea por cada item del menu del paso 3, type =1, descripcion algo detallada
   {
     "name": "authentication_AdminRoles",
@@ -136,6 +146,21 @@
     "type": "1",
     "description": "Importar Plan de Cuentas"
   },
+  {
+    "name": "asiento_Ingreso",
+    "type": "1",
+    "description": "Registro de Ingresos para el libro diario"
+  },
+  {
+    "name": "asiento_Egreso",
+    "type": "1",
+    "description": "Registro de Egresos para el libro diario"
+  },
+  {
+    "name": "asiento_Diario",
+    "type": "1",
+    "description": "Registro diario para el libro diario"
+  },
   //mis roles
   {
     "name": "Administrador de Roles",
@@ -151,5 +176,10 @@
     "name": "Administrador de Cuentas",
     "type": "2",
     "description": "El administrador del Plan de Cuentas"
+  },
+  {
+    "name": "Manejo del Libro Diario",
+    "type": "2",
+    "description": "Administracion del Libro Diario"
   }
 ]

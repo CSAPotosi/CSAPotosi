@@ -32,14 +32,16 @@ class m181019_214155_cuentas extends CDbMigration
 			'glosa'=>'varchar(256) not null',
 			'numero_asiento'=>'int not null',
 			'numero_comprobante'=>'int not null',
+			'referencia'=>'varchar(128)',
 			'id_ciclo'=>'int not null',
-			'referencia'=>'varchar(32)',
-			'FOREIGN KEY (id_ciclo) REFERENCES ciclo_contable(id_ciclo)'
+			'id_usuario'=>'int not null',
+			'FOREIGN KEY (id_ciclo) REFERENCES ciclo_contable(id_ciclo)',
+			'FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)'
 		]);
 		$this->createTable('cuenta_asiento',[
 			'id_cuenta_asiento'=>'pk',
-			'monto'=>'float not null',
-			'tipo'=>'boolean not null',
+			'debe'=>'float',
+			'haber'=>'float',
 			'id_asiento'=>'int not null',
 			'id_cuenta'=>'int not null',
 			'FOREIGN KEY (id_asiento) REFERENCES asiento(id_asiento)',

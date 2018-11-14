@@ -1,0 +1,29 @@
+
+Yii Migration Tool v1.0 (based on Yii v1.1.17)
+
+Total 23 new migrations to be applied:
+    m161011_011916_paciente_base
+    m161011_013332_entidad_y_servicios
+    m161011_021005_prestaciones
+    m161011_021822_convenio
+    m161011_022521_diagnostico_cie
+    m161011_023954_internacion
+    m161011_024835_roles_usuarios
+    m161011_030724_medicamentos
+    m161014_220618_tratamiento_evolucion
+    m161026_023740_notas_enfermeria
+    m161029_225330_cirugia
+    m161101_174300_citas
+    m161106_235318_laboratorio
+    m161114_045934_asegurado
+    m161121_223436_ejemplo
+    m161122_011007_insertarRoles
+    m161122_011039_asignarSubroles
+    m161122_011058_crearAdministrador
+    m161122_191045_audit_report
+    m161217_232136_antecedentes
+    m161217_232152_signos_vitales
+    m170207_000407_setup
+    m181019_214155_cuentas
+
+Apply the above migrations? (yes|no) [no]:¿Desea terminar el trabajo por lotes (S/N)? ¿Desea terminar el trabajo por lotes (S/N)? 

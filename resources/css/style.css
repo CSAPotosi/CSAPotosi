@@ -1271,3 +1271,27 @@ legend.padding-10{
     padding-bottom: 5px !important;
     margin-bottom: 2px;
 }
+
+.nivel-1{
+    background-color: #8ac4da;
+}
+
+.nivel-2{
+    background-color: #9dd0e0;
+}
+
+.nivel-3{
+    background-color: #b0dce6;
+}
+
+.nivel-4{
+    background-color: #c3e8ed;
+}
+
+.nivel-5{
+    background-color: #d7f3f6;
+}
+
+.nivel-6{
+    background-color: #ebffff;
+}

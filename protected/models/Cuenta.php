@@ -174,20 +174,20 @@ class Cuenta extends CActiveRecord
 	public function generarCodigo($superior="")
 	{
 		$sup_len = strlen($superior);
-		if($sup_len<=1)
+		if($sup_len<3)
 			$list = Cuenta::model()->findAll(array("condition"=>"codigo like '".$superior."_' and activo = true",'order' => 'codigo'));
 		else
 			$list = Cuenta::model()->findAll(array("condition"=>"codigo like '".$superior."__' and activo = true",'order' => 'codigo'));
 		$num = 0;
 		foreach ($list as $item) {
-			$aux = 0 + substr($item->codigo, $sup_len);
+			$aux = intval(substr($item->codigo, $sup_len));
 			if ($aux - $num > 1)
 				break;
-			$num = 0 + $aux;
+			$num = intval($aux);
 		}
 		$num ++;
 		$dig="";
-		if($sup_len>1) {
+		if($sup_len>=3) {
 			if($num<10)
 				$dig = "0".$num;
 			else

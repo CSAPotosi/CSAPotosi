@@ -60,7 +60,7 @@ class CuentaController extends Controller
 			),
 			array('allow',
 				 'actions' => array('downloadCsv'),
-				 'users' => array('*'),
+				 'roles' => array('cuentaDownloadCsv'),
 			),
 			array('deny',  // deny all users
 				 'users' => array('*'),
@@ -121,7 +121,7 @@ class CuentaController extends Controller
 	public function actionImportarCsv()
 	{
 		$this->menu = OptionsMenu::menuCuenta([], ['Cuentas', 'cuenta_ImportarCsv']);
-		
+		//todo-le: dar opcion de eliminar plan de cuentas o desabilitar todas las cuentas.
 		$model=new CsvImportForm;
            
       if(isset($_POST['CsvImportForm']))
@@ -249,6 +249,7 @@ class CuentaController extends Controller
 
 		if(isset($_POST['Cuenta']))
 		{
+			//todo-le: si se activa una cuenta desactivada y el codigo ya esta en uso, generar una excepcion.
 			$model->attributes=$_POST['Cuenta'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_cuenta));

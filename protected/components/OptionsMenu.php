@@ -478,6 +478,22 @@ class OptionsMenu{
         $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
+    
+    public static function menuAsiento($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'Asientos' => [
+                'label' => 'Libro Diario',
+                'items' => [
+                    'asiento_Ingreso' => ['url' => ['asiento/create', 'tipo' => '1'], 'label' => 'Registrar Ingreso'],
+                    'asiento_Egreso' => ['url' => ['asiento/create', 'tipo' => '2'], 'label' => 'Registrar Egreso'],
+                    'asiento_Diario' => ['url' => ['asiento/create', 'tipo' => '3'], 'label' => 'Registrar Diario'],
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu, $selected);
+    }
 
 
     public static function menuUsuario($params = [], $selected = ['', ''])

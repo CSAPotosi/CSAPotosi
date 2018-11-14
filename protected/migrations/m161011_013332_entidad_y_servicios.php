@@ -6,13 +6,14 @@ class m161011_013332_entidad_y_servicios extends CDbMigration
 	{
 		$this->createTable('entidad',[
 			'id_entidad' => "pk",
+			'nit' => "VARCHAR(32) NOT NULL",
 			'razon_social' => "VARCHAR(128) NOT NULL",
 			'direccion' => "VARCHAR(64)",
 			'telefono' => "VARCHAR(16)",
 			'tipo_entidad' => "SMALLINT NOT NULL",
 			'naturaleza_juridica' => "SMALLINT NOT NULL"
 		]);
-
+		
 		$this->createTable('servicio',[
 			'id_serv' => "pk",
 			'cod_serv' => "VARCHAR(8) NOT NULL",
@@ -90,6 +91,17 @@ class m161011_013332_entidad_y_servicios extends CDbMigration
 			'cod_espe' => "VARCHAR(8)",
 			"FOREIGN KEY (id_m_e) REFERENCES medico_especialidad(id_m_e)"
 		]);
+		
+		$clinica = array(
+			"id_entidad" => 1, 
+			"nit" => "4321432145", 
+			"razon_social" => "CLINICA sANTA ANA S.R.L.", 
+			"direccion" => "CALLE 10 DE NOVIEMBRE", 
+			"telefono" => "6221512", 
+			"tipo_entidad" => "1", 
+			"naturaleza_juridica" => "2"
+		);
+		$this->insert('entidad', $clinica);
 	}
 
 	public function safeDown()

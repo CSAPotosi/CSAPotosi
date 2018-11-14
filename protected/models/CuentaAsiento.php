@@ -5,14 +5,14 @@
  *
  * The followings are the available columns in table 'cuenta_asiento':
  * @property integer $id_cuenta_asiento
- * @property double $monto
- * @property boolean $tipo
+ * @property double $debe
+ * @property boolean $haber
  * @property integer $id_asiento
  * @property integer $id_cuenta
  *
  * The followings are the available model relations:
- * @property Asiento $idAsiento
  * @property Cuenta $idCuenta
+ * @property Asiento $idAsiento
  */
 class CuentaAsiento extends CActiveRecord
 {
@@ -32,12 +32,12 @@ class CuentaAsiento extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('monto, tipo, id_asiento, id_cuenta', 'required'),
+			array('id_asiento, id_cuenta', 'required'),
 			array('id_asiento, id_cuenta', 'numerical', 'integerOnly'=>true),
-			array('monto', 'numerical'),
+			array('debe, haber', 'numerical'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_cuenta_asiento, monto, tipo, id_asiento, id_cuenta', 'safe', 'on'=>'search'),
+			array('id_cuenta_asiento, debe, haber, id_asiento, id_cuenta', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +49,8 @@ class CuentaAsiento extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idAsiento' => array(self::BELONGS_TO, 'Asiento', 'id_asiento'),
 			'idCuenta' => array(self::BELONGS_TO, 'Cuenta', 'id_cuenta'),
+			'idAsiento' => array(self::BELONGS_TO, 'Asiento', 'id_asiento'),
 		);
 	}
 
@@ -61,8 +61,8 @@ class CuentaAsiento extends CActiveRecord
 	{
 		return array(
 			'id_cuenta_asiento' => 'Id Cuenta Asiento',
-			'monto' => 'Monto',
-			'tipo' => 'Tipo',
+			'debe' => 'Debe',
+			'haber' => 'Haber',
 			'id_asiento' => 'Id Asiento',
 			'id_cuenta' => 'Id Cuenta',
 		);
@@ -87,8 +87,8 @@ class CuentaAsiento extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_cuenta_asiento',$this->id_cuenta_asiento);
-		$criteria->compare('monto',$this->monto);
-		$criteria->compare('tipo',$this->tipo);
+		$criteria->compare('debe',$this->debe);
+		$criteria->compare('haber',$this->haber);
 		$criteria->compare('id_asiento',$this->id_asiento);
 		$criteria->compare('id_cuenta',$this->id_cuenta);
 

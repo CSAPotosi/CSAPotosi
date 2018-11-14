@@ -15,8 +15,8 @@ $this->pageTitle = 'Visualizar Cuentas';
 
 						<table id="plan-contable" class="table table-bordered table-condensed">
 							<caption>
-								<a href="#" onclick="jQuery('#plan-contable').treetable('expandAll'); return false;">Expand all</a>
-								<a href="#" onclick="jQuery('#plan-contable').treetable('collapseAll'); return false;">Collapse all</a>
+								<a href="#" onclick="jQuery('#plan-contable').treetable('expandAll'); return false;">Expandir</a> |
+								<a href="#" onclick="jQuery('#plan-contable').treetable('collapseAll'); return false;">Contraer</a>
 							</caption>
 							<thead>
 							<tr>

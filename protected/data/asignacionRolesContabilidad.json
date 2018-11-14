@@ -98,6 +98,22 @@
     "parent": "cuenta_ImportarCsv",
     "child": "cuentaImportarCsv"
   },
+  {
+    "parent": "cuenta_ImportarCsv",
+    "child": "cuentaDownloadCsv"
+  },
+  {
+    "parent": "asiento_Ingreso",
+    "child": "asientoCreate"
+  },
+  {
+    "parent": "asiento_Egreso",
+    "child": "asientoCreate"
+  },
+  {
+    "parent": "asiento_Diario",
+    "child": "asientoCreate"
+  },
   //asignacion de tareas a roles
   {
     "parent": "Administrador de Roles",
@@ -130,5 +146,17 @@
   {
     "parent": "Administrador de Cuentas",
     "child": "cuenta_ImportarCsv"
+  },
+  {
+    "parent": "Manejo del Libro Diario",
+    "child": "asiento_Ingreso"
+  },
+  {
+    "parent": "Manejo del Libro Diario",
+    "child": "asiento_Egreso"
+  },
+  {
+    "parent": "Manejo del Libro Diario",
+    "child": "asiento_Diario"
   }
 ]
