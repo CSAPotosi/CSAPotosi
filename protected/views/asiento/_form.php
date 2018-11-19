@@ -2,8 +2,6 @@
 
 <?php echo CHtml::beginForm(["asiento/create"],"post"); ?>
 
-<?php echo CHtml::errorSummary(array_merge([$asiento],$cuentas),'Para poder continuar debito corregir los siguientes problemas:',null,['class'=>'alert alert-danger']);?>
-
 <div class="form-group">
 	<div class="row">
 		<div class="col-md-3">
@@ -12,13 +10,13 @@
 					data-dateformat="dd/mm/yy" name="Asiento[fecha]"
 					placeholder="dd/mm/aaaa"'
 			value="<?php echo $asiento->fecha ?>">
-			<?php echo CHtml::error($asiento, 'fecha', ['class' => 'label label-danger error-message']); ?>
+			<?php echo CHtml::error($asiento, 'fecha', ['class' => 'label label-danger']); ?>
 		</div>
 		<div class="col-md-9">
 			<?php if($asiento->tipo < 3): ?>
 				<label for="Asiento_referencia"> <?php echo ($asiento->tipo == 1)? 'Recibido de:': 'Pagado A:'; ?> </label>
 				<?php echo CHtml::activeTextField($asiento,'referencia',array('maxlength'=>128,'class'=>'form-control')); ?>
-				<?php echo CHtml::error($asiento,'referencia'); ?>
+				<?php echo CHtml::error($asiento,'referencia', array('class'=>'label label-danger')); ?>
 			<?php endif; ?>
 		</div>
 	</div>
@@ -29,7 +27,7 @@
 	<label for="Asiento_glosa" class = required> Glosa </label>
 	<?php echo CHtml::activeHiddenField($asiento,'tipo',array('class'=>'form-control', 'value'=>$asiento->tipo));?>
 	<?php echo CHtml::activeTextArea($asiento,'glosa',array('maxlength'=>255,'class'=>'form-control','rows'=>1)); ?>
-	<?php echo CHtml::error($asiento,'glosa'); ?>
+	<?php echo CHtml::error($asiento,'glosa', array('class'=>'label label-danger')); ?>
 </div>
 
 
@@ -53,8 +51,8 @@
 					<?php echo CHtml::error($itemcuenta,"[$index]id_cuenta",['class'=>'label label-danger']);?>
 				</td>
 				<td style="padding:1px;"><?php echo CHtml::textField('nombrecuenta',($itemcuenta->id_cuenta!=null)?$itemcuenta->idCuenta->nombre:'',['class'=>'form-control text-med']); ?></td>
-				<td style="padding:1px;"><?php echo CHtml::activeTextField($itemcuenta,"[$index]debe",['class'=>'form-control debito']); echo CHtml::error($itemcuenta,"[$index]debito",['class'=>'label label-danger']);?></td>
-				<td style="padding:1px;"><?php echo CHtml::activeTextField($itemcuenta,"[$index]haber",['class'=>'form-control credito']); echo CHtml::error($itemcuenta,"[$index]credito",['class'=>'label label-danger']);?></td>
+				<td style="padding:1px;"><?php echo CHtml::activeTextField($itemcuenta,"[$index]debe",['class'=>'form-control debito']); echo CHtml::error($itemcuenta,"[$index]debe",['class'=>'label label-danger']);?></td>
+				<td style="padding:1px;"><?php echo CHtml::activeTextField($itemcuenta,"[$index]haber",['class'=>'form-control credito']); echo CHtml::error($itemcuenta,"[$index]haber",['class'=>'label label-danger']);?></td>
 			</tr>
 			<?php $index++;?>
 		<?php endforeach;?>
@@ -84,7 +82,7 @@
 </table>
 
 <div class="form-actions">
-	<?php echo CHtml::submitButton($asiento->isNewRecord ? 'Registrar Asiento' : 'Modificar',array("class"=>"btn btn-lg btn-primary")); ?>
+	<?php echo CHtml::submitButton($asiento->isNewRecord ? 'Registrar Asiento' : 'Modificar',array("class"=>"btn btn-lg btn-primary", "id"=>"botonGuardar")); ?>
 </div>
 
 <?php echo CHtml::endForm(); ?>

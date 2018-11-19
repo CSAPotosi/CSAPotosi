@@ -35,9 +35,10 @@ class CuentaAsiento extends CActiveRecord
 			array('id_asiento, id_cuenta', 'required'),
 			array('id_asiento, id_cuenta', 'numerical', 'integerOnly'=>true),
 			array('debe, haber', 'numerical'),
+			array('debe, haber', 'validarMontos'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_cuenta_asiento, debe, haber, id_asiento, id_cuenta', 'safe', 'on'=>'search'),
+			array('id_cuenta_asiento, debe, haber, id_asiento, id_cuenta', 'safe', 'on'=>'search'), 
 		);
 	}
 
@@ -106,5 +107,19 @@ class CuentaAsiento extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function validarMontos()
+	{
+		if($this->debe == null && $this->haber == null)
+		{
+			$this->addError('debe','El Debe o el Haber debe tener monto');
+			$this->addError('haber','El Debe o el Haber debe tener monto');
+		}
+		if($this->debe != null && $this->haber != null)
+		{
+			$this->addError('debe','Solo debe llenar el debe o el haber');
+			$this->addError('haber','Solo debe llenar el debe o el haber');
+		}
 	}
 }

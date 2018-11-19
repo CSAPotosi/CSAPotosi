@@ -1,7 +1,10 @@
+$(document).ready(function(){
 //variables para guardar los inputs de id_cuenta, codigo, nombre
 var id_cuenta = null;
 var codigo = null;
 var nombrecuenta = null;
+sumarDebitos();
+sumarCreditos();
 
 $("#btn-add-cuentavalor").on("click",function(){
 	var index = $("#DetalleDeCuentas>tbody>tr:last").data("index");
@@ -49,19 +52,33 @@ $(".id_cuenta").on("click",function(){
 	$('#modalListaCuenta').modal('hide')
 });
 
-$("#DetalleDeCuentas").on("change","input.debito", function() {
+$("#DetalleDeCuentas").on("change","input.debito", sumarDebitos);
+$("#DetalleDeCuentas").on("change","input.credito", sumarCreditos);
+
+$("#botonGuardar").on("click", function(event){
+	if($("#debitos").text() != $("#creditos").text())
+	{
+		event.preventDefault();
+		alert("La suma total de debitos y creditos debe ser igual");
+	}
+});
+
+function sumarDebitos(){
 	var suma=0;
 	$("#DetalleDeCuentas input.debito").each(function(indice,elemento){
 		if($.isNumeric($(elemento).val()))
 			suma+=parseInt($(elemento).val());
 	});
 	$("#debitos").text(suma);
-});
-$("#DetalleDeCuentas").on("change","input.credito", function() {
+}
+
+function sumarCreditos(){
 	var suma=0;
 	$("#DetalleDeCuentas input.credito").each(function(indice,elemento){
 		if($.isNumeric($(elemento).val()))
 			suma+=parseInt($(elemento).val());
 	});
 	$("#creditos").text(suma);
+}
+
 });
