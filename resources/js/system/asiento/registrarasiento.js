@@ -67,7 +67,7 @@ function sumarDebitos(){
 	var suma=0;
 	$("#DetalleDeCuentas input.debito").each(function(indice,elemento){
 		if($.isNumeric($(elemento).val()))
-			suma+=parseInt($(elemento).val());
+			suma+=parseFloat($(elemento).val());
 	});
 	$("#debitos").text(suma);
 }
@@ -76,7 +76,7 @@ function sumarCreditos(){
 	var suma=0;
 	$("#DetalleDeCuentas input.credito").each(function(indice,elemento){
 		if($.isNumeric($(elemento).val()))
-			suma+=parseInt($(elemento).val());
+			suma+=parseFloat($(elemento).val());
 	});
 	$("#creditos").text(suma);
 }

@@ -20,7 +20,7 @@
  */
 class Asiento extends CActiveRecord
 {
-	public $tipos = array(1=>'Ingreso', 2=>'Egreso', 3=>'Diario');
+	public $tipos = array(1=>'Ingreso', 2=>'Egreso', 3=>'Traspaso');
 	/**
 	 * @return string the associated database table name
 	 */
@@ -160,5 +160,55 @@ class Asiento extends CActiveRecord
 	public function getTipo($tipo)
 	{
 		return $this->tipos[$tipo];
+	}
+
+	public function getImporte()
+	{
+		$total = 0;
+		foreach($this->cuentaAsientos as $cuentaasiento)
+			$total = $total + $cuentaasiento->debe;
+		return $total;
+	}
+
+	public function getLiteral($number)
+	{
+		$entero = intval($number);
+		$decimal = round(($number-$entero)*100);
+		$cantidades = array( 900=>'NOVECIENTOS', 800=>'OCHOCIENTOS', 700=>'SETECIENTOS', 600=>'SEISCIENTOS', 500=>'QUINIENTOS',
+			400=>'CUATROCIENTOS', 300=>'TRESCIENTOS', 200=>'DOSCIENTOS', 100=>'CIENTO', 90=>'NOVENTA',
+			80=>'OCHENTA', 70=>'SETENTA', 60=>'SESENTA', 50=>'CINCUENTA', 40=>'CUARENTA', 30=>'TREINTA',
+			29=>'VEINTINUEVE', 28=>'VEINTIOCHO', 27=>'VEINTISIETE', 26=>'VEINTISEIS', 25=>'VEINTICINCO',
+			24=>'VEINTICUATRO', 23=>'VEINTITRES', 22=>'VEINTIDOS', 21=>'VEINTIUNO', 20=>'VEINTE',
+			19=>'DIECINUEVE', 18=>'DIECIOCHO', 17=>'DIECISIETE', 16=>'DIECISEIS', 15=>'QUINCE', 14=>'CATORCE',
+			13=>'TRECE', 12=>'DOCE', 11=>'ONCE', 10=>'DIEZ', 9=>'NUEVE', 8=>'OCHO', 7=>'SIETE', 6=>'SEIS',
+			5=>'CINCO', 4=>'CUATRO', 3=>'TRES', 2=>'DOS', 1=>'UN' );
+		$literal = "";
+		foreach($cantidades as $cant=>$lit){
+			$actual = $cant;
+			if($actual*1000 <= $entero){
+				if($actual == 100 and ($entero/10) == $actual)
+					$literal .= 'CIEN ';
+				else
+					$literal .= $cantidades[$actual].' ';
+				$entero -= ($actual * 1000);
+				if( 30 <= $actual and $actual <=90 and $entero>0)
+					$literal .= 'Y ';
+			}
+		}
+		if(strlen($literal)>0)
+			$literal .= 'MIL ';
+		foreach($cantidades as $cant=>$lit){
+			$actual = $cant;
+			if($actual<=$entero){
+				if($actual == 100 and $entero == $actual)
+					$literal .= 'CIEN ';
+				else
+					$literal .= ($cantidades[$actual]).' ';
+				$entero -= $actual;
+				if(30<=$actual and $actual<=90 and $entero>0)
+					$literal .= 'Y ';
+			}
+		}
+		return $literal.' '.(($decimal)?$decimal:'00').'/100 Bolivianos';
 	}
 }

@@ -58,8 +58,8 @@ class MYPDF extends TCPDF
 
     public function cabecera1()
     {
-        $this->SetHeaderData('logoCSASin.png', '20px', "CLINICA SANTA ANA POTOSI", "10 de noviembre. zona San roque. Tel(2-62-645789)");
-        $this->SetMargins(PDF_MARGIN_LEFT, '20px', PDF_MARGIN_RIGHT);
+        $this->SetHeaderData('logoCSASin.png', '20', "CLINICA SANTA ANA POTOSI", "10 de noviembre. zona San roque. Tel(2-62-645789)");
+        $this->SetMargins(PDF_MARGIN_LEFT, '20', PDF_MARGIN_RIGHT);
         $this->SetHeaderMargin(PDF_MARGIN_HEADER);
         $this->SetFooterMargin(PDF_MARGIN_FOOTER);
     }

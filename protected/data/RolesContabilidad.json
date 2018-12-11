@@ -105,6 +105,31 @@
     "type": "0",
     "description": "Crear un asiento contable"
   },
+  {
+    "name": "asientoShowLibro",
+    "type": "0",
+    "description": "Visualizar el libro diario"
+  },
+  {
+    "name": "asientoIndex",
+    "type": "0",
+    "description": "Visualizar listado de Asientos"
+  },
+  {
+    "name": "asientoView",
+    "type": "0",
+    "description": "Visualizar un Asiento Especifico"
+  },
+  {
+    "name": "asientoUpdate",
+    "type": "0",
+    "description": "Editar un Asiento"
+  },
+  {
+    "name": "asientoDelete",
+    "type": "0",
+    "description": "Eliminar un Asiento"
+  },
   //USER: paso 4 - crear tarea por cada item del menu del paso 3, type =1, descripcion algo detallada
   {
     "name": "authentication_AdminRoles",
@@ -161,6 +186,16 @@
     "type": "1",
     "description": "Registro diario para el libro diario"
   },
+  {
+    "name": "asiento_ShowLibro",
+    "type": "1",
+    "description": "Visualizacion de Libro Diario por fechas"
+  },
+  {
+    "name": "asiento_Index",
+    "type": "1",
+    "description": "Listado de los Asientos con opciones de edicion"
+  },
   //mis roles
   {
     "name": "Administrador de Roles",
@@ -181,5 +216,10 @@
     "name": "Manejo del Libro Diario",
     "type": "2",
     "description": "Administracion del Libro Diario"
+  },
+  {
+    "name": "Administracion de Asientos",
+    "type": "2",
+    "description": "Administracion de los Asientos Registrados"
   }
 ]

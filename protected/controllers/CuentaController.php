@@ -90,6 +90,7 @@ class CuentaController extends Controller
 		if(isset($_POST['Cuenta']))
 		{
 			$model->attributes=$_POST['Cuenta'];
+			$model->nombre = strtoupper($model->nombre);
 			if($model->cuenta_superior!=null)
 				$model->nivel=$model->cuentaSuperior->nivel+1;
 			else
@@ -157,7 +158,7 @@ class CuentaController extends Controller
 								throw new CHttpException(400, 'Una de las cuentas Clase, o cuentas primarias no tiene especificada su naturaleza (Debe ser Deudor o Acreedor). Error ocurrido en la linea '.$cont);					
 							
 							$model->codigo = $codigo;
-							$model->nombre = utf8_encode($line[1]);
+							$model->nombre = strtoupper(utf8_encode($line[1]));
 							$model->fecha_creacion = date("d-m-Y");
 							$model->descripcion = utf8_encode($line[3]);
 							$model->activo = true;

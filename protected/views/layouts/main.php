@@ -350,7 +350,26 @@
                     </li>
                 </ul>
             </li>
+			<?php endif;?>
+			
+			<?php if(HelpTools::checkAccess(['Administrador de Cuentas'])):?>
+            	<li>
+                    <a href="<?php echo CHtml::normalizeUrl(['cuenta/index'])?>" title="Plan de Cuentas"><i class="fa fa-list-alt "></i> <span class="menu-item-parent">Plan de Cuentas</span></a>
+                </li>
+			<?php endif;?>
+			
+			<?php if(HelpTools::checkAccess(['Manejo del Libro Diario'])):?>
+            	<li>
+                    <a href="<?php echo CHtml::normalizeUrl(['asiento/index'])?>" title="Libro Diario"><i class="fa fa-book "></i> <span class="menu-item-parent">Libro Diario</span></a>
+                </li>
+			<?php endif;?>
+			
+			<?php if(HelpTools::checkAccess(['Manejo del Libro Mayor'])):?>
+            	<li>
+                    <a href="<?php echo CHtml::normalizeUrl(['diario/index'])?>" title="Libro Mayor"><i class="fa fa-clipboard "></i> <span class="menu-item-parent">Libro Mayor</span></a>
+                </li>
             <?php endif;?>
+
             <?php if(HelpTools::checkAccess(['Configuracion del sistema'])):?>
                 <li>
                     <a href="<?php echo CHtml::normalizeUrl(['setup/index'])?>" title="Configuracion del sistema"><i class="fa fa-gears"></i> <span class="menu-item-parent">Configuracion del sistema</span></a>

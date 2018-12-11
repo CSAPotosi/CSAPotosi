@@ -30,7 +30,7 @@ $this->pageTitle = 'Visualizar Cuentas';
 									<tr data-tt-id='<?php echo $item->id_cuenta;?>' data-tt-parent-id='<?php echo $item->cuenta_superior;?>'>
 										<td><?php echo $item->codigo;?></td>
 										<td><?php echo $item->nombre;?></td>
-										<td><a href="<?php echo $this->createAbsoluteUrl('cuenta/view', array('id' => $item->id_cuenta));?>" class="btn btn-default btn-xs"><label class="fa fa-eye"></label></a></td>
+										<td><a href="<?php echo $this->createAbsoluteUrl('cuenta/view', array('id' => $item->id_cuenta));?>" class="btn btn-default btn-xs" title="Ver Datos" ><label class="fa fa-eye"></label></a></td>
 									</tr>
 								<?php endforeach;?>
 							</tbody>

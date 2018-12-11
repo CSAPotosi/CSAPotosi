@@ -33,12 +33,12 @@ $this->pageTitle = 'Administrar Plan de Cuentas';
 										</td>
 										<td><?php echo $item->nombre;?></td>
 										<td>
-											<a href="<?php echo $this->createAbsoluteUrl('cuenta/view', array('id' => $item->id_cuenta));?>" class="btn btn-default btn-xs"><label class="fa fa-eye"></label></a>
-											<a href="<?php echo $this->createAbsoluteUrl('cuenta/update', array('id' => $item->id_cuenta));?>" class="btn btn-info btn-xs"><label class="fa fa-pencil"></label></a>
+											<a href="<?php echo $this->createAbsoluteUrl('cuenta/view', array('id' => $item->id_cuenta));?>" class="btn btn-default btn-xs" title="Ver Datos" ><label class="fa fa-eye"></label></a>
+											<a href="<?php echo $this->createAbsoluteUrl('cuenta/update', array('id' => $item->id_cuenta));?>" class="btn btn-info btn-xs" title="Actualizar Datos" ><label class="fa fa-pencil"></label></a>
 											<?php if($item->nivel<6): ?>
-												<a href="<?php echo $this->createAbsoluteUrl('cuenta/create', array('id' => $item->id_cuenta));?>" class="btn btn-primary btn-xs"><label class="fa fa-plus"></label></a>
+												<a href="<?php echo $this->createAbsoluteUrl('cuenta/create', array('id' => $item->id_cuenta));?>" class="btn btn-primary btn-xs" title="Crear Cuenta Hija" ><label class="fa fa-plus"></label></a>
 											<?php endif; ?>
-											<a href="<?php echo $this->createAbsoluteUrl('cuenta/disabled', array('id' => $item->id_cuenta));?>" class="btn btn-danger btn-xs borrado"><label class="fa fa-trash-o"></label></a>
+											<a href="<?php echo $this->createAbsoluteUrl('cuenta/disabled', array('id' => $item->id_cuenta));?>" class="btn btn-danger btn-xs borrado btn-delete" title="Desabilitar Cuenta" ><label class="fa fa-trash-o"></label></a>
 										</td>
 									</tr>
 								<?php endforeach;?>

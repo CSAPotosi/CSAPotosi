@@ -50,8 +50,8 @@ class CuentaAsiento extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idCuenta' => array(self::BELONGS_TO, 'Cuenta', 'id_cuenta'),
-			'idAsiento' => array(self::BELONGS_TO, 'Asiento', 'id_asiento'),
+			'cuenta' => array(self::BELONGS_TO, 'Cuenta', 'id_cuenta'),
+			'asiento' => array(self::BELONGS_TO, 'Asiento', 'id_asiento'),
 		);
 	}
 
@@ -113,13 +113,13 @@ class CuentaAsiento extends CActiveRecord
 	{
 		if($this->debe == null && $this->haber == null)
 		{
-			$this->addError('debe','El Debe o el Haber debe tener monto');
-			$this->addError('haber','El Debe o el Haber debe tener monto');
+			$this->addError('debe','El Debe o Haber debe tener monto');
+			$this->addError('haber','El Debe o Haber debe tener monto');
 		}
 		if($this->debe != null && $this->haber != null)
 		{
-			$this->addError('debe','Solo debe llenar el debe o el haber');
-			$this->addError('haber','Solo debe llenar el debe o el haber');
+			$this->addError('debe','Solo debe llenar el debe o haber');
+			$this->addError('haber','Solo debe llenar el debe o haber');
 		}
 	}
 }

@@ -11,15 +11,15 @@ $this->pageTitle = 'Asiento Contable No: '.$asiento->numero_asiento;
 				<div>
 					<div class="widget-body">
 						<fieldset>
-							<legend>Registro de <?php echo $asiento->getTipo($asiento->tipo); ?></legend>
-								<div class="row">
-									<div class="col-md-12">
-										<spam style="border: 1px solid;padding: 5px;" class="pull-right"><strong>Comprobante <?php echo $asiento->getTipo($asiento->tipo); ?>  No: <?php echo $asiento->numero_comprobante ?></strong></spam>
-									</div>
-								</div>
+							<legend>
+								<span>Registro de <?php echo $asiento->getTipo($asiento->tipo); ?></span> 
+								<span style="border: 1px solid; padding: 5px; font-size: 70%" class="pull-right">
+									Comprobante <?php echo $asiento->getTipo($asiento->tipo); ?>  No: <?php echo $asiento->numero_comprobante ?>
+								</span> 
+							</legend>
 						</fieldset>
 						<fieldset>
-								<?php $this->renderPartial('_form', array('asiento'=>$asiento,'cuentas'=>$cuentas)); ?>
+								<?php $this->renderPartial('_form', array('asiento'=>$asiento,'cuentas'=>$cuentasAsiento)); ?>
 						</fieldset>
 					</div>
 				</div>

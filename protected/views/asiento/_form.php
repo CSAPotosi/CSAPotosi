@@ -1,6 +1,6 @@
 <div class="form">
 
-<?php echo CHtml::beginForm(["asiento/create"],"post"); ?>
+<?php echo CHtml::beginForm('',"post"); ?>
 
 <div class="form-group">
 	<div class="row">
@@ -25,6 +25,7 @@
 
 <div class="form-group">
 	<label for="Asiento_glosa" class = required> Glosa </label>
+	<?php echo CHtml::activeHiddenField($asiento,'numero_comprobante',array('class'=>'form-control', 'value'=>$asiento->numero_comprobante));?>
 	<?php echo CHtml::activeHiddenField($asiento,'tipo',array('class'=>'form-control', 'value'=>$asiento->tipo));?>
 	<?php echo CHtml::activeTextArea($asiento,'glosa',array('maxlength'=>255,'class'=>'form-control','rows'=>1)); ?>
 	<?php echo CHtml::error($asiento,'glosa', array('class'=>'label label-danger')); ?>
@@ -35,7 +36,7 @@
 <table class="table table-bordered" id="DetalleDeCuentas">
 	<thead>
 		<tr>
-			<th>CODIGO</th>
+			<th style="width:10%;">CODIGO</th>
 			<th style="width:60%;">CUENTA</th>
 			<th>DEBE</th>
 			<th>HABER</th>
@@ -47,10 +48,10 @@
 			<tr data-index="<?php echo $index;?>">
 				<td class="contenedor" style="padding:1px;">
 					<?php echo CHtml::activeHiddenField($itemcuenta,"[$index]id_cuenta",['class'=>'form-control']);?>
-					<?php echo CHtml::textField('codigocuenta',($itemcuenta->id_cuenta!=null)?$itemcuenta->idCuenta->codigo:'',['class'=>'form-control codigoinput']); ?>
+					<?php echo CHtml::textField('codigocuenta',($itemcuenta->id_cuenta!=null)?$itemcuenta->cuenta->codigo:'',['class'=>'form-control codigoinput']); ?>
 					<?php echo CHtml::error($itemcuenta,"[$index]id_cuenta",['class'=>'label label-danger']);?>
 				</td>
-				<td style="padding:1px;"><?php echo CHtml::textField('nombrecuenta',($itemcuenta->id_cuenta!=null)?$itemcuenta->idCuenta->nombre:'',['class'=>'form-control text-med']); ?></td>
+				<td style="padding:1px;"><?php echo CHtml::textField('nombrecuenta',($itemcuenta->id_cuenta!=null)?$itemcuenta->cuenta->nombre:'',['class'=>'form-control text-med']); ?></td>
 				<td style="padding:1px;"><?php echo CHtml::activeTextField($itemcuenta,"[$index]debe",['class'=>'form-control debito']); echo CHtml::error($itemcuenta,"[$index]debe",['class'=>'label label-danger']);?></td>
 				<td style="padding:1px;"><?php echo CHtml::activeTextField($itemcuenta,"[$index]haber",['class'=>'form-control credito']); echo CHtml::error($itemcuenta,"[$index]haber",['class'=>'label label-danger']);?></td>
 			</tr>

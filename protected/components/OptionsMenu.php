@@ -461,7 +461,7 @@ class OptionsMenu{
         $menu = self::verAcceso($menu);
         return self::selectMenu($menu, $selected);
     }
-    
+
     public static function menuCuenta($params = [], $selected = ['', ''])
     {
         $menu = [
@@ -485,9 +485,11 @@ class OptionsMenu{
             'Asientos' => [
                 'label' => 'Libro Diario',
                 'items' => [
+                    'asiento_Index' => ['url' => ['asiento/index', 'tipo' => '1'], 'label' => 'Administra Asientos'],
                     'asiento_Ingreso' => ['url' => ['asiento/create', 'tipo' => '1'], 'label' => 'Registrar Ingreso'],
                     'asiento_Egreso' => ['url' => ['asiento/create', 'tipo' => '2'], 'label' => 'Registrar Egreso'],
-                    'asiento_Diario' => ['url' => ['asiento/create', 'tipo' => '3'], 'label' => 'Registrar Diario'],
+                    'asiento_Diario' => ['url' => ['asiento/create', 'tipo' => '3'], 'label' => 'Registrar Traspaso'],
+                    'asiento_ShowLibro' => ['url' => ['asiento/showLibro'], 'label' => 'Ver Libro Diario'],
                 ]
             ]
         ];

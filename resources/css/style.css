@@ -1295,3 +1295,26 @@ legend.padding-10{
 .nivel-6{
     background-color: #ebffff;
 }
+
+.contable tbody tr td {
+    padding-top: 5px; 
+    padding-bottom: 5px; 
+    border-top: 0; 
+    border-bottom: 0;
+}
+
+.contable thead tr th {
+    text-align: center;
+}
+
+.ancho-15 {
+    width:15%;
+}
+
+.ancho-10 {
+    width:10%;
+}
+
+table.no-border tr td{
+    border-width: 0;
+}

@@ -114,6 +114,26 @@
     "parent": "asiento_Diario",
     "child": "asientoCreate"
   },
+  {
+    "parent": "asiento_ShowLibro",
+    "child": "asientoShowLibro"
+  },
+  {
+    "parent": "asiento_Index",
+    "child": "asientoIndex"
+  },
+  {
+    "parent": "asiento_Index",
+    "child": "asientoView"
+  },
+  {
+    "parent": "asiento_Index",
+    "child": "asientoUpdate"
+  },
+  {
+    "parent": "asiento_Index",
+    "child": "asientoDelete"
+  },
   //asignacion de tareas a roles
   {
     "parent": "Administrador de Roles",
@@ -158,5 +178,13 @@
   {
     "parent": "Manejo del Libro Diario",
     "child": "asiento_Diario"
+  },
+  {
+    "parent": "Manejo del Libro Diario",
+    "child": "asiento_ShowLibro"
+  },
+  {
+    "parent": "Administracion de Asientos",
+    "child": "asiento_Index"
   }
 ]

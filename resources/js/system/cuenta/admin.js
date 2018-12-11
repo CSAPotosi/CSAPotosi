@@ -6,3 +6,8 @@ $("#plan-contable tbody").on("mousedown", "tr", function() {
 });
 
 $(".branch a.borrado").addClass("hidden");
+
+$(".btn-delete").on("click",function(e){
+	if(!confirm("¿Esta seguro de eliminar el asiento?"))
+		e.preventDefault();
+});
