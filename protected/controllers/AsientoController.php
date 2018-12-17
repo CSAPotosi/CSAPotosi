@@ -60,7 +60,7 @@ class AsientoController extends Controller
 		//$empresa = Entidad::model()->findByPk(1);
 		$asiento = new Asiento();
 		$asiento->tipo = $tipo;
-		$asiento->fecha = date("d/m/Y");
+		$asiento->fecha = date("d-m-Y");
 		$asiento->numero_asiento = $asiento->getUltimoAsiento();
 		$asiento->numero_comprobante = $asiento->getUltimoComprobante($tipo);		//todo-le: revisar como se guardan los numeros de comprobantes
 		$listacuentaasiento = array();
@@ -114,19 +114,21 @@ class AsientoController extends Controller
 		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
 		if(isset($_GET["inicio"]) && isset($_GET["fin"]))
 		{
-			if(((bool)strtotime($_GET["inicio"])))
-				$fecha_inicio = $_GET["inicio"]." 00:00:00";
+			$fecha_inicio = str_replace('/', '-', $_GET["inicio"]);
+			$fecha_fin = str_replace('/', '-', $_GET["fin"]);
+			if((bool)strtotime($fecha_inicio))
+				$fecha_inicio = $fecha_inicio." 00:00:00";
 			else
-				$fecha_inicio = "01/01/". $ciclo->gestion." 00:00:00";	
-			if(((bool)strtotime($_GET["fin"])))
-				$fecha_fin = $_GET["fin"]." 23:59:59";
+				$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";	
+			if((bool)strtotime($fecha_fin))
+				$fecha_fin = $fecha_fin." 23:59:59";
 			else
-				$fecha_fin = "31/12/". $ciclo->gestion." 23:59:59";
+				$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
 		}
 		else
 		{
-			$fecha_inicio = "01/01/". $ciclo->gestion." 00:00:00";
-			$fecha_fin = "31/12/". $ciclo->gestion." 23:59:59";
+			$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
+			$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
 		}
 		$criteria = new CDbCriteria;
 		$criteria->condition = "fecha >= '$fecha_inicio' AND fecha <= '$fecha_fin' ".(($tipo=='0')? "" : "AND tipo = '$tipo'");
@@ -225,32 +227,30 @@ class AsientoController extends Controller
 		$this->render('update', array('asiento'=>$asiento,'arrayCuentas'=>$arrayCuentas, 'cuentasAsiento'=>$listacuentaasiento));
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Asiento']))
-		{
-			$model->attributes=$_POST['Asiento'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_asiento));
-		}
-		
-		$this->render('update',array(
-			'model'=>$model,
-		));
 	}
 
 	public function actionShowLibro($fecha_inicio="", $fecha_fin="")
 	{
 		$this->menu = OptionsMenu::menuAsiento([], ['Asientos', 'asiento_ShowLibro']);
-		if(isset($_GET["fecha_inicio"]) && isset($_GET["fecha_fin"]))
+		
+		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
+		if(isset($_GET["inicio"]) && isset($_GET["fin"]))
 		{
-			$fecha_inicio = $_GET["fecha_inicio"];
-			$fecha_fin = $_GET["fecha_fin"];
+			$fecha_inicio = str_replace('/', '-', $_GET["inicio"]);
+			$fecha_fin = str_replace('/', '-', $_GET["fin"]);
+			if((bool)strtotime($fecha_inicio))
+				$fecha_inicio = $fecha_inicio." 00:00:00";
+			else
+				$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";	
+			if((bool)strtotime($fecha_fin))
+				$fecha_fin = $fecha_fin." 23:59:59";
+			else
+				$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
 		}
 		else
 		{
-			$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
-			$fecha_inicio = "01/01/". $ciclo->gestion;
-			$fecha_fin = "31/12/". $ciclo->gestion;
+			$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
+			$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
 		}
 		$criteria = new CDbCriteria;
 		$criteria->condition = "fecha >= '$fecha_inicio' AND fecha <= '$fecha_fin'";
@@ -265,7 +265,9 @@ class AsientoController extends Controller
 			$pdf->report();
 		}
 		$this->render('showLibro',array(
-			'asientos'=>$asientos
+			'asientos'=>$asientos,
+			'inicio'=>$fecha_inicio,
+			'fin'=>$fecha_fin
 		));
 	}
 

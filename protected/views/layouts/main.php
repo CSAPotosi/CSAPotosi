@@ -366,7 +366,7 @@
 			
 			<?php if(HelpTools::checkAccess(['Manejo del Libro Mayor'])):?>
             	<li>
-                    <a href="<?php echo CHtml::normalizeUrl(['diario/index'])?>" title="Libro Mayor"><i class="fa fa-clipboard "></i> <span class="menu-item-parent">Libro Mayor</span></a>
+                    <a href="<?php echo CHtml::normalizeUrl(['mayor/index'])?>" title="Libro Mayor"><i class="fa fa-clipboard "></i> <span class="menu-item-parent">Libro Mayor</span></a>
                 </li>
             <?php endif;?>
 

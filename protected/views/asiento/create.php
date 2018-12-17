@@ -33,7 +33,7 @@ $this->pageTitle = 'Asiento Contable No: '.$asiento->numero_asiento;
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">PLAN DE CUENTAS</h4>
-				<p>(Haga click sobre uno de los codigos para que se copie en el formulario)</p>
+				<p>(Haga click sobre uno de los codigos en fondo verde para copiarlo en el formulario)</p>
 			</div>
 			<div class="modal-body">
 				<table class="table table-bordered table-condensed">
@@ -46,7 +46,7 @@ $this->pageTitle = 'Asiento Contable No: '.$asiento->numero_asiento;
 					<tbody>
 						<?php foreach ($arrayCuentas as $item):	?>
 							<tr>
-								<td class="id_cuenta" data-idcuenta = "<?php echo $item->id_cuenta; ?>" id="<?php echo $item->codigo;?>">
+								<td class="<?php echo ($item->nivel>3)?'bg-success id_cuenta':'';?>" data-idcuenta = "<?php echo $item->id_cuenta; ?>" id="<?php echo $item->codigo;?>" >
 									<?php echo $item->codigo;?>
 								</td>
 								<td><?php echo $item->nombre;?></td>

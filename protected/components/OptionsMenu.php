@@ -485,7 +485,7 @@ class OptionsMenu{
             'Asientos' => [
                 'label' => 'Libro Diario',
                 'items' => [
-                    'asiento_Index' => ['url' => ['asiento/index', 'tipo' => '1'], 'label' => 'Administra Asientos'],
+                    'asiento_Index' => ['url' => ['asiento/index'], 'label' => 'Administrar Asientos'],
                     'asiento_Ingreso' => ['url' => ['asiento/create', 'tipo' => '1'], 'label' => 'Registrar Ingreso'],
                     'asiento_Egreso' => ['url' => ['asiento/create', 'tipo' => '2'], 'label' => 'Registrar Egreso'],
                     'asiento_Diario' => ['url' => ['asiento/create', 'tipo' => '3'], 'label' => 'Registrar Traspaso'],
@@ -497,6 +497,23 @@ class OptionsMenu{
         return self::selectMenu($menu, $selected);
     }
 
+
+    public static function menuMayor($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'Mayor' => [
+                'label' => 'Libro Mayor',
+                'items' => [
+                    'mayor_Index' => ['url' => ['mayor/index'], 'label' => 'Visualizar un Mayor'],
+                    'mayor_GetIntervalo' => ['url' => ['mayor/getIntervalo'], 'label' => 'Libro Mayor por Intervalo'],
+                    'mayor_GetVarios' => ['url' => ['mayor/getVarios'], 'label' => 'Libro Mayor Varias Cuentas'],
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu, $selected);
+    }
+    
 
     public static function menuUsuario($params = [], $selected = ['', ''])
     {

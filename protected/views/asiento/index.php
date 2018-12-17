@@ -11,13 +11,13 @@ $this->pageTitle = 'Asientos Del Libro Diario';
 					<header></header>
 					<div>
 						<div class="widget-body">
-							<?php echo CHtml::beginForm('','get'); ?>
+							<?php echo CHtml::beginForm(array('asiento/index'),'get'); ?>
 							<div class = 'row' >
 								<div class="col-md-4">
 									<label for='inicio' class='col-md-2 control-label'>Fecha Inicio</label>
 									<div class='col-md-10'>
 										<input type="datepicker" class="form-control datepicker"
-												data-dateformat="dd/mm/yy" name="inicio"
+												data-dateformat="dd-mm-yy" name="inicio"
 												placeholder="dd/mm/aaaa"'
 										value=<?php echo $inicio; ?> >
 									</div>
@@ -26,7 +26,7 @@ $this->pageTitle = 'Asientos Del Libro Diario';
 									<label for='fin' class='col-md-2 control-label'>Fecha Fin</label>
 									<div class='col-md-10'>
 										<input type="datepicker" class="form-control datepicker"
-												data-dateformat="dd/mm/yy" name="fin"
+												data-dateformat="dd-mm-yy" name="fin"
 												placeholder="dd/mm/aaaa"'
 										value=<?php echo $fin; ?> >
 									</div>

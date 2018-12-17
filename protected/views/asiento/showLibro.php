@@ -11,12 +11,39 @@ $this->pageTitle = 'Administrar Plan de Cuentas';
 					<header></header>
 					<div>
 						<div class="widget-body">
+							<?php echo CHtml::beginForm(array('asiento/showLibro'),'get'); ?>
+							<div class = 'row' >
+								<div class="col-md-2">
+								</div>
+								<div class="col-md-3">
+									<label for='inicio' class='col-md-2 control-label'>Fecha Inicio</label>
+									<div class='col-md-10'>
+										<input type="datepicker" class="form-control datepicker"
+												data-dateformat="dd-mm-yy" name="inicio"
+												placeholder="dd/mm/aaaa"'
+										value=<?php echo $inicio; ?> >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<label for='fin' class='col-md-2 control-label'>Fecha Fin</label>
+									<div class='col-md-10'>
+										<input type="datepicker" class="form-control datepicker"
+												data-dateformat="dd-mm-yy" name="fin"
+												placeholder="dd/mm/aaaa"'
+										value=<?php echo $fin; ?> >
+									</div>
+								</div>
+								<div class = 'col-md-4'>
+									<?php echo CHtml::submitButton('Buscar', array('class' => 'btn btn-primary')); ?>
+								</div>
+							</div>
+							<?php echo CHtml::endForm(); ?>
 							<div id="report">
 								<table style='width:100%; margin: 0px -20px;' >
 									<tr>
 										<td class='ancho-15' ></td>
 										<td><h3 class='text-center'>Libro Diario</h3></td>
-										<td class='ancho-15' >
+										<td class='ancho-10' >
 										<div class='reportButton'>
 											<?php echo CHtml::beginForm(null,'post',array('target'=>'_blank')); ?>
 				
@@ -31,7 +58,7 @@ $this->pageTitle = 'Administrar Plan de Cuentas';
 										</td>
 									</tr>
 								</table>
-								<p class="text-center">(Expresado en Bolivianos)</p>
+								<p class="text-center">(DEL <?php echo date("d-m-Y",strtotime($inicio)); ?> AL <?php echo date("d-m-Y",strtotime($fin)); ?>)</p>
 								<table class = "table table-bordered contable">
 									<thead>
 										<tr>

@@ -324,4 +324,15 @@ class Cuenta extends CActiveRecord
 			return Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel<6",'order' => 'codigo'));
 		return Cuenta::model()->findAllByAttributes(array('activo'=>true),array('order' => 'codigo'));
 	}
+
+	public function getCuentasListNivel($nivel)
+	{
+		if($nivel=='titulos')
+			$cuentas = Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel<4",'order' => 'codigo'));
+		elseif($nivel=='mayores')
+			$cuentas = Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel>3",'order' => 'codigo'));
+		elseif($nivel=='solomayores')
+			$cuentas = Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel=4",'order' => 'codigo'));
+		return $cuentas;		
+	}
 }

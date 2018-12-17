@@ -130,6 +130,21 @@
     "type": "0",
     "description": "Eliminar un Asiento"
   },
+  {
+    "name": "mayorIndex",
+    "type": "0",
+    "description": "Escoger Una cuenta de mayor"
+  },
+  {
+    "name": "mayorGetIntervalo",
+    "type": "0",
+    "description": "Mostrar Libro mayor por Intervalos"
+  },
+  {
+    "name": "mayorGetVarios",
+    "type": "0",
+    "description": "Mostrar Libro Mayor por varias cuentas"
+  },
   //USER: paso 4 - crear tarea por cada item del menu del paso 3, type =1, descripcion algo detallada
   {
     "name": "authentication_AdminRoles",
@@ -196,6 +211,21 @@
     "type": "1",
     "description": "Listado de los Asientos con opciones de edicion"
   },
+  {
+    "name": "mayor_Index",
+    "type": "1",
+    "description": "Mostrar el Libro Mayor de una cuenta en especifico"
+  },
+  {
+    "name": "mayor_GetIntervalo",
+    "type": "1",
+    "description": "Mostrar el Libro Mayor de Un Intervalo de Cuentas"
+  },
+  {
+    "name": "mayor_GetVarios",
+    "type": "1",
+    "description": "Mostrar el Libro Mayor de Varias Cuentas"
+  },
   //mis roles
   {
     "name": "Administrador de Roles",
@@ -218,8 +248,8 @@
     "description": "Administracion del Libro Diario"
   },
   {
-    "name": "Administracion de Asientos",
+    "name": "Manejo del Libro Mayor",
     "type": "2",
-    "description": "Administracion de los Asientos Registrados"
+    "description": "Administracion de del Libro Mayor"
   }
 ]

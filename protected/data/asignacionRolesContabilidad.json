@@ -134,6 +134,18 @@
     "parent": "asiento_Index",
     "child": "asientoDelete"
   },
+  {
+    "parent": "mayor_Index",
+    "child": "mayorIndex"
+  },
+  {
+    "parent": "mayor_GetIntervalo",
+    "child": "mayorGetIntervalo"
+  },
+  {
+    "parent": "mayor_GetVarios",
+    "child": "mayorGetVarios"
+  },
   //asignacion de tareas a roles
   {
     "parent": "Administrador de Roles",
@@ -184,7 +196,19 @@
     "child": "asiento_ShowLibro"
   },
   {
-    "parent": "Administracion de Asientos",
+    "parent": "Manejo del Libro Diario",
     "child": "asiento_Index"
+  },
+  {
+    "parent": "Manejo del Libro Mayor",
+    "child": "mayor_Index"
+  },
+  {
+    "parent": "Manejo del Libro Mayor",
+    "child": "mayor_GetIntervalo"
+  },
+  {
+    "parent": "Manejo del Libro Mayor",
+    "child": "mayor_GetVarios"
   }
 ]

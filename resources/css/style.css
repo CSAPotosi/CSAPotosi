@@ -1315,6 +1315,10 @@ legend.padding-10{
     width:10%;
 }
 
+.ancho-5 {
+    width:5%
+}
+
 table.no-border tr td{
     border-width: 0;
 }

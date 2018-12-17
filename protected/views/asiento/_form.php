@@ -7,8 +7,8 @@
 		<div class="col-md-3">
 			<label>Fecha</label>
 			<input type="datepicker" class="form-control datepicker"
-					data-dateformat="dd/mm/yy" name="Asiento[fecha]"
-					placeholder="dd/mm/aaaa"'
+					data-dateformat="dd-mm-yy" name="Asiento[fecha]"
+					placeholder="dd-mm-aaaa"'
 			value="<?php echo $asiento->fecha ?>">
 			<?php echo CHtml::error($asiento, 'fecha', ['class' => 'label label-danger']); ?>
 		</div>
