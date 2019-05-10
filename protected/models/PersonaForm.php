@@ -265,7 +265,7 @@ class PersonaForm extends CFormModel
 
     public function getPais()
     {
-        return CHtml::listData(pais::model()->findAll(), 'cod_pais', 'nombre_pais');
+        return CHtml::listData(Pais::model()->findAll(), 'cod_pais', 'nombre_pais');
     }
 }
 ?>
