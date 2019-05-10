@@ -45,8 +45,8 @@ $this->breadcrumbs = array(
                                     <div class="form-group">
                                         <label>FECHA DE NACIMIENTO</label>
                                         <input type="datepicker" class="form-control datepicker"
-                                               data-dateformat="dd/mm/yy" name="PersonaForm[fecha_nac]"
-                                               placeholder="dd/mm/aaaa"'
+                                               data-dateformat="yyyy-mm-dd" name="PersonaForm[fecha_nac]"
+                                               placeholder="aaaa-mm-dd"'
                                         value="<?php echo $modelPerson->fecha_nac ?>">
                                         <?php echo CHtml::error($modelPerson, 'fecha_nac', ['class' => 'label label-danger error-message']); ?>
                                     </div>
