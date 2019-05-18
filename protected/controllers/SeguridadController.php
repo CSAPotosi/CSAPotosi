@@ -99,7 +99,7 @@ class SeguridadController extends Controller
             $user = Yii::app()->getComponents(false)['db']->username;
             $pass = Yii::app()->getComponents(false)['db']->password;
 
-            $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('d-m-Y H:i:s')) . ".backup";
+            $ruta = YiiBase::getPathOfAlias('webroot') . "/Backups/SantaAna-" . strtotime(date('Y-m-d H:i:s')) . ".backup";
             putenv("PGPASSWORD={$pass}");
             $dumpcmd = array($setup->valor_se, "-U", $user, "-F", "t", "-f", $ruta, "csapotosi_db");
             var_dump(join(' ', $dumpcmd));

@@ -114,9 +114,9 @@ class Convenio extends CActiveRecord
 
     protected function beforeValidate()
     {
-        $this->fecha_edicion = date('d-m-Y H:i:s');
+        $this->fecha_edicion = date('Y-m-d H:i:s');
         if ($this->isNewRecord) {
-            $this->fecha_creacion = date('d-m-Y H:i:s');
+            $this->fecha_creacion = date('Y-m-d H:i:s');
         }
         return parent::beforeValidate();
     }
