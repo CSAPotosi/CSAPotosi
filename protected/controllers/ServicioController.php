@@ -304,7 +304,7 @@ class ServicioController extends Controller
 		if(isset($_POST['ServicioForm'])){
 			$tSala->setAttributes($_POST['ServicioForm'],false);
 			if($tSala->saveTipoSala())
-				$this->redirect(['view','grupo'=>'sala']);
+				$this->redirect(['view','grupo'=>'sala', 'id'=>$tSala->id]);
 		}
 		$this->render('salaCreate', ['tSala' => $tSala, 'dataUrl'=> ['grupo'=>'sala','tipo'=>0] ]);
 	}
