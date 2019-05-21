@@ -75,7 +75,7 @@ class AuditReport extends CActiveRecord
 	}
 
     public function beforeSave(){
-        $this->fecha_report = date('d/m/Y H:i:s');
+        $this->fecha_report = date('Y-m-d H:i:s');
         $this->user_id = 1;
         return parent::beforeSave();
     }

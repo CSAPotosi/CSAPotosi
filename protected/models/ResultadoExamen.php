@@ -111,7 +111,7 @@ class ResultadoExamen extends CActiveRecord
 
     public function beforeSave(){
         if($this->isNewRecord){
-            $this->fec_res = date('d/m/Y H:i:s');
+            $this->fec_res = date('Y-m-d H:i:s');
         }
         return parent::beforeSave();
     }

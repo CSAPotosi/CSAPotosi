@@ -111,7 +111,7 @@ class Antecedente extends CActiveRecord
 	}
 
     public function beforeSave(){
-        $this->fecha_ant = date('d/m/Y H:i:s');
+        $this->fecha_ant = date('Y-m-d H:i:s');
         $this->id_usuario = Yii::app()->user->isGuest?0:Yii::app()->user->id;
         return parent::beforeSave();
     }

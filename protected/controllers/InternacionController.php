@@ -78,7 +78,7 @@ class InternacionController extends Controller{
                 if($salaTemp){
                     $salaTemp->sala->estado_sala = 3;
                     $salaTemp->sala->save();
-                    $salaTemp->fecha_salida =date('d/m/Y H:i:s');
+                    $salaTemp->fecha_salida =date('Y-m-d H:i:s');
                     $salaTemp->save();
                 }
                 $iModel->historial->paciente->estado_paciente = 1;
