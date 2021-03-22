@@ -161,7 +161,7 @@ class Cuenta extends CActiveRecord
 		else
 		{
 			if(strlen($this->codigo)>1)
-				$this->addError('codigo','No puede dejar en blanco la cuenta Superior');
+				$this->addError('cuenta_superior','No puede dejar en blanco la cuenta Superior');
 		}
 	}
 
@@ -312,27 +312,65 @@ class Cuenta extends CActiveRecord
 		return $this->tipos;
 	}
 
-	public function getCuentasList($superiores=false)
+	public function getCuentasList($nivel=false)
 	{
-		/*
-		$criteria=new CDbCriteria;
-		$criteria->addCondition("activo=TRUE");
-		$criteria->order='codigo ASC';
-		$arrayCuentas = Cuenta::model()->findAll($criteria);
-		*/
-		if($superiores)
+		if($nivel=='titulos')
+			return Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel<4",'order' => 'codigo'));
+		if($nivel=='mayores')
+			return Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel=4",'order' => 'codigo'));
+		if($nivel=='mayores-submayores')
+			return Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel>3",'order' => 'codigo'));
+		if($nivel=='sin-auxiliares')
 			return Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel<6",'order' => 'codigo'));
+		if($nivel=='deshabilitados')
+			return Cuenta::model()->findAllByAttributes(array('activo'=>false));
 		return Cuenta::model()->findAllByAttributes(array('activo'=>true),array('order' => 'codigo'));
 	}
 
-	public function getCuentasListNivel($nivel)
+	public function getSumaCreditos()
 	{
-		if($nivel=='titulos')
-			$cuentas = Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel<4",'order' => 'codigo'));
-		elseif($nivel=='mayores')
-			$cuentas = Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel>3",'order' => 'codigo'));
-		elseif($nivel=='solomayores')
-			$cuentas = Cuenta::model()->findAllByAttributes(array('activo'=>true),array("condition"=>"nivel=4",'order' => 'codigo'));
-		return $cuentas;		
+		$sum = 0;
+		foreach($this->cuentaAsientos as $ca)
+		{
+			$sum += $ca->haber;
+		}
+		return $sum;
+	}
+	public function getSumaDebitos()
+	{
+		$sum = 0;
+		foreach($this->cuentaAsientos as $ca)
+		{
+			$sum += $ca->debe;
+		}
+		return $sum;
+	}
+	public function getSumaDebeSub()
+	{
+		$sum = 0;
+		if($this->cuentas)
+		{
+			foreach($this->cuentas as $cuenta)
+			{
+				$sum += $cuenta->getSumaDebeSub();
+			}
+			return $sum + $this->getSumaDebitos();
+		}
+		else 
+			return $this->getSumaDebitos();
+	}
+	public function getSumaHaberSub()
+	{
+		$sum = 0;
+		if($this->cuentas)
+		{
+			foreach($this->cuentas as $cuenta)
+			{
+				$sum += $cuenta->getSumaHaberSub();
+			}
+			return $sum + $this->getSumaCreditos();
+		}
+		else
+			return $this->getSumaCreditos();
 	}
 }

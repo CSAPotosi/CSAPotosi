@@ -145,6 +145,46 @@
     "type": "0",
     "description": "Mostrar Libro Mayor por varias cuentas"
   },
+  {
+    "name": "eeffBalanceGeneral",
+    "type": "0",
+    "description": "Reporte de Balance General"
+  },
+  {
+    "name": "eeffEstadoResultados",
+    "type": "0",
+    "description": "Reporte de Estado de Resultados"
+  },
+  {
+    "name": "eeffFlujoEfectivo",
+    "type": "0",
+    "description": "Reporte de Flujo Efectivo"
+  },
+  {
+    "name": "eeffCambiosPatrimonio",
+    "type": "0",
+    "description": "Reporte de Cambios en el Patrimonio Neto"
+  },
+  {
+    "name": "eeffBalanceComprobacionSS",
+    "type": "0",
+    "description": "Balance de comprobacion de sumas y saldos"
+  },
+  {
+    "name": "cicloIndex",
+    "type": "0",
+    "description": "Mostrar todos los ciclos creados"
+  },
+  {
+    "name": "cicloCreate",
+    "type": "0",
+    "description": "Crear un Nuevo Ciclo"
+  },
+  {
+    "name": "cicloView",
+    "type": "0",
+    "description": "Mostrar datos del Ciclo"
+  },
   //USER: paso 4 - crear tarea por cada item del menu del paso 3, type =1, descripcion algo detallada
   {
     "name": "authentication_AdminRoles",
@@ -162,7 +202,7 @@
     "description": "Creacion de Usuario"
   },
   {
-    "name": "Pagina de Inicio de Usuario",
+    "name": "usuario_Index",
     "type": "1",
     "description": "Index de Usuario"
   },
@@ -226,6 +266,41 @@
     "type": "1",
     "description": "Mostrar el Libro Mayor de Varias Cuentas"
   },
+  {
+    "name": "eeff_BalanceGeneral",
+    "type": "1",
+    "description": "Reporte de Balance General"
+  },
+  {
+    "name": "eeff_EstadoResultados",
+    "type": "1",
+    "description": "Reporte de Estado de Resultados"
+  },
+  {
+    "name": "eeff_FlujoEfectivo",
+    "type": "1",
+    "description": "Reporte de Flujo Efectivo"
+  },
+  {
+    "name": "eeff_CambiosPatrimonio",
+    "type": "1",
+    "description": "Reporte de Cambios en el Patrimonio Neto"
+  },
+  {
+    "name": "eeff_BalanceComprobacionSS",
+    "type": "1",
+    "description": "Balance de Comprobacion de Sumas y Saldos"
+  },
+  {
+    "name": "ciclo_Index",
+    "type": "1",
+    "description": "Visualizacion de los ciclos contables anteriores"
+  },
+  {
+    "name": "ciclo_Create",
+    "type": "1",
+    "description": "Creacion de un nuevo ciclo contable"
+  },
   //mis roles
   {
     "name": "Administrador de Roles",
@@ -251,5 +326,15 @@
     "name": "Manejo del Libro Mayor",
     "type": "2",
     "description": "Administracion de del Libro Mayor"
+  },
+  {
+    "name": "Manejo de Estados Financieros",
+    "type": "2",
+    "description": "Generar Estados Financieros"
+  },
+  {
+    "name": "Manejo de ciclos contables",
+    "type": "2",
+    "description": "Creacion de un nuevo ciclo contable y visualizacion de los anteriores"
   }
 ]

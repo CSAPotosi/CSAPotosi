@@ -110,7 +110,7 @@ class CuentaController extends Controller
 		}
 		else
 			$model->codigo = $model->generarCodigo();
-		$cuentasuperiorlist = CHtml::listData(Cuenta::model()->getCuentasList(true), 'id_cuenta', function ($p) {
+		$cuentasuperiorlist = CHtml::listData(Cuenta::model()->getCuentasList('sin-auxiliares'), 'id_cuenta', function ($p) {
 			return $p->codigo . " -- " . $p->nombre;
 		});
 		$this->render('create',array(
@@ -255,7 +255,7 @@ class CuentaController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_cuenta));
 		}
-		$cuentasuperiorlist = CHtml::listData(Cuenta::model()->getCuentasList(true), 'id_cuenta', function ($p) {
+		$cuentasuperiorlist = CHtml::listData(Cuenta::model()->getCuentasList('sin-auxiliares'), 'id_cuenta', function ($p) {
 			return $p->codigo . " -- " . $p->nombre;
 		});
 		$this->render('update',array(

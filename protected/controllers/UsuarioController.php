@@ -62,6 +62,7 @@ class UsuarioController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$this->menu = OptionsMenu::menuUsuario([], ['Usuarios', 'usuario_Index']);
 		$this->render('view', array(
 			'model' => $this->loadModel($id),
 			'roles' => Yii::app()->authManager->getAuthItems(null, $id),
@@ -74,6 +75,7 @@ class UsuarioController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$this->menu = OptionsMenu::menuUsuario([], ['Usuarios', 'usuario_Create']);
 		$model = new Usuario;
 		if (isset($_POST['Usuario'])) {
 			$model->attributes = $_POST['Usuario'];
@@ -115,6 +117,7 @@ class UsuarioController extends Controller
 
 	public function actionUpdate($id)
 	{
+		$this->menu = OptionsMenu::menuUsuario([], ['Usuarios', 'usuario_Index']);
 		$model = $this->loadModel($id);
 		if (isset($_POST['Usuario'])) {
 			$aux = $model->clave;
@@ -178,6 +181,7 @@ class UsuarioController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$this->menu = OptionsMenu::menuUsuario([], ['Usuarios', 'usuario_Index']);
 		$this->render('index');
 	}
 

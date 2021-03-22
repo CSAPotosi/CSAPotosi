@@ -111,6 +111,9 @@ class AsientoController extends Controller
 	{
 		$this->menu = OptionsMenu::menuAsiento([], ['Asientos', 'asiento_Index']);
 
+		if(!CicloContable::model()->cicloActual())
+			throw new CHttpException(400, 'Todavia no tiene Creado el Ciclo Contable de la Gestion Actual. Debe crearlo primero');
+			
 		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
 		if(isset($_GET["inicio"]) && isset($_GET["fin"]))
 		{
@@ -128,7 +131,7 @@ class AsientoController extends Controller
 		else
 		{
 			$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
-			$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
+			$fecha_fin = date('d-m-Y h:m:s');
 		}
 		$criteria = new CDbCriteria;
 		$criteria->condition = "fecha >= '$fecha_inicio' AND fecha <= '$fecha_fin' ".(($tipo=='0')? "" : "AND tipo = '$tipo'");
@@ -250,7 +253,7 @@ class AsientoController extends Controller
 		else
 		{
 			$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
-			$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
+			$fecha_fin = date('d-m-Y h:m:s');
 		}
 		$criteria = new CDbCriteria;
 		$criteria->condition = "fecha >= '$fecha_inicio' AND fecha <= '$fecha_fin'";

@@ -1,15 +1,15 @@
 <?php
 
-class m181019_214155_cuentas extends CDbMigration
+class m170319_214155_cuentas extends CDbMigration
 {
 	public function safeUp()
 	{
 		$this->createTable('ciclo_contable', [
 			'id_ciclo' => 'pk',
 			'gestion' => 'int not null',
-			'mes_inicio' => 'smallint not null',
+			'dia_inicio' => 'date not null',
 			'descripcion' => 'varchar(512)',
-			'activo' => 'boolean not null default true',
+			'activo' => 'boolean not null default false',
 		]);
 		$this->createTable('cuenta',[
 			'id_cuenta' => 'pk',

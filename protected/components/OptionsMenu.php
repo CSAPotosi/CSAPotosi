@@ -466,7 +466,7 @@ class OptionsMenu{
     {
         $menu = [
             'Cuentas' => [
-                'label' => 'Plan de Cuentas',
+                'label' => 'Plan de Cuentas y Ciclo Contable',
                 'items' => [
                     'cuenta_Index' => ['url' => ['cuenta/index'], 'label' => 'Listado de Cuentas'],
                     'cuenta_Admin' => ['url' => ['cuenta/Admin'], 'label' => 'Administracion de Cuentas'],
@@ -504,9 +504,27 @@ class OptionsMenu{
             'Mayor' => [
                 'label' => 'Libro Mayor',
                 'items' => [
-                    'mayor_Index' => ['url' => ['mayor/index'], 'label' => 'Visualizar un Mayor'],
+                    'mayor_Index' => ['url' => ['mayor/index'], 'label' => 'Libro Mayor por Cuenta'],
                     'mayor_GetIntervalo' => ['url' => ['mayor/getIntervalo'], 'label' => 'Libro Mayor por Intervalo'],
-                    'mayor_GetVarios' => ['url' => ['mayor/getVarios'], 'label' => 'Libro Mayor Varias Cuentas'],
+                    'mayor_GetVarios' => ['url' => ['mayor/getVarios'], 'label' => 'Libro Mayor por Varias Cuentas'],
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuEeff($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'Eeff' => [
+                'label' => 'Estados Financieros',
+                'items' => [
+                    'eeff_BalanceGeneral' => ['url' => ['eeff/balanceGeneral'], 'label' => 'Balance General'],
+                    'eeff_EstadoResultados' => ['url' => ['eeff/estadoResultados'], 'label' => 'Estado de Resultados'],
+                    'eeff_FlujoEfectivo' => ['url' => ['eeff/flujoEfectivo'], 'label' => 'Estado de Flujo Efectivo'],
+                    'eeff_CambiosPatrimonio' => ['url' => ['eeff/cambiosPatrimonio'], 'label' => 'Cambios en el Patrimonio Neto'],
+                    'eeff_BalanceComprobacionSS' => ['url' => ['eeff/balanceComprobacionSS'], 'label' => 'Balance de Comprobacion de Sumas y Saldos'],
                 ]
             ]
         ];
@@ -521,8 +539,23 @@ class OptionsMenu{
             'Usuarios' => [
                 'label' => 'Usuarios del Sistema',
                 'items' => [
-                    'Pagina de Inicio de Usuario' => ['url' => ['authentication/adminRoles'], 'label' => 'Administrar Roles'],
-                    'usuario_Create' => ['url' => ['authentication/CreateRole'], 'label' => 'Adm. de examenes'],
+                    'usuario_Index' => ['url' => ['usuario/index'], 'label' => 'Administrar Usuarios'],
+                    'usuario_Create' => ['url' => ['usuario/create'], 'label' => 'Crear Nuevo Usuario'],
+                ]
+            ]
+        ];
+        $menu = self::verAcceso($menu);
+        return self::selectMenu($menu, $selected);
+    }
+
+    public static function menuCiclo($params = [], $selected = ['', ''])
+    {
+        $menu = [
+            'Ciclo' => [
+                'label' => 'Ciclos Contables',
+                'items' => [
+                    'ciclo_Index' => ['url' => ['cicloContable/index'], 'label' => 'Listado de ciclos anteriores'],
+                    'ciclo_Create' => ['url' => ['cicloContable/create'], 'label' => 'Iniciar un nuevo ciclo contable'],
                 ]
             ]
         ];

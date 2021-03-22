@@ -353,9 +353,23 @@
 			<?php endif;?>
 			
 			<?php if(HelpTools::checkAccess(['Administrador de Cuentas'])):?>
-            	<li>
-                    <a href="<?php echo CHtml::normalizeUrl(['cuenta/index'])?>" title="Plan de Cuentas"><i class="fa fa-list-alt "></i> <span class="menu-item-parent">Plan de Cuentas</span></a>
-                </li>
+			<li>
+				<a href="#" title="Datos Contables"><i class="fa fa-lg fa-fw fa-list-alt"></i> <span class="menu-item-parent">Datos Contables</span></a>
+				<ul>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['cuenta/index']);?>" title="Plan de Cuentas">
+                            <i class="fa fa-circle"></i>
+                            <span>Plan de Cuentas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo CHtml::normalizeUrl(['cicloContable/index']);?>" title="Ciclo Contable">
+                            <i class="fa fa-circle"></i>
+                            <span>Ciclo Contable</span>
+                        </a>
+                    </li>
+				</ul>
+			</li>
 			<?php endif;?>
 			
 			<?php if(HelpTools::checkAccess(['Manejo del Libro Diario'])):?>
@@ -367,6 +381,12 @@
 			<?php if(HelpTools::checkAccess(['Manejo del Libro Mayor'])):?>
             	<li>
                     <a href="<?php echo CHtml::normalizeUrl(['mayor/index'])?>" title="Libro Mayor"><i class="fa fa-clipboard "></i> <span class="menu-item-parent">Libro Mayor</span></a>
+                </li>
+            <?php endif;?>
+			
+			<?php if(HelpTools::checkAccess(['Manejo de Estados Financieros'])):?>
+            	<li>
+                    <a href="<?php echo CHtml::normalizeUrl(['eeff/balanceGeneral'])?>" title="Estados Financieros"><i class="fa fa-file-text "></i> <span class="menu-item-parent">Estados Financieros</span></a>
                 </li>
             <?php endif;?>
 

@@ -48,13 +48,15 @@ $this->pageTitle = 'Crear Cuenta';
 									
 									<div class="form-group">
 										<?php echo $form->labelEx($model,'cuenta_superior'); ?>
-										<?php echo $form->dropDownList($model,'cuenta_superior', $cuentasuperiorlist, array('class'=>'form-control','empty'=>'')); ?>
+										<?php echo $form->dropDownList($model,'cuenta_superior', $cuentasuperiorlist, array('class'=>'form-control','empty'=>'','disabled'=>($model->cuenta_superior)?'disabled':'')); ?>
+										<?php echo ($model->cuenta_superior)? $form->hiddenField($model, 'cuenta_superior'):''; ?>
 										<?php echo $form->error($model,'cuenta_superior',array('class'=>'label label-danger')); ?>
 									</div>
 
 									<div class="form-group">
-										<?php echo $form->labelEx($model,'naturaleza'); ?> <span class="note"> <a href="" >(Cambiar)</a> </span>
-										<?php echo $form->dropDownList($model,'naturaleza', $model->getTipos() ,array('class'=>'form-control','empty'=>'')); ?>
+										<?php echo $form->labelEx($model,'naturaleza'); ?> <span class="note"> <?php echo ($model->cuenta_superior)?CHtml::link('(Cambiar)', array('#'), array('class' => 'cambiar')):'' ?> </span>
+										<?php echo $form->dropDownList($model,'naturaleza', $model->getTipos() ,array('class'=>'form-control','empty'=>'','disabled'=>($model->naturaleza)?'disabled':'')); ?>
+										<?php echo ($model->naturaleza)? $form->hiddenField($model, 'naturaleza'):''; ?>
 										<?php echo $form->error($model,'naturaleza',array('class'=>'label label-danger')); ?>
 									</div>
 								</fieldset>
@@ -71,3 +73,7 @@ $this->pageTitle = 'Crear Cuenta';
 		</article>
 	</div>
 </section>
+
+<?php
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/resources/js/system/cuenta/create.js', CClientScript::POS_END);
+?>

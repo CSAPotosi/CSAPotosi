@@ -34,6 +34,9 @@ class MayorController extends Controller
 	public function actionIndex($fecha_inicio="",$fecha_fin="")
 	{
 		$this->menu = OptionsMenu::menuMayor([], ['Mayor', 'mayor_Index']);
+
+		if(!CicloContable::model()->cicloActual())
+			throw new CHttpException(400, 'Todavia no tiene Creado el Ciclo Contable de la Gestion Actual. Debe crearlo primero');
 		
 		$arrayCuentas = Cuenta::model()->getCuentasList();
 		$cuenta = '';
@@ -52,11 +55,12 @@ class MayorController extends Controller
 				$fecha_fin = $fecha_fin." 23:59:59";
 			else
 				$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
+			$arrayCuentas = Cuenta::model()->with('cuentaAsientos.asiento')->findAllByAttributes(array('activo'=>true),array('order' => 'codigo'));
 		}
 		else
 		{
 			$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
-			$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
+			$fecha_fin = date('d-m-Y h:m:s');
 		}
 		if(isset($_POST['pdf'])){
 			$pdf = new dPdf();
@@ -103,12 +107,13 @@ class MayorController extends Controller
 				$fecha_fin = $fecha_fin." 23:59:59";
 			else
 				$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
+			$arrayCuentas = Cuenta::model()->with('cuentaAsientos.asiento')->findAllByAttributes(array('activo'=>true),array('order' => 'codigo'));
 		}
 		else
 		{
 			$valid = false;
 			$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
-			$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
+			$fecha_fin = date('d-m-Y h:m:s');
 		}
 		if(isset($_POST['pdf'])){
 			$pdf = new dPdf();
@@ -135,7 +140,6 @@ class MayorController extends Controller
 		$this->menu = OptionsMenu::menuMayor([], ['Mayor', 'mayor_GetVarios']);
 		$arrayCuentas = Cuenta::model()->getCuentasList();
 		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
-
 		if(isset($_POST["inicio"]) && isset($_POST["fin"]) && isset($_POST["codigos"]))
 		{
 			$fecha_inicio = str_replace('/', '-', $_POST["inicio"]);
@@ -149,11 +153,12 @@ class MayorController extends Controller
 			else
 				$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
 			$codigos = $_POST['codigos'];
+			$arrayCuentas = Cuenta::model()->with('cuentaAsientos.asiento')->findAllByAttributes(array('activo'=>true),array('order' => 'codigo'));
 		}
 		else
 		{
 			$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
-			$fecha_fin = "31-12-". $ciclo->gestion." 23:59:59";
+			$fecha_fin = date('d-m-Y h:m:s');
 			$codigos = '';
 		}
 

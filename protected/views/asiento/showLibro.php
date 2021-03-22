@@ -34,7 +34,7 @@ $this->pageTitle = 'Administrar Plan de Cuentas';
 									</div>
 								</div>
 								<div class = 'col-md-4'>
-									<?php echo CHtml::submitButton('Buscar', array('class' => 'btn btn-primary')); ?>
+									<?php echo CHtml::submitButton('Mostrar', array('class' => 'btn btn-primary')); ?>
 								</div>
 							</div>
 							<?php echo CHtml::endForm(); ?>

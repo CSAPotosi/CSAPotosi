@@ -35,27 +35,27 @@
     "child": "usuarioView"
   },
   {
-    "parent": "Pagina de Inicio de Usuario",
+    "parent": "usuario_Index",
     "child": "usuarioIndex"
   },
   {
-    "parent": "Pagina de Inicio de Usuario",
+    "parent": "usuario_Index",
     "child": "usuarioGetUsuarioListAjax"
   },
   {
-    "parent": "Pagina de Inicio de Usuario",
+    "parent": "usuario_Index",
     "child": "usuarioHabilitacionAjax"
   },
   {
-    "parent": "Pagina de Inicio de Usuario",
+    "parent": "usuario_Index",
     "child": "usuarioCreate"
   },
   {
-    "parent": "Pagina de Inicio de Usuario",
+    "parent": "usuario_Index",
     "child": "usuarioView"
   },
   {
-    "parent": "Pagina de Inicio de Usuario",
+    "parent": "usuario_Index",
     "child": "usuarioUpdate"
   },
   {
@@ -146,6 +146,38 @@
     "parent": "mayor_GetVarios",
     "child": "mayorGetVarios"
   },
+  {
+    "parent": "eeff_BalanceGeneral",
+    "child": "eeffBalanceGeneral"
+  },
+  {
+    "parent": "eeff_EstadoResultados",
+    "child": "eeffEstadoResultados"
+  },
+  {
+    "parent": "eeff_FlujoEfectivo",
+    "child": "eeffFlujoEfectivo"
+  },
+  {
+    "parent": "eeff_CambiosPatrimonio",
+    "child": "eeffCambiosPatrimonio"
+  },
+  {
+    "parent": "eeff_BalanceComprobacionSS",
+    "child": "eeffBalanceComprobacionSS"
+  },
+  {
+    "parent": "ciclo_Index",
+    "child": "cicloIndex"
+  },
+  {
+    "parent": "ciclo_Index",
+    "child": "cicloView"
+  },
+  {
+    "parent": "ciclo_Create",
+    "child": "cicloCreate"
+  },
   //asignacion de tareas a roles
   {
     "parent": "Administrador de Roles",
@@ -161,7 +193,7 @@
   },
   {
     "parent": "Administrador de Usuarios",
-    "child": "Pagina de Inicio de Usuario"
+    "child": "usuario_Index"
   },
   {
     "parent": "Administrador de Cuentas",
@@ -210,5 +242,33 @@
   {
     "parent": "Manejo del Libro Mayor",
     "child": "mayor_GetVarios"
+  },
+  {
+    "parent": "Manejo de Estados Financieros",
+    "child": "eeff_BalanceGeneral"
+  },
+  {
+    "parent": "Manejo de Estados Financieros",
+    "child": "eeff_EstadoResultados"
+  },
+  {
+    "parent": "Manejo de Estados Financieros",
+    "child": "eeff_FlujoEfectivo"
+  },
+  {
+    "parent": "Manejo de Estados Financieros",
+    "child": "eeff_CambiosPatrimonio"
+  },
+  {
+    "parent": "Manejo de Estados Financieros",
+    "child": "eeff_BalanceComprobacionSS"
+  },
+  {
+    "parent": "Manejo de ciclos contables",
+    "child": "ciclo_Index"
+  },
+  {
+    "parent": "Manejo de ciclos contables",
+    "child": "ciclo_Create"
   }
 ]

@@ -86,7 +86,7 @@ $this->pageTitle = 'Libro Mayor por Cuentas';
 										<tbody>
 											<?php $d = 0; $h = 0; $saldo=0?>
 											<?php foreach($cuenta->cuentaAsientos as $cuentaasiento): ?>
-												<?php if(($cuentaasiento->asiento->fecha >= $inicio) && ($cuentaasiento->asiento->fecha <= $fin)): ?>
+												<?php if((date('d-m-Y',strtotime($cuentaasiento->asiento->fecha)) >= $inicio) && (date('d-m-Y',strtotime($cuentaasiento->asiento->fecha)) <= $fin)): ?>
 													<?php $saldo+=$cuentaasiento->debe; $saldo-=$cuentaasiento->haber; ?>
 													<tr>
 														<td><?php echo date('d-m-Y',strtotime($cuentaasiento->asiento->fecha))?></td>

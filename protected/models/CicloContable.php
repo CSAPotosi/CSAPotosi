@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'ciclo_contable':
  * @property integer $id_ciclo
  * @property integer $gestion
- * @property integer $mes_inicio
+ * @property integer $dia_inicio
  * @property string $descripcion
  * @property boolean $activo
  *
@@ -18,6 +18,10 @@ class CicloContable extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	public $anios = array(2010=>'2010',2011=>'2011',2012=>'2012',2013=>'2013',2014=>'2014',2015=>'2015',2016=>'2016',2017=>'2017',2018=>'2018',2019=>'2019',2020=>'2020',2021=>'2021',2022=>'2022',2023=>'2023',2024=>'2024',2025=>'2025',2026=>'2026',2027=>'2027',2028=>'2028',2029=>'2029',2030=>'2030');
+	public $meses = array(1=>'Enero', 2=>'Febrero', 3=>'Marzo', 4=>'Abril', 5=>'Mayo', 6=>'Junio', 7=>'Julio', 8=>'Agosto', 9=>'Septiembre', 10=>'Octubre', 11=>'Noviembre', 12=>'Diciembre');
+
+
 	public function tableName()
 	{
 		return 'ciclo_contable';
@@ -31,13 +35,13 @@ class CicloContable extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('gestion, mes_inicio', 'required'),
-			array('gestion, mes_inicio', 'numerical', 'integerOnly'=>true),
+			array('gestion, dia_inicio', 'required'),
+			array('gestion', 'numerical', 'integerOnly'=>true),
 			array('descripcion', 'length', 'max'=>512),
 			array('activo', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id_ciclo, gestion, mes_inicio, descripcion, activo', 'safe', 'on'=>'search'),
+			array('id_ciclo, gestion, descripcion, activo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,9 +65,9 @@ class CicloContable extends CActiveRecord
 		return array(
 			'id_ciclo' => 'Id Ciclo',
 			'gestion' => 'Gestion',
-			'mes_inicio' => 'Mes Inicio',
+			'dia_inicio' => 'Dia de Inicio',
 			'descripcion' => 'Descripcion',
-			'activo' => 'Activo',
+			'activo' => 'Estado',
 		);
 	}
 
@@ -87,7 +91,7 @@ class CicloContable extends CActiveRecord
 
 		$criteria->compare('id_ciclo',$this->id_ciclo);
 		$criteria->compare('gestion',$this->gestion);
-		$criteria->compare('mes_inicio',$this->mes_inicio);
+		$criteria->compare('dia_inicio',$this->dia_inicio);
 		$criteria->compare('descripcion',$this->descripcion,true);
 		$criteria->compare('activo',$this->activo);
 
@@ -112,4 +116,20 @@ class CicloContable extends CActiveRecord
 		$ciclo = CicloContable::model()->find("activo=true");
 		return $ciclo;
 	}
+
+	public function getAnios()
+	{
+		return $this->anios;
+	}
+
+	public function getMeses()
+	{
+		return $this->meses;
+	}
+	/*
+	public function getMes()
+	{
+		return $this->meses[$this->mes_inicio];
+	}
+	*/
 }

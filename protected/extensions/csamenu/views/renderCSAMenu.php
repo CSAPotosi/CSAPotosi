@@ -12,7 +12,7 @@
                     <?php foreach ($menuItem['items'] as $subMenuItem):?>
                         <tr class="<?php echo (array_key_exists('selected',$subMenuItem))?'selected':'';?>">
                             <td>
-                                <?php echo CHtml::link('<i class="fa fa-circle"></i>'.$subMenuItem['label'],$subMenuItem['url']);?>
+                                <?php echo CHtml::link('<div style="height:100%;width:100%"><i class="fa fa-circle"></i>'.$subMenuItem['label'].'</div>',$subMenuItem['url']);?>
                             </td>
                         </tr>
                     <?php endforeach;?>

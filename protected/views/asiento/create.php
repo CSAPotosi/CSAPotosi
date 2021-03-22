@@ -46,7 +46,7 @@ $this->pageTitle = 'Asiento Contable No: '.$asiento->numero_asiento;
 					<tbody>
 						<?php foreach ($arrayCuentas as $item):	?>
 							<tr>
-								<td class="<?php echo ($item->nivel>3)?'bg-success id_cuenta':'';?>" data-idcuenta = "<?php echo $item->id_cuenta; ?>" id="<?php echo $item->codigo;?>" >
+								<td class="<?php echo ($item->nivel>3 && $item->cuentas == null)?'bg-success id_cuenta':'';?>" data-idcuenta = "<?php echo $item->id_cuenta; ?>" id="<?php echo $item->codigo;?>" >
 									<?php echo $item->codigo;?>
 								</td>
 								<td><?php echo $item->nombre;?></td>
