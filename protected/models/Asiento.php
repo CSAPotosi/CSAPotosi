@@ -185,8 +185,22 @@ class Asiento extends CActiveRecord
 		$literal = "";
 		foreach($cantidades as $cant=>$lit){
 			$actual = $cant;
+			if($actual*1000000 <= $entero){
+				if($actual == 100 and intval($entero/1000000) == $actual)
+					$literal .= 'CIEN ';
+				else
+					$literal .= $cantidades[$actual].' ';
+				$entero -= ($actual * 1000000);
+				if( 30 <= $actual and $actual <=90 and $entero>0)
+					$literal .= 'Y ';
+			}
+		}
+		if(strlen($literal)>0)
+			$literal .= 'MILLONES ';
+		foreach($cantidades as $cant=>$lit){
+			$actual = $cant;
 			if($actual*1000 <= $entero){
-				if($actual == 100 and ($entero/10) == $actual)
+				if($actual == 100 and intval($entero/1000) == $actual)
 					$literal .= 'CIEN ';
 				else
 					$literal .= $cantidades[$actual].' ';

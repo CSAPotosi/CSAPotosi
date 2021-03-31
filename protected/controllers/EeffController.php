@@ -44,7 +44,7 @@ class EeffController extends Controller
 		$this->menu = OptionsMenu::menuEeff([], ['Eeff', 'eeff_BalanceGeneral']);
 		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
 		$cuentas = null;
-		$fecha_inicio = "01-01-". $ciclo->gestion;
+		$fecha_inicio = $ciclo->dia_inicio;
 		$valid = null;
 		if(isset($_GET["fin"]))
 		{
@@ -92,14 +92,168 @@ class EeffController extends Controller
 			'niveles'=>3,
 		));
 	}
-	public function actionBalanceComprobacionSS($fecha_fin='')
+	public function actionEstadoResultados(){
+		$this->menu = OptionsMenu::menuEeff([], ['Eeff', 'eeff_EstadoResultados']);
+		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
+		$cuentas = null;
+		$fecha_inicio = $ciclo->dia_inicio;
+		$valid = null;
+		if(isset($_GET["fin"]))
+		{
+			$fecha_fin = str_replace('/', '-', $_GET["fin"]);
+			if((bool)strtotime($fecha_fin))
+				$fecha_fin = $fecha_fin;
+			else
+				$fecha_fin = "31-12-". $ciclo->gestion;
+			$valid = true;
+			$q = "with con as(
+						select id_cuenta, debe, haber from 
+						asiento join cuenta_asiento 
+						on asiento.id_asiento = cuenta_asiento.id_asiento 
+						where fecha >= '$fecha_inicio' and fecha <= '$fecha_fin'
+					) 
+					select c.id_cuenta, c.codigo, c.nombre, c.nivel, c.naturaleza, sum(con.debe) as sumdebe, sum(con.haber) as sumhaber
+					from cuenta as c left join con on c.id_cuenta = con.id_cuenta 
+					where c.activo = true and c.codigo < '4'
+					group by c.id_cuenta 
+					order by c.codigo";
+			$cmd = Yii::app()->db->createCommand($q);
+			$cuentas = $cmd->queryAll();
+			$this->addTotales($cuentas);
+			// echo('<br><br><br><br><br><br><pre>');
+			// var_dump($result);
+			// echo('</pre>');
+			// return;
+		}
+		else
+			$fecha_fin = date('d-m-Y');
+		if(isset($_POST['pdf'])){
+			$pdf = new dPdf();
+
+			$content = $pdf->getHtmlWrapper($_POST['pdf']);
+			
+			$pdf->loadHtml($content);
+
+			$pdf->report();
+		}
+
+		$this->render('estadoResultados',array(
+			'cuentas'=>$cuentas,
+			'fin'=>$fecha_fin,
+			'valid'=>$valid
+		));
+	}
+	public function actionFlujoEfectivo()
+	{
+		$this->menu = OptionsMenu::menuEeff([], ['Eeff', 'eeff_EstadoResultados']);
+		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
+		$cuentas = null;
+		$fecha_inicio = $ciclo->dia_inicio;
+		$valid = null;
+		if(isset($_GET["fin"]))
+		{
+			$fecha_fin = str_replace('/', '-', $_GET["fin"]);
+			if((bool)strtotime($fecha_fin))
+				$fecha_fin = $fecha_fin;
+			else
+				$fecha_fin = "31-12-". $ciclo->gestion;
+			$valid = true;
+			$q = "with con as(
+						select id_cuenta, debe, haber from 
+						asiento join cuenta_asiento 
+						on asiento.id_asiento = cuenta_asiento.id_asiento 
+						where fecha >= '$fecha_inicio' and fecha <= '$fecha_fin'
+					) 
+					select c.id_cuenta, c.codigo, c.nombre, c.nivel, c.naturaleza, sum(con.debe) as sumdebe, sum(con.haber) as sumhaber
+					from cuenta as c left join con on c.id_cuenta = con.id_cuenta 
+					where c.activo = true and c.codigo < '4'
+					group by c.id_cuenta 
+					order by c.codigo";
+			$cmd = Yii::app()->db->createCommand($q);
+			$cuentas = $cmd->queryAll();
+			$this->addTotales($cuentas);
+			// echo('<br><br><br><br><br><br><pre>');
+			// var_dump($result);
+			// echo('</pre>');
+			// return;
+		}
+		else
+			$fecha_fin = date('d-m-Y');
+		if(isset($_POST['pdf'])){
+			$pdf = new dPdf();
+
+			$content = $pdf->getHtmlWrapper($_POST['pdf']);
+			
+			$pdf->loadHtml($content);
+
+			$pdf->report();
+		}
+
+		$this->render('flujoEfectivo',array(
+			'cuentas'=>$cuentas,
+			'fin'=>$fecha_fin,
+			'valid'=>$valid
+		));
+	}
+	public function actionCambiosPatrimonio(){
+		$this->menu = OptionsMenu::menuEeff([], ['Eeff', 'eeff_EstadoResultados']);
+		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
+		$cuentas = null;
+		$fecha_inicio = $ciclo->dia_inicio;
+		$valid = null;
+		if(isset($_GET["fin"]))
+		{
+			$fecha_fin = str_replace('/', '-', $_GET["fin"]);
+			if((bool)strtotime($fecha_fin))
+				$fecha_fin = $fecha_fin;
+			else
+				$fecha_fin = "31-12-". $ciclo->gestion;
+			$valid = true;
+			$q = "with con as(
+						select id_cuenta, debe, haber from 
+						asiento join cuenta_asiento 
+						on asiento.id_asiento = cuenta_asiento.id_asiento 
+						where fecha >= '$fecha_inicio' and fecha <= '$fecha_fin'
+					) 
+					select c.id_cuenta, c.codigo, c.nombre, c.nivel, c.naturaleza, sum(con.debe) as sumdebe, sum(con.haber) as sumhaber
+					from cuenta as c left join con on c.id_cuenta = con.id_cuenta 
+					where c.activo = true and c.codigo < '4'
+					group by c.id_cuenta 
+					order by c.codigo";
+			$cmd = Yii::app()->db->createCommand($q);
+			$cuentas = $cmd->queryAll();
+			$this->addTotales($cuentas);
+			// echo('<br><br><br><br><br><br><pre>');
+			// var_dump($result);
+			// echo('</pre>');
+			// return;
+		}
+		else
+			$fecha_fin = date('d-m-Y');
+		if(isset($_POST['pdf'])){
+			$pdf = new dPdf();
+
+			$content = $pdf->getHtmlWrapper($_POST['pdf']);
+			
+			$pdf->loadHtml($content);
+
+			$pdf->report();
+		}
+
+		$this->render('cambiosPatrimonio',array(
+			'cuentas'=>$cuentas,
+			'fin'=>$fecha_fin,
+			'valid'=>$valid
+		));
+	}
+	public function actionBalanceComprobacionSS()
 	{
 		$this->menu = OptionsMenu::menuEeff([], ['Eeff', 'eeff_BalanceComprobacionSS']);
 
 		$arrayCuentas = Cuenta::model()->getCuentasList();
 		$ciclo = CicloContable::model()->findByAttributes(array('activo' => true));
 
-		$fecha_inicio = "01-01-". $ciclo->gestion." 00:00:00";
+		$fecha_inicio = $ciclo->dia_inicio;
 		$valid = null;
 		if(isset($_GET["fin"]))
 		{

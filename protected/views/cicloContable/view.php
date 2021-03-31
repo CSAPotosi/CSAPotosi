@@ -17,7 +17,7 @@ $this->pageTitle = 'Datos de Ciclo Contable';
 									</tr>
 									<tr>
 										<td>DIA DE INICIO</td>
-										<td><?php echo $ciclo->dia_inicio?></td>
+										<td><?php echo date("d/m/Y", strtotime($ciclo->dia_inicio));?></td>
 									</tr>
 									<tr>
 										<td>DESCRIPCION</td>

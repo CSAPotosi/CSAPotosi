@@ -23,7 +23,7 @@ $this->pageTitle = 'Ciclos Contables';
 								<?php foreach($ciclos as $ciclo): ?>
 									<tr>
 										<td><?php echo $ciclo->gestion?></td>
-										<td><?php echo $ciclo->dia_inicio?></td>
+										<td><?php echo date("d/m/Y", strtotime($ciclo->dia_inicio))?></td>
 										<td><?php echo $ciclo->descripcion?></td>
 										<td><?php echo ($ciclo->activo)? '<span class="label label-success">Vigente</span>' : '<span class="label label-danger">Pasado</span>'?>
 										<td class='text-right'>
